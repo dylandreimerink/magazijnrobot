@@ -1,3 +1,8 @@
+/*
+ * Authors: Henri & Jan Willem
+ * ICTM2A
+ * 2016
+ */
 
 public class Main {
 
