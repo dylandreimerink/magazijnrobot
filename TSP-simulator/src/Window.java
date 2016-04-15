@@ -1,24 +1,42 @@
+
 import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.imageio.ImageIO;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.awt.event.ActionEvent;
-import javax.swing.JMenuBar;
+
+import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
-import javax.swing.BoxLayout;
-import java.awt.GridBagLayout;
-import java.awt.BorderLayout;
-import javax.swing.JButton;
-import java.awt.GridBagConstraints;
-import java.awt.Canvas;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
-public class Window {
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+public class Window extends JFrame implements ActionListener {
 
 	private JFrame frame;
+	private JMenuBar menuBar;
+	private JMenu fileButton;
+	private JMenuItem openOrderButton;
+	private JMenuItem exitButton;
+	private JMenu algorithmButton;
+	private JRadioButtonMenuItem algoOne;
+	private JRadioButtonMenuItem algoTwo;
+	private JRadioButtonMenuItem algoThree;
+	private DrawSimulation drawsimulation;
+	private JFileChooser fileChooser;
+	private JButton open;
 
 	/**
 	 * Launch the application.
@@ -38,6 +56,7 @@ public class Window {
 
 	public Window() {
 		initialize();
+		
 	}
 
 	private void initialize() {
@@ -51,38 +70,94 @@ public class Window {
 			exc.printStackTrace();
 		}
 
-		JMenuBar menuBar = new JMenuBar();
+	    menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 
-		JMenu fileButton = new JMenu("File");
+		fileButton = new JMenu("File");
 		menuBar.add(fileButton);
 
-		JMenuItem openOrderButton = new JMenuItem("Open Order");
+	    openOrderButton = new JMenuItem("Open Order");
+	    openOrderButton.addActionListener(this);
 		fileButton.add(openOrderButton);
 
-		JMenuItem exitButton = new JMenuItem("Exit");
-		exitButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
+		exitButton = new JMenuItem("Exit");
+		exitButton.addActionListener(this);
 		fileButton.add(exitButton);
 
-		JMenu algorithmButton = new JMenu("Algorithm");
+		algorithmButton = new JMenu("Algorithm");
 		menuBar.add(algorithmButton);
 
-		JRadioButtonMenuItem algoOne = new JRadioButtonMenuItem("Volledige enumeratie");
+		algoOne = new JRadioButtonMenuItem("Volledige enumeratie");
 		algorithmButton.add(algoOne);
 
-		JRadioButtonMenuItem algoTwo = new JRadioButtonMenuItem("Simpel Gretig");
+		algoTwo = new JRadioButtonMenuItem("Simpel Gretig");
 		algorithmButton.add(algoTwo);
 
-		JRadioButtonMenuItem algoThree = new JRadioButtonMenuItem("-");
+	    algoThree = new JRadioButtonMenuItem("-");
 		algorithmButton.add(algoThree);
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
 		
-		DrawSimulation drawsimulation = new DrawSimulation();
+		drawsimulation = new DrawSimulation();
 		frame.add(drawsimulation);
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == openOrderButton) {
+			FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
+			open = new JButton("Open");
+			fileChooser = new JFileChooser();
+			fileChooser.setFileFilter(xmlfilter);
+			fileChooser.setDialogTitle("Open schedule file");
+			fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+			int result = fileChooser.showOpenDialog(this);
+			if (result == JFileChooser.APPROVE_OPTION) {
+				try{
+					String selectedFile = fileChooser.getSelectedFile().toString();
+					File fXmlFile = new File(selectedFile);
+					DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+					DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+					Document doc = dBuilder.parse(fXmlFile);
+					doc.getDocumentElement().normalize();
+					System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+					NodeList nList = doc.getElementsByTagName("staff");
+					System.out.println("----------------------------");
+					for (int temp = 0; temp < nList.getLength(); temp++) {
+
+						Node nNode = nList.item(temp);
+								
+						System.out.println("\nCurrent Element :" + nNode.getNodeName());
+								
+						if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+							Element eElement = (Element) nNode;
+
+							System.out.println("Staff id : " + eElement.getAttribute("id"));
+							System.out.println("First Name : " + eElement.getElementsByTagName("firstname").item(0).getTextContent());
+							System.out.println("Last Name : " + eElement.getElementsByTagName("lastname").item(0).getTextContent());
+							System.out.println("Nick Name : " + eElement.getElementsByTagName("nickname").item(0).getTextContent());
+							System.out.println("Salary : " + eElement.getElementsByTagName("salary").item(0).getTextContent());
+
+						}
+					}
+					System.out.println("----------------------------");
+				} catch (Exception f) {
+						f.printStackTrace();
+				}
+				
+				
+			} else if (result == JFileChooser.CANCEL_OPTION) {
+			    System.out.println("Cancel was selected");
+			}
+			
+			
+		}
+		
+		if (e.getSource() == exitButton) {
+			System.exit(0);
+		}
+		
+	}
+
 }
+
