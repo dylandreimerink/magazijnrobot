@@ -2,6 +2,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
+import javax.swing.SingleSelectionModel;
 
 public class DrawSimulation extends JPanel {
 
@@ -11,7 +12,12 @@ public class DrawSimulation extends JPanel {
 	
 	 public void paintComponent(Graphics g) {
 	        super.paintComponent(g);
-	        g.fillOval(0, 0, 80, 80);
+	        for(int x = 0;x<700;x++){
+	        	g.fillOval(x, 0, 80, 80);
+	
+	        	
+	        }
+	        repaint();
 	 }
 	
 }	
