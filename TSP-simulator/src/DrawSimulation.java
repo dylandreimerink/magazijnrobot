@@ -7,13 +7,16 @@ import javax.swing.SingleSelectionModel;
 public class DrawSimulation extends JPanel {
 
 	public DrawSimulation() {
-		 this.setPreferredSize(new Dimension(700, 150));
+		this.setPreferredSize(new Dimension(700, 150));
 	}
-	
-	 public void paintComponent(Graphics g) {
-	        super.paintComponent(g);
-	       
-	 }
-	
-}	
 
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		for (int x = 0; x < 700; x++) {
+			g.fillOval(x, 0, 80, 80);
+
+		}
+		repaint();
+	}
+
+}
