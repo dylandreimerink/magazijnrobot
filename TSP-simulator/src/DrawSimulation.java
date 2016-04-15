@@ -16,7 +16,7 @@ public class DrawSimulation extends JPanel {
 			g.fillOval(x, 0, 80, 80);
 
 		}
-		repaint();
+		repaint();  
 	}
 
 }
