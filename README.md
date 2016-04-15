@@ -1,1 +1,2 @@
 # magazijnrobot
+Welkom allemaal
