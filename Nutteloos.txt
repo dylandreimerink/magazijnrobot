@@ -1,9 +1,0 @@
-Een nutteloos tekstbestandje
-<<<<<<< HEAD
-
-
-HI
-=======
-waarom zet je hier nutteloze bestandjes neer Richard? :O
-Ik was het niet.
->>>>>>> origin/master
