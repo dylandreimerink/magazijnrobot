@@ -9,6 +9,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.BoxLayout;
+import java.awt.GridBagLayout;
+import java.awt.BorderLayout;
+import javax.swing.JButton;
+import java.awt.GridBagConstraints;
+import java.awt.Canvas;
 
 public class Window {
 
@@ -73,6 +79,10 @@ public class Window {
 
 		JRadioButtonMenuItem algoThree = new JRadioButtonMenuItem("-");
 		algorithmButton.add(algoThree);
+		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
+		
+		DrawSimulation drawsimulation = new DrawSimulation();
+		frame.add(drawsimulation);
 	}
 
 }
