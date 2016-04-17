@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
- 
+
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -19,7 +19,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.Element; 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -56,7 +56,7 @@ public class Window extends JFrame implements ActionListener {
 
 	public Window() {
 		initialize();
-		
+
 	}
 
 	private void initialize() {
@@ -70,14 +70,14 @@ public class Window extends JFrame implements ActionListener {
 			exc.printStackTrace();
 		}
 
-	    menuBar = new JMenuBar();
+		menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 
 		fileButton = new JMenu("File");
 		menuBar.add(fileButton);
 
-	    openOrderButton = new JMenuItem("Open Order");
-	    openOrderButton.addActionListener(this);
+		openOrderButton = new JMenuItem("Open Order");
+		openOrderButton.addActionListener(this);
 		fileButton.add(openOrderButton);
 
 		exitButton = new JMenuItem("Exit");
@@ -93,10 +93,10 @@ public class Window extends JFrame implements ActionListener {
 		algoTwo = new JRadioButtonMenuItem("Simpel Gretig");
 		algorithmButton.add(algoTwo);
 
-	    algoThree = new JRadioButtonMenuItem("-");
+		algoThree = new JRadioButtonMenuItem("-");
 		algorithmButton.add(algoThree);
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
-		
+
 		drawsimulation = new DrawSimulation();
 		frame.add(drawsimulation);
 	}
@@ -112,7 +112,7 @@ public class Window extends JFrame implements ActionListener {
 			fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
 			int result = fileChooser.showOpenDialog(this);
 			if (result == JFileChooser.APPROVE_OPTION) {
-				try{
+				try {
 					String selectedFile = fileChooser.getSelectedFile().toString();
 					File fXmlFile = new File(selectedFile);
 					DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -125,39 +125,40 @@ public class Window extends JFrame implements ActionListener {
 					for (int temp = 0; temp < nList.getLength(); temp++) {
 
 						Node nNode = nList.item(temp);
-								
+
 						System.out.println("\nCurrent Element :" + nNode.getNodeName());
-								
+
 						if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
 							Element eElement = (Element) nNode;
 
 							System.out.println("Staff id : " + eElement.getAttribute("id"));
-							System.out.println("First Name : " + eElement.getElementsByTagName("firstname").item(0).getTextContent());
-							System.out.println("Last Name : " + eElement.getElementsByTagName("lastname").item(0).getTextContent());
-							System.out.println("Nick Name : " + eElement.getElementsByTagName("nickname").item(0).getTextContent());
-							System.out.println("Salary : " + eElement.getElementsByTagName("salary").item(0).getTextContent());
+							System.out.println("First Name : "
+									+ eElement.getElementsByTagName("firstname").item(0).getTextContent());
+							System.out.println("Last Name : "
+									+ eElement.getElementsByTagName("lastname").item(0).getTextContent());
+							System.out.println("Nick Name : "
+									+ eElement.getElementsByTagName("nickname").item(0).getTextContent());
+							System.out.println(
+									"Salary : " + eElement.getElementsByTagName("salary").item(0).getTextContent());
 
 						}
 					}
 					System.out.println("----------------------------");
 				} catch (Exception f) {
-						f.printStackTrace();
+					f.printStackTrace();
 				}
-				
-				
+
 			} else if (result == JFileChooser.CANCEL_OPTION) {
-			    System.out.println("Cancel was selected");
+				System.out.println("Cancel was selected");
 			}
-			
-			
+
 		}
-		
+
 		if (e.getSource() == exitButton) {
 			System.exit(0);
 		}
-		
+
 	}
 
 }
-
