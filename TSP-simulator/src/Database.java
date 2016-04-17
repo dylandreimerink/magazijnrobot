@@ -10,6 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javax.swing.JOptionPane;
+
 import java.sql.Date;
 
 public class Database {
@@ -33,6 +36,7 @@ public class Database {
 			Class.forName("com.mysql.jdbc.Driver");
 			connect = DriverManager
 					.getConnection("jdbc:mysql://" + this.host + "user=" + this.user + "&password=" + this.passwd);
+            JOptionPane.showMessageDialog(null, "connection succesful");
 		} catch (Exception e) {
 			throw e;
 		}
@@ -40,7 +44,7 @@ public class Database {
 
 	public void select() throws Exception {
 		connect(); //Don't know if the connection has to be established everytime when a Query is executed??
-		preparedStatement = connect.prepareStatement("SQL_QUERY");
+		preparedStatement = connect.prepareStatement("SQL_SELECT_QUERY");
 		resultSet = preparedStatement.executeQuery(); // read this variable to
 														// determine the
 														// location of
