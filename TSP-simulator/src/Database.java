@@ -39,6 +39,7 @@ public class Database {
             JOptionPane.showMessageDialog(null, "connection succesful");
 		} catch (Exception e) {
 			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
 
