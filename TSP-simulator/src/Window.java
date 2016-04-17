@@ -26,7 +26,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
@@ -47,14 +46,15 @@ public class Window extends JFrame implements ActionListener {
 	private JButton open;
 
 	/**
-	 * Launch the application.
+	 * Launch the application. Create new object of Database Start new Thread
+	 * for Database Connection
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Window window = new Window();
-					Database db = new Database("host","user","ww");
+					Database db = new Database("host", "user", "ww");
 					db.start();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
@@ -110,8 +110,8 @@ public class Window extends JFrame implements ActionListener {
 		drawsimulation = new DrawSimulation();
 		frame.add(drawsimulation);
 	}
-	
-	private void parseXML(){
+
+	private void parseXML() {
 		FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
 		open = new JButton("Open");
 		fileChooser = new JFileChooser();
@@ -120,41 +120,46 @@ public class Window extends JFrame implements ActionListener {
 		fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
 		int result = fileChooser.showOpenDialog(this);
 		if (result == JFileChooser.APPROVE_OPTION) {
-			try{
+			try {
 				File inputFile = new File(fileChooser.getSelectedFile().toString());
 				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-		        Document doc = dBuilder.parse(inputFile);
-		        doc.getDocumentElement().normalize();
-		        System.out.println("Root element :"+ doc.getDocumentElement().getNodeName());
-		        System.out.println("Ordernummer: " + doc.getElementsByTagName("ordernummer").item(0).getTextContent());
-		        System.out.println("Datum: " + doc.getElementsByTagName("datum").item(0).getTextContent());
-		        NodeList nListKlant = doc.getElementsByTagName("klant");
-		        System.out.println("----------------------------");
-		        for (int tempKlant = 0; tempKlant < nListKlant.getLength(); tempKlant++) {
-		           Node nNodeKlant = nListKlant.item(tempKlant);
-		           System.out.println("Current Element :" + nNodeKlant.getNodeName());
-		           if (nNodeKlant.getNodeType() == Node.ELEMENT_NODE) {
-		              Element eElementKlant = (Element) nNodeKlant;
-		              System.out.println("Voornaam: " + eElementKlant.getElementsByTagName("voornaam").item(0).getTextContent());
-		              System.out.println("Achternaam: " + eElementKlant.getElementsByTagName("achternaam").item(0).getTextContent());
-		              System.out.println("Adres: " + eElementKlant.getElementsByTagName("adres").item(0).getTextContent());
-		              System.out.println("Postcode: " + eElementKlant.getElementsByTagName("postcode").item(0).getTextContent());
-		              System.out.println("Plaats: " + eElementKlant.getElementsByTagName("plaats").item(0).getTextContent());
-		           }
-		        }
-		        NodeList nListArtiekelnr = doc.getElementsByTagName("artikelnr");
-		        for (int tempArtiekelnr = 0; tempArtiekelnr < nListArtiekelnr.getLength(); tempArtiekelnr++) {
-		           System.out.println("artikelnr: " + doc.getElementsByTagName("artikelnr").item(tempArtiekelnr).getTextContent());
-		        }
+				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+				Document doc = dBuilder.parse(inputFile);
+				doc.getDocumentElement().normalize();
+				System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+				System.out.println("Ordernummer: " + doc.getElementsByTagName("ordernummer").item(0).getTextContent());
+				System.out.println("Datum: " + doc.getElementsByTagName("datum").item(0).getTextContent());
+				NodeList nListKlant = doc.getElementsByTagName("klant");
+				System.out.println("----------------------------");
+				for (int tempKlant = 0; tempKlant < nListKlant.getLength(); tempKlant++) {
+					Node nNodeKlant = nListKlant.item(tempKlant);
+					System.out.println("Current Element :" + nNodeKlant.getNodeName());
+					if (nNodeKlant.getNodeType() == Node.ELEMENT_NODE) {
+						Element eElementKlant = (Element) nNodeKlant;
+						System.out.println(
+								"Voornaam: " + eElementKlant.getElementsByTagName("voornaam").item(0).getTextContent());
+						System.out.println("Achternaam: "
+								+ eElementKlant.getElementsByTagName("achternaam").item(0).getTextContent());
+						System.out.println(
+								"Adres: " + eElementKlant.getElementsByTagName("adres").item(0).getTextContent());
+						System.out.println(
+								"Postcode: " + eElementKlant.getElementsByTagName("postcode").item(0).getTextContent());
+						System.out.println(
+								"Plaats: " + eElementKlant.getElementsByTagName("plaats").item(0).getTextContent());
+					}
+				}
+				NodeList nListArtiekelnr = doc.getElementsByTagName("artikelnr");
+				for (int tempArtiekelnr = 0; tempArtiekelnr < nListArtiekelnr.getLength(); tempArtiekelnr++) {
+					System.out.println("artikelnr: "
+							+ doc.getElementsByTagName("artikelnr").item(tempArtiekelnr).getTextContent());
+				}
 			} catch (Exception f) {
 				System.out.println("Wrong syntax xml file");
-			}	
+			}
 		} else if (result == JFileChooser.CANCEL_OPTION) {
-		    System.out.println("Cancel was selected");
+			System.out.println("Cancel was selected");
 		}
 	}
-	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
