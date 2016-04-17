@@ -1,9 +1,13 @@
-
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+<<<<<<< HEAD
+=======
+import java.net.URL;
+import java.util.Iterator;
+>>>>>>> origin/master
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
@@ -15,13 +19,19 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
+import java.io.File;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
+<<<<<<< HEAD
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+=======
+>>>>>>> origin/master
 import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 public class Window extends JFrame implements ActionListener {
 
@@ -100,10 +110,56 @@ public class Window extends JFrame implements ActionListener {
 		drawsimulation = new DrawSimulation();
 		frame.add(drawsimulation);
 	}
+	
+	private void parseXML(){
+		FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
+		open = new JButton("Open");
+		fileChooser = new JFileChooser();
+		fileChooser.setFileFilter(xmlfilter);
+		fileChooser.setDialogTitle("Open XML file");
+		fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+		int result = fileChooser.showOpenDialog(this);
+		if (result == JFileChooser.APPROVE_OPTION) {
+			try{
+				File inputFile = new File(fileChooser.getSelectedFile().toString());
+				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+		        Document doc = dBuilder.parse(inputFile);
+		        doc.getDocumentElement().normalize();
+		        System.out.println("Root element :"+ doc.getDocumentElement().getNodeName());
+		        System.out.println("Ordernummer: " + doc.getElementsByTagName("ordernummer").item(0).getTextContent());
+		        System.out.println("Datum: " + doc.getElementsByTagName("datum").item(0).getTextContent());
+		        NodeList nListKlant = doc.getElementsByTagName("klant");
+		        System.out.println("----------------------------");
+		        for (int tempKlant = 0; tempKlant < nListKlant.getLength(); tempKlant++) {
+		           Node nNodeKlant = nListKlant.item(tempKlant);
+		           System.out.println("Current Element :" + nNodeKlant.getNodeName());
+		           if (nNodeKlant.getNodeType() == Node.ELEMENT_NODE) {
+		              Element eElementKlant = (Element) nNodeKlant;
+		              System.out.println("Voornaam: " + eElementKlant.getElementsByTagName("voornaam").item(0).getTextContent());
+		              System.out.println("Achternaam: " + eElementKlant.getElementsByTagName("achternaam").item(0).getTextContent());
+		              System.out.println("Adres: " + eElementKlant.getElementsByTagName("adres").item(0).getTextContent());
+		              System.out.println("Postcode: " + eElementKlant.getElementsByTagName("postcode").item(0).getTextContent());
+		              System.out.println("Plaats: " + eElementKlant.getElementsByTagName("plaats").item(0).getTextContent());
+		           }
+		        }
+		        NodeList nListArtiekelnr = doc.getElementsByTagName("artikelnr");
+		        for (int tempArtiekelnr = 0; tempArtiekelnr < nListArtiekelnr.getLength(); tempArtiekelnr++) {
+		           System.out.println("artikelnr: " + doc.getElementsByTagName("artikelnr").item(tempArtiekelnr).getTextContent());
+		        }
+			} catch (Exception f) {
+				System.out.println("Wrong syntax xml file");
+			}	
+		} else if (result == JFileChooser.CANCEL_OPTION) {
+		    System.out.println("Cancel was selected");
+		}
+	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == openOrderButton) {
+<<<<<<< HEAD
 			FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
 			open = new JButton("Open");
 			fileChooser = new JFileChooser();
@@ -153,6 +209,9 @@ public class Window extends JFrame implements ActionListener {
 				System.out.println("Cancel was selected");
 			}
 
+=======
+			parseXML();
+>>>>>>> origin/master
 		}
 
 		if (e.getSource() == exitButton) {
