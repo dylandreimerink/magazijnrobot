@@ -38,7 +38,7 @@ public class Database {
 					.getConnection("jdbc:mysql://" + this.host + "user=" + this.user + "&password=" + this.passwd);
             JOptionPane.showMessageDialog(null, "connection succesful");
 		} catch (Exception e) {
-			throw e;
+			e.printStackTrace();
 		}
 	}
 
