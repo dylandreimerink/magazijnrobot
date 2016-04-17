@@ -3,11 +3,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-<<<<<<< HEAD
-=======
+
 import java.net.URL;
 import java.util.Iterator;
->>>>>>> origin/master
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
@@ -24,11 +22,11 @@ import java.io.File;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
-<<<<<<< HEAD
+
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-=======
->>>>>>> origin/master
+
+
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
@@ -159,7 +157,6 @@ public class Window extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == openOrderButton) {
-<<<<<<< HEAD
 			FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
 			open = new JButton("Open");
 			fileChooser = new JFileChooser();
@@ -209,9 +206,7 @@ public class Window extends JFrame implements ActionListener {
 				System.out.println("Cancel was selected");
 			}
 
-=======
 			parseXML();
->>>>>>> origin/master
 		}
 
 		if (e.getSource() == exitButton) {
