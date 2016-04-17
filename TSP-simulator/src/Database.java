@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 import java.sql.Date;
 
-public class Database extends Thread {
+public class Database implements Runnable {
 	private Connection connect = null;
 	private Statement statement = null;
 	private PreparedStatement preparedStatement = null;

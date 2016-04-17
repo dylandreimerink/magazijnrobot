@@ -55,7 +55,8 @@ public class Window extends JFrame implements ActionListener {
 				try {
 					Window window = new Window();
 					Database db = new Database("host", "user", "ww");
-					db.start();
+					//db.start();
+					db.run();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
