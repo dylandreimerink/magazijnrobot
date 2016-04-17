@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 import java.sql.Date;
 
-public class Database {
+public class Database extends Thread {
 	private Connection connect = null;
 	private Statement statement = null;
 	private PreparedStatement preparedStatement = null;
@@ -29,6 +29,16 @@ public class Database {
 		this.host = host;
 		this.user = user;
 		this.passwd = passwd;
+	}
+	
+	public void run(){
+		try {
+			connect();
+			System.out.println("This database connection is a new Thread");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void connect() throws Exception {
@@ -75,4 +85,5 @@ public class Database {
 	public void delete() throws Exception {
 
 	}
+	
 }
