@@ -15,6 +15,7 @@ public class order {
 		product = new ArrayList();
 		product = order.getProductList();
 	}
+	// getter
 	public ArrayList<Product> getProductList() {
 		return product;
 	}
