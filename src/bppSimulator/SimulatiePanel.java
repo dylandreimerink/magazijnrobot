@@ -1,19 +1,37 @@
 package bppSimulator;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 public class SimulatiePanel extends JPanel {
 
-	public SimulatiePanel(MainGUI parant) {
-		parant.lbltijd_2.setText("55 sec");
-	}
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	MainGUI parent;
 	
-	@Override
-	protected void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
-		super.paintComponent(g);
+	public SimulatiePanel(MainGUI parant) {
+		super();
+		this.parent = parant; 
+		
+		setBorder(BorderFactory.createLineBorder(Color.black));
+		setVisible(true);
 	}
+
+    public Dimension getPreferredSize() {
+        return new Dimension(250,450);
+    }
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);       
+
+        // Draw Text
+        g.drawString("This is my custom Panel!",10,20);
+    }  
 	
 }

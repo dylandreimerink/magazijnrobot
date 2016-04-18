@@ -31,7 +31,7 @@ public class MainGUI extends JFrame{
 	}
 
 	private void addComponents() {
-		
+		buttonsize = new Dimension(200, 30);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -58,15 +58,17 @@ public class MainGUI extends JFrame{
 		
 		JButton btnStartSimulatie = new JButton("Start simulatie");
 		btnStartSimulatie.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		btnStartSimulatie.setAlignmentY(Component.TOP_ALIGNMENT);
+		btnStartSimulatie.setMaximumSize(buttonsize);
 		panel_1.add(btnStartSimulatie);
 		
 		JButton btnNewButton = new JButton("Pauzeer simulatie");
 		btnNewButton.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		btnNewButton.setMaximumSize(buttonsize);
 		panel_1.add(btnNewButton);
 		
 		JButton btnAnnuleerSimulatie = new JButton("Annuleer simulatie");
 		btnAnnuleerSimulatie.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		btnAnnuleerSimulatie.setMaximumSize(buttonsize);
 		panel_1.add(btnAnnuleerSimulatie);
 		
 		JPanel panel_2 = new JPanel();
@@ -125,7 +127,7 @@ public class MainGUI extends JFrame{
 		panel.add(panel_3, BorderLayout.CENTER);
 		panel_3.setLayout(new BoxLayout(panel_3, BoxLayout.Y_AXIS));
 		
-		JPanel panel_4 = new SimulatiePanel(this);
+		SimulatiePanel panel_4 = new SimulatiePanel(this);
 		panel_4.setSize(new Dimension(0, 200));
 		panel_4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panel_3.add(panel_4);
