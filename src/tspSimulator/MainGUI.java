@@ -38,7 +38,6 @@ public class MainGUI extends JFrame {
 			Thread t = new Thread(db);
 			t.start();
 			db.select();
-			System.out.println("hoioi");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
