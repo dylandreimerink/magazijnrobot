@@ -1,40 +1,32 @@
 package Functions;
 
+import java.sql.*;
+
 /*
  * Testing Code for the Database Connection
  * By Jan Willem 
  */
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import javax.swing.JOptionPane;
-
-import java.sql.Date;
 
 public class Database implements Runnable {
 	private Connection connect = null;
 	private Statement statement = null;
 	private PreparedStatement preparedStatement = null;
 	private ResultSet resultSet = null;
-
-	private String host;
+	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+	static final String DB_URL = "jdbc:mysql://localhost/kbs2";	
 	private String user;
 	private String passwd;
 
 	public Database() {
-		this.host = "185.56.145.66";
-		this.user = "bernar1q_magrobo";
-		this.passwd = "magazijnrobot";
+		this.user = "root";
+		this.passwd = "";
 	}
-	
-	public void run(){
+
+	public void run() {
 		try {
-			connect();
+			//connect();
 			System.out.println("This database connection is a new Thread");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -42,12 +34,13 @@ public class Database implements Runnable {
 		}
 	}
 
-	public void connect(){
+	public void connect() {
 		try {
+			System.out.println("Connecting....");
+			JOptionPane.showMessageDialog(null, "connection succesful");
+			System.out.println("Connected.");
 			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager
-					.getConnection("jdbc:mysql://" + this.host + "user=" + this.user + "&password=" + this.passwd);
-            JOptionPane.showMessageDialog(null, "connection succesful");
+			connect = DriverManager.getConnection(DB_URL,user, passwd);
 		} catch (Exception e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -55,16 +48,19 @@ public class Database implements Runnable {
 	}
 
 	public void select() throws Exception {
-		connect(); //Don't know if the connection has to be established everytime when a Query is executed??
-		preparedStatement = connect.prepareStatement("SQL_SELECT_QUERY");
+		connect(); // Don't know if the connection has to be established
+					// everytime when a Query is executed??
+		preparedStatement = connect.prepareStatement("SELECT * FROM product");
 		resultSet = preparedStatement.executeQuery(); // read this variable to
 														// determine the
 														// location of
 														// products(X, Y POS)
+		System.out.println(resultSet);
 	}
 
 	public void insert() throws Exception {
-		connect(); //Don't know if the connection has to be established everytime when a Query is executed??
+		connect(); // Don't know if the connection has to be established
+					// everytime when a Query is executed??
 		preparedStatement = connect.prepareStatement("insert into DBNAME values (default, ?, ?, ?, ? , ?, ?)");
 
 		/*
@@ -86,5 +82,5 @@ public class Database implements Runnable {
 	public void delete() throws Exception {
 
 	}
-	
+
 }

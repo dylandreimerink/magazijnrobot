@@ -32,7 +32,18 @@ public class MainGUI extends JFrame {
 		addComponents();
 
 		setVisible(true);
+		
+		try {
+			Database db = new Database();
+			Thread t = new Thread(db);
+			t.start();
+			db.select();
+			System.out.println("hoioi");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
+	
 
 	private void addComponents() {
 		JMenuBar menuBar = new JMenuBar();
