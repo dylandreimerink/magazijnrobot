@@ -56,7 +56,7 @@ public class Database implements Runnable {
 
 	public void select() throws Exception {
 		connect(); //Don't know if the connection has to be established everytime when a Query is executed??
-		preparedStatement = connect.prepareStatement("SQL_SELECT_QUERY");
+		preparedStatement = connect.prepareStatement("SELECT * FROM product");
 		resultSet = preparedStatement.executeQuery(); // read this variable to
 														// determine the
 														// location of
