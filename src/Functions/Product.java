@@ -9,15 +9,23 @@ public class Product {
 	private int productId;
 	private int locationX;
 	private int locationY;
+	private double height;
+	private double width;
+	private double lenght;
+	private double ruimte;
 
-	public Product(int productId, int locationX, int locationY) {
+	public Product(int productId, int locationX, int locationY, double height, double width, double length) {
 		this.productId = productId;
 		this.locationX = locationX;
 		this.locationY = locationY;
+		this.height = height;
+		this.width = width;
+		this.lenght = length;
+		this.ruimte = height * width * length;
 	}
 	
 	public Product(int productId) {
-		this(productId, 0, 0);
+		this(productId, 0, 0, 0, 0, 0);
 	}
 
 	public int getProductId() {

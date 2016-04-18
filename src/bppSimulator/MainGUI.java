@@ -17,6 +17,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.JTextArea;
 
+import Functions.Product;
+
 public class MainGUI extends JFrame{
 	
 	public JLabel lbltijd_2;
@@ -32,9 +34,9 @@ public class MainGUI extends JFrame{
 		productList = new ArrayList<Product>();
 		
 		//TODO: remove code between comments when done testing
-		productList.add(new Product(10, 20, 15, 1));
-		productList.add(new Product(15, 20, 10, 1));
-		productList.add(new Product(10, 20, 15, 1));
+		productList.add(new Product(0, 2, 3, 10, 15, 10));
+		productList.add(new Product(1, 2, 4, 10, 20, 10));
+		productList.add(new Product(2, 2, 5, 10, 25, 10));
 		//end comment
 		
 		addComponents();

@@ -10,6 +10,8 @@ import java.awt.Graphics;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import Functions.Product;
+
 public class SimulatiePanel extends JPanel {
 
 	MainGUI parent;
@@ -34,7 +36,6 @@ public class SimulatiePanel extends JPanel {
         super.paintComponent(g);       
         
         int xOffset = 0;
-        
         
         for(Product p : parent.productList){
     	   g.fillRect( xOffset, productYOffset, productDimentions.width, productDimentions.height);
