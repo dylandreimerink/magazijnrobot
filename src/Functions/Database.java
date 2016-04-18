@@ -15,7 +15,7 @@ public class Database implements Runnable {
 	private PreparedStatement preparedStatement = null;
 	private ResultSet resultSet = null;
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://localhost/kbs2";	
+	static final String DB_URL = "jdbc:mysql://localhost/kbs2";
 	private String user;
 	private String passwd;
 
@@ -26,7 +26,7 @@ public class Database implements Runnable {
 
 	public void run() {
 		try {
-			//connect();
+			// connect();
 			System.out.println("This database connection is a new Thread");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -40,7 +40,7 @@ public class Database implements Runnable {
 			JOptionPane.showMessageDialog(null, "connection succesful");
 			System.out.println("Connected.");
 			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager.getConnection(DB_URL,user, passwd);
+			connect = DriverManager.getConnection(DB_URL, user, passwd);
 		} catch (Exception e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -51,11 +51,16 @@ public class Database implements Runnable {
 		connect(); // Don't know if the connection has to be established
 					// everytime when a Query is executed??
 		preparedStatement = connect.prepareStatement("SELECT * FROM product");
-		resultSet = preparedStatement.executeQuery(); // read this variable to
-														// determine the
-														// location of
-														// products(X, Y POS)
-		System.out.println(resultSet);
+		ResultSet rs;
+
+		rs = preparedStatement.executeQuery(); // read this variable to
+												// determine the
+												// location of
+												// products(X, Y POS)
+		while (rs.next()) {
+			System.out.println(rs.getString("productNaam"));
+		}
+
 	}
 
 	public void insert() throws Exception {
