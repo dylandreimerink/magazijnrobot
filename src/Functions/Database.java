@@ -15,13 +15,13 @@ public class Database implements Runnable {
 	private PreparedStatement preparedStatement = null;
 	private ResultSet resultSet = null;
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://82.73.253.177";	
+	static final String DB_URL = "jdbc:mysql://localhost/kbs2";	
 	private String user;
 	private String passwd;
 
 	public Database() {
-		this.user = "Aframe";
-		this.passwd = "123HvP!@#";
+		this.user = "root";
+		this.passwd = "";
 	}
 
 	public void run() {
