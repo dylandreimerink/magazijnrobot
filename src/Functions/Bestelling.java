@@ -3,7 +3,6 @@ package Functions;
 import java.io.File;
 import java.util.ArrayList;
 
-import javax.swing.JFileChooser;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -109,8 +108,8 @@ public class Bestelling {
 		System.out.println(
 				"Aan: " + this.firstname + this.surname + ", " + this.address + ", " + this.postcode + this.plaats);
 		System.out.println("Inhoud doos:");
-//		for (String item : someList) {
-//		    System.out.println(item);
-//		}
+		for (Product product : productList) {
+		    System.out.println(product.getProductName());
+		}
 	}
 }
