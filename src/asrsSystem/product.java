@@ -1,5 +1,9 @@
 package asrsSystem;
-import Functions.database
+import java.util.ArrayList;
+
+import Functions.Database;
+
 public class product {
 
+	private ArrayList<product> product;
 }
