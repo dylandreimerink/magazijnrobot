@@ -12,11 +12,11 @@ import javax.swing.JPanel;
 
 public class SimulatiePanel extends JPanel {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	MainGUI parent;
+	
+	int productYOffset = 350;
+	Dimension productDimentions = new Dimension(50, 50);
+	Dimension productTextOffset = new Dimension(-10, 0);
 	
 	public SimulatiePanel(MainGUI parant) {
 		super();
@@ -32,9 +32,17 @@ public class SimulatiePanel extends JPanel {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);       
-
-        // Draw Text
-        g.drawString("This is my custom Panel!",10,20);
+        
+        int xOffset = 0;
+        
+        
+        for(Product p : parent.productList){
+    	   g.fillRect( xOffset, productYOffset, productDimentions.width, productDimentions.height);
+    	   g.setColor(Color.white);
+    	   g.drawString("test", productTextOffset.width + xOffset + (productDimentions.width / 2), productTextOffset.height + productYOffset + (productDimentions.height / 2));
+    	   g.setColor(Color.black);
+    	   xOffset += productDimentions.width + 10;
+        }
     }  
 	
 }

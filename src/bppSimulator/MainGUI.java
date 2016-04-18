@@ -33,6 +33,8 @@ public class MainGUI extends JFrame{
 		
 		//TODO: remove code between comments when done testing
 		productList.add(new Product(10, 20, 15, 1));
+		productList.add(new Product(15, 20, 10, 1));
+		productList.add(new Product(10, 20, 15, 1));
 		//end comment
 		
 		addComponents();
