@@ -1,3 +1,4 @@
+package tspSimulator;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -115,7 +116,6 @@ public class Window extends JFrame implements ActionListener {
 		frame.add(drawsimulation);
 	}
 
-<<<<<<< HEAD
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == openOrderButton) {
@@ -128,8 +128,6 @@ public class Window extends JFrame implements ActionListener {
 
 	}
 
-=======
->>>>>>> 450df0beae2b04fb6bf04f9e073927324c3bdd31
 	private void parseXML() {
 		FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
 		fileChooser = new JFileChooser();
@@ -147,16 +145,10 @@ public class Window extends JFrame implements ActionListener {
 				doc.getDocumentElement().normalize();
 				System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 				System.out.println("Ordernummer: " + doc.getElementsByTagName("ordernummer").item(0).getTextContent());
-<<<<<<< HEAD
 				int ordernummer = Integer.parseInt(doc.getElementsByTagName("ordernummer").item(0).getTextContent());
 				System.out.println("Datum: " + doc.getElementsByTagName("datum").item(0).getTextContent());
 				String datum = doc.getElementsByTagName("datum").item(0).getTextContent();
 				NodeList nListKlant = doc.getElementsByTagName("klant");
-=======
-				System.out.println("Datum: " + doc.getElementsByTagName("datum").item(0).getTextContent());
-				NodeList nListKlant = doc.getElementsByTagName("klant");
-				System.out.println("----------------------------");
->>>>>>> 450df0beae2b04fb6bf04f9e073927324c3bdd31
 				for (int tempKlant = 0; tempKlant < nListKlant.getLength(); tempKlant++) {
 					Node nNodeKlant = nListKlant.item(tempKlant);
 					System.out.println("Current Element :" + nNodeKlant.getNodeName());
@@ -172,7 +164,6 @@ public class Window extends JFrame implements ActionListener {
 								"Postcode: " + eElementKlant.getElementsByTagName("postcode").item(0).getTextContent());
 						System.out.println(
 								"Plaats: " + eElementKlant.getElementsByTagName("plaats").item(0).getTextContent());
-<<<<<<< HEAD
 						String voornaam = eElementKlant.getElementsByTagName("voornaam").item(0).getTextContent();
 						String achternaam = eElementKlant.getElementsByTagName("achternaam").item(0).getTextContent();
 						String adres = eElementKlant.getElementsByTagName("adres").item(0).getTextContent();
@@ -189,14 +180,6 @@ public class Window extends JFrame implements ActionListener {
 							+ doc.getElementsByTagName("artikelnr").item(tempArtiekelnr).getTextContent());
 					Product product = new Product(1,1);
 					bestelling.addOrder(product);
-=======
-					}
-				}
-				NodeList nListArtiekelnr = doc.getElementsByTagName("artikelnr");
-				for (int tempArtiekelnr = 0; tempArtiekelnr < nListArtiekelnr.getLength(); tempArtiekelnr++) {
-					System.out.println("artikelnr: "
-							+ doc.getElementsByTagName("artikelnr").item(tempArtiekelnr).getTextContent());
->>>>>>> 450df0beae2b04fb6bf04f9e073927324c3bdd31
 				}
 			} catch (Exception f) {
 				System.out.println("Wrong syntax xml file");
@@ -205,69 +188,5 @@ public class Window extends JFrame implements ActionListener {
 			System.out.println("Cancel was selected");
 		}
 	}
-<<<<<<< HEAD
-=======
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == openOrderButton) {
-			FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
-			open = new JButton("Open");
-			fileChooser = new JFileChooser();
-			fileChooser.setFileFilter(xmlfilter);
-			fileChooser.setDialogTitle("Open schedule file");
-			fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-			int result = fileChooser.showOpenDialog(this);
-			if (result == JFileChooser.APPROVE_OPTION) {
-				try {
-					String selectedFile = fileChooser.getSelectedFile().toString();
-					File fXmlFile = new File(selectedFile);
-					DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-					DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-					Document doc = dBuilder.parse(fXmlFile);
-					doc.getDocumentElement().normalize();
-					System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-					NodeList nList = doc.getElementsByTagName("staff");
-					System.out.println("----------------------------");
-					for (int temp = 0; temp < nList.getLength(); temp++) {
-
-						Node nNode = nList.item(temp);
-
-						System.out.println("\nCurrent Element :" + nNode.getNodeName());
-
-						if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-							Element eElement = (Element) nNode;
-
-							System.out.println("Staff id : " + eElement.getAttribute("id"));
-							System.out.println("First Name : "
-									+ eElement.getElementsByTagName("firstname").item(0).getTextContent());
-							System.out.println("Last Name : "
-									+ eElement.getElementsByTagName("lastname").item(0).getTextContent());
-							System.out.println("Nick Name : "
-									+ eElement.getElementsByTagName("nickname").item(0).getTextContent());
-							System.out.println(
-									"Salary : " + eElement.getElementsByTagName("salary").item(0).getTextContent());
-
-						}
-					}
-					System.out.println("----------------------------");
-				} catch (Exception f) {
-					f.printStackTrace();
-				}
-
-			} else if (result == JFileChooser.CANCEL_OPTION) {
-				System.out.println("Cancel was selected");
-			}
-
-			parseXML();
-		}
-
-		if (e.getSource() == exitButton) {
-			System.exit(0);
-		}
-
-	}
->>>>>>> 450df0beae2b04fb6bf04f9e073927324c3bdd31
 
 }

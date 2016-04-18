@@ -1,3 +1,4 @@
+package tspSimulator;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
