@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -20,6 +21,7 @@ import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.FlowLayout;
+import javax.swing.JPanel;
 
 /**
  * Authors: Jan Willem en Henri Class: ICTM2A
@@ -32,14 +34,12 @@ public class Window extends JFrame implements ActionListener {
 	private JMenu fileButton;
 	private JMenuItem openOrderButton;
 	private JMenuItem exitButton;
-	private JMenu algorithmButton;
-	private JRadioButtonMenuItem algoOne;
-	private JRadioButtonMenuItem algoTwo;
-	private JRadioButtonMenuItem algoThree;
-	private DrawPanel drawsimulation;
-	private JButton btnStart;
-	private JTextField txtHoogte;
-	private JTextField txtBreedte;
+
+	private JButton start;
+	private JTextField textfieldHoogte;
+	private JTextField textfieldBreedte;
+	private JLabel labelHoogte;
+	private JLabel labelBreedte;
 
 	/**
 	 * Launch the application. Create new object of Database Start new Thread
@@ -50,9 +50,9 @@ public class Window extends JFrame implements ActionListener {
 			public void run() {
 				try {
 					Window window = new Window();
-					//Database db = new Database("host", "user", "ww");
-					//Thread t = new Thread(db);
-					//t.start();
+					// Database db = new Database("host", "user", "ww");
+					// Thread t = new Thread(db);
+					// t.start();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,21 +62,10 @@ public class Window extends JFrame implements ActionListener {
 	}
 
 	public Window() {
-		initialize();
-
-	}
-
-	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("TSP Simulator");
-		frame.setBounds(100, 100, 909, 548);
+		frame.setBounds(100, 100, 1920 / 2, 1020 / 2);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-// 		afbeelding laden
-//		try {
-//			frame.setIconImage(ImageIO.read(new File("/tux2.png")));
-//		} catch (IOException exc) {
-//			exc.printStackTrace();
-//		}
 
 		menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
@@ -92,36 +81,23 @@ public class Window extends JFrame implements ActionListener {
 		exitButton.addActionListener(this);
 		fileButton.add(exitButton);
 
-//		algorithmButton = new JMenu("Algorithm");
-//		menuBar.add(algorithmButton);
-//
-//		algoOne = new JRadioButtonMenuItem("Volledige enumeratie");
-//		algorithmButton.add(algoOne);
-//
-//		algoTwo = new JRadioButtonMenuItem("Simpel Gretig");
-//		algorithmButton.add(algoTwo);
-//
-//		algoThree = new JRadioButtonMenuItem("-");
-//		algorithmButton.add(algoThree);
-//		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
+		start = new JButton("Start");
+		start.addActionListener(this);
+		getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		getContentPane().add(start);
 
-		drawsimulation = new DrawPanel();
-		frame.getContentPane().add(drawsimulation);
-		drawsimulation.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		btnStart = new JButton("Start");
-		drawsimulation.add(btnStart);
-		
-		txtBreedte = new JTextField();
-		txtBreedte.setText("Breedte");
-		drawsimulation.add(txtBreedte);
-		txtBreedte.setColumns(10);
-		
-		txtHoogte = new JTextField();
-		txtHoogte.setText("Hoogte");
-		drawsimulation.add(txtHoogte);
-		txtHoogte.setColumns(10);
+		labelHoogte = new JLabel("Hoogte");
+		getContentPane().add(labelHoogte);
+		textfieldHoogte = new JTextField(10);
+		getContentPane().add(textfieldHoogte);
+		labelBreedte = new JLabel("Breedte");
+		getContentPane().add(labelBreedte);
+		textfieldBreedte = new JTextField(10);
+		getContentPane().add(textfieldBreedte);
+		frame.setVisible(true);
+
 	}
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -130,6 +106,9 @@ public class Window extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == exitButton) {
 			System.exit(0);
+		}
+		if (e.getSource() == start) {
+
 		}
 
 	}
