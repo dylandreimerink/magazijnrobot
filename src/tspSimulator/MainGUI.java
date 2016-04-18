@@ -16,6 +16,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.JTextArea;
 
+import Functions.Database;
+
 public class MainGUI extends JFrame {
 
 	public JLabel lbltijd_2;
@@ -33,7 +35,6 @@ public class MainGUI extends JFrame {
 	}
 
 	private void addComponents() {
-
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
