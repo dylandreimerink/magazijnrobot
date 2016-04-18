@@ -42,7 +42,7 @@ public class Database implements Runnable {
 		}
 	}
 
-	public void connect() throws Exception {
+	public void connect(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			connect = DriverManager
