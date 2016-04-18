@@ -63,7 +63,8 @@ public class Bestelling {
 			for (int tempArtiekelnr = 0; tempArtiekelnr < nListArtiekelnr.getLength(); tempArtiekelnr++) {
 				System.out.println(
 						"artikelnr: " + doc.getElementsByTagName("artikelnr").item(tempArtiekelnr).getTextContent());
-				Product product = new Product(Integer.parseInt(doc.getElementsByTagName("artikelnr").item(tempArtiekelnr).getTextContent()));
+				Product product = new Product(
+						Integer.parseInt(doc.getElementsByTagName("artikelnr").item(tempArtiekelnr).getTextContent()));
 				productList.add(product);
 			}
 		} catch (Exception f) {
@@ -103,4 +104,13 @@ public class Bestelling {
 		return productList;
 	}
 
+	public void printPakbon() {
+		System.out.println("####################### PAKLIJST #######################");
+		System.out.println(
+				"Aan: " + this.firstname + this.surname + ", " + this.address + ", " + this.postcode + this.plaats);
+		System.out.println("Inhoud doos:");
+//		for (String item : someList) {
+//		    System.out.println(item);
+//		}
+	}
 }
