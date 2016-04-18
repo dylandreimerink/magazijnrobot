@@ -13,6 +13,13 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
+import java.awt.GridLayout;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import java.awt.BorderLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.FlowLayout;
 
 /**
  * Authors: Jan Willem en Henri Class: ICTM2A
@@ -29,7 +36,10 @@ public class Window extends JFrame implements ActionListener {
 	private JRadioButtonMenuItem algoOne;
 	private JRadioButtonMenuItem algoTwo;
 	private JRadioButtonMenuItem algoThree;
-	private DrawSimulation drawsimulation;
+	private DrawPanel drawsimulation;
+	private JButton btnStart;
+	private JTextField txtHoogte;
+	private JTextField txtBreedte;
 
 	/**
 	 * Launch the application. Create new object of Database Start new Thread
@@ -61,11 +71,12 @@ public class Window extends JFrame implements ActionListener {
 		frame.setTitle("TSP Simulator");
 		frame.setBounds(100, 100, 909, 548);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		try {
-			frame.setIconImage(ImageIO.read(new File("src/tux2.png")));
-		} catch (IOException exc) {
-			exc.printStackTrace();
-		}
+// 		afbeelding laden
+//		try {
+//			frame.setIconImage(ImageIO.read(new File("/tux2.png")));
+//		} catch (IOException exc) {
+//			exc.printStackTrace();
+//		}
 
 		menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
@@ -81,21 +92,35 @@ public class Window extends JFrame implements ActionListener {
 		exitButton.addActionListener(this);
 		fileButton.add(exitButton);
 
-		algorithmButton = new JMenu("Algorithm");
-		menuBar.add(algorithmButton);
+//		algorithmButton = new JMenu("Algorithm");
+//		menuBar.add(algorithmButton);
+//
+//		algoOne = new JRadioButtonMenuItem("Volledige enumeratie");
+//		algorithmButton.add(algoOne);
+//
+//		algoTwo = new JRadioButtonMenuItem("Simpel Gretig");
+//		algorithmButton.add(algoTwo);
+//
+//		algoThree = new JRadioButtonMenuItem("-");
+//		algorithmButton.add(algoThree);
+//		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
 
-		algoOne = new JRadioButtonMenuItem("Volledige enumeratie");
-		algorithmButton.add(algoOne);
-
-		algoTwo = new JRadioButtonMenuItem("Simpel Gretig");
-		algorithmButton.add(algoTwo);
-
-		algoThree = new JRadioButtonMenuItem("-");
-		algorithmButton.add(algoThree);
-		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
-
-		drawsimulation = new DrawSimulation();
-		frame.add(drawsimulation);
+		drawsimulation = new DrawPanel();
+		frame.getContentPane().add(drawsimulation);
+		drawsimulation.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		btnStart = new JButton("Start");
+		drawsimulation.add(btnStart);
+		
+		txtBreedte = new JTextField();
+		txtBreedte.setText("Breedte");
+		drawsimulation.add(txtBreedte);
+		txtBreedte.setColumns(10);
+		
+		txtHoogte = new JTextField();
+		txtHoogte.setText("Hoogte");
+		drawsimulation.add(txtHoogte);
+		txtHoogte.setColumns(10);
 	}
 
 	@Override
