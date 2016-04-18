@@ -150,6 +150,7 @@ public class MainGUI extends JFrame{
 		textArea.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 		textArea.setRows(1);
 		textArea.setColumns(1);
+		textArea.setEditable(false);
 		panel_3.add(textArea);
 	}
 }
