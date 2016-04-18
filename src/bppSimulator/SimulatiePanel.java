@@ -1,5 +1,7 @@
 package bppSimulator;
 
+//Authors: Mike Veltman & Dylan Reimerink (ICTM2a)
+
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
