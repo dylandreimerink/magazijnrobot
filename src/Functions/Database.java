@@ -26,7 +26,7 @@ public class Database implements Runnable {
 	private String user;
 	private String passwd;
 
-	public Database(String host, String user, String passwd) {
+	public Database() {
 		this.host = "185.56.145.66";
 		this.user = "bernar1q_magrobo";
 		this.passwd = "magazijnrobot";
