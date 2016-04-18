@@ -36,7 +36,8 @@ public class MainGUI extends JFrame {
 		try {
 			Database db = new Database();
 			Thread t = new Thread(db);
-			t.start();		
+			t.start();
+			db.select();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
