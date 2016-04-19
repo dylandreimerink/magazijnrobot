@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 import Functions.*;
 
-public class product {
+public class Product {
 	private String naam;
 	private int plaats;
 	private double hoogte;
@@ -11,7 +11,7 @@ public class product {
 	private double lengte;
 	
 	
-	public product(String naam, int plaats, double hoogte, double breedte, double lengte){
+	public Product(String naam, int plaats, double hoogte, double breedte, double lengte){
 		Database connection = new Database();
 		connection.connect();
 		this.naam = naam;

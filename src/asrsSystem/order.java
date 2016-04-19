@@ -2,14 +2,15 @@ package asrsSystem;
 import java.util.ArrayList;
 
 import Functions.*;
+import Functions.Product;
 
-public class order {
+public class Order {
 
 	private String path="";
 	private ArrayList<Product> product;
 	
 	
-	public order(String path) {
+	public Order(String path) {
 		this.path = path;
 		Bestelling order = new Bestelling(this.path);
 		product = new ArrayList();

@@ -1,8 +1,8 @@
 package asrsSystem;
 
-public class main {
+public class Main {
 	public static void main(String args[]){
-	gui scherm = new gui();
+	Gui scherm = new Gui();
 		
 	}
 }

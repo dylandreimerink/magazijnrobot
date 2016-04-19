@@ -17,14 +17,22 @@ import com.sun.glass.events.KeyEvent;
 import com.sun.xml.internal.ws.api.Component;
 
 import javax.swing.KeyStroke;
-import java.awt.event.InputEvent;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class gui extends JFrame implements ActionListener {
+import java.awt.event.InputEvent;
+import java.io.File;
+import java.io.FileFilter;
+import java.util.ArrayList;
+
+import Functions.*;
+import Functions.Product;
+public class Gui extends JFrame implements ActionListener {
 
 	
-
+	private String path;
+	private ArrayList<Product> productlist;
 	   
-	public gui() {
+	public Gui() {
 		
 		// initialiseer en maak menuopties.
 		JMenuBar menuBar = new JMenuBar();
@@ -38,7 +46,10 @@ public class gui extends JFrame implements ActionListener {
 		JMenuItem mntmOpenOrder = new JMenuItem("Open order");
 		mntmOpenOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ChooseFile();
+				path = ChooseFile();
+				Bestelling bestelling = new Bestelling(path);
+				productlist = bestelling.getProductList();
+				System.out.println(path);
 			}
 		});
 		mntmOpenOrder.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, InputEvent.CTRL_MASK));
@@ -101,18 +112,17 @@ public class gui extends JFrame implements ActionListener {
         
 
 	//filechooser functie, geeft path van het gekozen bestand terug, path moet nog op een andere manier verwerkt worden.
-	public void ChooseFile() {
+	public String ChooseFile() {
 	    JFileChooser chooser = new JFileChooser();
 	    chooser.setCurrentDirectory(new java.io.File("."));
 	    chooser.setDialogTitle("kies uw XML file");
-	    chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+	    chooser.addChoosableFileFilter(new FileNameExtensionFilter("xml Documents", "xml") );
 	    chooser.setAcceptAllFileFilterUsed(false);
-
 	    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-	      System.out.println("getCurrentDirectory(): " + chooser.getCurrentDirectory());
-	      System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
+	    File selectedFile = chooser.getSelectedFile();
+	      return("" + selectedFile.getAbsolutePath());
 	    } else {
-	      System.out.println("No Selection ");
+	      return("No Selection ");
 	    }
 	  }
 	
