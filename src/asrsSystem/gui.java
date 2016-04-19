@@ -26,6 +26,26 @@ import java.util.ArrayList;
 
 import Functions.*;
 import Functions.Product;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import javax.swing.BoxLayout;
+import java.awt.GridLayout;
+import javax.swing.JButton;
+import java.awt.GridBagLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.CardLayout;
+import java.awt.GridBagConstraints;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.border.BevelBorder;
+import java.awt.Color;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.JScrollPane;
 public class Gui extends JFrame implements ActionListener {
 
 	
@@ -91,7 +111,54 @@ public class Gui extends JFrame implements ActionListener {
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("AS/RS Systeem");
-        getContentPane().setLayout(new FlowLayout());
+        getContentPane().setLayout(new BorderLayout(0, 0));
+        
+        JPanel panel = new JPanel();
+        getContentPane().add(panel);
+        panel.setLayout(new BorderLayout(0, 0));
+        
+        JPanel panel_1 = new JPanel();
+        panel_1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, Color.DARK_GRAY, Color.LIGHT_GRAY, Color.DARK_GRAY, Color.LIGHT_GRAY));
+        panel.add(panel_1, BorderLayout.SOUTH);
+        panel_1.setLayout(new MigLayout("", "[115px][121px][grow]", "[91px,grow]"));
+        
+        JPanel panel_2 = new JPanel();
+        panel_1.add(panel_2, "cell 0 0,alignx left,aligny top");
+        panel_2.setLayout(new MigLayout("", "[101px]", "[23px][23px][23px]"));
+        
+        JButton startRobot = new JButton("start robot");
+        panel_2.add(startRobot, "flowy,cell 0 0,growx,aligny top");
+        
+        JButton stopRobot = new JButton("stop robot");
+        panel_2.add(stopRobot, "cell 0 1,growx,aligny top");
+        
+        JButton pauseRobot = new JButton("pauseer robot");
+        panel_2.add(pauseRobot, "cell 0 2,alignx left,aligny top");
+        
+        JPanel panel_3 = new JPanel();
+        panel_1.add(panel_3, "cell 1 0,alignx left,aligny top");
+        panel_3.setLayout(new MigLayout("", "[107px]", "[][][23px]"));
+        
+        JButton disconnect = new JButton("disconnect");
+        disconnect.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        panel_3.add(disconnect, "flowy,cell 0 0,growx,aligny top");
+        
+        JButton connect = new JButton("connect");
+        panel_3.add(connect, "cell 0 1,growx,aligny top");
+        
+        JButton savePakbon = new JButton("pakbon opslaan");
+        panel_3.add(savePakbon, "cell 0 2,alignx center,aligny top");
+        
+        JPanel panel_4 = new JPanel();
+        panel_4.setBorder(new TitledBorder(new EmptyBorder(2, 0, 0, 0), "Console", TitledBorder.LEFT, TitledBorder.TOP, null, Color.DARK_GRAY));
+        panel_1.add(panel_4, "cell 2 0,grow");
+        panel_4.setLayout(new MigLayout("", "[grow]", "[grow]"));
+        
+        JScrollPane scrollPane = new JScrollPane();
+        panel_4.add(scrollPane, "cell 0 0,grow");
         
         this.setVisible(true);
 	}
