@@ -14,9 +14,7 @@ public class Artikel extends JDialog implements ActionListener {
 	private JButton edit;
 	private JButton delete;
 	
-	Artikel(JFrame frame){
-		super(frame, true);
-		setLayout(new FlowLayout());
+	public Artikel(JFrame frame){		
 		create = new JButton("Create Artikel");
 		edit = new JButton("Edit Artikel");
 		delete = new JButton ("Delete Artikel");
