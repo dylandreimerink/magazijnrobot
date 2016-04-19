@@ -75,21 +75,7 @@ public class Gui extends JFrame implements ActionListener {
 		mntmExit.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, InputEvent.CTRL_MASK));
 		mnBestand.add(mntmExit);
 		
-		// voeg artikel toe NOT DONE
-		JMenuItem mntmVoegArtikelToe = new JMenuItem("Voeg artikel toe");
-		mntmVoegArtikelToe.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		mnBestand.add(mntmVoegArtikelToe);
 		
-		// verwijder artikel NOT DONE
-		JMenuItem mntmVerwijderArtikel = new JMenuItem("Verwijder artikel");
-		mntmVerwijderArtikel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		mnBestand.add(mntmVerwijderArtikel);
 		
 		// bewerk artikel NOT DONE
 		JMenuItem mntmBewerkArtikel = new JMenuItem("Bewerk artikel");
