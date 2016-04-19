@@ -5,7 +5,7 @@ import Functions.*;
 import Functions.Product;
 
 
-public class order {
+public class Order {
 
 
 

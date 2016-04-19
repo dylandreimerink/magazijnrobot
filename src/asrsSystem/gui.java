@@ -109,6 +109,10 @@ public class Gui extends JFrame implements ActionListener {
         
         this.setVisible(true);
 	}
+	
+	public ArrayList<Product> getProductList() {
+		return productlist;
+	}
         
 
 	//filechooser functie, geeft path van het gekozen bestand terug, path moet nog op een andere manier verwerkt worden.
