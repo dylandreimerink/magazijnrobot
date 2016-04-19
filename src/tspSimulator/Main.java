@@ -1,16 +1,15 @@
 package tspSimulator;
 
-import java.awt.EventQueue;
-
-import tspSimulator.MainGUI;
+import Functions.Database;
 
 //Authors: Jan Willem Alejandro Casteleijn & Henri van de Munt (ICTM2a)
 
 public class Main {
 
 	public static void main(String[] args) {
+
 		MainGUI mainWindow = new MainGUI();
-		
+		 
 //		EventQueue.invokeLater(new Runnable() {
 //			public void run() {
 //				try {
