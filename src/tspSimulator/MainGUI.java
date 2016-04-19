@@ -22,7 +22,6 @@ import Functions.Database;
 
 public class MainGUI extends JFrame implements ActionListener {
 
-	Algorithm1 d1, d2, d3;
 
 	public MainGUI() {
 		setTitle("TSP Simulator");

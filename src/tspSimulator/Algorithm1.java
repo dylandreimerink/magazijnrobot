@@ -10,7 +10,7 @@ import javax.swing.SingleSelectionModel;
  * Authors: Jan Willem en Henri Class: ICTM2A
  */
 
-public class Algorithm1 {
+public class Algorithm1 impl {
 
 	private String name;
 
