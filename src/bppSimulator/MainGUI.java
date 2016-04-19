@@ -10,6 +10,7 @@ import javax.swing.JScrollPane;
 
 import java.awt.BorderLayout;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
@@ -20,6 +21,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.JTextArea;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.DefaultCaret;
 
 import Functions.Product;
 import java.awt.Font;
@@ -33,6 +36,7 @@ public class MainGUI extends JFrame implements ActionListener {
 	JButton btnPauzeerSimulatie;
 	JButton btnAnnuleerSimulatie;
 	JTextArea textArea;
+	JMenu mnFile;
 
 	private Dimension buttonsize;
 
@@ -60,8 +64,9 @@ public class MainGUI extends JFrame implements ActionListener {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
-		JMenu mnFile = new JMenu("File");
+		mnFile = new JMenu("File");
 		menuBar.add(mnFile);
+		mnFile.addActionListener(this);
 
 		JMenu mnEdit = new JMenu("Edit");
 		menuBar.add(mnEdit);
@@ -162,8 +167,6 @@ public class MainGUI extends JFrame implements ActionListener {
 		console = "Programma is succesvol opgestart";
 
 		textArea = new JTextArea();
-		JScrollPane scrollPane = new JScrollPane(textArea);
-
 		textArea.setFont(new Font("Arial", Font.PLAIN, 12));
 		textArea.setEditable(false);
 		textArea.setAlignmentY(Component.BOTTOM_ALIGNMENT);
@@ -173,9 +176,14 @@ public class MainGUI extends JFrame implements ActionListener {
 		panel_3.add(textArea);
 
 	}
-
+	
+	
 	@Override
 	public void actionPerformed(ActionEvent ae) {
+		if(ae.getSource() == mnFile){
+			
+		}
+		
 		if (ae.getSource() == btnStartSimulatie) {
 			console = "\nSimulatie aan het starten..";
 			textArea.append(console);
