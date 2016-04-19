@@ -9,7 +9,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 public class Artikel extends JDialog implements ActionListener {
-	
+	//test
 	private JButton create;
 	private JButton edit;
 	private JButton delete;
