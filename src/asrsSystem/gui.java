@@ -26,7 +26,7 @@ import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.prefs.Preferences;
 
-import Functions.*;
+import shared.*;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -58,6 +58,8 @@ public class Gui extends JFrame implements ActionListener {
 	private ArrayList<Product> productlist;
 	   
 	public Gui() {
+	
+	
 		
 		//scherm opbouwen
 		JFrame frame = new JFrame();
@@ -81,8 +83,7 @@ public class Gui extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				Choosefile chooser = new Choosefile();
 				path = chooser.ChooseFile();
-				Bestelling bestelling = new Bestelling(path);
-				productlist = bestelling.getProductList();
+				ParseXML order = new ParseXML(path);
 				System.out.println(path);
 			}
 		});
@@ -94,20 +95,13 @@ public class Gui extends JFrame implements ActionListener {
 		JMenu mnOpenRecent = new JMenu("Open recent");
 		mnOpenRecent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Preferences root = Preferences.systemRoot();
-				
-				RecentItems recentlist = new RecentItems(3,root);
-				
-				
+
 				
 				
 				
 			}
 		});
-		mnBestand.add(mnOpenRecent);
-		
-		JMenuItem recentMenu = new JMenuItem("New menu item");
-		mnOpenRecent.add(recentMenu);
+
 		
 		
 		//exit DONE
@@ -124,6 +118,14 @@ public class Gui extends JFrame implements ActionListener {
 		
 		// bewerk artikel NOT DONE
 		JMenuItem mntmBewerkArtikel = new JMenuItem("Bewerk artikel");
+		mntmBewerkArtikel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		mnBestand.add(mntmBewerkArtikel);
+		
+		// bewerk artikel NOT DONE
+		JMenuItem mntmBewerkArtikel = new JMenuItem("Voeg artikeltoe");
 		mntmBewerkArtikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -179,6 +181,10 @@ public class Gui extends JFrame implements ActionListener {
         JScrollPane scrollPane = new JScrollPane();
         panel_4.add(scrollPane, "cell 0 0,grow");
         
+        JPanel panel_5 = new JPanel();
+        panel.add(panel_5, BorderLayout.EAST);
+        panel_5.setLayout(new MigLayout("", "[]", "[]"));
+        
         this.setVisible(true);
 	}
 	
@@ -187,7 +193,7 @@ public class Gui extends JFrame implements ActionListener {
 	}
         
 
-	
+	//getter
 	
 
 
