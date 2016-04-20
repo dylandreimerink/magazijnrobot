@@ -1,8 +1,9 @@
 package shared;
 
 /*
- * Henri & Jan Willem
+ * Authors: Jan Willem Alejandro Casteleijn & Henri van de Munt (ICTM2a)
  */
+
 public interface Algorithm {
 
 	public Route calculateRoute();

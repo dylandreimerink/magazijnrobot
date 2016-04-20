@@ -1,13 +1,13 @@
-/*
- * Henri & Jan Willem
- */
+
 package tspSimulator;
+
+/*
+ * Authors: Jan Willem Alejandro Casteleijn & Henri van de Munt (ICTM2a)
+ */
 
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
-
-
 
 public class DrawPanel extends JPanel {
 
@@ -20,13 +20,13 @@ public class DrawPanel extends JPanel {
 	public DrawPanel(String algoname, int startpoint, int endpoint) {
 		this.startpoint = startpoint;
 		this.endpoint = endpoint;
-		this.algoname = algoname;		
+		this.algoname = algoname;
 	}
-	
+
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawRect (startpoint, endpoint, 200, 200);
+		g.drawRect(startpoint, endpoint, 200, 200);
 	}
 
 }

@@ -1,8 +1,9 @@
-/*
- * Henri & Jan Willem
- */
 
 package tspSimulator;
+
+/*
+ * Authors: Jan Willem Alejandro Casteleijn & Henri van de Munt (ICTM2a)
+ */
 
 import java.awt.Dimension;
 import java.awt.Graphics;

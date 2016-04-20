@@ -1,5 +1,9 @@
 package shared;
 
+/*
+ * Authors: Jan Willem Alejandro Casteleijn (ICTM2a)
+ */
+
 import java.sql.*;
 
 /*

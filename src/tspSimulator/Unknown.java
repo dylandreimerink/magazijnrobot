@@ -1,5 +1,9 @@
 package tspSimulator;
 
+/*
+ * Authors: Jan Willem Alejandro Casteleijn & Henri van de Munt (ICTM2a)
+ */
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 
@@ -10,9 +14,6 @@ import shared.Algorithm;
 import shared.Resultaat;
 import shared.Route;
 
-/**
- * Authors: Jan Willem en Henri Class: ICTM2A
- */
 
 public class Unknown implements Algorithm{
 

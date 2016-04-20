@@ -1,8 +1,7 @@
 package shared;
 
-/**
- * Authors: Jan Willem en Henri Class: ICTM2A
- * 
+/*
+ * Authors: Jan Willem Alejandro Casteleijn & Henri van de Munt (ICTM2a)
  */
 
 public class Product {
