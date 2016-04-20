@@ -8,6 +8,7 @@ import javax.swing.JMenu;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
@@ -16,15 +17,24 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.JTextArea;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
+import Functions.Bestelling;
 import Functions.Product;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class MainGUI extends JFrame{
+public class MainGUI extends JFrame implements ActionListener{
 	
 	public JLabel lbltijd_2;
 	public ArrayList<Product> productList;
+	final JFileChooser fc = new JFileChooser();
 	
 	private Dimension buttonsize;
+	private JMenuItem mntmOpenPakbon;
+	private SimulatiePanel simPanel;
 	
 	public MainGUI(){
 		setTitle("BPP Simulator");
@@ -32,12 +42,12 @@ public class MainGUI extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		productList = new ArrayList<Product>();
-		
-		//TODO: remove code between comments when done testing
-		productList.add(new Product(0, 2, 3, 10, 15, 10));
-		productList.add(new Product(1, 2, 4, 10, 20, 10));
-		productList.add(new Product(2, 2, 5, 10, 25, 10));
-		//end comment
+		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter(
+			     "xml files (*.xml)", "xml");
+		fc.setDialogTitle("Open Pakbon");
+		// set selected filter
+		fc.setFileFilter(xmlfilter);
 		
 		addComponents();
 	
@@ -52,6 +62,10 @@ public class MainGUI extends JFrame{
 		
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
+		
+		mntmOpenPakbon = new JMenuItem("Open Pakbon");
+		mntmOpenPakbon.addActionListener(this);
+		mnFile.add(mntmOpenPakbon);
 		
 		JMenu mnEdit = new JMenu("Edit");
 		menuBar.add(mnEdit);
@@ -141,10 +155,10 @@ public class MainGUI extends JFrame{
 		panel.add(panel_3, BorderLayout.CENTER);
 		panel_3.setLayout(new BoxLayout(panel_3, BoxLayout.Y_AXIS));
 		
-		SimulatiePanel panel_4 = new SimulatiePanel(this);
-		panel_4.setSize(new Dimension(0, 200));
-		panel_4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel_3.add(panel_4);
+		simPanel = new SimulatiePanel(this);
+		simPanel.setSize(new Dimension(0, 200));
+		simPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel_3.add(simPanel);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setAlignmentY(Component.BOTTOM_ALIGNMENT);
@@ -152,5 +166,17 @@ public class MainGUI extends JFrame{
 		textArea.setColumns(1);
 		textArea.setEditable(false);
 		panel_3.add(textArea);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == mntmOpenPakbon){
+			int response = fc.showOpenDialog(this);
+			if(response == JFileChooser.APPROVE_OPTION){
+				Bestelling picklist = new Bestelling(fc.getSelectedFile().getAbsolutePath());
+				productList = picklist.getProductList();
+				simPanel.repaint();
+			}
+		}
 	}
 }
