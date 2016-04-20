@@ -17,16 +17,16 @@ public class Picklist {
 		list = new ArrayList<Location>();
 		int aantalProdcuten = (int) randomWithRange(4, 6);
 		for (int z = 0; z < aantalProdcuten; z++) {
-			int x = randomWithRange(0,breedte);
-			int y = randomWithRange(0,hoogte);
-			Location product = new Location(x,y);
+			int x = randomWithRange(0, breedte);
+			int y = randomWithRange(0, hoogte);
+			Location product = new Location(x, y);
 			boolean check = true;
 			for (Location item : list) {
-				if(item.getLocationX() == product.getLocationX() && item.getLocationY() == product.getLocationY()){
+				if (item.getLocationX() == product.getLocationX() && item.getLocationY() == product.getLocationY()) {
 					check = false;
 				}
 			}
-			if(check == false){
+			if (check == false) {
 				z--;
 			} else {
 				list.add(product);
@@ -43,8 +43,6 @@ public class Picklist {
 		int range = (max - min) + 1;
 		return (int) (Math.random() * range) + min;
 	}
-	
-	
 
 	@Override
 	public String toString() {
