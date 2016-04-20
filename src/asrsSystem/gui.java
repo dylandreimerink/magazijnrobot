@@ -13,6 +13,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 
+import com.sun.corba.se.impl.orbutil.graph.Node;
 import com.sun.glass.events.KeyEvent;
 import com.sun.xml.internal.ws.api.Component;
 
@@ -23,9 +24,10 @@ import java.awt.event.InputEvent;
 import java.io.File;
 import java.io.FileFilter;
 import java.util.ArrayList;
+import java.util.prefs.Preferences;
 
 import Functions.*;
-import Functions.Product;
+
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
@@ -40,6 +42,9 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import net.miginfocom.swing.MigLayout;
+import shared.Bestelling;
+import shared.Product;
+
 import javax.swing.border.BevelBorder;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
@@ -53,7 +58,11 @@ public class Gui extends JFrame implements ActionListener {
 	private ArrayList<Product> productlist;
 	   
 	public Gui() {
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> origin/master
 		//scherm opbouwen
 		JFrame frame = new JFrame();
         this.setSize(1200,900);
@@ -61,6 +70,74 @@ public class Gui extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("AS/RS Systeem");
         getContentPane().setLayout(new BorderLayout(0, 0));
+<<<<<<< HEAD
+=======
+		
+		// initialiseer en maak menuopties.
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnBestand = new JMenu("Bestand");
+		menuBar.add(mnBestand);
+		
+		
+		// open order - path handler toevoegen
+		JMenuItem mntmOpenOrder = new JMenuItem("Open order");
+		mntmOpenOrder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Choosefile chooser = new Choosefile();
+				path = chooser.ChooseFile();
+				Bestelling bestelling = new Bestelling(path);
+				productlist = bestelling.getProductList();
+				System.out.println(path);
+			}
+		});
+		mntmOpenOrder.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, InputEvent.CTRL_MASK));
+		mnBestand.add(mntmOpenOrder);
+		
+		
+		//open recent NOT DONE
+		JMenu mnOpenRecent = new JMenu("Open recent");
+		mnOpenRecent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Preferences root = Preferences.systemRoot();
+				
+				RecentItems recentlist = new RecentItems(3,root);
+				
+				
+				
+				
+				
+			}
+		});
+		mnBestand.add(mnOpenRecent);
+		
+		JMenuItem recentMenu = new JMenuItem("New menu item");
+		mnOpenRecent.add(recentMenu);
+		
+		
+		//exit DONE
+		JMenuItem mntmExit = new JMenuItem("Exit");
+		mntmExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		mntmExit.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, InputEvent.CTRL_MASK));
+		mnBestand.add(mntmExit);
+		
+		
+		
+		// bewerk artikel NOT DONE
+		JMenuItem mntmBewerkArtikel = new JMenuItem("Bewerk artikel");
+		mntmBewerkArtikel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		mnBestand.add(mntmBewerkArtikel);
+		
+
+>>>>>>> origin/master
         
         JPanel panel = new JPanel();
         getContentPane().add(panel);
@@ -169,20 +246,7 @@ public class Gui extends JFrame implements ActionListener {
 	}
         
 
-	//filechooser functie, geeft path van het gekozen bestand terug, path moet nog op een andere manier verwerkt worden.
-	public String ChooseFile() {
-	    JFileChooser chooser = new JFileChooser();
-	    chooser.setCurrentDirectory(new java.io.File("."));
-	    chooser.setDialogTitle("kies uw XML file");
-	    chooser.addChoosableFileFilter(new FileNameExtensionFilter("xml Documents", "xml") );
-	    chooser.setAcceptAllFileFilterUsed(false);
-	    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-	    File selectedFile = chooser.getSelectedFile();
-	      return("" + selectedFile.getAbsolutePath());
-	    } else {
-	      return("No Selection ");
-	    }
-	  }
+	
 	
 
 

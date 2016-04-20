@@ -1,5 +1,8 @@
-package Functions;
+package shared;
 
+/*
+ * Author: Henri van de Munt
+ */
 import java.io.File;
 import java.util.ArrayList;
 
@@ -11,18 +14,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-/**
- * Authors: Jan Willem en Henri Class: ICTM2A
- * 
- */
+public class ParseXML {
 
-public class Bestelling {
-	private int ordernumber;
-	private String date, firstname, surname, address, postcode, plaats;
-	private ArrayList<Product> productList;
-
-	public Bestelling(String path) {
-		productList = new ArrayList();
+	private Klant klant;
+	private Bestelling bestelling;
+	
+	public ParseXML(String path) {
 		try {
 			File inputFile = new File(path);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -50,66 +47,36 @@ public class Bestelling {
 							"Postcode: " + eElementKlant.getElementsByTagName("postcode").item(0).getTextContent());
 					System.out.println(
 							"Plaats: " + eElementKlant.getElementsByTagName("plaats").item(0).getTextContent());
-					this.firstname = eElementKlant.getElementsByTagName("voornaam").item(0).getTextContent();
-					this.surname = eElementKlant.getElementsByTagName("achternaam").item(0).getTextContent();
-					this.address = eElementKlant.getElementsByTagName("adres").item(0).getTextContent();
-					this.postcode = eElementKlant.getElementsByTagName("postcode").item(0).getTextContent();
-					this.plaats = eElementKlant.getElementsByTagName("plaats").item(0).getTextContent();
+					 String firstname = eElementKlant.getElementsByTagName("voornaam").item(0).getTextContent();
+					 String surname = eElementKlant.getElementsByTagName("achternaam").item(0).getTextContent();
+					 String address = eElementKlant.getElementsByTagName("adres").item(0).getTextContent();
+					 String postcode = eElementKlant.getElementsByTagName("postcode").item(0).getTextContent();
+					 String plaats = eElementKlant.getElementsByTagName("plaats").item(0).getTextContent();
+					 this.klant = new Klant(firstname ,surname , address, postcode, plaats);
 				}
 			}
 			NodeList nListArtiekelnr = doc.getElementsByTagName("artikelnr");
-
+			this.bestelling = new Bestelling(this.klant);
 			for (int tempArtiekelnr = 0; tempArtiekelnr < nListArtiekelnr.getLength(); tempArtiekelnr++) {
 				System.out.println(
 						"artikelnr: " + doc.getElementsByTagName("artikelnr").item(tempArtiekelnr).getTextContent());
 				Product product = new Product(
 						Integer.parseInt(doc.getElementsByTagName("artikelnr").item(tempArtiekelnr).getTextContent()));
-				productList.add(product);
+				this.bestelling.addProduct(product);
 			}
 		} catch (Exception f) {
 			System.out.println("Wrong syntax xml file");
 		}
 	}
 
-	public void addProduct(Product product) {
-		productList.add(product);
+	public void setKlant(Klant klant) {
+		this.klant = klant;
 	}
 
-	public int getOrdernumber() {
-		return ordernumber;
+	public void setBestelling(Bestelling bestelling) {
+		this.bestelling = bestelling;
 	}
+	
+	
 
-	public String getDate() {
-		return date;
-	}
-
-	public String getFirstname() {
-		return firstname;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public String getPostcode() {
-		return postcode;
-	}
-
-	public ArrayList<Product> getProductList() {
-		return productList;
-	}
-
-	public void printPakbon() {
-		System.out.println("####################### PAKLIJST #######################");
-		System.out.println(
-				"Aan: " + this.firstname + this.surname + ", " + this.address + ", " + this.postcode + this.plaats);
-		System.out.println("Inhoud doos:");
-		for (Product product : productList) {
-		    System.out.println(product.getProductName());
-		}
-	}
 }
