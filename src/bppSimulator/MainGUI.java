@@ -24,7 +24,8 @@ import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.DefaultCaret;
 
-import Functions.Product;
+import shared.Product;
+
 import java.awt.Font;
 
 public class MainGUI extends JFrame implements ActionListener {

@@ -1,4 +1,4 @@
-package Functions;
+package shared;
 
 import java.sql.*;
 

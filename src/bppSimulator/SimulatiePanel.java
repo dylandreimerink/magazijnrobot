@@ -10,7 +10,7 @@ import java.awt.Graphics;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-import Functions.Product;
+import shared.Product;
 
 public class SimulatiePanel extends JPanel {
 

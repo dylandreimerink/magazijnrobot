@@ -1,6 +1,10 @@
+/*
+ * Henri & Jan Willem
+ */
+
 package tspSimulator;
 
-import Functions.Database;
+import shared.Database;
 
 //Authors: Jan Willem Alejandro Casteleijn & Henri van de Munt (ICTM2a)
 

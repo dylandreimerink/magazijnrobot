@@ -1,5 +1,8 @@
-package Functions;
+package shared;
 
+/*
+ * Henri
+ */
 import java.io.File;
 import java.util.ArrayList;
 
@@ -11,18 +14,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-/**
- * Authors: Jan Willem en Henri Class: ICTM2A
- * 
- */
+public class ParseXML {
 
-public class Bestelling {
-	private int ordernumber;
-	private String date, firstname, surname, address, postcode, plaats;
-	private ArrayList<Product> productList;
+	private Klant klant;
+	private Bestelling bestelling;
 
-	public Bestelling(String path) {
-		productList = new ArrayList();
+	public ParseXML(String path) {
 		try {
 			File inputFile = new File(path);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -71,45 +68,4 @@ public class Bestelling {
 		}
 	}
 
-	public void addProduct(Product product) {
-		productList.add(product);
-	}
-
-	public int getOrdernumber() {
-		return ordernumber;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public String getFirstname() {
-		return firstname;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public String getPostcode() {
-		return postcode;
-	}
-
-	public ArrayList<Product> getProductList() {
-		return productList;
-	}
-
-	public void printPakbon() {
-		System.out.println("####################### PAKLIJST #######################");
-		System.out.println(
-				"Aan: " + this.firstname + this.surname + ", " + this.address + ", " + this.postcode + this.plaats);
-		System.out.println("Inhoud doos:");
-		for (Product product : productList) {
-		    System.out.println(product.getProductName());
-		}
-	}
 }

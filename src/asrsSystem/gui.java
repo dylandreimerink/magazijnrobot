@@ -25,7 +25,7 @@ import java.io.FileFilter;
 import java.util.ArrayList;
 
 import Functions.*;
-import Functions.Product;
+
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
@@ -40,6 +40,9 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import net.miginfocom.swing.MigLayout;
+import shared.Bestelling;
+import shared.Product;
+
 import javax.swing.border.BevelBorder;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
