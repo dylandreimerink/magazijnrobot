@@ -68,6 +68,10 @@ public class ParseXML {
 			System.out.println("Wrong syntax xml file");
 		}
 	}
+	
+	public Bestelling getBestelling(){
+		return bestelling;
+	}
 
 	public void setKlant(Klant klant) {
 		this.klant = klant;
