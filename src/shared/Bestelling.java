@@ -1,5 +1,9 @@
 package shared;
 
+/*
+ * Authors: Jan Willem Alejandro Casteleijn & Henri van de Munt (ICTM2a)
+ */
+
 import java.io.File;
 import java.util.ArrayList;
 

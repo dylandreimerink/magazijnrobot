@@ -1,8 +1,9 @@
 package shared;
 
 /*
- * Author: Henri van de Munt
+ * Authors: Henri van de Munt (ICTM2a)
  */
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -18,7 +19,7 @@ public class ParseXML {
 
 	private Klant klant;
 	private Bestelling bestelling;
-	
+
 	public ParseXML(String path) {
 		try {
 			File inputFile = new File(path);
@@ -47,12 +48,12 @@ public class ParseXML {
 							"Postcode: " + eElementKlant.getElementsByTagName("postcode").item(0).getTextContent());
 					System.out.println(
 							"Plaats: " + eElementKlant.getElementsByTagName("plaats").item(0).getTextContent());
-					 String firstname = eElementKlant.getElementsByTagName("voornaam").item(0).getTextContent();
-					 String surname = eElementKlant.getElementsByTagName("achternaam").item(0).getTextContent();
-					 String address = eElementKlant.getElementsByTagName("adres").item(0).getTextContent();
-					 String postcode = eElementKlant.getElementsByTagName("postcode").item(0).getTextContent();
-					 String plaats = eElementKlant.getElementsByTagName("plaats").item(0).getTextContent();
-					 this.klant = new Klant(firstname ,surname , address, postcode, plaats);
+					String firstname = eElementKlant.getElementsByTagName("voornaam").item(0).getTextContent();
+					String surname = eElementKlant.getElementsByTagName("achternaam").item(0).getTextContent();
+					String address = eElementKlant.getElementsByTagName("adres").item(0).getTextContent();
+					String postcode = eElementKlant.getElementsByTagName("postcode").item(0).getTextContent();
+					String plaats = eElementKlant.getElementsByTagName("plaats").item(0).getTextContent();
+					this.klant = new Klant(firstname, surname, address, postcode, plaats);
 				}
 			}
 			NodeList nListArtiekelnr = doc.getElementsByTagName("artikelnr");
@@ -68,10 +69,6 @@ public class ParseXML {
 			System.out.println("Wrong syntax xml file");
 		}
 	}
-	
-	public Bestelling getBestelling(){
-		return bestelling;
-	}
 
 	public void setKlant(Klant klant) {
 		this.klant = klant;
@@ -80,7 +77,5 @@ public class ParseXML {
 	public void setBestelling(Bestelling bestelling) {
 		this.bestelling = bestelling;
 	}
-	
-	
 
 }

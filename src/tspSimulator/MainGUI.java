@@ -39,13 +39,15 @@ public class MainGUI extends JFrame implements ActionListener {
 //		Algorithm1 algorithm1 = new Algorithm1("Brute force");
 //		FirstFit algorithm2 = new FirstFit("First fit");
 //		Unknown algorithm3 = new Unknown("unknown");
-//		setLayout(new GridLayout(1, 3));
-//		DrawPanel algoritme1 = new DrawPanel("Algoritme1", 0, 0);
-//		add(algoritme1);
-//		DrawPanel algoritme2 = new DrawPanel("Algoritme2", 0, 0);
-//		add(algoritme2);
-//		DrawPanel algoritme3 = new DrawPanel("Algoritme3", 0, 0);
-//		add(algoritme3);
+		Picklist picklist = new Picklist();
+		System.out.println(picklist.toString());
+		setLayout(new GridLayout(1, 3));
+		DrawPanel algoritme1 = new DrawPanel("Algoritme1", 0, 0);
+		add(algoritme1);
+		DrawPanel algoritme2 = new DrawPanel("Algoritme2", 0, 0);
+		add(algoritme2);
+		DrawPanel algoritme3 = new DrawPanel("Algoritme3", 0, 0);
+		add(algoritme3);
 
 	}
 

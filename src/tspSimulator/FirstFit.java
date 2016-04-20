@@ -1,8 +1,9 @@
-/*
- * Henri & Jan Willem
- */
 
 package tspSimulator;
+
+/*
+ * Authors: Jan Willem Alejandro Casteleijn & Henri van de Munt (ICTM2a)
+ */
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -18,8 +19,8 @@ import shared.Route;
  * Authors: Jan Willem en Henri Class: ICTM2A
  */
 
-public class FirstFit implements Algorithm{
-	
+public class FirstFit implements Algorithm {
+
 	private String name;
 
 	public FirstFit(String name) {
