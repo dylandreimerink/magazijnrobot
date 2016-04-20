@@ -49,9 +49,9 @@ public class MainGUI extends JFrame implements ActionListener {
 		productList = new ArrayList<Product>();
 
 		// TODO: remove code between comments when done testing
-		productList.add(new Product(0, 2, 3, 10, 15, 10));
-		productList.add(new Product(1, 2, 4, 10, 20, 10));
-		productList.add(new Product(2, 2, 5, 10, 25, 10));
+//		productList.add(new Product(0, 2, 3, 10, 15, 10));
+//		productList.add(new Product(1, 2, 4, 10, 20, 10));
+//		productList.add(new Product(2, 2, 5, 10, 25, 10));
 		// end comment
 
 		addComponents();
