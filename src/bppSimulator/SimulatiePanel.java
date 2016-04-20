@@ -14,7 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
-import Functions.Product;
+import shared.Product;
 
 public class SimulatiePanel extends JPanel {
 

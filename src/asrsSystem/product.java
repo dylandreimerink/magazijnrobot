@@ -2,6 +2,7 @@ package asrsSystem;
 import java.util.ArrayList;
 
 import Functions.*;
+import shared.Database;
 
 public class Product {
 	private String naam;

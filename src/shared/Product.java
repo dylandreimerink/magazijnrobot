@@ -1,4 +1,4 @@
-package Functions;
+package shared;
 
 /**
  * Authors: Jan Willem en Henri Class: ICTM2A
@@ -6,37 +6,25 @@ package Functions;
  */
 
 public class Product {
-	private int productId;
 	private String productName;
 	private int locationX;
 	private int locationY;
 	private double height;
 	private double width;
 	private double lenght;
-	private double ruimte;
 
-	public Product(int productId, String productName, int locationX, int locationY, double height, double width,
+	public Product(String productName, int locationX, int locationY, double height, double width,
 			double length) {
-		this.productId = productId;
 		this.locationX = locationX;
 		this.locationY = locationY;
 		this.height = height;
 		this.width = width;
 		this.lenght = length;
-		this.ruimte = height * width * length;
 		this.productName = productName;
 	}
 
 	public Product(int productId) {
-		this(productId, "Onbekend", 0, 0, 0, 0, 0);
-	}
-
-	public int getProductId() {
-		return productId;
-	}
-
-	public void setProductId(int productId) {
-		this.productId = productId;
+		this("Onbekend", 0, 0, 0, 0, 0);
 	}
 
 	public String getProductName() {
@@ -86,15 +74,4 @@ public class Product {
 	public void setLenght(double lenght) {
 		this.lenght = lenght;
 	}
-
-	public double getRuimte() {
-		return ruimte;
-	}
-
-	public void setRuimte(double ruimte) {
-		this.ruimte = ruimte;
-	}
-
-
-
 }
