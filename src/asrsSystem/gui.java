@@ -53,58 +53,7 @@ public class Gui extends JFrame implements ActionListener {
 	private ArrayList<Product> productlist;
 	   
 	public Gui() {
-		
-		// initialiseer en maak menuopties.
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JMenu mnBestand = new JMenu("Bestand");
-		menuBar.add(mnBestand);
-		
-		
-		// open order - path handler toevoegen
-		JMenuItem mntmOpenOrder = new JMenuItem("Open order");
-		mntmOpenOrder.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				path = ChooseFile();
-				Bestelling bestelling = new Bestelling(path);
-				productlist = bestelling.getProductList();
-				System.out.println(path);
-			}
-		});
-		mntmOpenOrder.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, InputEvent.CTRL_MASK));
-		mnBestand.add(mntmOpenOrder);
-		
-		
-		//open recent NOT DONE
-		JMenu mnOpenRecent = new JMenu("Open recent");
-		mnOpenRecent.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		mnBestand.add(mnOpenRecent);
-		
-		
-		//exit DONE
-		JMenuItem mntmExit = new JMenuItem("Exit");
-		mntmExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
-		mntmExit.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, InputEvent.CTRL_MASK));
-		mnBestand.add(mntmExit);
-		
-		
-		
-		// bewerk artikel NOT DONE
-		JMenuItem mntmBewerkArtikel = new JMenuItem("Bewerk artikel");
-		mntmBewerkArtikel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		mnBestand.add(mntmBewerkArtikel);
-		
+
 		//scherm opbouwen
 		JFrame frame = new JFrame();
         this.setSize(1200,900);
@@ -158,9 +107,61 @@ public class Gui extends JFrame implements ActionListener {
         panel_4.setLayout(new MigLayout("", "[grow]", "[grow]"));
         
         JScrollPane scrollPane = new JScrollPane();
-        panel_4.add(scrollPane, "cell 0 0,grow");
-        
-        this.setVisible(true);
+        panel_4.add(scrollPane, "cell 0 0,grow");	
+		
+		// initialiseer en maak menuopties.
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnBestand = new JMenu("Bestand");
+		menuBar.add(mnBestand);
+		
+		
+		// open order - path handler toevoegen
+		JMenuItem mntmOpenOrder = new JMenuItem("Open order");
+		mntmOpenOrder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				path = ChooseFile();
+				Bestelling bestelling = new Bestelling(path);
+				productlist = bestelling.getProductList();
+				System.out.println(path);
+			}
+		});
+		mntmOpenOrder.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, InputEvent.CTRL_MASK));
+		mnBestand.add(mntmOpenOrder);
+		
+		
+		//open recent NOT DONE
+		JMenu mnOpenRecent = new JMenu("Open recent");
+		mnOpenRecent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		mnBestand.add(mnOpenRecent);
+		
+		
+		//exit DONE
+		JMenuItem mntmExit = new JMenuItem("Exit");
+		mntmExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		mntmExit.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, InputEvent.CTRL_MASK));
+		mnBestand.add(mntmExit);
+		
+		
+		
+		// bewerk artikel NOT DONE
+		JMenuItem mntmBewerkArtikel = new JMenuItem("Bewerk artikel");
+		mntmBewerkArtikel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+	            Artikel dialoog = new Artikel();
+	            dialoog.setVisible(true);	            
+			}
+		});
+		mnBestand.add(mntmBewerkArtikel);
+        this.setVisible(true);			
 	}
 	
 	public ArrayList<Product> getProductList() {
