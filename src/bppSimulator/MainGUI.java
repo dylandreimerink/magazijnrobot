@@ -26,6 +26,7 @@ import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import shared.Bestelling;
+import shared.ParseXML;
 import shared.Product;
 
 import javax.swing.JRadioButtonMenuItem;
@@ -199,7 +200,7 @@ public class MainGUI extends JFrame implements ActionListener{
 		if(e.getSource() == mntmOpenPakbon){
 			int response = fc.showOpenDialog(this);
 			if(response == JFileChooser.APPROVE_OPTION){
-				Bestelling picklist = new Bestelling(fc.getSelectedFile().getAbsolutePath());
+				Bestelling picklist = new ParseXML(fc.getSelectedFile().getAbsolutePath()).getBestelling();
 				productList = picklist.getProductList();
 				simPanel.repaint();
 			}
