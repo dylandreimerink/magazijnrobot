@@ -19,7 +19,8 @@ public class Unknown implements Algorithm{
 	private String name;
 
 	public Unknown(String name) {
-		this.name = name;
+		this.name = name;       
+		//reytyreyrrtrrtrr
 	}
 
 	@Override
