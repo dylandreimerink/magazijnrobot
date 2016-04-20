@@ -183,15 +183,17 @@ public class MainGUI extends JFrame implements ActionListener{
 		textArea = new JTextArea();
 
 		console = "Programma is succesvol opgestart";
+		
 
-		textArea = new JTextArea();
+		textArea = new JTextArea(5, 5);
+		JScrollPane scrollPane = new JScrollPane(textArea);
 		textArea.setFont(new Font("Arial", Font.PLAIN, 12));
 		textArea.setEditable(false);
-		textArea.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-		textArea.setRows(1);
-		textArea.setColumns(1);
+		textArea.setColumns (5);
+		textArea.setLineWrap (true);
+		textArea.setWrapStyleWord (false); 
 		textArea.append(console);
-		panel_3.add(textArea);
+		panel_3.add(scrollPane);
 
 	}
 
