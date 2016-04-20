@@ -73,4 +73,14 @@ public class ParseXML {
 		return bestelling;
 	}
 
+	public void setKlant(Klant klant) {
+		this.klant = klant;
+	}
+
+	public void setBestelling(Bestelling bestelling) {
+		this.bestelling = bestelling;
+	}
+	
+	
+
 }
