@@ -6,6 +6,7 @@ package tspSimulator;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.SingleSelectionModel;
@@ -18,14 +19,18 @@ import shared.Route;
 public class Unknown implements Algorithm{
 
 	private String name;
+	private ArrayList<Location> picklist;
+	private DrawPanel panel;
 
-	public Unknown(String name) {
-		this.name = name;       
-		//reytyreyrrtrrtrr
+
+	public Unknown(String name, ArrayList<Location> picklist) {
+		this.name = name;
+		this.picklist = picklist;
+		panel = new DrawPanel("First Fit", 0,0);
 	}
 
 	@Override
-	public Route calculateRoute() {
+	public Route calculateRoute(ArrayList<Location> locationList) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -40,6 +45,10 @@ public class Unknown implements Algorithm{
 	public String getAlgorithmName() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public DrawPanel getPanel() {
+		return panel;
 	}
 
 }

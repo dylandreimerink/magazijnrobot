@@ -11,8 +11,8 @@ import javax.swing.JPanel;
 
 public class DrawPanel extends JPanel {
 
-	private static final int HEIGHT = 10;
-	private static final int WIDTH = 10;
+	private static final int HEIGHT = 400;
+	private static final int WIDTH = 400;
 	private String algoname;
 	private int startpoint;
 	private int endpoint;
@@ -22,11 +22,13 @@ public class DrawPanel extends JPanel {
 		this.endpoint = endpoint;
 		this.algoname = algoname;
 	}
+	
+	
 
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawRect(startpoint, endpoint, 200, 200);
+		g.drawRect(startpoint, endpoint, HEIGHT, WIDTH);
 	}
 
 }
