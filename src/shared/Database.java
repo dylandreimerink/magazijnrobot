@@ -5,6 +5,7 @@ package shared;
  */
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /*
  * Testing Code for the Database Connection
@@ -41,7 +42,7 @@ public class Database implements Runnable {
 	public void connect() {
 		try {
 			System.out.println("Connecting....");
-			JOptionPane.showMessageDialog(null, "connection succesful");
+			//JOptionPane.showMessageDialog(null, "connection succesful");
 			System.out.println("Connected.");
 			Class.forName("com.mysql.jdbc.Driver");
 			connect = DriverManager.getConnection(DB_URL, user, passwd);
@@ -51,7 +52,7 @@ public class Database implements Runnable {
 		}
 	}
 
-	public void select() throws Exception {
+	public ArrayList<Product> selectAll() throws Exception {
 		connect(); // Don't know if the connection has to be established
 					// everytime when a Query is executed??
 		preparedStatement = connect.prepareStatement("SELECT * FROM product");
@@ -60,10 +61,12 @@ public class Database implements Runnable {
 		rs = preparedStatement.executeQuery(); // read this variable to
 												// determine the
 												// location of
-												// products(X, Y POS)
+			
+		ArrayList<Product> productList = new ArrayList<Product>();
 		while (rs.next()) {
-			System.out.println(rs.getString("productNaam"));
+			productList.add(new Product(rs.getInt("productId"), rs.getString("productNaam"), rs.getInt("locatieX"), rs.getInt("locatieY"), rs.getInt("pHoogte"), rs.getInt("pBreedte"), rs.getInt("pLengte")));
 		}
+		return productList;
 
 	}
 

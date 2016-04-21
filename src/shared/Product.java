@@ -6,14 +6,16 @@ package shared;
 
 public class Product {
 	private String productName;
+	private int productId;
 	private int locationX;
 	private int locationY;
 	private double height;
 	private double width;
 	private double lenght;
 
-	public Product(String productName, int locationX, int locationY, double height, double width,
+	public Product(int productId, String productName, int locationX, int locationY, double height, double width,
 			double length) {
+		this.productId = productId;
 		this.locationX = locationX;
 		this.locationY = locationY;
 		this.height = height;
@@ -22,10 +24,23 @@ public class Product {
 		this.productName = productName;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return ((Product) obj).getProductId() == this.getProductId();
+	}
+	
+	public String toString(){
+		return "id: " + productId + ", naam: " + productName + ", location: (" + locationX + ", " + locationY + "), dimentions: " + height + "X" + width + "X" + lenght;
+	}
+	
 	public Product(int productId) {
-		this("Onbekend", 0, 0, 0, 0, 0);
+		this(productId, "Onbekend", 0, 0, 0, 0, 0);
 	}
 
+	public int getProductId(){
+		return productId;
+	}
+	
 	public String getProductName() {
 		return productName;
 	}

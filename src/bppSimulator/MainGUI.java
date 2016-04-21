@@ -26,6 +26,7 @@ import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import shared.Bestelling;
+import shared.Database;
 import shared.ParseXML;
 import shared.Product;
 
@@ -42,6 +43,7 @@ public class MainGUI extends JFrame implements ActionListener{
 	
 	public JLabel lbltijd_2;
 	public ArrayList<Product> productList;
+	public ArrayList<Box> boxList;
 	public String console;
 	JButton btnStartSimulatie;
 	JButton btnPauzeerSimulatie;
@@ -56,6 +58,9 @@ public class MainGUI extends JFrame implements ActionListener{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		productList = new ArrayList<Product>();
+		boxList = new ArrayList<Box>();
+		boxList.add(new Box(10, 10, 10));
+		boxList.add(new Box(10, 10, 10));
 
 		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter(
@@ -203,12 +208,23 @@ public class MainGUI extends JFrame implements ActionListener{
 			int response = fc.showOpenDialog(this);
 			if(response == JFileChooser.APPROVE_OPTION){
 				Bestelling picklist = new ParseXML(fc.getSelectedFile().getAbsolutePath()).getBestelling();
-				productList = picklist.getProductList();
+				Database db = new Database();
+				ArrayList<Product> pickProducts;
+				try {
+					pickProducts = picklist.getProductList();
+					for(Product p : db.selectAll()){
+						if(pickProducts.contains(p)){
+							productList.add(p);
+						}
+						System.out.println(p);
+					}
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 				simPanel.repaint();
 			}
-		}
-		if(e.getSource() == mnFile){
-			
 		}
 		
 		if (e.getSource() == btnStartSimulatie) {

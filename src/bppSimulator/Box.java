@@ -1,14 +1,31 @@
 package bppSimulator;
 
-public class Doos {
+import java.util.ArrayList;
+
+import shared.Product;
+
+public class Box {
 	private double hoogte;
 	private double breedte;
 	private double lengte;
-	
-	public Doos(double hoogte, double breedte, double lengte) {
+	private ArrayList<Product> inBox;
+	public Box(double hoogte, double breedte, double lengte) {
 		this.hoogte = hoogte;
 		this.breedte = breedte;
 		this.lengte = lengte;
+		inBox = new ArrayList<Product>();
+	}
+	
+	public void addProductToBox(Product p){
+		inBox.add(p);
+	}
+	
+	public void removeFromBox(Product p){
+		inBox.remove(p);
+	}
+	
+	public ArrayList<Product> productsInBox(){
+		return inBox;
 	}
 	
 	public double getHoogte() {

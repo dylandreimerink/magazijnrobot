@@ -21,7 +21,9 @@ public class SimulatiePanel extends JPanel {
 	MainGUI parent;
 	
 	int productYOffset = 350;
+	int boxYOffset = 100;
 	Dimension productDimentions = new Dimension(50, 50);
+	Dimension boxDimentions = new Dimension(50, 50);
 	Dimension productTextOffset = new Dimension(-10, 0);
 	
 	public SimulatiePanel(MainGUI parant) {
@@ -39,12 +41,19 @@ public class SimulatiePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);       
         
-        int xOffset = 0;
         Font font = new Font("product", Font.PLAIN , 14);
         FontMetrics metrics = g.getFontMetrics();
    
         g.setFont(font);
+        
+        int boxXOffset = (this.getWidth() - (parent.boxList.size() * boxDimentions.width + (parent.boxList.size() - 1) * 10)) / 2;
+        for(Box b : parent.boxList){
+        	g.fillRect(boxXOffset, boxYOffset, boxDimentions.width, boxDimentions.height);
+        	boxXOffset += 10 + boxDimentions.width;
+        }
 
+        
+        int xOffset = 0;
         for(Product p : parent.productList){
         	
         	Rectangle rect = new Rectangle(xOffset, productYOffset,  metrics.stringWidth(p.getProductName()) + 20, productDimentions.height);
