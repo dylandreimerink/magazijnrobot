@@ -28,6 +28,10 @@ public class Box {
 		return inBox;
 	}
 	
+	public double getCapacity() {
+		return this.breedte * this.hoogte * this.lengte;
+	}
+	
 	public double getHoogte() {
 		return hoogte;
 	}

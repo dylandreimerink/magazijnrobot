@@ -50,7 +50,9 @@ public class MainGUI extends JFrame implements ActionListener{
 	JButton btnAnnuleerSimulatie;
 	JTextArea textArea;
 	JMenu mnFile;
-
+	
+	
+	
 
 	public MainGUI() {
 		setTitle("BPP Simulator");
@@ -70,6 +72,9 @@ public class MainGUI extends JFrame implements ActionListener{
 		fc.setFileFilter(xmlfilter);
 		
 		addComponents();
+		
+		
+		
 
 		setVisible(true);
 	}
@@ -231,6 +236,9 @@ public class MainGUI extends JFrame implements ActionListener{
 			console = "\nSimulatie aan het starten..";
 			textArea.append(console);
 			textArea.setCaretPosition(textArea.getDocument().getLength());
+			
+			AlgorithmBPP bpp = new AlgorithmBPP();
+			bpp.algorithm1(productList);
 		} else if (e.getSource() == btnPauzeerSimulatie) {
 			console = "\nSimulatie aan het pauzeren..";
 			textArea.append(console);
