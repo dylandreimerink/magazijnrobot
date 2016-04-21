@@ -32,10 +32,12 @@ public class Edit_Artikel extends JFrame implements ActionListener{
 	private JButton btnSearch;
 	private JButton btnCancel;
 	private JButton btnApply;
+	private JButton button;
+	private JButton btnDelete;
 	
 	public Edit_Artikel() {
-        getContentPane().setLayout(new FlowLayout());
         setTitle("Edit");		
+		getContentPane().setLayout(null);
 		getContentPane().setLayout(null);
 		
 		lblZoekArtikel = new JLabel("Zoek artikel:");
@@ -116,12 +118,20 @@ public class Edit_Artikel extends JFrame implements ActionListener{
 		getContentPane().add(TextField_Y);
 		
 		btnCancel = new JButton("Cancel");
-		btnCancel.setBounds(46, 202, 75, 25);
+		btnCancel.setBounds(36, 202, 75, 25);
 		getContentPane().add(btnCancel);
 		
 		btnApply = new JButton("Apply");
 		btnApply.setBounds(133, 202, 68, 25);
 		getContentPane().add(btnApply);
+		
+		button = new JButton("New button");
+		button.setBounds(0, 0, 0, 0);
+		getContentPane().add(button);
+		
+		btnDelete = new JButton("Delete");
+		btnDelete.setBounds(228, 202, 68, 25);
+		getContentPane().add(btnDelete);
 	}
 
 	@Override
