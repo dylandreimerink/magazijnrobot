@@ -51,23 +51,16 @@ import javax.swing.border.TitledBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.JScrollPane;
-public class Gui extends JFrame implements ActionListener {
+public class gui extends JFrame implements ActionListener {
 
 	
 	private String path;
 	private ArrayList<Product> productlist;
 	   
-	public Gui() {
-<<<<<<< HEAD
-	
-	
-=======
-<<<<<<< HEAD
+	public gui() {
 
-=======
->>>>>>> origin/master
-		
->>>>>>> origin/master
+
+
 		//scherm opbouwen
 		JFrame frame = new JFrame();
         this.setSize(1200,900);
@@ -75,8 +68,7 @@ public class Gui extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("AS/RS Systeem");
         getContentPane().setLayout(new BorderLayout(0, 0));
-<<<<<<< HEAD
-=======
+
 		
 		// initialiseer en maak menuopties.
 		JMenuBar menuBar = new JMenuBar();
@@ -134,15 +126,15 @@ public class Gui extends JFrame implements ActionListener {
 		mnBestand.add(mntmBewerkArtikel);
 		
 		// bewerk artikel NOT DONE
-		JMenuItem mntmBewerkArtikel = new JMenuItem("Voeg artikeltoe");
-		mntmBewerkArtikel.addActionListener(new ActionListener() {
+		JMenuItem mntmVoegtoe = new JMenuItem("Voeg artikeltoe");
+		mntmVoegtoe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		mnBestand.add(mntmBewerkArtikel);
+		mnBestand.add(mntmVoegtoe);
 		
 
->>>>>>> origin/master
+
         
         JPanel panel = new JPanel();
         getContentPane().add(panel);
@@ -189,7 +181,7 @@ public class Gui extends JFrame implements ActionListener {
         panel_4.setLayout(new MigLayout("", "[grow]", "[grow]"));
         
         JScrollPane scrollPane = new JScrollPane();
-<<<<<<< HEAD
+
         panel_4.add(scrollPane, "cell 0 0,grow");
         
         JPanel panel_5 = new JPanel();
@@ -197,63 +189,62 @@ public class Gui extends JFrame implements ActionListener {
         panel_5.setLayout(new MigLayout("", "[]", "[]"));
         
         this.setVisible(true);
-=======
         panel_4.add(scrollPane, "cell 0 0,grow");	
 		
 		// initialiseer en maak menuopties.
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
+		JMenuBar menuBar1 = new JMenuBar();
+		setJMenuBar(menuBar1);
 		
-		JMenu mnBestand = new JMenu("Bestand");
-		menuBar.add(mnBestand);
+		JMenu mnBestand1 = new JMenu("Bestand");
+		menuBar1.add(mnBestand1);
 		
 		
 		// open order - path handler toevoegen
-		JMenuItem mntmOpenOrder = new JMenuItem("Open order");
-		mntmOpenOrder.addActionListener(new ActionListener() {
+		JMenuItem mntmOpenOrder1 = new JMenuItem("Open order");
+		mntmOpenOrder1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				path = ChooseFile();
-				Bestelling bestelling = new Bestelling(path);
-				productlist = bestelling.getProductList();
+				Choosefile chooser = new Choosefile();
+				path = chooser.ChooseFile();
+				ParseXML order = new ParseXML(path);
+				
 				System.out.println(path);
 			}
 		});
-		mntmOpenOrder.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, InputEvent.CTRL_MASK));
-		mnBestand.add(mntmOpenOrder);
+		mntmOpenOrder1.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, InputEvent.CTRL_MASK));
+		mnBestand1.add(mntmOpenOrder1);
 		
 		
 		//open recent NOT DONE
-		JMenu mnOpenRecent = new JMenu("Open recent");
-		mnOpenRecent.addActionListener(new ActionListener() {
+		JMenu mnOpenRecent1 = new JMenu("Open recent");
+		mnOpenRecent1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		mnBestand.add(mnOpenRecent);
+		mnBestand1.add(mnOpenRecent1);
 		
 		
 		//exit DONE
-		JMenuItem mntmExit = new JMenuItem("Exit");
-		mntmExit.addActionListener(new ActionListener() {
+		JMenuItem mntmExit1 = new JMenuItem("Exit");
+		mntmExit1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
-		mntmExit.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, InputEvent.CTRL_MASK));
-		mnBestand.add(mntmExit);
+		mntmExit1.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, InputEvent.CTRL_MASK));
+		mnBestand1.add(mntmExit1);
 		
 		
 		
 		// bewerk artikel NOT DONE
-		JMenuItem mntmBewerkArtikel = new JMenuItem("Bewerk artikel");
-		mntmBewerkArtikel.addActionListener(new ActionListener() {
+		JMenuItem mntmBewerkArtikel1 = new JMenuItem("Bewerk artikel");
+		mntmBewerkArtikel1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-	            Artikel dialoog = new Artikel();
-	            dialoog.setVisible(true);	            
+	            
 			}
 		});
-		mnBestand.add(mntmBewerkArtikel);
+		mnBestand1.add(mntmBewerkArtikel1);
         this.setVisible(true);			
->>>>>>> origin/master
+
 	}
 	
 	public ArrayList<Product> getProductList() {
