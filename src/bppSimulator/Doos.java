@@ -11,6 +11,10 @@ public class Doos {
 		this.lengte = lengte;
 	}
 	
+	public double getCapacity() {
+		return this.breedte * this.hoogte * this.lengte;
+	}
+	
 	public double getHoogte() {
 		return hoogte;
 	}
