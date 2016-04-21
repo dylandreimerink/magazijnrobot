@@ -6,23 +6,23 @@ import shared.Product;
 
 public class AlgorithmBPP {
 	
-	ArrayList<Doos> dozen = new ArrayList<Doos>();
+	ArrayList<Box> dozen = new ArrayList<Box>();
 	
-	public ArrayList<Doos> algorithm1(ArrayList<Product> products){
-		for(Doos d : dozen){
+	public ArrayList<Box> algorithm1(ArrayList<Product> products){
+		for(Box d : dozen){
 			System.out.println(d.getCapacity());
 			 
 		}
 		return dozen;
 	}
 	
-	public ArrayList<Doos> algorithm2(ArrayList<Product> products){
+	public ArrayList<Box> algorithm2(ArrayList<Product> products){
 		
 		
 		return dozen;
 	}
 	
-	public ArrayList<Doos> algorithm3(ArrayList<Product> products){
+	public ArrayList<Box> algorithm3(ArrayList<Product> products){
 		
 		
 		return dozen;
