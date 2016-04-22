@@ -14,7 +14,7 @@ public class Choosefile {
 	
 	public void ChooseFile() {
 		
-
+		Console console = new Console();
 		
 	    JFileChooser chooser = new JFileChooser();
 	    chooser.setCurrentDirectory(new java.io.File("."));
@@ -31,6 +31,13 @@ public class Choosefile {
 	    } else {
 	    	validFile = false;
 	    	System.out.println(validFile);
+	    }
+	    
+	    if (validFile == true) {
+	    	console.textArea.append("\nDocument geselecteerd! path:" + path );
+	    	console.textArea.append("\nvolgende producten zijn geselecteerd: " + productlist);
+	    }else {
+	    	console.textArea.append("\ngeen of ongeldig document geselecteerd!");
 	    }
 	}  
 	  

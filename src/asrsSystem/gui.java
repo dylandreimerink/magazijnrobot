@@ -57,7 +57,7 @@ public class gui extends JFrame implements ActionListener {
 	   
 	public gui() {
 
-
+		
 
 		//scherm opbouwen
 		JFrame frame = new JFrame();
@@ -176,18 +176,20 @@ public class gui extends JFrame implements ActionListener {
         JPanel panel_4 = new JPanel();
         panel_4.setBorder(new TitledBorder(new EmptyBorder(2, 0, 0, 0), "Console", TitledBorder.LEFT, TitledBorder.TOP, null, Color.DARK_GRAY));
         panel_1.add(panel_4, "cell 2 0,grow");
-        panel_4.setLayout(new MigLayout("", "[grow]", "[grow]"));
         
-        JScrollPane scrollPane = new JScrollPane();
-
-        panel_4.add(scrollPane, "cell 0 0,grow");
+        
+      
+        Console console = new Console();
+        panel_4.add(console.caller());
+        panel_4.setLayout(new BoxLayout(panel_4, BoxLayout.X_AXIS));
+        
+        console.textArea.append("\nError");
         
         JPanel panel_5 = new JPanel();
         panel.add(panel_5, BorderLayout.EAST);
         panel_5.setLayout(new MigLayout("", "[]", "[]"));
         
         this.setVisible(true);
-        panel_4.add(scrollPane, "cell 0 0,grow");	
 		
 		// initialiseer en maak menuopties.
 		JMenuBar menuBar1 = new JMenuBar();
