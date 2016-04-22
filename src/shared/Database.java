@@ -31,7 +31,7 @@ public class Database implements Runnable {
 
 	public void run() {
 		try {
-			// connect();
+			connect();
 			System.out.println("This database connection is a new Thread");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

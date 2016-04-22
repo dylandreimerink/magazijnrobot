@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import shared.Product;
+
 public class Create_Product extends JFrame implements ActionListener{
 	
 	private JLabel lblNaam;
@@ -117,6 +119,9 @@ public class Create_Product extends JFrame implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == btnApply) {
+        	
+        }
         if (e.getSource() == btnCancel) {
         }
 		
