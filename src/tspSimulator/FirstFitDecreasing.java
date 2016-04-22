@@ -22,6 +22,7 @@ public class FirstFitDecreasing implements Algorithm{
 	private ArrayList<Location> picklist;
 	private DrawPanel panel;
 	private Resultaat resultaat;
+	
 
 
 	public FirstFitDecreasing(String name, ArrayList<Location> picklist) {
