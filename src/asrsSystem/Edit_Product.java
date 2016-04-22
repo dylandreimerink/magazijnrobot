@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JSpinner;
 
-public class Edit_Artikel extends JFrame implements ActionListener{
+public class Edit_Product extends JFrame implements ActionListener{
 
 	private JSpinner Search_Spinner;	
 	private JLabel lblZoekArtikel;
@@ -35,7 +35,7 @@ public class Edit_Artikel extends JFrame implements ActionListener{
 	private JButton button;
 	private JButton btnDelete;
 	
-	public Edit_Artikel() {
+	public Edit_Product() {
         setTitle("Edit");		
 		getContentPane().setLayout(null);
 		getContentPane().setLayout(null);

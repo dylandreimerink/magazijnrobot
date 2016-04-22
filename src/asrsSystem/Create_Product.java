@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class Create_Artikel extends JFrame implements ActionListener{
+public class Create_Product extends JFrame implements ActionListener{
 	
 	private JLabel lblNaam;
 	private JLabel lblDimensie;
@@ -30,7 +30,7 @@ public class Create_Artikel extends JFrame implements ActionListener{
 	private JButton btnCancel;
 	private JButton btnApply;
 	
-	public Create_Artikel() {
+	public Create_Product() {
         getContentPane().setLayout(new FlowLayout());
         setTitle("Create");		
 		getContentPane().setLayout(null);
