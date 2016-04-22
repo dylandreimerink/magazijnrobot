@@ -72,9 +72,6 @@ public class MainGUI extends JFrame implements ActionListener{
 		fc.setFileFilter(xmlfilter);
 		
 		addComponents();
-		
-		
-		
 
 		setVisible(true);
 	}
@@ -212,22 +209,15 @@ public class MainGUI extends JFrame implements ActionListener{
 		if(e.getSource() == mntmOpenPakbon){
 			int response = fc.showOpenDialog(this);
 			if(response == JFileChooser.APPROVE_OPTION){
-				Bestelling picklist = new ParseXML(fc.getSelectedFile().getAbsolutePath()).getBestelling();
-				Database db = new Database();
-				ArrayList<Product> pickProducts;
-				try {
-					pickProducts = picklist.getProductList();
-					for(Product p : db.selectAll()){
-						if(pickProducts.contains(p)){
-							productList.add(p);
-						}
-						System.out.println(p);
-					}
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				Bestelling order = new ParseXML(fc.getSelectedFile().getAbsolutePath()).getBestelling();
+				int[] ids = new int[order.getProductList().toArray().length];
+				int i = 0;
+				for(Product p : order.getProductList()){
+					ids[i] = p.getProductId();
+					i++;
 				}
-				
+				PickList picklist = new PickList(ids);
+				BPPFirstFit firstFitAlgo = new BPPFirstFit(picklist, 3, 3, 3);
 				simPanel.repaint();
 			}
 		}
@@ -237,8 +227,6 @@ public class MainGUI extends JFrame implements ActionListener{
 			textArea.append(console);
 			textArea.setCaretPosition(textArea.getDocument().getLength());
 			
-			AlgorithmBPP bpp = new AlgorithmBPP();
-			bpp.algorithm1(productList);
 		} else if (e.getSource() == btnPauzeerSimulatie) {
 			console = "\nSimulatie aan het pauzeren..";
 			textArea.append(console);

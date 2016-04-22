@@ -52,6 +52,10 @@ public class SimulatiePanel extends JPanel {
         	boxXOffset += 10 + boxDimentions.width;
         }
 
+        int productWidths = 0;
+        for(Product P : parent.productList){
+        	
+        }
         
         int xOffset = 0;
         for(Product p : parent.productList){
