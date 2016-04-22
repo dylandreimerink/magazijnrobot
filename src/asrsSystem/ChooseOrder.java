@@ -8,11 +8,10 @@ import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import shared.*;
-public class Choosefile {
+public class ChooseOrder {
 	
 	private String path;
 	private ArrayList<shared.Product> productlist;
-	
 	public void ChooseFile() {
 		Console console = new Console();
 		
@@ -26,16 +25,18 @@ public class Choosefile {
 	    File selectedFile = chooser.getSelectedFile();
 	      this.path = selectedFile.getAbsolutePath();
 	      ParseXML order = new ParseXML(path);
-	      productlist = order.getProductList();
+	      this.productlist = order.getProductList();
 	      System.out.println(productlist);
 	      console.printLine("Document geselecteerd! path:" + path );
-	      console.printLine("volgende producten zijn geselecteerd: " + productlist);
 	    } else {
 	    	console.printLine("geen of ongeldig document geselecteerd!");
 	    }
 	    console.printLine("Document geselecteerd! path:" + path );
 	    
 	    
-	}  
+	}
+	public ArrayList<shared.Product> getProductList() {
+		return productlist;
+	}
 	  
 }

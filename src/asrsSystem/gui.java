@@ -199,7 +199,7 @@ public class gui extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == mntmOpenOrder) {
-			Choosefile chooser = new Choosefile();
+			ChooseOrder chooser = new ChooseOrder();
 			chooser.ChooseFile();
 		}
 		if(e.getSource()== mntmExit) {
