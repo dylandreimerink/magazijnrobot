@@ -41,12 +41,12 @@ public class MainGUI extends JFrame implements ActionListener {
 
 		BruteForce bf = new BruteForce("BruteForce", picklist.getList());
 		FirstFit ff = new FirstFit("First Fit", picklist.getList());
-		Unknown onbekend = new Unknown("Onbekend", picklist.getList());
+		FirstFitDecreasing ffd = new FirstFitDecreasing("Onbekend", picklist.getList());
 		setLayout(new GridLayout(1, 3));
 
 		add(bf.getPanel());
 		add(ff.getPanel());
-		add(onbekend.getPanel());
+		add(ffd.getPanel());
 	}
 
 	@Override

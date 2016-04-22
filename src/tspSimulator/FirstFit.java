@@ -1,16 +1,7 @@
 
 package tspSimulator;
 
-/*
- * Authors: Jan Willem Alejandro Casteleijn & Henri van de Munt (ICTM2a)
- */
-
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.util.ArrayList;
-
-import javax.swing.JPanel;
-import javax.swing.SingleSelectionModel;
 
 import shared.Algorithm;
 import shared.Resultaat;
@@ -25,12 +16,15 @@ public class FirstFit implements Algorithm {
 	private String name;
 	private ArrayList<Location> picklist;
 	private DrawPanel panel;
+	private Resultaat resultaat;
 
 
 	public FirstFit(String name, ArrayList<Location> picklist) {
 		this.name = name;
 		this.picklist = picklist;
-		panel = new DrawPanel("First Fit", 0,0);
+		resultaat = new Resultaat(picklist, 0);
+
+		panel = new DrawPanel("First Fit", resultaat);
 
 	}
 
