@@ -1,5 +1,7 @@
 package asrsSystem;
-
+/*
+ * Authors: Steven
+ */
 import java.io.File;
 import java.util.ArrayList;
 
@@ -10,11 +12,10 @@ public class Choosefile {
 	
 	private String path;
 	private ArrayList<shared.Product> productlist;
-	private Boolean validFile;
 	
 	public void ChooseFile() {
-		
 		Console console = new Console();
+		
 		
 	    JFileChooser chooser = new JFileChooser();
 	    chooser.setCurrentDirectory(new java.io.File("."));
@@ -27,18 +28,14 @@ public class Choosefile {
 	      ParseXML order = new ParseXML(path);
 	      productlist = order.getProductList();
 	      System.out.println(productlist);
-	      validFile = true;
+	      console.printLine("Document geselecteerd! path:" + path );
+	      console.printLine("volgende producten zijn geselecteerd: " + productlist);
 	    } else {
-	    	validFile = false;
-	    	System.out.println(validFile);
+	    	console.printLine("geen of ongeldig document geselecteerd!");
 	    }
+	    console.printLine("Document geselecteerd! path:" + path );
 	    
-	    if (validFile == true) {
-	    	console.textArea.append("\nDocument geselecteerd! path:" + path );
-	    	console.textArea.append("\nvolgende producten zijn geselecteerd: " + productlist);
-	    }else {
-	    	console.textArea.append("\ngeen of ongeldig document geselecteerd!");
-	    }
+	    
 	}  
 	  
 }
