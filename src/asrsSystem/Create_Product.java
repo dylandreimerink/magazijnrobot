@@ -119,7 +119,7 @@ public class Create_Product extends JFrame implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btnApply) {
+        if (e.getSource() == btnApply) {      	
         	
         }
         if (e.getSource() == btnCancel) {
