@@ -8,6 +8,10 @@ import shared.Product;
 public class PickList {
 	ArrayList<Product> products = new ArrayList<Product>();
 	
+	public PickList(){
+		
+	}
+	
 	public PickList(int[] productIds) {
 		Database db = new Database();
 		try {

@@ -40,9 +40,10 @@ public class MainGUI extends JFrame implements ActionListener{
 	private Dimension buttonsize;
 	private JMenuItem mntmOpenPakbon;
 	private SimulatiePanel simPanel;
+	private BPPFirstFit firstFitAlgo;
 	
 	public JLabel lbltijd_2;
-	public ArrayList<Product> productList;
+	PickList picklist;
 	public ArrayList<Box> boxList;
 	public String console;
 	JButton btnStartSimulatie;
@@ -59,7 +60,6 @@ public class MainGUI extends JFrame implements ActionListener{
 		setSize(700, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		productList = new ArrayList<Product>();
 		boxList = new ArrayList<Box>();
 		boxList.add(new Box(10, 10, 10));
 		boxList.add(new Box(10, 10, 10));
@@ -216,14 +216,15 @@ public class MainGUI extends JFrame implements ActionListener{
 					ids[i] = p.getProductId();
 					i++;
 				}
-				PickList picklist = new PickList(ids);
-				BPPFirstFit firstFitAlgo = new BPPFirstFit(picklist, 3, 3, 3);
+				picklist = new PickList(ids);
 				simPanel.repaint();
 			}
 		}
 		
 		if (e.getSource() == btnStartSimulatie) {
 			console = "\nSimulatie aan het starten..";
+			firstFitAlgo = new BPPFirstFit(picklist, 3, 3, 3);
+			firstFitAlgo.start();
 			textArea.append(console);
 			textArea.setCaretPosition(textArea.getDocument().getLength());
 			
