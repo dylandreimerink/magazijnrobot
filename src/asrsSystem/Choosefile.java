@@ -4,12 +4,17 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import shared.*
+import shared.*;
 public class Choosefile {
+	
 	private String path;
 	private Bestelling bestelling;
+	private Boolean validFile;
 	
-	public String ChooseFile() {
+	public Choosefile() {
+		
+
+		
 	    JFileChooser chooser = new JFileChooser();
 	    chooser.setCurrentDirectory(new java.io.File("."));
 	    chooser.setDialogTitle("kies uw XML file");
@@ -17,13 +22,14 @@ public class Choosefile {
 	    chooser.setAcceptAllFileFilterUsed(false);
 	    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 	    File selectedFile = chooser.getSelectedFile();
-	      return("" + selectedFile.getAbsolutePath());
 	      this.path = selectedFile.getAbsolutePath();
 	      ParseXML order = new ParseXML(path);
 	      bestelling = order.getBestelling();
 	      System.out.println(bestelling);
+	      validFile = true;
 	    } else {
-	      return("No Selection ");
+	    	validFile = false;
+	    	System.out.println(validFile);
 	    }
 	    
 	  }

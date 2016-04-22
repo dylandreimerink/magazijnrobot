@@ -81,9 +81,8 @@ public class gui extends JFrame implements ActionListener {
 		mntmOpenOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Choosefile chooser = new Choosefile();
-				path = chooser.ChooseFile();
-				ParseXML order = new ParseXML(path);
-				System.out.println(path);
+				System.out.println("test");
+				
 			}
 		});
 		mntmOpenOrder.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, InputEvent.CTRL_MASK));
