@@ -1,5 +1,7 @@
 package asrsSystem;
-
+/*
+ * Authors: Richard en Steven
+ */
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,9 +56,26 @@ import javax.swing.JScrollPane;
 public class gui extends JFrame implements ActionListener {
 
 	
-	   
+	private JMenuItem mntmOpenOrder;
+	private JMenuItem mntmExit;
+	private JMenuItem mntmBewerkArtikel;
+	private JMenuItem mntmVoegToe;
+	private JMenuItem mntmDeleteArtikel;
+	JButton startRobot;
+	JButton pauseRobot;
+	JButton stopRobot;
+	JButton connect;
+	JButton disconnect;
+	JButton savePakbon;
+	
+	
 	public gui() {
-
+		addComponents();
+	}
+	
+	
+	private void addComponents() {
+		Console console = new Console();
 
 		//scherm opbouwen
 		JFrame frame = new JFrame();
@@ -66,7 +85,8 @@ public class gui extends JFrame implements ActionListener {
         this.setTitle("AS/RS Systeem");
         getContentPane().setLayout(new BorderLayout(0, 0));
 
-		
+
+        
 		// initialiseer en maak menuopties.
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -76,59 +96,39 @@ public class gui extends JFrame implements ActionListener {
 		
 		
 		// open order - path handler toevoegen
-		JMenuItem mntmOpenOrder = new JMenuItem("Open order");
-		mntmOpenOrder.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Choosefile chooser = new Choosefile();
-				chooser.ChooseFile();
-				System.out.println("test");
-				
-			}
-		});
+		mntmOpenOrder = new JMenuItem("Open order");
+		mntmOpenOrder.addActionListener(this);
 		mntmOpenOrder.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, InputEvent.CTRL_MASK));
 		mnBestand.add(mntmOpenOrder);
 		
 		
 		//open recent NOT DONE
 		JMenu mnOpenRecent = new JMenu("Open recent");
-		mnOpenRecent.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				
-				
-				
-			}
-		});
+		mnOpenRecent.addActionListener(this);
 
 		
 		
 		//exit DONE
-		JMenuItem mntmExit = new JMenuItem("Exit");
-		mntmExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
+		mntmExit = new JMenuItem("Exit");
+		mntmExit.addActionListener(this);
 		mntmExit.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, InputEvent.CTRL_MASK));
 		mnBestand.add(mntmExit);
 		
 		
 		
 		// bewerk artikel NOT DONE
-		JMenuItem mntmBewerkArtikel = new JMenuItem("Bewerk artikel");
-		mntmBewerkArtikel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		mntmBewerkArtikel = new JMenuItem("Bewerk artikel");
+		mntmBewerkArtikel.addActionListener(this);
 		mnBestand.add(mntmBewerkArtikel);
 		
+		mntmDeleteArtikel = new JMenuItem("Delete artikel");
+		mntmDeleteArtikel.addActionListener(this);
+		mnBestand.add(mntmDeleteArtikel);
+		
 		// bewerk artikel NOT DONE
-		JMenuItem mntmVoegtoe = new JMenuItem("Voeg artikeltoe");
-		mntmVoegtoe.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		mnBestand.add(mntmVoegtoe);
+		mntmVoegToe = new JMenuItem("Voeg artikel toe");
+		mntmVoegToe.addActionListener(this);
+		mnBestand.add(mntmVoegToe);
 		
 
 
@@ -146,40 +146,41 @@ public class gui extends JFrame implements ActionListener {
         panel_1.add(panel_2, "cell 0 0,alignx left,aligny top");
         panel_2.setLayout(new MigLayout("", "[101px]", "[23px][23px][23px]"));
         
-        JButton startRobot = new JButton("start robot");
+        startRobot = new JButton("start robot");
+        startRobot.addActionListener(this);
         panel_2.add(startRobot, "flowy,cell 0 0,growx,aligny top");
         
-        JButton stopRobot = new JButton("stop robot");
+        stopRobot = new JButton("stop robot");
+        stopRobot.addActionListener(this);
         panel_2.add(stopRobot, "cell 0 1,growx,aligny top");
         
-        JButton pauseRobot = new JButton("pauseer robot");
+        pauseRobot = new JButton("pauseer robot");
+        pauseRobot.addActionListener(this);
         panel_2.add(pauseRobot, "cell 0 2,alignx left,aligny top");
         
         JPanel panel_3 = new JPanel();
         panel_1.add(panel_3, "cell 1 0,alignx left,aligny top");
         panel_3.setLayout(new MigLayout("", "[107px]", "[][][23px]"));
         
-        JButton disconnect = new JButton("disconnect");
-        disconnect.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
+        disconnect = new JButton("disconnect");
+        disconnect.addActionListener(this);
         panel_3.add(disconnect, "flowy,cell 0 0,growx,aligny top");
         
-        JButton connect = new JButton("connect");
+        connect = new JButton("connect");
+        connect.addActionListener(this);
         panel_3.add(connect, "cell 0 1,growx,aligny top");
         
-        JButton savePakbon = new JButton("pakbon opslaan");
+        savePakbon = new JButton("pakbon opslaan");
+        savePakbon.addActionListener(this);
         panel_3.add(savePakbon, "cell 0 2,alignx center,aligny top");
         
         JPanel panel_4 = new JPanel();
         panel_4.setBorder(new TitledBorder(new EmptyBorder(2, 0, 0, 0), "Console", TitledBorder.LEFT, TitledBorder.TOP, null, Color.DARK_GRAY));
         panel_1.add(panel_4, "cell 2 0,grow");
         
-        
-      
-        Console console = new Console();
-        panel_4.add(console.caller());
+        panel_4.add(console.console());
+        console.printLine("Programma is succesvol opgestart!");
+        console.printLine("Selecteer een order om te beginnen!");
         panel_4.setLayout(new BoxLayout(panel_4, BoxLayout.X_AXIS));
         
         
@@ -188,73 +189,33 @@ public class gui extends JFrame implements ActionListener {
         panel_5.setLayout(new MigLayout("", "[]", "[]"));
         
         this.setVisible(true);
-		
-		// initialiseer en maak menuopties.
-		JMenuBar menuBar1 = new JMenuBar();
-		setJMenuBar(menuBar1);
-		
-		JMenu mnBestand1 = new JMenu("Bestand");
-		menuBar1.add(mnBestand1);
-		
-		
-		// open order - path handler toevoegen
-		JMenuItem mntmOpenOrder1 = new JMenuItem("Open order");
-		mntmOpenOrder1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Choosefile chooser = new Choosefile();
-				chooser.ChooseFile();
-											
-			}
-		});
-		mntmOpenOrder1.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, InputEvent.CTRL_MASK));
-		mnBestand1.add(mntmOpenOrder1);
-		
-		
-		//open recent NOT DONE
-		JMenu mnOpenRecent1 = new JMenu("Open recent");
-		mnOpenRecent1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		mnBestand1.add(mnOpenRecent1);
-		
-		
-		//exit DONE
-		JMenuItem mntmExit1 = new JMenuItem("Exit");
-		mntmExit1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
-		mntmExit1.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, InputEvent.CTRL_MASK));
-		mnBestand1.add(mntmExit1);
-		
-		
-		
-		// bewerk artikel NOT DONE
-		JMenuItem mntmBewerkArtikel1 = new JMenuItem("Bewerk artikel");
-		mntmBewerkArtikel1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-	            
-			}
-		});
-		mnBestand1.add(mntmBewerkArtikel1);
-        this.setVisible(true);			
-
-	}
-	
-
+        console.printLine("testing");
         
+		
+        
+	}
 
-	//getter
-	
-
-
+	//actionlisteners
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == mntmOpenOrder) {
+			Choosefile chooser = new Choosefile();
+			chooser.ChooseFile();
+		}
+		if(e.getSource()== mntmExit) {
+			System.exit(0);
+		}
+		if(e.getSource()== mntmBewerkArtikel) {
+			// todo code here
+		}
+		if(e.getSource()== mntmVoegToe) {
+			// todo code here
+		}
+		if(e.getSource()== mntmDeleteArtikel) {
+			// todo code here
+		}
 		
 	}
-	 
+
 
 }
