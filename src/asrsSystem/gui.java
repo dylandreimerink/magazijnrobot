@@ -57,7 +57,6 @@ public class gui extends JFrame implements ActionListener {
 	   
 	public gui() {
 
-		
 
 		//scherm opbouwen
 		JFrame frame = new JFrame();
@@ -183,7 +182,6 @@ public class gui extends JFrame implements ActionListener {
         panel_4.add(console.caller());
         panel_4.setLayout(new BoxLayout(panel_4, BoxLayout.X_AXIS));
         
-        console.textArea.append("\nError");
         
         JPanel panel_5 = new JPanel();
         panel.add(panel_5, BorderLayout.EAST);
