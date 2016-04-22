@@ -81,6 +81,7 @@ public class gui extends JFrame implements ActionListener {
 		mntmOpenOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Choosefile chooser = new Choosefile();
+				chooser.ChooseFile();
 				System.out.println("test");
 				
 			}

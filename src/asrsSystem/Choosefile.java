@@ -1,6 +1,7 @@
 package asrsSystem;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -8,10 +9,10 @@ import shared.*;
 public class Choosefile {
 	
 	private String path;
-	private Bestelling bestelling;
+	private ArrayList<shared.Product> productlist;
 	private Boolean validFile;
 	
-	public Choosefile() {
+	public void ChooseFile() {
 		
 
 		
@@ -24,13 +25,13 @@ public class Choosefile {
 	    File selectedFile = chooser.getSelectedFile();
 	      this.path = selectedFile.getAbsolutePath();
 	      ParseXML order = new ParseXML(path);
-	      bestelling = order.getBestelling();
-	      System.out.println(bestelling);
+	      productlist = order.getProductList();
+	      System.out.println(productlist);
 	      validFile = true;
 	    } else {
 	    	validFile = false;
 	    	System.out.println(validFile);
 	    }
-	    
-	  }
+	}  
+	  
 }

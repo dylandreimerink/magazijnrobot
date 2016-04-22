@@ -70,6 +70,10 @@ public class ParseXML {
 			System.out.println("Wrong syntax xml file");
 		}
 	}
+	public ArrayList<Product> getProductList() {
+		return this.bestelling.getProductList();
+	}
+	
 	public Bestelling getBestelling(){		
 		return bestelling;		
 	}
