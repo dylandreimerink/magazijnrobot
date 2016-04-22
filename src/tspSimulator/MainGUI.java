@@ -63,7 +63,7 @@ public class MainGUI extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == test) {
-			for(Integer x= 0;x<999999999999999999999999999;x++){
+			for(int x= 0;x<9999999;x++){
 				this.picklist.generateNewPicklist();
 				System.out.println(this.picklist.toString());
 				bf.updateResultaat(this.picklist.getList());
