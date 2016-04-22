@@ -49,7 +49,7 @@ public class MainGUI extends JFrame implements ActionListener {
 		bf = new BruteForce("BruteForce", picklist.getList());
 		ff = new FirstFit("First Fit", picklist.getList());
 		ffd = new FirstFitDecreasing("Onbekend", picklist.getList());
-		setLayout(new GridLayout(1, 4, 0,0));
+		setLayout(new GridLayout(1, 4, 0, 0));
 
 		add(bf.getPanel());
 		add(ff.getPanel());
@@ -63,14 +63,12 @@ public class MainGUI extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == test) {
-			for(int x= 0;x<9999999;x++){
-				this.picklist.generateNewPicklist();
-				System.out.println(this.picklist.toString());
-				bf.updateResultaat(this.picklist.getList());
-				ff.updateResultaat(this.picklist.getList());
-				ffd.updateResultaat(this.picklist.getList());
-				repaint();
-			}
+			this.picklist.generateNewPicklist();
+			System.out.println(this.picklist.toString());
+			bf.updateResultaat(this.picklist.getList());
+			ff.updateResultaat(this.picklist.getList());
+			ffd.updateResultaat(this.picklist.getList());
+			repaint();
 		}
 	}
 }
