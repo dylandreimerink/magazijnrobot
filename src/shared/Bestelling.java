@@ -25,7 +25,7 @@ public class Bestelling {
 	private ArrayList<Product> productList;
 
 	public Bestelling(Klant klant) {
-		productList = new ArrayList();
+		this.productList = productList;
 		this.klant = klant;
 		
 	}

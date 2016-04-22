@@ -54,8 +54,6 @@ import javax.swing.JScrollPane;
 public class gui extends JFrame implements ActionListener {
 
 	
-	private String path;
-	private ArrayList<Product> productlist;
 	   
 	public gui() {
 
@@ -204,10 +202,8 @@ public class gui extends JFrame implements ActionListener {
 		mntmOpenOrder1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Choosefile chooser = new Choosefile();
-				path = chooser.ChooseFile();
-				ParseXML order = new ParseXML(path);
-				
-				System.out.println(path);
+				chooser.ChooseFile();
+											
 			}
 		});
 		mntmOpenOrder1.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, InputEvent.CTRL_MASK));
@@ -247,9 +243,7 @@ public class gui extends JFrame implements ActionListener {
 
 	}
 	
-	public ArrayList<Product> getProductList() {
-		return productlist;
-	}
+
         
 
 	//getter
