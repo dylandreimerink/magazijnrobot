@@ -19,56 +19,58 @@ import shared.Product;
 public class SimulatiePanel extends JPanel {
 
 	MainGUI parent;
-	
+
 	int productYOffset = 350;
 	int boxYOffset = 100;
 	Dimension productDimentions = new Dimension(50, 50);
 	Dimension boxDimentions = new Dimension(50, 50);
 	Dimension productTextOffset = new Dimension(-10, 0);
-	
+
 	public SimulatiePanel(MainGUI parant) {
 		super();
-		this.parent = parant; 
-		
+		this.parent = parant;
+
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		setVisible(true);
 	}
 
-    public Dimension getPreferredSize() {
-        return new Dimension(250,450);
-    }
+	public Dimension getPreferredSize() {
+		return new Dimension(250, 450);
+	}
 
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);       
-        
-        Font font = new Font("product", Font.PLAIN , 14);
-        FontMetrics metrics = g.getFontMetrics();
-   
-        g.setFont(font);
-        
-        int boxXOffset = (this.getWidth() - (parent.boxList.size() * boxDimentions.width + (parent.boxList.size() - 1) * 10)) / 2;
-        for(Box b : parent.boxList){
-        	g.fillRect(boxXOffset, boxYOffset, boxDimentions.width, boxDimentions.height);
-        	boxXOffset += 10 + boxDimentions.width;
-        }
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 
-        int productWidths = 0;
-        for(Product P : parent.productList){
-        	
-        }
-        
-        int xOffset = 0;
-        for(Product p : parent.productList){
-        	
-        	Rectangle rect = new Rectangle(xOffset, productYOffset,  metrics.stringWidth(p.getProductName()) + 20, productDimentions.height);
-        	
-        	g.fillRect( rect.x, rect.y, rect.width, rect.height);
-        	g.setColor(Color.white);
-            int y = ((rect.height - metrics.getHeight()) / 2) - metrics.getAscent();
-        	g.drawString(p.getProductName(), rect.x + 6, (int)(rect.y + y + (rect.getHeight()/2)));
-        	g.setColor(Color.black);
-        	xOffset += rect.width + 10;
-        }
-    }  
-	
+		Font font = new Font("product", Font.PLAIN, 14);
+		FontMetrics metrics = g.getFontMetrics();
+
+		g.setFont(font);
+
+		int boxXOffset = (this.getWidth()
+				- (parent.boxList.size() * boxDimentions.width + (parent.boxList.size() - 1) * 10)) / 2;
+		for (Box b : parent.boxList) {
+			g.fillRect(boxXOffset, boxYOffset, boxDimentions.width, boxDimentions.height);
+			boxXOffset += 10 + boxDimentions.width;
+		}
+
+		int xOffset = 10;
+		int productWidth = 50;
+
+		for (Box b : parent.boxList) {
+			
+			
+
+			for (Product p : parent.productList) {
+
+				Rectangle rect = new Rectangle(xOffset, productYOffset, productWidth + 20, productDimentions.height);
+				productYOffset = productYOffset - 16;
+				g.fillRect(rect.x, rect.y, rect.width, 15);
+				g.setColor(Color.white);
+				int y = ((rect.height - metrics.getHeight()) / 2) - metrics.getAscent();
+				g.drawString(p.getProductName(), rect.x + 6, (int) (rect.y + y + 8));
+				g.setColor(Color.black);
+
+			}
+		}
+	}
 }
