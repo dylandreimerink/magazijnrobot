@@ -71,5 +71,9 @@ public class DrawPanel extends JPanel {
 		eindY = (int) (eindY * afstandY+ afstandY /2);
 		g.drawLine(beginX, beginY, eindX, eindY);
 	}
+	
+	public void updateResultaat(Resultaat resultaat){
+		this.resultaat = resultaat;
+	}
 
 }

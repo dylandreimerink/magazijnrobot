@@ -27,6 +27,11 @@ public class FirstFit implements Algorithm {
 		panel = new DrawPanel("First Fit", resultaat);
 
 	}
+	
+	public void updateResultaat(ArrayList<Location> picklist){
+		resultaat = new Resultaat(picklist, 0);
+		panel.updateResultaat(resultaat);
+	}
 
 	@Override
 	public Route calculateRoute(ArrayList<Location> locationList) {

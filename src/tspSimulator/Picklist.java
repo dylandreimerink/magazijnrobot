@@ -34,6 +34,27 @@ public class Picklist {
 		}  
 	}
 
+	public void generateNewPicklist(){
+		ArrayList<Location> list = new ArrayList<Location>();
+		int aantalProducten = (int) randomWithRange(4, 6);
+		for (int z = 0; z < aantalProducten; z++) {
+			int x = randomWithRange(0, breedte -1);
+			int y = randomWithRange(0, hoogte -1);
+			Location product = new Location(x, y);
+			boolean check = true;
+			for (Location item : list) {
+				if (item.getLocationX() == product.getLocationX() && item.getLocationY() == product.getLocationY()) {
+					check = false;
+				}
+			}
+			if (check == false) {
+				z--;
+			} else {
+				list.add(product);
+			}
+		}  
+		this.list = list;
+	}
 	public ArrayList<Location> getList() {
 		return list;
 	}

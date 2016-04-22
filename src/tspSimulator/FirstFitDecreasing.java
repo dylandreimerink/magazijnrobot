@@ -15,21 +15,23 @@ import shared.Algorithm;
 import shared.Resultaat;
 import shared.Route;
 
-
-public class FirstFitDecreasing implements Algorithm{
+public class FirstFitDecreasing implements Algorithm {
 
 	private String name;
 	private ArrayList<Location> picklist;
 	private DrawPanel panel;
 	private Resultaat resultaat;
-	
-
 
 	public FirstFitDecreasing(String name, ArrayList<Location> picklist) {
 		this.name = name;
 		this.picklist = picklist;
 		resultaat = new Resultaat(picklist, 0);
 		panel = new DrawPanel("First Fit Decreasing", resultaat);
+	}
+
+	public void updateResultaat(ArrayList<Location> picklist) {
+		resultaat = new Resultaat(picklist, 0);
+		panel.updateResultaat(resultaat);
 	}
 
 	@Override
@@ -49,7 +51,7 @@ public class FirstFitDecreasing implements Algorithm{
 		// TODO Auto-generated method stub
 		return name;
 	}
-	
+
 	public DrawPanel getPanel() {
 		return panel;
 	}
