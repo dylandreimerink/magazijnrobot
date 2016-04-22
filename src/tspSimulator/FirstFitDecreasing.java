@@ -16,17 +16,19 @@ import shared.Resultaat;
 import shared.Route;
 
 
-public class Unknown implements Algorithm{
+public class FirstFitDecreasing implements Algorithm{
 
 	private String name;
 	private ArrayList<Location> picklist;
 	private DrawPanel panel;
+	private Resultaat resultaat;
 
 
-	public Unknown(String name, ArrayList<Location> picklist) {
+	public FirstFitDecreasing(String name, ArrayList<Location> picklist) {
 		this.name = name;
 		this.picklist = picklist;
-		panel = new DrawPanel("First Fit", 0,0);
+		resultaat = new Resultaat(picklist, 0);
+		panel = new DrawPanel("First Fit Decreasing", resultaat);
 	}
 
 	@Override
@@ -44,7 +46,7 @@ public class Unknown implements Algorithm{
 	@Override
 	public String getAlgorithmName() {
 		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
 	
 	public DrawPanel getPanel() {
