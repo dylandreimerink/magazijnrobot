@@ -17,8 +17,8 @@ public class Picklist {
 		list = new ArrayList<Location>();
 		int aantalProducten = (int) randomWithRange(4, 6);
 		for (int z = 0; z < aantalProducten; z++) {
-			int x = randomWithRange(0, breedte);
-			int y = randomWithRange(0, hoogte);
+			int x = randomWithRange(0, breedte -1);
+			int y = randomWithRange(0, hoogte -1);
 			Location product = new Location(x, y);
 			boolean check = true;
 			for (Location item : list) {
@@ -31,7 +31,7 @@ public class Picklist {
 			} else {
 				list.add(product);
 			}
-		}
+		}  
 	}
 
 	public ArrayList<Location> getList() {
@@ -41,6 +41,14 @@ public class Picklist {
 	private int randomWithRange(int min, int max) {
 		int range = (max - min) + 1;
 		return (int) (Math.random() * range) + min;
+	}
+	
+	public int getHoogte(){
+		return hoogte;
+	}
+	
+	public int getBreedte(){
+		return breedte;
 	}
 
 	@Override

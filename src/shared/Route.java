@@ -5,15 +5,17 @@ package shared;
  */
 import java.util.ArrayList;
 
+import tspSimulator.Location;
+
 public class Route {
 	
-	private ArrayList<Route> productRoute;
+	private ArrayList<Location> productRoute;
 	
 	public Route(){
 		
 	}
 	
-	public ArrayList<Route>getProductRoute(){
+	public ArrayList<Location>getProductRoute(){
 		return productRoute;		
 	}
 
