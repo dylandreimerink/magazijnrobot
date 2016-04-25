@@ -42,12 +42,9 @@ public class gui extends JFrame implements ActionListener {
 	Console console = new Console();
 	Pakbon pakbon = new Pakbon(1);
 	private void addComponents() {
-<<<<<<< HEAD
-		
-		
-=======
-//		Console console = new Console();
->>>>>>> origin/master
+
+		Console console = new Console();
+
 
 		//scherm opbouwen
 		JFrame frame = new JFrame();
@@ -150,9 +147,9 @@ public class gui extends JFrame implements ActionListener {
         panel_4.setBorder(new TitledBorder(new EmptyBorder(2, 0, 0, 0), "Console", TitledBorder.LEFT, TitledBorder.TOP, null, Color.DARK_GRAY));
         panel_1.add(panel_4, "cell 2 0,grow");
         
-//        panel_4.add(console.console());
-//        console.printLine("Programma is succesvol opgestart!");
-//        console.printLine("Selecteer een order om te beginnen!");
+        panel_4.add(console.console());
+        console.printLine("Programma is succesvol opgestart!");
+        console.printLine("Selecteer een order om te beginnen!");
         panel_4.setLayout(new BoxLayout(panel_4, BoxLayout.X_AXIS));
         
         
