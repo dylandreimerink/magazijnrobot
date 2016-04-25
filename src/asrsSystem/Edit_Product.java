@@ -1,22 +1,18 @@
 package asrsSystem;
-/*
- * Authors: richard
- */
-import java.awt.FlowLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JList;
-import javax.swing.JSpinner;
 
-public class Edit_Product extends JFrame implements ActionListener{
+import shared.Database;
 
-	private JSpinner Search_Spinner;	
-	private JLabel lblZoekArtikel;
+public class Edit_Product extends JDialog implements ActionListener{
+
 	private JLabel lblNaam;
 	private JLabel lblDimensie;
 	private JLabel lblCm1;
@@ -25,34 +21,36 @@ public class Edit_Product extends JFrame implements ActionListener{
 	private JLabel lblPlaats;
 	private JLabel lblX;
 	private JLabel lblY;
+	
 	private JTextField textField;
 	private JTextField txtHoogte;
 	private JTextField txtLengte;
 	private JTextField txtBreedte;
 	private JTextField TextField_X;
 	private JTextField TextField_Y;
-	private JButton btnSearch;
+	
 	private JButton btnCancel;
 	private JButton btnApply;
 	private JButton button;
 	private JButton btnDelete;
 	
+	private Database db;	
+	
 	public Edit_Product() {
+		
+		db = new Database();
+		
+		
         setTitle("Edit");		
 		getContentPane().setLayout(null);
 		getContentPane().setLayout(null);
 		
-		lblZoekArtikel = new JLabel("Zoek artikel:");
-		lblZoekArtikel.setBounds(12, 13, 77, 16);
-		getContentPane().add(lblZoekArtikel);
-		
-		btnSearch = new JButton("Search");
-		btnSearch.setBounds(204, 9, 97, 25);
-		getContentPane().add(btnSearch);
-		
-		Search_Spinner = new JSpinner();
-		Search_Spinner.setBounds(85, 10, 116, 22);
-		getContentPane().add(Search_Spinner);
+		try {
+			JComboBox producten = new JComboBox(db.Get_Productnames());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		lblNaam = new JLabel("Naam:");
 		lblNaam.setBounds(12, 42, 56, 16);
@@ -134,9 +132,14 @@ public class Edit_Product extends JFrame implements ActionListener{
 		btnDelete = new JButton("Delete");
 		btnDelete.setBounds(228, 202, 68, 25);
 		getContentPane().add(btnDelete);
+		
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);   
+        pack();
+		this.setSize(new Dimension(166, 462));
+		this.setResizable(false);
+        this.setVisible(true);		
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		

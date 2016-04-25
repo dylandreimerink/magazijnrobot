@@ -6,6 +6,7 @@ package shared;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /*
  * Testing Code for the Database Connection
@@ -100,6 +101,28 @@ public class Database implements Runnable {
 			connect();
 			preparedStatement = connect.prepareStatement("INSERT INTO product (productNaam, pLengte, pBreedte, pHoogte, productPlaatsX, productPlaatsY, voorraad) VALUES ('"+naam+"', '"+lengte+"', '"+breedte+"', '"+hoogte+"', '"+x+"', '"+y+"', 2)");
 			preparedStatement.executeUpdate();
+		}
+		catch(Exception e){
+			System.out.println(e);
+		}
+	}
+	public String[] Get_Productnames() throws Exception{
+			connect();
+			preparedStatement = connect.prepareStatement("SELECT productNaam FROM product");
+			ResultSet rs;
+
+			rs = preparedStatement.executeQuery();
+			
+			ArrayList<String> ProductNamen = new ArrayList<String>();
+			while (rs.next()) {
+				ProductNamen.add(rs.getString("productNaam"));
+			}
+			return (String[]) ProductNamen.toArray();			
+	}
+	
+	public void Edit_Product(){
+		try{
+			
 		}
 		catch(Exception e){
 			System.out.println(e);

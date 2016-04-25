@@ -32,9 +32,9 @@ public class BruteForce implements Algorithm {
 	}
 	
 	@Override
-	public Route calculateRoute(ArrayList<Location> locationList) {
+	public void calculateRoute() {
 		// TODO Auto-generated method stub
-		return null;
+	
 	}
 
 	@Override

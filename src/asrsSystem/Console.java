@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public abstract class Console extends gui {
+public class Console  {
 	
 	JTextArea textArea;
 	JPanel panel_3;

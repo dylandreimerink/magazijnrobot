@@ -1,21 +1,13 @@
 package tspSimulator;
 
-/*
- * Authors: Jan Willem Alejandro Casteleijn & Henri van de Munt (ICTM2a)
- */
-
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.util.ArrayList;
-
-import javax.swing.JPanel;
-import javax.swing.SingleSelectionModel;
+import java.util.Collections;
+import java.util.Comparator;
 
 import shared.Algorithm;
 import shared.Resultaat;
-import shared.Route;
 
-public class FirstFitDecreasing implements Algorithm {
+public class FirstFitDecreasing implements Algorithm, Comparator<Location> {
 
 	private String name;
 	private ArrayList<Location> picklist;
@@ -23,6 +15,7 @@ public class FirstFitDecreasing implements Algorithm {
 	private Resultaat resultaat;
 
 	public FirstFitDecreasing(String name, ArrayList<Location> picklist) {
+
 		this.name = name;
 		this.picklist = picklist;
 		resultaat = new Resultaat(picklist, 0);
@@ -30,14 +23,20 @@ public class FirstFitDecreasing implements Algorithm {
 	}
 
 	public void updateResultaat(ArrayList<Location> picklist) {
+		this.picklist = picklist;
 		resultaat = new Resultaat(picklist, 0);
 		panel.updateResultaat(resultaat);
 	}
 
 	@Override
-	public Route calculateRoute(ArrayList<Location> locationList) {
-		// TODO Auto-generated method stub
-		return null;
+	public void calculateRoute() {
+		ArrayList<Location> p1 = this.picklist;
+		System.out.println("Ongesorteerd: ");
+		
+		System.out.println("Gesorteerd: ");
+		Collections.sort(p1, this);
+		resultaat = new Resultaat(p1, 0);
+		panel.updateResultaat(resultaat);
 	}
 
 	@Override
@@ -56,4 +55,14 @@ public class FirstFitDecreasing implements Algorithm {
 		return panel;
 	}
 
+	@Override
+	public int compare(Location arg0, Location arg1) {
+		if (arg0.getLocationX() > arg1.getLocationX() || arg0.getLocationY() > arg1.getLocationY()) {
+			return 1;
+		}
+		if (arg0.getLocationX() < arg1.getLocationX() || arg0.getLocationY() < arg1.getLocationY()) {
+			return -1;
+		}
+		return 0;
+	}
 }
