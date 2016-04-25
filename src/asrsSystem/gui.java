@@ -73,9 +73,12 @@ public class gui extends JFrame implements ActionListener {
 		addComponents();
 	}
 	
-	
+	ChooseOrder chooser = new ChooseOrder();
+	Console console = new Console();
+	Pakbon pakbon = new Pakbon(1);
 	private void addComponents() {
-		Console console = new Console();
+		
+		
 
 		//scherm opbouwen
 		JFrame frame = new JFrame();
@@ -188,16 +191,22 @@ public class gui extends JFrame implements ActionListener {
         panel.add(panel_5, BorderLayout.EAST);
         panel_5.setLayout(new MigLayout("", "[]", "[]"));
         
+        panel_5.add(pakbon.panel());
+        
         this.setVisible(true);
+        if(chooser.selected == true) {
+        	pakbon.GenerateOrderInfo(chooser.getProductList());
+        }
+        
 		
         
 	}
-
+	
 	//actionlisteners
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == mntmOpenOrder) {
-			ChooseOrder chooser = new ChooseOrder();
+			
 			chooser.ChooseFile();
 		}
 		if(e.getSource()== mntmExit) {

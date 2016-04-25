@@ -12,8 +12,10 @@ public class ChooseOrder {
 	
 	private String path;
 	private ArrayList<shared.Product> productlist;
+	public boolean selected = false;
 	public void ChooseFile() {
 		Console console = new Console();
+		
 		
 		
 	    JFileChooser chooser = new JFileChooser();
@@ -27,6 +29,7 @@ public class ChooseOrder {
 	      ParseXML order = new ParseXML(path);
 	      this.productlist = order.getProductList();
 	      System.out.println(productlist);
+	      selected = true;
 	    } else {
 	    
 	    }
