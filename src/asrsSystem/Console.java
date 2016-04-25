@@ -16,13 +16,9 @@ public class Console {
 	JTextArea textArea;
 	JPanel panel_3;
 	private int counter = 1;
-	private int counter1 = 0;
 	
 	public Console() {
-	if(counter1 == 0) {
 	textArea = new JTextArea(7, 7);
-	}
-	counter1++;
 	textArea.setFont(new Font("Arial", Font.PLAIN, 12));
 	textArea.setEditable(false);
 	textArea.setColumns (5);
