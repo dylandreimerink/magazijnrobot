@@ -28,16 +28,41 @@ public class FirstFitDecreasing implements Algorithm, Comparator<Location> {
 		panel.updateResultaat(resultaat);
 	}
 
+	public double calculateDistance(Location locatieA, Location locatieB) {
+		if (locatieA.getLocationX() > locatieB.getLocationX() && locatieA.getLocationY() > locatieB.getLocationY()) {
+			return Math.sqrt(locatieA.getLocationX() - locatieB.getLocationX() + locatieA.getLocationY()
+					- locatieB.getLocationY());
+		} else if (locatieA.getLocationX() > locatieB.getLocationX()
+				&& locatieA.getLocationY() < locatieB.getLocationY()) {
+			return Math.sqrt(locatieA.getLocationX() - locatieB.getLocationX() + locatieB.getLocationY()
+					- locatieA.getLocationY());
+		} else if (locatieA.getLocationX() < locatieB.getLocationX()
+				&& locatieA.getLocationY() > locatieB.getLocationY()) {
+			return Math.sqrt(locatieB.getLocationX() - locatieA.getLocationX() + locatieA.getLocationY()
+					- locatieB.getLocationY());
+		} else {
+			return Math.sqrt(locatieB.getLocationX() - locatieA.getLocationX() + locatieB.getLocationY()
+					- locatieA.getLocationY());
+		}
+	}
+
 	@Override
 	public void calculateRoute() {
 		ArrayList<Location> p1 = this.picklist;
-		System.out.println("Ongesorteerd: ");
-		
-		System.out.println("Gesorteerd: ");
 		Collections.sort(p1, this);
+		Location tempLocation = null;
+		for (Location item : p1) {
+			if (tempLocation == null) {
+				tempLocation = item;
+			} else {
+				double dictance = this.calculateDistance(tempLocation, item);
+				System.out.println(dictance);
+			}
+		}
 		resultaat = null;
 		resultaat = new Resultaat(p1, 0);
 		panel.updateResultaat(resultaat);
+
 	}
 
 	@Override
@@ -58,10 +83,12 @@ public class FirstFitDecreasing implements Algorithm, Comparator<Location> {
 
 	@Override
 	public int compare(Location arg0, Location arg1) {
-		if (arg0.getLocationX() > arg1.getLocationX() || arg0.getLocationY() > arg1.getLocationY()) {
+		if (arg0.getLocationX() > arg1.getLocationX() && arg0.getLocationY() > arg1.getLocationY()) {
 			return 1;
-		}
-		if (arg0.getLocationX() < arg1.getLocationX() || arg0.getLocationY() < arg1.getLocationY()) {
+		} else if (arg0.getLocationX() == arg1.getLocationX() && arg0.getLocationY() > arg1.getLocationY()
+				|| arg0.getLocationX() > arg1.getLocationX() && arg0.getLocationY() == arg1.getLocationY()) {
+			return 1;
+		} else if (arg0.getLocationX() < arg1.getLocationX() || arg0.getLocationY() < arg1.getLocationY()) {
 			return -1;
 		}
 		return 0;
