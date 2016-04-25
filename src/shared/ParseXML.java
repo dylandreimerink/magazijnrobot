@@ -57,6 +57,7 @@ public class ParseXML {
 				}
 			}
 			NodeList nListArtiekelnr = doc.getElementsByTagName("artikelnr");
+		
 			this.bestelling = new Bestelling(this.klant);
 			for (int tempArtiekelnr = 0; tempArtiekelnr < nListArtiekelnr.getLength(); tempArtiekelnr++) {
 				System.out.println(
@@ -69,6 +70,10 @@ public class ParseXML {
 			System.out.println("Wrong syntax xml file");
 		}
 	}
+	public ArrayList<Product> getProductList() {
+		return this.bestelling.getProductList();
+	}
+	
 	public Bestelling getBestelling(){		
 		return bestelling;		
 	}

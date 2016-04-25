@@ -31,7 +31,7 @@ public class Database implements Runnable {
 
 	public void run() {
 		try {
-			// connect();
+			connect();
 			System.out.println("This database connection is a new Thread");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -93,6 +93,17 @@ public class Database implements Runnable {
 
 	public void delete() throws Exception {
 
+	}
+	
+	public void Create_Product(String naam, int hoogte, int lengte , int breedte, int x, int y){
+		try{
+			connect();
+			preparedStatement = connect.prepareStatement("INSERT INTO product (productNaam, pLengte, pBreedte, pHoogte, productPlaatsX, productPlaatsY, voorraad) VALUES ('"+naam+"', '"+lengte+"', '"+breedte+"', '"+hoogte+"', '"+x+"', '"+y+"', 2)");
+			preparedStatement.executeUpdate();
+		}
+		catch(Exception e){
+			System.out.println(e);
+		}
 	}
 
 }

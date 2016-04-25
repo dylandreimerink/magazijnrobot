@@ -1,15 +1,17 @@
 package asrsSystem;
-
-import java.awt.FlowLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class Create_Artikel extends JFrame implements ActionListener{
+import shared.Database;
+
+public class Create_Product extends JDialog implements ActionListener{
 	
 	private JLabel lblNaam;
 	private JLabel lblDimensie;
@@ -30,9 +32,15 @@ public class Create_Artikel extends JFrame implements ActionListener{
 	private JButton btnCancel;
 	private JButton btnApply;
 	
-	public Create_Artikel() {
-        getContentPane().setLayout(new FlowLayout());
+	private Database db;
+	
+	public Create_Product() {
+		
+		
+		
+		db = new Database();
         setTitle("Create");		
+		getContentPane().setLayout(null);
 		getContentPane().setLayout(null);
 		
 		lblNaam = new JLabel("Naam:");
@@ -111,12 +119,31 @@ public class Create_Artikel extends JFrame implements ActionListener{
         btnCancel.addActionListener(this);
         btnApply.addActionListener(this);		
 		
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
-        setVisible(true);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);   
+        pack();
+		this.setSize(new Dimension(400,300));
+		this.setResizable(false);
+        this.setVisible(true);
         
 	}
 
 	public void actionPerformed(ActionEvent e) {
+	
+        if (e.getSource() == btnApply) {
+        	String naam = Create_Naam.getText();
+        	try{
+        	int hoogte = Integer.parseInt(txtHoogte.getText());
+        	int lengte = Integer.parseInt(txtLengte.getText());
+        	int breedte = Integer.parseInt(txtBreedte.getText());
+        	int x = Integer.parseInt(textField_X.getText());
+        	int y = Integer.parseInt(textField_Y.getText());
+        	db.Create_Product(naam, hoogte, lengte, breedte, x, y);
+        	}
+        	catch(NumberFormatException ne){
+        		
+        	}
+        	
+        }
         if (e.getSource() == btnCancel) {
         }
 		

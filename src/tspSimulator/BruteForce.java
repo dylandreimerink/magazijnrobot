@@ -25,7 +25,12 @@ public class BruteForce implements Algorithm {
 		
 		panel = new DrawPanel("Brute Force", resultaat);
 	}
-
+	
+	public void updateResultaat(ArrayList<Location> picklist){
+		resultaat = new Resultaat(picklist, 0);
+		panel.updateResultaat(resultaat);
+	}
+	
 	@Override
 	public Route calculateRoute(ArrayList<Location> locationList) {
 		// TODO Auto-generated method stub

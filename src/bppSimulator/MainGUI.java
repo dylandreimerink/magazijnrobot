@@ -224,6 +224,7 @@ public class MainGUI extends JFrame implements ActionListener{
 			}
 		}
 		
+		
 		if (e.getSource() == btnStartSimulatie) {
 			console = "\nSimulatie aan het starten..";
 			firstFitAlgo = new BPPFirstFit(picklist, 3, 3, 3);
@@ -241,5 +242,5 @@ public class MainGUI extends JFrame implements ActionListener{
 			textArea.append(console);
 			textArea.setCaretPosition(textArea.getDocument().getLength());
 		}
-	}
+	}	
 }

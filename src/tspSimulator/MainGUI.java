@@ -25,6 +25,13 @@ import shared.Database;
 
 public class MainGUI extends JFrame implements ActionListener {
 
+	private Picklist picklist;
+	private JButton test;
+
+	private BruteForce bf;
+	private FirstFit ff;
+	private FirstFitDecreasing ffd;
+
 	public MainGUI() {
 		setTitle("TSP Simulator");
 		setSize(937, 1080);
@@ -36,23 +43,32 @@ public class MainGUI extends JFrame implements ActionListener {
 	}
 
 	private void addComponents() {
-		Picklist picklist = new Picklist();
+		picklist = new Picklist();
 		System.out.println(picklist.toString());
 
-		BruteForce bf = new BruteForce("BruteForce", picklist.getList());
-		FirstFit ff = new FirstFit("First Fit", picklist.getList());
-		FirstFitDecreasing ffd = new FirstFitDecreasing("Onbekend", picklist.getList());
-		setLayout(new GridLayout(1, 3));
+		bf = new BruteForce("BruteForce", picklist.getList());
+		ff = new FirstFit("First Fit", picklist.getList());
+		ffd = new FirstFitDecreasing("Onbekend", picklist.getList());
+		setLayout(new GridLayout(1, 4, 0, 0));
 
 		add(bf.getPanel());
 		add(ff.getPanel());
 		add(ffd.getPanel());
+
+		test = new JButton("Test");
+		test.addActionListener(this);
+		add(test);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == "") {
-
+		if (e.getSource() == test) {
+			this.picklist.generateNewPicklist();
+			System.out.println(this.picklist.toString());
+			bf.updateResultaat(this.picklist.getList());
+			ff.updateResultaat(this.picklist.getList());
+			ffd.updateResultaat(this.picklist.getList());
+			repaint();
 		}
 	}
 }

@@ -1,8 +1,17 @@
 package asrsSystem;
+/*
+ * Authors: richard en steven
+ */
+import shared.Database;
 
-public class Main {
+public class main {
+	
 	public static void main(String args[]){
-	Gui scherm = new Gui();	
+	gui scherm = new gui();	
+	
+	//Database db = new Database();
+	//Thread t = new Thread(db);
+	//t.start();
 
 	}
 }
