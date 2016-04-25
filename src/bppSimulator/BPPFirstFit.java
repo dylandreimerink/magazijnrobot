@@ -1,16 +1,15 @@
 package bppSimulator;
 
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.concurrent.CopyOnWriteArraySet;
-
 import shared.Product;
 
 public class BPPFirstFit implements BPPAlgorithm, Runnable {
 	
-	private ArrayList<Box> usedBoxes = new ArrayList<Box>();
-	private ArrayList<Product> products;
-	private Thread t = new Thread(this);
+	protected ArrayList<Box> usedBoxes = new ArrayList<Box>();
+	protected ArrayList<Product> products;
+	protected Thread t = new Thread(this);
+	
+	protected boolean waiting = false;
 	
 	boolean hasResult = false;
 	boolean[][][] boxUnits;
@@ -22,18 +21,30 @@ public class BPPFirstFit implements BPPAlgorithm, Runnable {
 		boxUnits = new boolean[boxWidth][boxHeight][boxLength];
 	}
 	
+	public boolean getPauzed(){
+		return waiting;
+	}
+	
 	public void setOnDoneListner(MainGUI listnerClass){
 		onComplete = listnerClass;
 	}
 
 	@Override
 	public void start() {
-		t.start();
+		if(waiting){
+			waiting = false;
+		}else{
+			t.start();
+		}
 	}
 
 	@Override
 	public void stop() {
 		t.interrupt();
+	}
+	
+	public void pauze(){
+		waiting = true;
 	}
 
 	@Override
@@ -43,8 +54,12 @@ public class BPPFirstFit implements BPPAlgorithm, Runnable {
 
 	@Override
 	public void run() {
+		System.out.println(products);
 		ArrayList<Product> boxlist = new ArrayList<Product>();
 		for(Product p : products){
+			while(waiting){
+				System.out.println("waiting for input");
+			}
 			if(fitProduct(p)){
 				System.out.println("product fit: " + p.toString());
 				boxlist.add(p);
@@ -61,8 +76,12 @@ public class BPPFirstFit implements BPPAlgorithm, Runnable {
 			System.out.println(box.getPickList());
 		}
 		if(onComplete != null){
-			onComplete.FirstFitCallback();
+			callBack();
 		}
+	}
+	
+	protected void callBack(){
+		onComplete.FirstFitCallback();
 	}
 	
 	private boolean fitProduct(Product p){

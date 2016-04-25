@@ -41,6 +41,7 @@ public class MainGUI extends JFrame implements ActionListener{
 	private JMenuItem mntmOpenPakbon;
 	private SimulatiePanel simPanel;
 	private BPPFirstFit firstFitAlgo;
+	private BPPFirstFitDescending firstFitDescAlgo;
 	
 	public JLabel lbltijd_2;
 	PickList picklist;
@@ -90,92 +91,83 @@ public class MainGUI extends JFrame implements ActionListener{
 
 		mnFile.addActionListener(this);
 
-		JMenu mnEdit = new JMenu("Edit");
-		menuBar.add(mnEdit);
-
-		JMenu mnView = new JMenu("View");
-		menuBar.add(mnView);
-
-		JMenu mnHelp = new JMenu("Help");
-		menuBar.add(mnHelp);
-
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel_1 = new JPanel();
-		panel.add(panel_1, BorderLayout.WEST);
-		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.Y_AXIS));
+		JPanel leftPanel = new JPanel();
+		panel.add(leftPanel, BorderLayout.WEST);
+		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
 
 		btnStartSimulatie = new JButton("Start simulatie");
 		btnStartSimulatie.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		btnStartSimulatie.setMaximumSize(buttonsize);
 		btnStartSimulatie.addActionListener(this);
-		panel_1.add(btnStartSimulatie);
+		leftPanel.add(btnStartSimulatie);
 
 		btnPauzeerSimulatie = new JButton("Pauzeer simulatie");
 		btnPauzeerSimulatie.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		btnPauzeerSimulatie.setMaximumSize(buttonsize);
 		btnPauzeerSimulatie.addActionListener(this);
-		panel_1.add(btnPauzeerSimulatie);
+		leftPanel.add(btnPauzeerSimulatie);
 
 		btnAnnuleerSimulatie = new JButton("Annuleer simulatie");
 		btnAnnuleerSimulatie.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		btnAnnuleerSimulatie.setMaximumSize(buttonsize);
 		btnAnnuleerSimulatie.addActionListener(this);
-		panel_1.add(btnAnnuleerSimulatie);
+		leftPanel.add(btnAnnuleerSimulatie);
 
-		JPanel panel_2 = new JPanel();
-		panel_1.add(panel_2);
-		panel_2.setLayout(new GridLayout(8, 2, 0, 0));
+		JPanel dataPanel = new JPanel();
+		leftPanel.add(dataPanel);
+		dataPanel.setLayout(new GridLayout(8, 2, 0, 0));
 
 		JLabel lblAlgoritme = new JLabel("Algoritme 1");
-		panel_2.add(lblAlgoritme);
+		dataPanel.add(lblAlgoritme);
 
 		JLabel lbltijd = new JLabel("*tijd*");
-		panel_2.add(lbltijd);
+		dataPanel.add(lbltijd);
 
 		JLabel lblAlgoritme_1 = new JLabel("Algoritme 2");
-		panel_2.add(lblAlgoritme_1);
+		dataPanel.add(lblAlgoritme_1);
 
 		JLabel lbltijd_1 = new JLabel("*tijd*");
-		panel_2.add(lbltijd_1);
+		dataPanel.add(lbltijd_1);
 
 		JLabel lblAlgoritme_2 = new JLabel("Algoritme 3");
-		panel_2.add(lblAlgoritme_2);
+		dataPanel.add(lblAlgoritme_2);
 
 		lbltijd_2 = new JLabel("*tijd*");
-		panel_2.add(lbltijd_2);
+		dataPanel.add(lbltijd_2);
 
 		JLabel lblGekozen = new JLabel("Gekozen");
-		panel_2.add(lblGekozen);
+		dataPanel.add(lblGekozen);
 
 		JLabel lblAlgoritme_3 = new JLabel("algoritme");
-		panel_2.add(lblAlgoritme_3);
+		dataPanel.add(lblAlgoritme_3);
 
 		JLabel lblEinddata = new JLabel("Einddata:");
-		panel_2.add(lblEinddata);
+		dataPanel.add(lblEinddata);
 
 		JLabel lblniks = new JLabel("");
-		panel_2.add(lblniks);
+		dataPanel.add(lblniks);
 
 		JLabel lblGegevens = new JLabel("Gegevens:");
-		panel_2.add(lblGegevens);
+		dataPanel.add(lblGegevens);
 
 		JLabel lblniks_1 = new JLabel("(niks)");
-		panel_2.add(lblniks_1);
+		dataPanel.add(lblniks_1);
 
 		JLabel lblGegevens_1 = new JLabel("Gegevens:");
-		panel_2.add(lblGegevens_1);
+		dataPanel.add(lblGegevens_1);
 
 		JLabel lblniks_2 = new JLabel("(niks)");
-		panel_2.add(lblniks_2);
+		dataPanel.add(lblniks_2);
 
 		JLabel lblGegevens_2 = new JLabel("Gegevens:");
-		panel_2.add(lblGegevens_2);
+		dataPanel.add(lblGegevens_2);
 
 		JLabel lblniks_3 = new JLabel("(niks)");
-		panel_2.add(lblniks_3);
+		dataPanel.add(lblniks_3);
 
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3, BorderLayout.CENTER);
@@ -206,6 +198,13 @@ public class MainGUI extends JFrame implements ActionListener{
 	public void FirstFitCallback(){
 		boxList = firstFitAlgo.getResult();
 		simPanel.repaint();
+		firstFitAlgo = null;
+	}
+	
+	public void FirstFitDescCallback(){
+		boxList = firstFitDescAlgo.getResult();
+		simPanel.repaint();
+		firstFitDescAlgo = null;
 	}
 
 	@Override
@@ -227,18 +226,27 @@ public class MainGUI extends JFrame implements ActionListener{
 		
 		if (e.getSource() == btnStartSimulatie) {
 			console = "\nSimulatie aan het starten..";
-			firstFitAlgo = new BPPFirstFit(picklist, 3, 3, 3);
-			firstFitAlgo.setOnDoneListner(this);
+			if(firstFitAlgo == null){
+				firstFitAlgo = new BPPFirstFit(picklist, 3, 3, 3);
+				firstFitAlgo.setOnDoneListner(this);
+			}
+			if(firstFitDescAlgo == null){
+				firstFitDescAlgo = new BPPFirstFitDescending(picklist, 3, 3, 3);
+				firstFitDescAlgo.setOnDoneListner(this);
+			}
 			firstFitAlgo.start();
+			firstFitDescAlgo.start();
 			textArea.append(console);
 			textArea.setCaretPosition(textArea.getDocument().getLength());
 			
 		} else if (e.getSource() == btnPauzeerSimulatie) {
 			console = "\nSimulatie aan het pauzeren..";
+			firstFitAlgo.pauze();
 			textArea.append(console);
 			textArea.setCaretPosition(textArea.getDocument().getLength());
 		} else if (e.getSource() == btnAnnuleerSimulatie) {
 			console = "\nSimulatie aan het annuleren..";
+			firstFitAlgo.stop();
 			textArea.append(console);
 			textArea.setCaretPosition(textArea.getDocument().getLength());
 		}
