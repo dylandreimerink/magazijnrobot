@@ -7,26 +7,44 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import com.sun.xml.internal.ws.org.objectweb.asm.Label;
+
 import shared.*;
 import javax.swing.JLabel;
+import net.miginfocom.swing.MigLayout;
+
+
 
 public class Pakbon {
+	JLabel[] productInfo = new JLabel[0];
 	ChooseOrder order = new ChooseOrder();
-	Console console = new Console();
+	
 	
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public JPanel addPakbonGui() {
+	public Pakbon() {
+		
 		JPanel container = new JPanel();
-		console.printLine("testing");
-		return container;
+		container.setLayout(new MigLayout("", "[10px][]", "[10px][][][][][]"));
+		JLabel orderNr = new JLabel("Ordernummer:");
+		JLabel kNaam = new JLabel("Naam:");
+		JLabel kArdres = new JLabel("Adres:");
+		JLabel kBestelling = new JLabel("Bestelling:");
+		
+		container.add(kBestelling, "cell 1 5");
+		container.add(orderNr, "cell 1 1");
+		container.add(kArdres, "cell 1 3");
+		container.add(kNaam, "cell 1 2");
+		
 	}
 	
 	
 	public void GenerateOrderInfo(ArrayList<shared.Product> productlist) {
 		for(Product object: productlist) {
-			
+			int i=0;
+			i++;
+			container.add(new Label("label"+i));
 		}
 	}
 	
