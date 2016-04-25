@@ -35,9 +35,7 @@ public class Create_Product extends JDialog implements ActionListener{
 	private Database db;
 	
 	public Create_Product() {
-		
-		
-		
+				
 		db = new Database();
         setTitle("Create");		
 		getContentPane().setLayout(null);
