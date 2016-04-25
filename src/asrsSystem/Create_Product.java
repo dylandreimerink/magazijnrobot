@@ -1,19 +1,16 @@
 package asrsSystem;
-/*
- * Authors: richard
- */
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import shared.Database;
 
-public class Create_Product extends JFrame implements ActionListener{
+public class Create_Product extends JDialog implements ActionListener{
 	
 	private JLabel lblNaam;
 	private JLabel lblDimensie;
@@ -37,7 +34,6 @@ public class Create_Product extends JFrame implements ActionListener{
 	private Database db;
 	
 	public Create_Product() {
-		setResizable(false);
 		setAlwaysOnTop(true);
 		
 		db = new Database();
@@ -121,7 +117,7 @@ public class Create_Product extends JFrame implements ActionListener{
         btnCancel.addActionListener(this);
         btnApply.addActionListener(this);		
 		
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
+        setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);        
         setVisible(true);
         
 	}
