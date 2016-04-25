@@ -135,7 +135,7 @@ public class Edit_Product extends JDialog implements ActionListener{
 		
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);   
         pack();
-		this.setSize(new Dimension(166, 462));
+		this.setSize(new Dimension(400,300));
 		this.setResizable(false);
         this.setVisible(true);		
 	}
