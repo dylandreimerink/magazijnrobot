@@ -51,6 +51,7 @@ public class MainGUI extends JFrame implements ActionListener{
 	JButton btnPauzeerSimulatie;
 	JButton btnAnnuleerSimulatie;
 	JTextArea textArea;
+	public int score1;
 	JMenu mnFile;
 	
 	
@@ -123,20 +124,20 @@ public class MainGUI extends JFrame implements ActionListener{
 
 		JLabel lblAlgoritme = new JLabel("Algoritme 1");
 		dataPanel.add(lblAlgoritme);
-
-		JLabel lbltijd = new JLabel("*tijd*");
+		
+		JLabel lbltijd = new JLabel("Efficientie: " + score1 + "%");
 		dataPanel.add(lbltijd);
 
 		JLabel lblAlgoritme_1 = new JLabel("Algoritme 2");
 		dataPanel.add(lblAlgoritme_1);
 
-		JLabel lbltijd_1 = new JLabel("*tijd*");
+		JLabel lbltijd_1 = new JLabel("*efficientie*");
 		dataPanel.add(lbltijd_1);
 
 		JLabel lblAlgoritme_2 = new JLabel("Algoritme 3");
 		dataPanel.add(lblAlgoritme_2);
 
-		lbltijd_2 = new JLabel("*tijd*");
+		lbltijd_2 = new JLabel("*efficientie*");
 		dataPanel.add(lbltijd_2);
 
 		JLabel lblGekozen = new JLabel("Gekozen");

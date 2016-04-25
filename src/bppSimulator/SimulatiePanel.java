@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.text.DecimalFormat;
+
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -44,7 +46,10 @@ public class SimulatiePanel extends JPanel {
 	int lineY1 = rectYOffset + 20;
 	int lineY2 = rectYOffset + 20;
 	int currentBox = 0;
-
+	int efficiency;
+	int totalEfficiency;
+	int listEfficiency;
+	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
@@ -55,7 +60,7 @@ public class SimulatiePanel extends JPanel {
 		
 		for (Box b : parent.boxList) {
 			double boxCapacity = b.getBreedte() * b.getHoogte() * b.getLengte();
-			
+			totalEfficiency = 100;
 			
 			g.setColor(Color.red);
 			Rectangle box = new Rectangle(rectX, rectY, rectXOffset, rectYOffset);
@@ -69,12 +74,18 @@ public class SimulatiePanel extends JPanel {
 				lineY1 = (int)(lineY2 - 200*(productCapacity/boxCapacity));
 				lineY2 = lineY1;
 				
+				efficiency = (int) (100 * productCapacity/boxCapacity);
+				totalEfficiency = totalEfficiency - efficiency;
+				
+				DecimalFormat df = new DecimalFormat("#.0");
+				
 				g.setColor(Color.black);
 				g.drawLine(lineX1, lineY1, lineX2, lineY2);
-				g.drawString(p.getProductName() + fillPercentage + "%", lineX1 + 5, lineY1 + 12);
+				g.drawString(p.getProductName() + df.format(fillPercentage) + "%", lineX1 + 5, lineY1 + 12);
 				
 			}
 			
+			listEfficiency = listEfficiency + totalEfficiency;
 			
 			currentBox = currentBox + 1;
 			g.setColor(Color.red);
@@ -93,6 +104,9 @@ public class SimulatiePanel extends JPanel {
 			lineX2 = rectXOffset + lineX1;
 			lineY1 = rectYOffset + 20;
 			lineY2 = rectYOffset + 20;
+			
 		}
+		
 	}
+	
 }
