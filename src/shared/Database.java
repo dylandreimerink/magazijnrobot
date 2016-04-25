@@ -98,8 +98,8 @@ public class Database implements Runnable {
 	public void Create_Product(String naam, int hoogte, int lengte , int breedte, int x, int y){
 		try{
 			connect();
-			preparedStatement = connect.prepareStatement("INSERT INTO product (productNaam, pLengte, pBreedte, pHoogte, productPlaatsX, productPlaatsY) VALUES ('"+naam+"', '"+lengte+"', '"+breedte+"', '"+hoogte+"', '"+x+"', '"+y+"')");
-			preparedStatement.executeQuery();
+			preparedStatement = connect.prepareStatement("INSERT INTO product (productNaam, pLengte, pBreedte, pHoogte, productPlaatsX, productPlaatsY, voorraad) VALUES ('"+naam+"', '"+lengte+"', '"+breedte+"', '"+hoogte+"', '"+x+"', '"+y+"', 2)");
+			preparedStatement.executeUpdate();
 		}
 		catch(Exception e){
 			System.out.println(e);
