@@ -23,6 +23,7 @@ public class FirstFitDecreasing implements Algorithm, Comparator<Location> {
 	}
 
 	public void updateResultaat(ArrayList<Location> picklist) {
+		this.picklist = picklist;
 		resultaat = new Resultaat(picklist, 0);
 		panel.updateResultaat(resultaat);
 	}
