@@ -1,58 +1,23 @@
 package asrsSystem;
-/*
- * Authors: Richard en Steven
- */
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JRadioButtonMenuItem;
-
-import com.sun.corba.se.impl.orbutil.graph.Node;
-import com.sun.glass.events.KeyEvent;
-import com.sun.xml.internal.ws.api.Component;
-
 import javax.swing.KeyStroke;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
 import java.awt.event.InputEvent;
-import java.io.File;
-import java.io.FileFilter;
-import java.util.ArrayList;
-import java.util.prefs.Preferences;
-
-import shared.*;
-
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
-import java.awt.GridLayout;
 import javax.swing.JButton;
-import java.awt.GridBagLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import java.awt.CardLayout;
-import java.awt.GridBagConstraints;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 import net.miginfocom.swing.MigLayout;
-import shared.Bestelling;
-import shared.Product;
-
 import javax.swing.border.BevelBorder;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
-import javax.swing.JScrollPane;
 public class gui extends JFrame implements ActionListener {
 
 	
