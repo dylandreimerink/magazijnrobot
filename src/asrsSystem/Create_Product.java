@@ -128,7 +128,7 @@ public class Create_Product extends JDialog implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		Console console = new Console();
+	
         if (e.getSource() == btnApply) {
         	String naam = Create_Naam.getText();
         	try{
@@ -140,7 +140,7 @@ public class Create_Product extends JDialog implements ActionListener{
         	db.Create_Product(naam, hoogte, lengte, breedte, x, y);
         	}
         	catch(NumberFormatException ne){
-        		console.printLine("Dimensie & positie moeten getallen zijn.");
+        		
         	}
         	
         }
