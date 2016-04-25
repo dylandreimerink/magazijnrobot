@@ -94,5 +94,9 @@ public class Database implements Runnable {
 	public void delete() throws Exception {
 
 	}
+	
+	public void Create_Product(){
+		preparedStatement = connect.prepareStatement("")
+	}
 
 }

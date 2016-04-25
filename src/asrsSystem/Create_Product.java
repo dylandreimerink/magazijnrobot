@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import shared.Product;
+import shared.Database;
 
 public class Create_Product extends JFrame implements ActionListener{
 	
@@ -121,7 +121,17 @@ public class Create_Product extends JFrame implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btnApply) {      	
+        if (e.getSource() == btnApply) {
+        	String naam = Create_Naam.getText();
+        	try{
+        	int hoogte = Integer.parseInt(txtHoogte.getText());
+        	int lengte = Integer.parseInt(txtLengte.getText());
+        	int breedte = Integer.parseInt(txtBreedte.getText());
+        	int x = Integer.parseInt(textField_X.getText());
+        	}
+        	catch(NumberFormatException){
+        		System.out.println("Dimensie & positie moeten getallen zijn.");
+        	}
         	
         }
         if (e.getSource() == btnCancel) {
