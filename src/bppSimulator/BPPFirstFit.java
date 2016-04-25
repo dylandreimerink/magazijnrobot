@@ -64,7 +64,7 @@ public class BPPFirstFit implements BPPAlgorithm, Runnable {
 				System.out.println("product fit: " + p.toString());
 				boxlist.add(p);
 			}else{
-				System.out.println("product doest fit " + p.getWidth() + ", " + p.getHeight() + ", " + p.getLenght());
+				System.out.println("product doent fit " + p.getWidth() + ", " + p.getHeight() + ", " + p.getLenght());
 				usedBoxes.add(new Box(boxUnits.length, boxUnits[0].length, boxUnits[0][0].length, new PickList(boxlist)));
 				boxlist = new ArrayList<Product>();
 				boxlist.add(p);

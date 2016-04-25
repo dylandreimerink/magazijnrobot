@@ -11,14 +11,14 @@ import java.awt.Rectangle;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 import shared.Product;
 
 public class SimulatiePanel extends JPanel {
 
 	MainGUI parent;
-
-	int productYOffset = 350;
-	int boxYOffset = 100;
+	
 	Dimension productDimensions = new Dimension(50, 50);
 	Dimension boxDimentions = new Dimension(50, 50);
 	Dimension productTextOffset = new Dimension(-10, 0);
@@ -32,8 +32,18 @@ public class SimulatiePanel extends JPanel {
 	}
 
 	public Dimension getPreferredSize() {
-		return new Dimension(250, 450);
+		return new Dimension(250, 650);
 	}
+	
+	int rectX = 20;
+	int rectY = 20;
+	int rectXOffset = 100;
+	int rectYOffset = 200;
+	int lineX1 = rectX;
+	int lineX2 = rectXOffset + 20;
+	int lineY1 = rectYOffset + 20;
+	int lineY2 = rectYOffset + 20;
+	int currentBox = 0;
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -44,7 +54,40 @@ public class SimulatiePanel extends JPanel {
 		g.setFont(font);
 		
 		for (Box b : parent.boxList) {
-			System.out.println("HOI");
+			double boxCapacity = b.getBreedte() * b.getHoogte() * b.getLengte();		
+			
+			g.setColor(Color.red);
+			Rectangle box = new Rectangle(rectX, rectY, rectXOffset, rectYOffset);
+			g.drawRect(box.x, box.y, box.width, box.height);
+			
+			for(Product p : b.getPickList().getProducts()){
+				double productCapacity = p.getHeight() * p.getLenght() * p.getWidth();
+				System.out.println(productCapacity);
+				System.out.println(boxCapacity);
+				lineY1 = (int)(200 - 200*(productCapacity/boxCapacity));
+				lineY2 = lineY1;
+				
+				g.setColor(Color.black);
+				g.drawLine(lineX1, lineY1, lineX2, lineY2);
+				g.drawString(p.getProductName(), lineX1 + 5, lineY1 + 10);
+				
+			}
+			
+			currentBox = currentBox + 1;
+			
+			if(currentBox > 0 && currentBox < 4){
+				rectX =  rectX + rectXOffset + 10;
+			} else if(currentBox == 4){
+				rectX = 20;
+				rectY = rectY + 220;
+			} else {
+				rectX = rectX + rectXOffset + 10;
+			}
+			
+//			lineX1 = rectX;
+//			lineX2 = rectXOffset + 20;
+//			lineY1 = rectYOffset + 20;
+//			lineY2 = rectYOffset + 20;
 		}
 	}
 }
