@@ -5,8 +5,10 @@ package tspSimulator;
  */
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
-public class Picklist {
+public class Picklist{
 
 	private final int hoogte = 10;
 	private final int breedte = 10;
@@ -15,7 +17,7 @@ public class Picklist {
 
 	public Picklist() {
 		list = new ArrayList<Location>();
-		int aantalProducten = (int) randomWithRange(4, 6);
+		int aantalProducten = (int) randomWithRange(4, 5);
 		for (int z = 0; z < aantalProducten; z++) {
 			int x = randomWithRange(0, breedte -1);
 			int y = randomWithRange(0, hoogte -1);
@@ -71,6 +73,7 @@ public class Picklist {
 	public int getBreedte(){
 		return breedte;
 	}
+
 
 	@Override
 	public String toString() {

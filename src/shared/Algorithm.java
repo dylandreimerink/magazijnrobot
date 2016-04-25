@@ -11,7 +11,7 @@ import tspSimulator.Location;
 
 public interface Algorithm {
 
-	public Route calculateRoute(ArrayList<Location> locationList);
+	public void calculateRoute();
 	
 	public Resultaat getResultaat();
 	

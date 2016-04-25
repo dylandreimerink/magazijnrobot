@@ -1,11 +1,16 @@
 
 package tspSimulator;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+
 /*
  * Authors: Jan Willem Alejandro Casteleijn & Henri van de Munt (ICTM2a)
  */
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Line2D;
 
 import javax.swing.JPanel;
 
@@ -33,25 +38,24 @@ public class DrawPanel extends JPanel {
 		this.y = 10;
 		int afstandX = WIDTH / x;
 		int afstandY = HEIGHT / y;
-		
-		
+
 		for (int j = 0; j <= HEIGHT; j += afstandX) {
 			g.drawLine(j, 0, j, HEIGHT);
 		}
 		for (int j = 0; j <= WIDTH; j += afstandY) {
 			g.drawLine(0, j, WIDTH, j);
 		}
-		
+
 		Location prevLocation = null;
-		for(Location location :  resultaat.getResult()){
-			drawProduct(g, location.getLocationX(),location.getLocationY(),afstandX, afstandY);
-			if(prevLocation!= null){
-				drawRoute(g, prevLocation.getLocationX(), prevLocation.getLocationY(), location.getLocationX(), location.getLocationY(), afstandX, afstandY);
+		for (Location location : resultaat.getResult()) {
+			drawProduct(g, location.getLocationX(), location.getLocationY(), afstandX, afstandY);
+			if (prevLocation != null) {
+				drawRoute(g, prevLocation.getLocationX(), prevLocation.getLocationY(), location.getLocationX(),
+						location.getLocationY(), afstandX, afstandY);
 			}
-			prevLocation=location;
+			prevLocation = location;
 		}
-		
-		
+
 	}
 
 	private void drawProduct(Graphics g, int x, int y, int afstandX, int afstandY) {
@@ -61,18 +65,26 @@ public class DrawPanel extends JPanel {
 		double middleY = (afstandY / 2) - 7.5 + y;
 		int middleXInt = (int) middleX;
 		int middleYInt = (int) middleY;
+		g.setColor(Color.black);
 		g.fillOval(middleXInt, middleYInt, 15, 15);
 	}
 
-	private void drawRoute(Graphics g, int beginX, int beginY, int eindX, int eindY, int afstandX, int afstandY) {;
-		beginX = (int) ((int) beginX * afstandX + afstandX /2);
-		beginY = (int) (beginY * afstandY+ afstandY /2);
-		eindX = (int) (eindX * afstandX+ afstandX /2);
-		eindY = (int) (eindY * afstandY+ afstandY /2);
+	private void drawRoute(Graphics g, int beginX, int beginY, int eindX, int eindY, int afstandX, int afstandY) {
+		beginX = (int) ((int) beginX * afstandX + afstandX / 2);
+		beginY = (int) (beginY * afstandY + afstandY / 2);
+		eindX = (int) (eindX * afstandX + afstandX / 2);
+		eindY = (int) (eindY * afstandY + afstandY / 2);
+		Graphics2D g2 = (Graphics2D) g;
+        g2.setStroke(new BasicStroke(3));
+		g.setColor(Color.blue);
 		g.drawLine(beginX, beginY, eindX, eindY);
+
+		
+		
+
 	}
-	
-	public void updateResultaat(Resultaat resultaat){
+
+	public void updateResultaat(Resultaat resultaat) {
 		this.resultaat = resultaat;
 	}
 

@@ -34,9 +34,8 @@ public class FirstFit implements Algorithm {
 	}
 
 	@Override
-	public Route calculateRoute(ArrayList<Location> locationList) {
-		// TODO Auto-generated method stub
-		return null;
+	public void calculateRoute() {
+		
 	}
 
 	@Override
