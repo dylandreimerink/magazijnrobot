@@ -61,8 +61,7 @@ public class MainGUI extends JFrame implements ActionListener{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		boxList = new ArrayList<Box>();
-		boxList.add(new Box(10, 10, 10));
-		boxList.add(new Box(10, 10, 10));
+
 
 		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter(
@@ -203,6 +202,11 @@ public class MainGUI extends JFrame implements ActionListener{
 		panel_3.add(scrollPane);
 
 	}
+	
+	public void FirstFitCallback(){
+		boxList = firstFitAlgo.getResult();
+		simPanel.repaint();
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -217,13 +221,13 @@ public class MainGUI extends JFrame implements ActionListener{
 					i++;
 				}
 				picklist = new PickList(ids);
-				simPanel.repaint();
 			}
 		}
 		
 		if (e.getSource() == btnStartSimulatie) {
 			console = "\nSimulatie aan het starten..";
 			firstFitAlgo = new BPPFirstFit(picklist, 3, 3, 3);
+			firstFitAlgo.setOnDoneListner(this);
 			firstFitAlgo.start();
 			textArea.append(console);
 			textArea.setCaretPosition(textArea.getDocument().getLength());

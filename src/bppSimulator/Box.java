@@ -8,23 +8,16 @@ public class Box {
 	private double hoogte;
 	private double breedte;
 	private double lengte;
-	private ArrayList<Product> inBox;
-	public Box(double hoogte, double breedte, double lengte) {
+	private PickList inBox;
+	public Box(double hoogte, double breedte, double lengte, PickList list) {
 		this.hoogte = hoogte;
 		this.breedte = breedte;
 		this.lengte = lengte;
-		inBox = new ArrayList<Product>();
+		this.inBox = list;
+		
 	}
-	
-	public void addProductToBox(Product p){
-		inBox.add(p);
-	}
-	
-	public void removeFromBox(Product p){
-		inBox.remove(p);
-	}
-	
-	public ArrayList<Product> productsInBox(){
+
+	public PickList getPickList(){
 		return inBox;
 	}
 	
