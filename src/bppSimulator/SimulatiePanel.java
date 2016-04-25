@@ -54,9 +54,10 @@ public class SimulatiePanel extends JPanel {
 			boxXOffset += 10 + boxDimentions.width;
 		}
 
-		int xOffset = 10;
+		int xOffset = 50;
+		int xOffsetReset = 80;
 		int productWidth = 50;
-		int maxFit = 4;
+		int maxFit = 2;
 		int currentProduct = 0;
 
 		for (Box b : parent.boxList) {
@@ -68,34 +69,85 @@ public class SimulatiePanel extends JPanel {
 			for (Product p : b.getPickList().getProducts()) {
 				currentProduct = currentProduct + 1;
 				if (currentProduct <= maxFit) {
-					Rectangle rect = new Rectangle(xOffset, productYOffset, productWidth + 20, productDimentions.height);
+					Rectangle rect = new Rectangle(10, productYOffset, productWidth + 20,
+							productDimentions.height);
 					productYOffset = productYOffset - 16;
 					g.fillRect(rect.x, rect.y, rect.width, 15);
 					g.setColor(Color.white);
 					int y = ((rect.height - metrics.getHeight()) / 2) - metrics.getAscent();
 					g.drawString(p.getProductName(), rect.x + 6, (int) (rect.y + y + 8));
 					g.setColor(Color.black);
-					if(currentProduct == maxFit){
+					if (currentProduct == maxFit) {
 						productYOffset = 350;
-						xOffset = xOffset + xOffset * 8;
+						xOffset = xOffsetReset + 10;
 					}
+					System.out.println("BOX 1");
 				}
-				
+
 				if (currentProduct >= maxFit + 1 && currentProduct <= maxFit + maxFit) {
-					
-					Rectangle rect = new Rectangle(xOffset, productYOffset, productWidth + 20, productDimentions.height);
+
+					Rectangle rect = new Rectangle(xOffset, productYOffset, productWidth + 20,
+							productDimentions.height);
 					productYOffset = productYOffset - 16;
 					g.fillRect(rect.x, rect.y, rect.width, 15);
 					g.setColor(Color.white);
 					int y = ((rect.height - metrics.getHeight()) / 2) - metrics.getAscent();
 					g.drawString(p.getProductName(), rect.x + 6, (int) (rect.y + y + 8));
 					g.setColor(Color.black);
+					if (currentProduct == maxFit + maxFit) {
+						productYOffset = 350;
+						xOffset = xOffsetReset * 2 + 10;
+					}
+					System.out.println("BOX 2");
+				}
+
+				if (currentProduct >= maxFit + maxFit + 1 && currentProduct <= maxFit + maxFit + maxFit) {
+					Rectangle rect = new Rectangle(xOffset, productYOffset, productWidth + 20,
+							productDimentions.height);
+					productYOffset = productYOffset - 16;
+					g.fillRect(rect.x, rect.y, rect.width, 15);
+					g.setColor(Color.white);
+					int y = ((rect.height - metrics.getHeight()) / 2) - metrics.getAscent();
+					g.drawString(p.getProductName(), rect.x + 6, (int) (rect.y + y + 8));
+					g.setColor(Color.black);
+					if (currentProduct == maxFit * 3) {
+						productYOffset = 350;
+						xOffset = xOffsetReset * 3 + 10;
+					}
+					System.out.println("BOX 3");
+				}
+
+				if (currentProduct >= maxFit * 3 + 1 && currentProduct <= maxFit * 4) {
+					Rectangle rect = new Rectangle(xOffset, productYOffset, productWidth + 20,
+							productDimentions.height);
+					productYOffset = productYOffset - 16;
+					g.fillRect(rect.x, rect.y, rect.width, 15);
+					g.setColor(Color.white);
+					int y = ((rect.height - metrics.getHeight()) / 2) - metrics.getAscent();
+					g.drawString(p.getProductName(), rect.x + 6, (int) (rect.y + y + 8));
+					g.setColor(Color.black);
+					if (currentProduct == maxFit * 4) {
+						productYOffset = 150;
+						xOffset = xOffsetReset * 3 + 10;
+					}
+					System.out.println("BOX 4");
 				}
 				
-
-		
 				
-
+				if (currentProduct >= maxFit * 4 + 1) {
+					Rectangle rect = new Rectangle(xOffset, productYOffset, productWidth + 20,
+							productDimentions.height);
+					productYOffset = productYOffset - 16;
+					g.setColor(Color.red);
+					g.fillRect(rect.x, rect.y, rect.width, 15);
+					g.setColor(Color.white);
+					int y = ((rect.height - metrics.getHeight()) / 2) - metrics.getAscent();
+					g.drawString(p.getProductName(), rect.x + 6, (int) (rect.y + y + 8));
+					g.setColor(Color.black);
+					System.out.println("BOX 4");
+					
+				}
+				
 
 			}
 		}

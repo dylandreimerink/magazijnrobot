@@ -223,6 +223,7 @@ public class MainGUI extends JFrame implements ActionListener{
 			}
 		}
 		
+		
 		if (e.getSource() == btnStartSimulatie) {
 			console = "\nSimulatie aan het starten..";
 			textArea.append(console);
@@ -237,5 +238,5 @@ public class MainGUI extends JFrame implements ActionListener{
 			textArea.append(console);
 			textArea.setCaretPosition(textArea.getDocument().getLength());
 		}
-	}
+	}	
 }
