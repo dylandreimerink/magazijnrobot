@@ -189,8 +189,6 @@ public class gui extends JFrame implements ActionListener {
         panel_5.setLayout(new MigLayout("", "[]", "[]"));
         
         this.setVisible(true);
-        console.printLine("testing");
-        
 		
         
 	}

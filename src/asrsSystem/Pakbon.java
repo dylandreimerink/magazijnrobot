@@ -12,13 +12,14 @@ import javax.swing.JLabel;
 
 public class Pakbon {
 	ChooseOrder order = new ChooseOrder();
+	Console console = new Console();
 	
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public JPanel addComponents() {
+	public JPanel addPakbonGui() {
 		JPanel container = new JPanel();
-		
+		console.printLine("testing");
 		return container;
 	}
 	
