@@ -27,9 +27,8 @@ public class ChooseOrder {
 	      ParseXML order = new ParseXML(path);
 	      this.productlist = order.getProductList();
 	      System.out.println(productlist);
-	      console.printLine("Document geselecteerd! path:" + path );
 	    } else {
-	    	console.printLine("geen of ongeldig document geselecteerd!");
+	    
 	    }
 	    console.printLine("Document geselecteerd! path:" + path );
 	    

@@ -37,11 +37,12 @@ public class Create_Product extends JFrame implements ActionListener{
 	private Database db;
 	
 	public Create_Product() {
+		setResizable(false);
+		setAlwaysOnTop(true);
 		
 		db = new Database();
-		
-        getContentPane().setLayout(new FlowLayout());
         setTitle("Create");		
+		getContentPane().setLayout(null);
 		getContentPane().setLayout(null);
 		
 		lblNaam = new JLabel("Naam:");

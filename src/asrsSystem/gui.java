@@ -207,7 +207,7 @@ public class gui extends JFrame implements ActionListener {
 			// todo code here
 		}
 		if(e.getSource()== mntmVoegToe) {
-			// todo code here
+			Create_Product creator = new Create_Product();
 		}
 		if(e.getSource()== mntmDeleteArtikel) {
 			// todo code here
