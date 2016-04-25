@@ -105,5 +105,22 @@ public class Database implements Runnable {
 			System.out.println(e);
 		}
 	}
+	public void Get_Products(){
+		try{
+			connect();
+		}
+		catch(Exception e){
+			
+		}
+	}
+	
+	public void Edit_Product(){
+		try{
+			
+		}
+		catch(Exception e){
+			System.out.println(e);
+		}
+	}
 
 }

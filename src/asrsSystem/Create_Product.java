@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import shared.Database;
@@ -136,9 +137,10 @@ public class Create_Product extends JDialog implements ActionListener{
         	int x = Integer.parseInt(textField_X.getText());
         	int y = Integer.parseInt(textField_Y.getText());
         	db.Create_Product(naam, hoogte, lengte, breedte, x, y);
+        	JOptionPane.showMessageDialog(null, "Product is saved");        	
         	}
         	catch(NumberFormatException ne){
-        		
+        		System.out.println("Dimensie & positie moeten getallen zijn");
         	}
         	
         }
