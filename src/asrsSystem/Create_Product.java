@@ -1,4 +1,5 @@
 package asrsSystem;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -34,7 +35,8 @@ public class Create_Product extends JDialog implements ActionListener{
 	private Database db;
 	
 	public Create_Product() {
-		setAlwaysOnTop(true);
+		
+		
 		
 		db = new Database();
         setTitle("Create");		
@@ -117,12 +119,16 @@ public class Create_Product extends JDialog implements ActionListener{
         btnCancel.addActionListener(this);
         btnApply.addActionListener(this);		
 		
-        setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);        
-        setVisible(true);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);   
+        pack();
+		this.setSize(new Dimension(400,300));
+		this.setResizable(false);
+        this.setVisible(true);
         
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		Console console = new Console();
         if (e.getSource() == btnApply) {
         	String naam = Create_Naam.getText();
         	try{
@@ -134,7 +140,7 @@ public class Create_Product extends JDialog implements ActionListener{
         	db.Create_Product(naam, hoogte, lengte, breedte, x, y);
         	}
         	catch(NumberFormatException ne){
-        		System.out.println("Dimensie & positie moeten getallen zijn.");
+        		console.printLine("Dimensie & positie moeten getallen zijn.");
         	}
         	
         }
