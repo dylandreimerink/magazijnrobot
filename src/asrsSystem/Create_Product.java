@@ -34,7 +34,12 @@ public class Create_Product extends JFrame implements ActionListener{
 	private JButton btnCancel;
 	private JButton btnApply;
 	
+	private Database db;
+	
 	public Create_Product() {
+		
+		db = new Database();
+		
         getContentPane().setLayout(new FlowLayout());
         setTitle("Create");		
 		getContentPane().setLayout(null);
@@ -128,8 +133,10 @@ public class Create_Product extends JFrame implements ActionListener{
         	int lengte = Integer.parseInt(txtLengte.getText());
         	int breedte = Integer.parseInt(txtBreedte.getText());
         	int x = Integer.parseInt(textField_X.getText());
+        	int y = Integer.parseInt(textField_Y.getText());
+        	db.Create_Product(naam, hoogte, lengte, breedte, x, y);
         	}
-        	catch(NumberFormatException){
+        	catch(NumberFormatException ne){
         		System.out.println("Dimensie & positie moeten getallen zijn.");
         	}
         	

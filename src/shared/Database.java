@@ -95,8 +95,7 @@ public class Database implements Runnable {
 
 	}
 	
-	public void Create_Product(){
-		preparedStatement = connect.prepareStatement("")
+	public void Create_Product(String naam, int hoogte, int lengte , int breedte, int x, int y){
 	}
 
 }
