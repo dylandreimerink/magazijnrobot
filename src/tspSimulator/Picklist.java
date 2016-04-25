@@ -22,7 +22,7 @@ public class Picklist {
 		list1 = new ArrayList<Location>();
 		list2 = new ArrayList<Location>();
 		int aantalProducten = (int) randomWithRange(4, 5);
-		Location produc1t = new Location(0, 9);
+		Location produc1t = new Location(0, 0);
 		list0.add(produc1t);
 		list1.add(produc1t);
 		list2.add(produc1t);
@@ -52,7 +52,7 @@ public class Picklist {
 		list1 = new ArrayList<Location>();
 		list2 = new ArrayList<Location>();
 		int aantalProducten = (int) randomWithRange(4, 5);
-		Location produc1t = new Location(0, 9);
+		Location produc1t = new Location(0, 0);
 		list0.add(produc1t);
 		list1.add(produc1t);
 		list2.add(produc1t);

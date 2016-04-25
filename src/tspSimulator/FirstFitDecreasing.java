@@ -50,13 +50,21 @@ public class FirstFitDecreasing implements Algorithm, Comparator<Location> {
 	public void calculateRoute() {
 		ArrayList<Location> p1 = this.picklist;
 		Collections.sort(p1, this);
-		Location tempLocation = null;
-		for (Location item : p1) {
-			if (tempLocation == null) {
-				tempLocation = item;
-			} else {
-				double dictance = this.calculateDistance(tempLocation, item);
-				System.out.println(dictance);
+		ArrayList<Location> newArray = new ArrayList();
+		newArray.add(p1.get(0));
+		System.out.println(newArray.size());
+		for (int i = 0; i < p1.size(); i++) {
+			Location tempLocation = newArray.get(i);
+			Location temp = null;
+			for (int y = 0;y < p1.size(); y++) {
+				if(temp == null){
+					temp = p1.get(y);
+				} else {
+					if(temp.getLocationX() < p1.get(y).getLocationX() && temp.getLocationY()< p1.get(y).getLocationY()){
+						temp = p1.get(y);
+						newArray.add(temp);
+					} 
+				}
 			}
 		}
 		resultaat = null;
@@ -90,7 +98,9 @@ public class FirstFitDecreasing implements Algorithm, Comparator<Location> {
 			return 1;
 		} else if (arg0.getLocationX() < arg1.getLocationX() || arg0.getLocationY() < arg1.getLocationY()) {
 			return -1;
+		} else {
+			return 0;
 		}
-		return 0;
+
 	}
 }
