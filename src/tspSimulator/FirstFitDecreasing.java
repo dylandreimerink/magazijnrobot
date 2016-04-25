@@ -35,6 +35,7 @@ public class FirstFitDecreasing implements Algorithm, Comparator<Location> {
 		
 		System.out.println("Gesorteerd: ");
 		Collections.sort(p1, this);
+		resultaat = null;
 		resultaat = new Resultaat(p1, 0);
 		panel.updateResultaat(resultaat);
 	}

@@ -22,6 +22,10 @@ public class Picklist {
 		list1 = new ArrayList<Location>();
 		list2 = new ArrayList<Location>();
 		int aantalProducten = (int) randomWithRange(4, 5);
+		Location produc1t = new Location(0, 9);
+		list0.add(produc1t);
+		list1.add(produc1t);
+		list2.add(produc1t);
 		for (int z = 0; z < aantalProducten; z++) {
 			int x = randomWithRange(0, breedte - 1);
 			int y = randomWithRange(0, hoogte - 1);
@@ -44,27 +48,33 @@ public class Picklist {
 	}
 
 	public void generateNewPicklist() {
-		ArrayList<Location> list = new ArrayList<Location>();
-		int aantalProducten = (int) randomWithRange(4, 6);
+		list0 = new ArrayList<Location>();
+		list1 = new ArrayList<Location>();
+		list2 = new ArrayList<Location>();
+		int aantalProducten = (int) randomWithRange(4, 5);
+		Location produc1t = new Location(0, 9);
+		list0.add(produc1t);
+		list1.add(produc1t);
+		list2.add(produc1t);
 		for (int z = 0; z < aantalProducten; z++) {
 			int x = randomWithRange(0, breedte - 1);
 			int y = randomWithRange(0, hoogte - 1);
 			Location product = new Location(x, y);
 			boolean check = true;
-			for (Location item : list) {
+			for (Location item : list0) {
 				if (item.getLocationX() == product.getLocationX() && item.getLocationY() == product.getLocationY()) {
 					check = false;
 				}
 			}
+
 			if (check == false) {
 				z--;
 			} else {
-				list.add(product);
+				list0.add(product);
+				list1.add(product);
+				list2.add(product);
 			}
 		}
-		this.list0 = list;
-		this.list1 = list;
-		this.list2 = list;
 	}
 
 	public ArrayList<Location> getListOne() {
