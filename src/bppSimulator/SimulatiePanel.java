@@ -54,26 +54,31 @@ public class SimulatiePanel extends JPanel {
 		g.setFont(font);
 		
 		for (Box b : parent.boxList) {
-			double boxCapacity = b.getBreedte() * b.getHoogte() * b.getLengte();		
+			double boxCapacity = b.getBreedte() * b.getHoogte() * b.getLengte();
+			
 			
 			g.setColor(Color.red);
 			Rectangle box = new Rectangle(rectX, rectY, rectXOffset, rectYOffset);
 			g.drawRect(box.x, box.y, box.width, box.height);
 			
+			
 			for(Product p : b.getPickList().getProducts()){
 				double productCapacity = p.getHeight() * p.getLenght() * p.getWidth();
-				System.out.println(productCapacity);
-				System.out.println(boxCapacity);
-				lineY1 = (int)(200 - 200*(productCapacity/boxCapacity));
+				double fillPercentage = 100*(productCapacity/boxCapacity);
+
+				lineY1 = (int)(lineY2 - 200*(productCapacity/boxCapacity));
 				lineY2 = lineY1;
 				
 				g.setColor(Color.black);
 				g.drawLine(lineX1, lineY1, lineX2, lineY2);
-				g.drawString(p.getProductName(), lineX1 + 5, lineY1 + 10);
+				g.drawString(p.getProductName() + fillPercentage + "%", lineX1 + 5, lineY1 + 12);
 				
 			}
 			
+			
 			currentBox = currentBox + 1;
+			g.setColor(Color.red);
+			g.drawString("Doos " + currentBox, rectX + 30, rectY + rectYOffset + 20);
 			
 			if(currentBox > 0 && currentBox < 4){
 				rectX =  rectX + rectXOffset + 10;
@@ -84,10 +89,10 @@ public class SimulatiePanel extends JPanel {
 				rectX = rectX + rectXOffset + 10;
 			}
 			
-//			lineX1 = rectX;
-//			lineX2 = rectXOffset + 20;
-//			lineY1 = rectYOffset + 20;
-//			lineY2 = rectYOffset + 20;
+			lineX1 = rectX;
+			lineX2 = rectXOffset + lineX1;
+			lineY1 = rectYOffset + 20;
+			lineY2 = rectYOffset + 20;
 		}
 	}
 }
