@@ -22,6 +22,7 @@ public class Edit_Product extends JDialog implements ActionListener{
 	private JLabel lblPlaats;
 	private JLabel lblX;
 	private JLabel lblY;
+	private JLabel combobox;
 	
 	private JTextField textField;
 	private JTextField txtHoogte;
@@ -61,9 +62,13 @@ public class Edit_Product extends JDialog implements ActionListener{
 		
 		productlengte = producten.length;
 		
+		combobox = new JLabel("Select:");
+		combobox.setBounds(12, 16, 56, 16);
+		getContentPane().add(combobox);
+		
 		product = new JComboBox(producten);		
 		product.addActionListener(this);
-		product.setBounds(12, 13, 129, 22);
+		product.setBounds(85, 16, 116, 22);
 		getContentPane().add(product);
 		
 		lblNaam = new JLabel("Naam:");
