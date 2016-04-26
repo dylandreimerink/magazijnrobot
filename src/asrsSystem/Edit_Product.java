@@ -2,6 +2,7 @@ package asrsSystem;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.JButton;
@@ -168,6 +169,11 @@ public class Edit_Product extends JDialog implements ActionListener{
         	String cmbType = (String) jcmbType.getSelectedItem();
 //        	System.out.println(cmbType);
         	db.Edit_Product(cmbType);
+        	ArrayList<String> info = db.Edit_Product(cmbType);
+        	for(int i=0; i<info.size(); i++){
+        		String informatie = info.get(i);
+        		System.out.println(informatie);
+        	}
         }
 	}
 }
