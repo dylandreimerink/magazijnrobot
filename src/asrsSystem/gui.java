@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -18,6 +19,9 @@ import java.awt.Color;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
+import java.awt.Component;
+import javax.swing.Box;
+import javax.swing.border.MatteBorder;
 public class gui extends JFrame implements ActionListener {
 
 	
@@ -32,6 +36,9 @@ public class gui extends JFrame implements ActionListener {
 	JButton connect;
 	JButton disconnect;
 	JButton savePakbon;
+	JLabel orderNr;
+	JLabel kNaam;
+	JLabel kAdres;
 	
 	
 	public gui() {
@@ -41,6 +48,9 @@ public class gui extends JFrame implements ActionListener {
 	ChooseOrder chooser = new ChooseOrder();
 	Console console = new Console();
 	Pakbon pakbon = new Pakbon();
+	JPanel container = new JPanel();
+	private JLabel lblOrderinfoselecteerEenOrder;
+	private Component horizontalStrut;
 	private void addComponents() {
 
 		Console console = new Console();
@@ -107,7 +117,7 @@ public class gui extends JFrame implements ActionListener {
         panel.setLayout(new BorderLayout(0, 0));
         
         JPanel panel_1 = new JPanel();
-        panel_1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, Color.DARK_GRAY, Color.LIGHT_GRAY, Color.DARK_GRAY, Color.LIGHT_GRAY));
+        panel_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.DARK_GRAY));
         panel.add(panel_1, BorderLayout.SOUTH);
         panel_1.setLayout(new MigLayout("", "[115px][121px][grow]", "[91px,grow]"));
         
@@ -154,12 +164,37 @@ public class gui extends JFrame implements ActionListener {
         
         
         JPanel panel_5 = new JPanel();
+        panel_5.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.DARK_GRAY));
         panel.add(panel_5, BorderLayout.EAST);
         panel_5.setLayout(new MigLayout("", "[]", "[]"));
+        container.setBorder(null);
         
+
+        panel_5.add(container);
+        
+		container.setLayout(new MigLayout("", "[10px][]", "[][10px][][][][][][][][]"));
+		orderNr = new JLabel("Ordernummer: onbekend");
+		kNaam = new JLabel("Naam: onbekend");
+		kAdres = new JLabel("Adres: onbekend");
+		
+		lblOrderinfoselecteerEenOrder = new JLabel("Orderinfo(selecteer een order om te beginnen):");
+		container.add(lblOrderinfoselecteerEenOrder, "cell 1 0");
+		
+		container.add(orderNr, "cell 1 2");
+		container.add(kAdres, "cell 1 4");
+		container.add(kNaam, "cell 1 3");
+		
+		horizontalStrut = Box.createHorizontalStrut(300);
+		container.add(horizontalStrut, "cell 0 5 2 1,growy");
+        
+        setVisible(true);
+		
+        
+
         panel_5.add(pakbon.panel());
         setVisible(true);
              
+
 	}
 	
 	//actionlisteners
@@ -168,6 +203,13 @@ public class gui extends JFrame implements ActionListener {
 		if(e.getSource() == mntmOpenOrder) {
 			
 			chooser.ChooseFile();
+			String ordernr = chooser.getOrderNr();
+			orderNr.setText("Ordernummer: "+ordernr);
+			String Naam = chooser.getKlantInfo();
+			kNaam.setText("Naam: "+Naam);
+			String adres = chooser.getAdres();
+			kAdres.setText("Adres: "+adres);
+			lblOrderinfoselecteerEenOrder.setText("Orderinfo:");
 		}
 		if(e.getSource()== mntmExit) {
 			System.exit(0);

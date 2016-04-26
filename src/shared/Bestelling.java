@@ -23,15 +23,21 @@ import org.w3c.dom.NodeList;
 public class Bestelling {
 	private Klant klant;
 	private ArrayList<Product> productList;
+	private int ordernummer;
 
-	public Bestelling(Klant klant) {
+	public Bestelling(Klant klant, int ordernummer) {
 		productList = new ArrayList();
 		this.klant = klant;
+		this.ordernummer = ordernummer;
 		
 	}
 	
 	public Klant getKlant(){
 		return klant;
+	}
+	
+	public int getOrdernr() {
+		return ordernummer;
 	}
 	
 	public void addProduct(Product product) {
