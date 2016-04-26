@@ -63,6 +63,8 @@ public class Edit_Product extends JDialog implements ActionListener{
 		
 		product = new JComboBox(producten);		
 		product.addActionListener(this);
+		product.setBounds(12, 13, 129, 22);
+		getContentPane().add(product);
 		
 		lblNaam = new JLabel("Naam:");
 		lblNaam.setBounds(12, 42, 56, 16);

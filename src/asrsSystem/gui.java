@@ -158,10 +158,8 @@ public class gui extends JFrame implements ActionListener {
         panel_5.setLayout(new MigLayout("", "[]", "[]"));
         
         panel_5.add(pakbon.panel());
-        
-        
-		
-        
+        setVisible(true);
+             
 	}
 	
 	//actionlisteners
