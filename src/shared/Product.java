@@ -1,5 +1,7 @@
 package shared;
 
+import java.util.ArrayList;
+
 /*
  * Authors: Jan Willem Alejandro Casteleijn & Henri van de Munt (ICTM2a)
  */
@@ -12,6 +14,7 @@ public class Product {
 	private double height;
 	private double width;
 	private double lenght;
+	Database db = new Database();
 
 	public Product(int productId, String productName, int locationX, int locationY, double height, double width,
 			double length) {
@@ -34,7 +37,24 @@ public class Product {
 	}
 	
 	public Product(int productId) {
-		this(productId, "Onbekend", 0, 0, 0, 0, 0);
+		ArrayList<Product> productlist = new ArrayList<Product>();
+		try {
+			productlist = db.selectAll();
+			
+			this.productId = productId;
+			this.locationX = productlist.get(productId).getLocationX();
+			this.locationY = productlist.get(productId).getLocationY();
+			this.height = productlist.get(productId).getHeight();
+			this.lenght = productlist.get(productId).getLenght();
+			this.width = productlist.get(productId).getWidth();
+			this.productName = productlist.get(productId).getProductName();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+		
 	}
 
 	public int getProductId(){
