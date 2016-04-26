@@ -66,7 +66,7 @@ public class Database implements Runnable {
 			
 		ArrayList<Product> productList = new ArrayList<Product>();
 		while (rs.next()) {
-			productList.add(new Product(rs.getInt("productId"), rs.getString("productNaam"), rs.getInt("productPlaatsX"), rs.getInt("productPlaatsY"), rs.getInt("pHoogte"), rs.getInt("pBreedte"), rs.getInt("pLengte")));
+			productList.add(new Product(rs.getInt("productId"), rs.getString("productNaam"), rs.getInt("locatieX"), rs.getInt("locatieY"), rs.getInt("pHoogte"), rs.getInt("pBreedte"), rs.getInt("pLengte")));
 		}
 		return productList;
 
@@ -129,7 +129,8 @@ public class Database implements Runnable {
 			preparedStatement = connect.prepareStatement("SELECT * FROM product WHERE productNaam = '"+productnaam+"'");
 			ResultSet rs;
 	
-			rs = preparedStatement.executeQuery();			
+			rs = preparedStatement.executeQuery();
+			
 			
 			while (rs.next()){
 			ProductInformatie.add(rs.getString("productNaam"));
