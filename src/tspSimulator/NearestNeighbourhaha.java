@@ -11,7 +11,7 @@ import shared.Route;
  * Authors: Jan Willem en Henri Class: ICTM2A
  */
 
-public class FirstFit implements Algorithm {
+public class NearestNeighbourhaha implements Algorithm {
 
 	private String name;
 	private ArrayList<Location> picklist;
@@ -19,7 +19,7 @@ public class FirstFit implements Algorithm {
 	private Resultaat resultaat;
 
 
-	public FirstFit(String name, ArrayList<Location> picklist) {
+	public NearestNeighbourhaha(String name, ArrayList<Location> picklist) {
 		this.name = name;
 		this.picklist = picklist;
 		resultaat = new Resultaat(picklist, 0);

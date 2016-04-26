@@ -7,14 +7,14 @@ import java.util.Comparator;
 import shared.Algorithm;
 import shared.Resultaat;
 
-public class FirstFitDecreasing implements Algorithm, Comparator<Location> {
+public class NearestNeighbour implements Algorithm, Comparator<Location> {
 
 	private String name;
 	private ArrayList<Location> picklist;
 	private DrawPanel panel;
 	private Resultaat resultaat;
 
-	public FirstFitDecreasing(String name, ArrayList<Location> picklist) {
+	public NearestNeighbour(String name, ArrayList<Location> picklist) {
 
 		this.name = name;
 		this.picklist = picklist;
@@ -29,21 +29,19 @@ public class FirstFitDecreasing implements Algorithm, Comparator<Location> {
 	}
 
 	public double calculateDistance(Location locatieA, Location locatieB) {
-		if (locatieA.getLocationX() > locatieB.getLocationX() && locatieA.getLocationY() > locatieB.getLocationY()) {
-			return Math.sqrt(locatieA.getLocationX() - locatieB.getLocationX() + locatieA.getLocationY()
-					- locatieB.getLocationY());
-		} else if (locatieA.getLocationX() > locatieB.getLocationX()
-				&& locatieA.getLocationY() < locatieB.getLocationY()) {
-			return Math.sqrt(locatieA.getLocationX() - locatieB.getLocationX() + locatieB.getLocationY()
-					- locatieA.getLocationY());
-		} else if (locatieA.getLocationX() < locatieB.getLocationX()
-				&& locatieA.getLocationY() > locatieB.getLocationY()) {
-			return Math.sqrt(locatieB.getLocationX() - locatieA.getLocationX() + locatieA.getLocationY()
-					- locatieB.getLocationY());
+		double temp;
+		double temp1;
+		if (locatieA.getLocationX() > locatieB.getLocationX()) {
+			 temp = locatieA.getLocationX() - locatieB.getLocationX();
 		} else {
-			return Math.sqrt(locatieB.getLocationX() - locatieA.getLocationX() + locatieB.getLocationY()
-					- locatieA.getLocationY());
+			 temp = locatieB.getLocationX() - locatieA.getLocationX();
 		}
+		if (locatieA.getLocationY() > locatieB.getLocationY()) {
+			 temp1 = locatieA.getLocationY() - locatieB.getLocationY();
+		} else {
+			 temp1 = locatieB.getLocationY() - locatieA.getLocationY();
+		}
+		return Math.sqrt(temp* temp + temp1 *temp1);
 	}
 
 	@Override
@@ -53,20 +51,7 @@ public class FirstFitDecreasing implements Algorithm, Comparator<Location> {
 		ArrayList<Location> newArray = new ArrayList();
 		newArray.add(p1.get(0));
 		System.out.println(newArray.size());
-		for (int i = 0; i < p1.size(); i++) {
-			Location tempLocation = newArray.get(i);
-			Location temp = null;
-			for (int y = 0;y < p1.size(); y++) {
-				if(temp == null){
-					temp = p1.get(y);
-				} else {
-					if(temp.getLocationX() < p1.get(y).getLocationX() && temp.getLocationY()< p1.get(y).getLocationY()){
-						temp = p1.get(y);
-						newArray.add(temp);
-					} 
-				}
-			}
-		}
+
 		resultaat = null;
 		resultaat = new Resultaat(p1, 0);
 		panel.updateResultaat(resultaat);

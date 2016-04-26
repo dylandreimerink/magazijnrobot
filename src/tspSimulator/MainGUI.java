@@ -32,8 +32,8 @@ public class MainGUI extends JFrame implements ActionListener {
 	private JButton test2;
 
 	private BruteForce bf;
-	private FirstFit ff;
-	private FirstFitDecreasing ffd;
+	private NearestNeighbourhaha ff;
+	private NearestNeighbour ffd;
 
 	public MainGUI() {
 		setTitle("TSP Simulator");
@@ -53,8 +53,8 @@ public class MainGUI extends JFrame implements ActionListener {
 
 
 		bf = new BruteForce("BruteForce", picklist.getListOne());
-		ff = new FirstFit("First Fit", picklist.getListTwo());
-		ffd = new FirstFitDecreasing("Onbekend", picklist.getListThree());
+		ff = new NearestNeighbourhaha("First Fit", picklist.getListTwo());
+		ffd = new NearestNeighbour("Onbekend", picklist.getListThree());
 		setLayout(new GridLayout(1, 4, 0, 0));
 		
 		
