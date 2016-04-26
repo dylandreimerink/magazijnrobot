@@ -77,7 +77,7 @@ public class MainGUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == test) {
 			this.picklist.generateNewPicklist();
-			System.out.println(this.picklist.toString());
+			//System.out.println(this.picklist.toString());
 			bf.updateResultaat(this.picklist.getListOne());
 			ff.updateResultaat(this.picklist.getListTwo());
 			ffd.updateResultaat(this.picklist.getListThree());
