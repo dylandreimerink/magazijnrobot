@@ -81,7 +81,7 @@ public class SimulatiePanel extends JPanel {
 
 				g.setColor(Color.black);
 				g.drawLine(lineX1, lineY1, lineX2, lineY2);
-				g.drawString(p.getProductName() + df.format(fillPercentage) + "%", lineX1 + 2, lineY1 + 14);
+				g.drawString(p.getProductName() + " " + df.format(fillPercentage) + "%", lineX1 + 2, lineY1 + 14);
 
 				System.out.println(lineY1);
 

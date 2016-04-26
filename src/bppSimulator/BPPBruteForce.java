@@ -13,6 +13,7 @@ public class BPPBruteForce implements BPPAlgorithm, Runnable {
 	protected Thread t = new Thread(this);
 
 	protected boolean waiting = false;
+	protected boolean stop = false;
 
 	boolean hasResult = false;
 	boolean[][][] boxUnits;
@@ -43,7 +44,9 @@ public class BPPBruteForce implements BPPAlgorithm, Runnable {
 
 	@Override
 	public void stop() {
-		t.interrupt();
+		System.out.println("stopping brute force");
+		stop = true;
+		
 	}
 
 	public void pauze() {
@@ -87,6 +90,10 @@ public class BPPBruteForce implements BPPAlgorithm, Runnable {
 			usedBoxes = new ArrayList<Box>();
 		}
 
+		if(stop){
+			return;
+		}
+		
 		/* items available for permutation */
 		Product[] availableItems = items.toArray(new Product[0]);
 		for (Product i : availableItems) {
@@ -112,12 +119,6 @@ public class BPPBruteForce implements BPPAlgorithm, Runnable {
 		} else if (bestBoxes.size() == 0) {
 			bestBoxes = used;
 		}
-		for (Box box : used) {
-			for (Product p : box.getPickList().getProducts()) {
-				System.out.print(p.getProductId() + ", ");
-			}
-		}
-		System.out.print(" boxes: " + used.size() + " \n");
 	}
 
 	@Override
@@ -125,9 +126,6 @@ public class BPPBruteForce implements BPPAlgorithm, Runnable {
 
 		permutations(products, new Stack<Product>(), products.size());
 
-		for (Box b : bestBoxes.toArray(new Box[0])) {
-			System.out.println(b.getPickList());
-		}
 
 		if (onComplete != null) {
 			callBack();
@@ -166,7 +164,6 @@ public class BPPBruteForce implements BPPAlgorithm, Runnable {
 				for (int y = yOff; y < (yOff + productHeight); y++) {
 					for (int z = zOff; z < (zOff + productLength); z++) {
 						if (boxUnits[x][y][z]) {
-							System.out.println(x + " " + y + " " + z);
 							thisTry = false;
 							x = (xOff + productWidth);
 							y = (yOff + productHeight);
@@ -190,13 +187,11 @@ public class BPPBruteForce implements BPPAlgorithm, Runnable {
 						break;
 					} else {
 						if (!turned[2] && productWidth != productLength) {
-							System.out.println("turning on z axis");
 							int buff = productWidth;
 							productWidth = productLength;
 							productLength = buff;
 							turned[2] = true;
 						} else if (!turned[1] && productWidth != productHeight) {
-							System.out.println("turning on y axis");
 							int buff = productWidth;
 							productWidth = productHeight;
 							productHeight = buff;
@@ -204,7 +199,6 @@ public class BPPBruteForce implements BPPAlgorithm, Runnable {
 							if (productWidth != productLength)
 								turned[2] = false;
 						} else if (!turned[0] && productLength != productHeight) {
-							System.out.println("turning on x axis");
 							int buff = productLength;
 							productLength = productHeight;
 							productHeight = buff;
