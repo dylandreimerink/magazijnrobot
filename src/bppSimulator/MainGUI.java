@@ -260,19 +260,19 @@ public class MainGUI extends JFrame implements ActionListener{
 		if (e.getSource() == btnStartSimulatie) {
 			console = "\nSimulatie aan het starten..";
 			if(firstFitAlgo == null){
-				firstFitAlgo = new BPPFirstFit(picklist, 5, 5, 5);
+				firstFitAlgo = new BPPFirstFit(picklist, 3, 4, 4);
 				firstFitAlgo.setOnDoneListner(this);
 			}
 			start_time = System.nanoTime();
 			firstFitAlgo.start();
 			
 			if(firstFitDescAlgo == null){
-				firstFitDescAlgo = new BPPFirstFitDescending(picklist, 5, 5, 5);
+				firstFitDescAlgo = new BPPFirstFitDescending(picklist, 3, 4, 4);
 				firstFitDescAlgo.setOnDoneListner(this);
 			}
 			
 			if(bruteForceAlgo == null){
-				bruteForceAlgo = new BPPBruteForce(picklist, 5, 5, 5);
+				bruteForceAlgo = new BPPBruteForce(picklist, 3, 4, 4);
 				bruteForceAlgo.setOnDoneListner(this);
 			}
 			

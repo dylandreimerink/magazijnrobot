@@ -20,6 +20,12 @@ public class BPPFirstFitDescending extends BPPFirstFit implements Comparator<Pro
 	
 	@Override
 	protected void callBack(){
+		for (Box box : usedBoxes) {
+			for(Product p : box.getPickList().getProducts()){
+				System.out.print(p.getProductId() + ", ");
+			}
+		}
+		System.out.print(" boxes: "+ usedBoxes.size() +" \n");
 		onComplete.FirstFitDescCallback();
 	}
 	
