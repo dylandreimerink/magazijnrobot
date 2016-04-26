@@ -40,7 +40,7 @@ public class gui extends JFrame implements ActionListener {
 	
 	ChooseOrder chooser = new ChooseOrder();
 	Console console = new Console();
-	Pakbon pakbon = new Pakbon(1);
+	Pakbon pakbon = new Pakbon();
 	private void addComponents() {
 
 		Console console = new Console();
@@ -159,10 +159,6 @@ public class gui extends JFrame implements ActionListener {
         
         panel_5.add(pakbon.panel());
         
-        this.setVisible(true);
-        if(chooser.selected == true) {
-        	pakbon.GenerateOrderInfo(chooser.getProductList());
-        }
         
 		
         

@@ -24,7 +24,7 @@ public class Pakbon {
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public Pakbon(int i) { 
+	public void addPakbonGui() { 
 		
 		container.setLayout(new MigLayout("", "[10px][]", "[10px][][][][][][][][]"));
 		JLabel orderNr = new JLabel("Ordernummer:");
@@ -40,9 +40,6 @@ public class Pakbon {
 		
 	}
 	
-	public Pakbon() {
-		
-	}
 	
 	public JPanel panel() {
 		return container;
