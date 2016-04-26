@@ -6,6 +6,7 @@ package shared;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /*
@@ -121,13 +122,24 @@ public class Database implements Runnable {
 			return Producten;			
 	}
 	
-	public void Edit_Product(){
+	public ArrayList<String> Edit_Product(String productnaam){
+		ArrayList<String> ProductInformatie = new ArrayList<String>();
 		try{
+			connect();
+			preparedStatement = connect.prepareStatement("SELECT productNaam FROM product WHERE productNaam = '"+productnaam+"'");
+			ResultSet rs;
+	
+			rs = preparedStatement.executeQuery();
 			
+			
+			while (rs.next()){
+			ProductInformatie.add(rs.getString("productInformatie"));
+			}
 		}
 		catch(Exception e){
 			System.out.println(e);
 		}
+		return ProductInformatie;		
 	}
 
 }

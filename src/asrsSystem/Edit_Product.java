@@ -63,13 +63,14 @@ public class Edit_Product extends JDialog implements ActionListener{
 		productlengte = producten.length;
 		
 		combobox = new JLabel("Select:");
-		combobox.setBounds(12, 16, 56, 16);
+		combobox.setBounds(12, 13, 56, 16);
 		getContentPane().add(combobox);
 		
 		product = new JComboBox(producten);		
-		product.addActionListener(this);
-		product.setBounds(85, 16, 116, 22);
+		product.setBounds(85, 13, 116, 22);
 		getContentPane().add(product);
+
+//		Bovenstaande is voor het maken van het combobox.		
 		
 		lblNaam = new JLabel("Naam:");
 		lblNaam.setBounds(12, 42, 56, 16);
@@ -149,8 +150,10 @@ public class Edit_Product extends JDialog implements ActionListener{
 		getContentPane().add(button);
 		
 		btnDelete = new JButton("Delete");
-		btnDelete.setBounds(228, 202, 68, 25);
+		btnDelete.setBounds(228, 202, 75, 25);
 		getContentPane().add(btnDelete);
+
+		product.addActionListener(this);
 		
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);   
         pack();
@@ -160,7 +163,11 @@ public class Edit_Product extends JDialog implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+        if (e.getSource() == product) {
+        	JComboBox jcmbType = (JComboBox) e.getSource();
+        	String cmbType = (String) jcmbType.getSelectedItem();
+//        	System.out.println(cmbType);
+        	db.Edit_Product(cmbType);
+        }
 	}
 }
