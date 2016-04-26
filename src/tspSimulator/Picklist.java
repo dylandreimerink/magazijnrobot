@@ -25,7 +25,11 @@ public class Picklist {
 		Location produc1t = new Location(0, 0);
 		list0.add(produc1t);
 		list1.add(produc1t);
-		list2.add(produc1t);
+		//list2.add(produc1t);
+		list2.add(new Location(0,0));
+		list2.add(new Location(1,0));
+		list2.add(new Location(2,0));
+		list2.add(new Location(3,0));
 		for (int z = 0; z < aantalProducten; z++) {
 			int x = randomWithRange(0, breedte - 1);
 			int y = randomWithRange(0, hoogte - 1);
@@ -42,7 +46,7 @@ public class Picklist {
 			} else {
 				list0.add(product);
 				list1.add(product);
-				list2.add(product);
+			//	list2.add(product);
 			}
 		}
 	}
