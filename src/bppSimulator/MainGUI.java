@@ -42,14 +42,22 @@ public class MainGUI extends JFrame implements ActionListener{
 	private SimulatiePanel simPanel;
 	private BPPFirstFit firstFitAlgo;
 	private BPPFirstFitDescending firstFitDescAlgo;
+	private BPPBruteForce bruteForceAlgo;
 	
-	public JLabel lbltijd_2;
+	long start_time;
+	long stop_time;
+	
 	PickList picklist;
 	public ArrayList<Box> boxList;
 	public String console;
 	JButton btnStartSimulatie;
 	JButton btnPauzeerSimulatie;
 	JButton btnAnnuleerSimulatie;
+	
+	JLabel lbltijdFF;
+	JLabel lbltijdFFD;
+	JLabel lbltijdBF;
+	
 	JTextArea textArea;
 	JMenu mnFile;
 	
@@ -121,23 +129,23 @@ public class MainGUI extends JFrame implements ActionListener{
 		leftPanel.add(dataPanel);
 		dataPanel.setLayout(new GridLayout(8, 2, 0, 0));
 
-		JLabel lblAlgoritme = new JLabel("Algoritme 1");
+		JLabel lblAlgoritme = new JLabel("First Fit: ");
 		dataPanel.add(lblAlgoritme);
 
-		JLabel lbltijd = new JLabel("*tijd*");
-		dataPanel.add(lbltijd);
+		lbltijdFF = new JLabel("*tijd*");
+		dataPanel.add(lbltijdFF);
 
-		JLabel lblAlgoritme_1 = new JLabel("Algoritme 2");
+		JLabel lblAlgoritme_1 = new JLabel("First Fit Descending: ");
 		dataPanel.add(lblAlgoritme_1);
 
-		JLabel lbltijd_1 = new JLabel("*tijd*");
-		dataPanel.add(lbltijd_1);
+		lbltijdFFD = new JLabel("*tijd*");
+		dataPanel.add(lbltijdFFD);
 
-		JLabel lblAlgoritme_2 = new JLabel("Algoritme 3");
+		JLabel lblAlgoritme_2 = new JLabel("Brute Force: ");
 		dataPanel.add(lblAlgoritme_2);
 
-		lbltijd_2 = new JLabel("*tijd*");
-		dataPanel.add(lbltijd_2);
+		lbltijdBF = new JLabel("*tijd*");
+		dataPanel.add(lbltijdBF);
 
 		JLabel lblGekozen = new JLabel("Gekozen");
 		dataPanel.add(lblGekozen);
@@ -194,17 +202,41 @@ public class MainGUI extends JFrame implements ActionListener{
 		panel_3.add(scrollPane);
 
 	}
-	
 	public void FirstFitCallback(){
 		boxList = firstFitAlgo.getResult();
+		stop_time = System.nanoTime();
+		double diffTime = (stop_time - start_time) / 1e6;
+		lbltijdFF.setText(Math.round(diffTime) + " ms");
 		simPanel.repaint();
 		firstFitAlgo = null;
+		while((System.nanoTime() - stop_time) < (3000 * 1e6)){
+			
+		}
+		start_time = System.nanoTime();
+		firstFitDescAlgo.start();
 	}
 	
 	public void FirstFitDescCallback(){
 		boxList = firstFitDescAlgo.getResult();
+		stop_time = System.nanoTime();
+		double diffTime = (stop_time - start_time) / 1e6;
+		lbltijdFFD.setText(Math.round(diffTime) + " ms");
 		simPanel.repaint();
 		firstFitDescAlgo = null;
+		while((System.nanoTime() - stop_time) < (3000 * 1e6)){
+			
+		}
+		start_time = System.nanoTime();
+		bruteForceAlgo.start();
+	}
+	
+	public void BruteForceCallback(){
+		boxList = bruteForceAlgo.getResult();
+		stop_time = System.nanoTime();
+		double diffTime = (stop_time - start_time) / 1e6;
+		lbltijdBF.setText(Math.round(diffTime) + " ms");
+		simPanel.repaint();
+		bruteForceAlgo = null;
 	}
 
 	@Override
@@ -227,15 +259,25 @@ public class MainGUI extends JFrame implements ActionListener{
 		if (e.getSource() == btnStartSimulatie) {
 			console = "\nSimulatie aan het starten..";
 			if(firstFitAlgo == null){
-				firstFitAlgo = new BPPFirstFit(picklist, 3, 3, 3);
+				firstFitAlgo = new BPPFirstFit(picklist, 5, 5, 5);
 				firstFitAlgo.setOnDoneListner(this);
 			}
+			start_time = System.nanoTime();
+			firstFitAlgo.start();
+			
 			if(firstFitDescAlgo == null){
-				firstFitDescAlgo = new BPPFirstFitDescending(picklist, 3, 3, 3);
+				firstFitDescAlgo = new BPPFirstFitDescending(picklist, 5, 5, 5);
 				firstFitDescAlgo.setOnDoneListner(this);
 			}
-			firstFitAlgo.start();
-			firstFitDescAlgo.start();
+			
+			if(bruteForceAlgo == null){
+				bruteForceAlgo = new BPPBruteForce(picklist, 5, 5, 5);
+				bruteForceAlgo.setOnDoneListner(this);
+			}
+			
+			lbltijdFF.setText("*wachten*");
+			lbltijdFFD.setText("*wachten*");
+			
 			textArea.append(console);
 			textArea.setCaretPosition(textArea.getDocument().getLength());
 			
