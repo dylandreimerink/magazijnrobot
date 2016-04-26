@@ -129,8 +129,7 @@ public class Database implements Runnable {
 			preparedStatement = connect.prepareStatement("SELECT * FROM product WHERE productNaam = '"+productnaam+"'");
 			ResultSet rs;
 	
-			rs = preparedStatement.executeQuery();
-			
+			rs = preparedStatement.executeQuery();			
 			
 			while (rs.next()){
 			ProductInformatie.add(rs.getString("productNaam"));
