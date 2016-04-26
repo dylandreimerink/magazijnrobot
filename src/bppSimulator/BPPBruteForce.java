@@ -54,7 +54,7 @@ public class BPPBruteForce implements BPPAlgorithm, Runnable {
 
 	@Override
 	public ArrayList<Box> getResult() {
-		return usedBoxes;
+		return bestBoxes;
 	}
 	
 	public void permutations(ArrayList<Product> items, Stack<Product> permutation, int size) {

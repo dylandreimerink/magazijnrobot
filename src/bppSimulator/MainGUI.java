@@ -59,6 +59,7 @@ public class MainGUI extends JFrame implements ActionListener{
 	JLabel lbltijdBF;
 	
 	JTextArea textArea;
+	public int score1;
 	JMenu mnFile;
 	
 	
@@ -134,7 +135,7 @@ public class MainGUI extends JFrame implements ActionListener{
 
 		lbltijdFF = new JLabel("*tijd*");
 		dataPanel.add(lbltijdFF);
-
+		
 		JLabel lblAlgoritme_1 = new JLabel("First Fit Descending: ");
 		dataPanel.add(lblAlgoritme_1);
 
@@ -146,7 +147,7 @@ public class MainGUI extends JFrame implements ActionListener{
 
 		lbltijdBF = new JLabel("*tijd*");
 		dataPanel.add(lbltijdBF);
-
+		
 		JLabel lblGekozen = new JLabel("Gekozen");
 		dataPanel.add(lblGekozen);
 
