@@ -53,12 +53,13 @@ public class ParseXML {
 					String address = eElementKlant.getElementsByTagName("adres").item(0).getTextContent();
 					String postcode = eElementKlant.getElementsByTagName("postcode").item(0).getTextContent();
 					String plaats = eElementKlant.getElementsByTagName("plaats").item(0).getTextContent();
+					
 					this.klant = new Klant(firstname, surname, address, postcode, plaats);
 				}
 			}
 			NodeList nListArtiekelnr = doc.getElementsByTagName("artikelnr");
 		
-			this.bestelling = new Bestelling(this.klant);
+			this.bestelling = new Bestelling(this.klant,ordernummer);
 			for (int tempArtiekelnr = 0; tempArtiekelnr < nListArtiekelnr.getLength(); tempArtiekelnr++) {
 				System.out.println(
 						"artikelnr: " + doc.getElementsByTagName("artikelnr").item(tempArtiekelnr).getTextContent());

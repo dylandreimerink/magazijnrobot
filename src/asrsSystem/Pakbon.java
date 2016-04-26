@@ -46,18 +46,7 @@ public class Pakbon {
 	}
 	
 	
-	public void GenerateOrderInfo(ArrayList<shared.Product> productlist) {
-		for(Product object: productlist) {
-			int artikelnr = productlist.get(b).getProductId();
-			b++;
-			String artikelnrN = Integer.toString(artikelnr);
-			
-			JLabel Artikel = new JLabel(artikelnrN);
-			container.add(Artikel, "cell 1 "+row);
-			
-			System.out.println(artikelnrN);
-			row++;
-		}
+	
 	}
 	
-}
+
