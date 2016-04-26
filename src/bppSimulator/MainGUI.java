@@ -67,7 +67,7 @@ public class MainGUI extends JFrame implements ActionListener{
 
 	public MainGUI() {
 		setTitle("BPP Simulator");
-		setSize(700, 600);
+		setSize(960, 1032);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		boxList = new ArrayList<Box>();
@@ -262,19 +262,19 @@ public class MainGUI extends JFrame implements ActionListener{
 		if (e.getSource() == btnStartSimulatie) {
 			console = "\nSimulatie aan het starten..";
 			if(firstFitAlgo == null){
-				firstFitAlgo = new BPPFirstFit(picklist, 5, 5, 5);
+				firstFitAlgo = new BPPFirstFit(picklist, 3, 3, 3);
 				firstFitAlgo.setOnDoneListner(this);
 			}
 			start_time = System.nanoTime();
 			firstFitAlgo.start();
 			
 			if(firstFitDescAlgo == null){
-				firstFitDescAlgo = new BPPFirstFitDescending(picklist, 5, 5, 5);
+				firstFitDescAlgo = new BPPFirstFitDescending(picklist, 3, 3, 3);
 				firstFitDescAlgo.setOnDoneListner(this);
 			}
 			
 			if(bruteForceAlgo == null){
-				bruteForceAlgo = new BPPBruteForce(picklist, 5, 5, 5);
+				bruteForceAlgo = new BPPBruteForce(picklist, 3, 3, 3);
 				bruteForceAlgo.setOnDoneListner(this);
 			}
 			
