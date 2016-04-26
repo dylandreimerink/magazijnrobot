@@ -235,7 +235,7 @@ public class MainGUI extends JFrame implements ActionListener{
 				firstFitDescAlgo = new BPPFirstFitDescending(picklist, 3, 3, 3);
 				firstFitDescAlgo.setOnDoneListner(this);
 			}
-			firstFitAlgo.start();
+			//firstFitAlgo.start();
 			firstFitDescAlgo.start();
 			textArea.append(console);
 			textArea.setCaretPosition(textArea.getDocument().getLength());

@@ -20,7 +20,7 @@ import shared.Product;
 public class SimulatiePanel extends JPanel {
 
 	MainGUI parent;
-	
+
 	Dimension productDimensions = new Dimension(50, 50);
 	Dimension boxDimentions = new Dimension(50, 50);
 	Dimension productTextOffset = new Dimension(-10, 0);
@@ -34,79 +34,98 @@ public class SimulatiePanel extends JPanel {
 	}
 
 	public Dimension getPreferredSize() {
-		return new Dimension(250, 650);
+		return new Dimension(300, 650);
 	}
-	
-	int rectX = 20;
-	int rectY = 20;
-	int rectXOffset = 100;
-	int rectYOffset = 200;
-	int lineX1 = rectX;
-	int lineX2 = rectXOffset + 20;
-	int lineY1 = rectYOffset + 20;
-	int lineY2 = rectYOffset + 20;
-	int currentBox = 0;
-	int efficiency;
-	int totalEfficiency;
-	int listEfficiency;
-	
+
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+
+		int rectX = 20;
+		int rectY = 10;
+		int rectXOffset = 100;
+		int rectYOffset = 200;
+		int lineX1 = rectX;
+		int lineX2 = rectXOffset + 20;
+		int lineY1 = rectYOffset + 10;
+		int lineY2 = rectYOffset + 10;
+		int currentBox = 0;
+		int efficiency;
+		int totalEfficiency;
+		int listEfficiency;
+		int unusedX1 = 0;
+		int unusedY1 = 0;
 
 		Font font = new Font("product", Font.PLAIN, 14);
 		FontMetrics metrics = g.getFontMetrics();
 
 		g.setFont(font);
-		
+
 		for (Box b : parent.boxList) {
 			double boxCapacity = b.getBreedte() * b.getHoogte() * b.getLengte();
 			totalEfficiency = 100;
-			
-			g.setColor(Color.red);
-			Rectangle box = new Rectangle(rectX, rectY, rectXOffset, rectYOffset);
-			g.drawRect(box.x, box.y, box.width, box.height);
-			
-			
-			for(Product p : b.getPickList().getProducts()){
-				double productCapacity = p.getHeight() * p.getLenght() * p.getWidth();
-				double fillPercentage = 100*(productCapacity/boxCapacity);
 
-				lineY1 = (int)(lineY2 - 200*(productCapacity/boxCapacity));
+			g.setColor(Color.red);
+			Rectangle box = new Rectangle(rectX, rectY - 1, rectXOffset, rectYOffset);
+			g.drawRect(box.x, box.y, box.width, box.height);
+
+			for (Product p : b.getPickList().getProducts()) {
+				double productCapacity = p.getHeight() * p.getLenght() * p.getWidth();
+				double fillPercentage = 100 * (productCapacity / boxCapacity);
+
+				lineY1 = (int) (lineY2 - 200 * (productCapacity / boxCapacity));
 				lineY2 = lineY1;
-				
-				efficiency = (int) (100 * productCapacity/boxCapacity);
-				totalEfficiency = totalEfficiency - efficiency;
-				
+
 				DecimalFormat df = new DecimalFormat("#.0");
-				
+
 				g.setColor(Color.black);
 				g.drawLine(lineX1, lineY1, lineX2, lineY2);
 				g.drawString(p.getProductName() + df.format(fillPercentage) + "%", lineX1 + 5, lineY1 + 12);
-				
+
+				System.out.println(lineY1);
+
+				unusedX1 = lineX1;
+				unusedY1 = lineY1;
 			}
-			
-			listEfficiency = listEfficiency + totalEfficiency;
-			
+
 			currentBox = currentBox + 1;
 			g.setColor(Color.red);
-			g.drawString("Doos " + currentBox, rectX + 30, rectY + rectYOffset + 20);
-			
-			if(currentBox > 0 && currentBox < 4){
-				rectX =  rectX + rectXOffset + 10;
-			} else if(currentBox == 4){
+			g.drawString("Doos " + currentBox, rectX + 30, rectY + rectYOffset + 16);
+
+			if (currentBox < 5) {
+				g.setColor(Color.lightGray);
+				Rectangle unused = new Rectangle(rectX + 1, rectY, rectXOffset - 1, lineY1 - 10);
+				g.fillRect(unused.x, unused.y, unused.width, unused.height);
+			} else {
+				g.setColor(Color.lightGray);
+				Rectangle unused = new Rectangle(rectX + 1, rectY, rectXOffset - 1, lineY1 - 230);
+				g.fillRect(unused.x, unused.y, unused.width, unused.height);
+			}
+
+			if (currentBox > 0 && currentBox < 4) {
+				rectX = rectX + rectXOffset + 10;
+				lineX1 = rectX;
+				lineX2 = rectXOffset + lineX1;
+				lineY1 = rectYOffset + 10;
+				lineY2 = rectYOffset + 10;
+			} else if (currentBox == 4) {
 				rectX = 20;
+				lineX1 = rectX;
+				lineX2 = rectXOffset + lineX1;
+				lineY1 = rectYOffset + 10;
+				lineY2 = rectYOffset + 10;
 				rectY = rectY + 220;
+				lineY1 = rectY + 200;
+				lineY2 = rectY + 200;
 			} else {
 				rectX = rectX + rectXOffset + 10;
+				lineX1 = rectX;
+				lineX2 = rectXOffset + lineX1;
+				lineY1 = rectY + 200;
+				lineY2 = rectY + 200;
 			}
-			
-			lineX1 = rectX;
-			lineX2 = rectXOffset + lineX1;
-			lineY1 = rectYOffset + 20;
-			lineY2 = rectYOffset + 20;
-			
+
 		}
-		
+
 	}
-	
+
 }
