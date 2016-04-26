@@ -177,7 +177,7 @@ public class gui extends JFrame implements ActionListener {
 		kNaam = new JLabel("Naam: onbekend");
 		kAdres = new JLabel("Adres: onbekend");
 		
-		lblOrderinfoselecteerEenOrder = new JLabel("Orderinfo(selecteer een order om te beginnen):");
+		lblOrderinfoselecteerEenOrder = new JLabel("Orderinfo (selecteer een order om te beginnen):");
 		container.add(lblOrderinfoselecteerEenOrder, "cell 1 0");
 		
 		container.add(orderNr, "cell 1 2");
