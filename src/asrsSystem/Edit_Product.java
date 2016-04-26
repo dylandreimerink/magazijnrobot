@@ -25,7 +25,7 @@ public class Edit_Product extends JDialog implements ActionListener{
 	private JLabel lblY;
 	private JLabel combobox;
 	
-	private JTextField textField;
+	private JTextField naam;
 	private JTextField txtHoogte;
 	private JTextField txtLengte;
 	private JTextField txtBreedte;
@@ -77,10 +77,10 @@ public class Edit_Product extends JDialog implements ActionListener{
 		lblNaam.setBounds(12, 42, 56, 16);
 		getContentPane().add(lblNaam);
 		
-		textField = new JTextField();
-		textField.setBounds(85, 39, 116, 22);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		naam = new JTextField();
+		naam.setBounds(85, 39, 116, 22);
+		getContentPane().add(naam);
+		naam.setColumns(10);
 		
 		lblDimensie = new JLabel("Dimensie:");
 		lblDimensie.setBounds(12, 71, 77, 16);
@@ -104,16 +104,16 @@ public class Edit_Product extends JDialog implements ActionListener{
 		txtBreedte.setBounds(85, 135, 116, 22);
 		getContentPane().add(txtBreedte);
 		
-		lblCm1 = new JLabel("cm");
-		lblCm1.setBounds(204, 71, 56, 16);
+		lblCm1 = new JLabel("Hoogte (cm)");
+		lblCm1.setBounds(204, 71, 75, 16);
 		getContentPane().add(lblCm1);
 		
-		lblCm2 = new JLabel("cm");
-		lblCm2.setBounds(204, 103, 56, 16);
+		lblCm2 = new JLabel("Lengte (cm)");
+		lblCm2.setBounds(204, 103, 75, 16);
 		getContentPane().add(lblCm2);
 		
-		lblCm3 = new JLabel("cm");
-		lblCm3.setBounds(204, 138, 56, 16);
+		lblCm3 = new JLabel("Breedte (cm)");
+		lblCm3.setBounds(204, 138, 75, 16);
 		getContentPane().add(lblCm3);
 		
 		lblPlaats = new JLabel("Plaats:");
@@ -169,10 +169,34 @@ public class Edit_Product extends JDialog implements ActionListener{
         	String cmbType = (String) jcmbType.getSelectedItem();
 //        	System.out.println(cmbType);
         	db.Edit_Product(cmbType);
+        	
         	ArrayList<String> info = db.Edit_Product(cmbType);
+        	
+//        	String Productnaam = info.get(0);
+//        	naam.setText(Productnaam);
+        	
         	for(int i=0; i<info.size(); i++){
-        		String informatie = info.get(i);
-        		System.out.println(informatie);
+        		
+        		String Productinformatie = info.get(i);
+        		
+        		if(i == 0){
+                	naam.setText(Productinformatie);
+        		}
+        		else if(i == 1){
+        			txtBreedte.setText(Productinformatie);
+        		}
+        		else if(i == 2){
+        			txtHoogte.setText(Productinformatie);
+        		}
+        		else if(i == 3){
+        			txtLengte.setText(Productinformatie);
+        		}
+        		else if(i == 4){
+        			TextField_X.setText(Productinformatie);
+        		}
+        		else if(i == 5){
+        			TextField_Y.setText(Productinformatie);
+        		}
         	}
         }
 	}
