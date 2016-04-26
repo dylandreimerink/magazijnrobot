@@ -12,9 +12,12 @@ public class ChooseOrder {
 	
 	private String path;
 	private ArrayList<shared.Product> productlist;
-	public boolean selected = false;
+	public static boolean selected = false;
+	ParseXML order;
+	
 	public void ChooseFile() {
 		Console console = new Console();
+		Pakbon pakbon = new Pakbon();
 		
 		
 		
@@ -26,17 +29,32 @@ public class ChooseOrder {
 	    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 	    File selectedFile = chooser.getSelectedFile();
 	      this.path = selectedFile.getAbsolutePath();
-	      ParseXML order = new ParseXML(path);
+	      order = new ParseXML(path);
 	      this.productlist = order.getProductList();
 	      System.out.println(productlist);
 	      selected = true;
-	    } else {
 	    
-	    }
-	    console.printLine("Document geselecteerd! path:" + path );
+	    } 
 	    
 	    
 	}
+	
+	public static boolean returnSelected() {
+		return selected;
+	}
+	
+	public String getKlantInfo() {
+		return ""+order.getBestelling().getKlant().getVoorNaam()+" "+order.getBestelling().getKlant().getAchterNaam();
+	}
+	
+	public String getAdres() {
+		return ""+order.getBestelling().getKlant().getAdres();
+	}
+	
+	public String getOrderNr() {
+		return ""+order.getBestelling().getOrdernr();
+	}
+	
 	public ArrayList<shared.Product> getProductList() {
 		return productlist;
 	}

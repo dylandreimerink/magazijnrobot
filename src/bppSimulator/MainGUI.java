@@ -203,7 +203,9 @@ public class MainGUI extends JFrame implements ActionListener{
 		panel_3.add(scrollPane);
 
 	}
+	
 	public void FirstFitCallback(){
+		System.out.println("FIRSTFIT");
 		boxList = firstFitAlgo.getResult();
 		stop_time = System.nanoTime();
 		double diffTime = (stop_time - start_time) / 1e6;

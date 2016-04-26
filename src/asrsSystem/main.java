@@ -12,6 +12,5 @@ public class main {
 	Database db = new Database();
 	Thread t = new Thread(db);
 	t.start();
-
 	}
 }

@@ -2,6 +2,8 @@ package asrsSystem;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -21,6 +23,7 @@ public class Edit_Product extends JDialog implements ActionListener{
 	private JLabel lblPlaats;
 	private JLabel lblX;
 	private JLabel lblY;
+	private JLabel combobox;
 	
 	private JTextField textField;
 	private JTextField txtHoogte;
@@ -34,23 +37,41 @@ public class Edit_Product extends JDialog implements ActionListener{
 	private JButton button;
 	private JButton btnDelete;
 	
-	private Database db;	
+	private Database db;
+	
+	private String [] producten;
+	private int productlengte;
+	private JComboBox product;
 	
 	public Edit_Product() {
-		
-		db = new Database();
-		
 		
         setTitle("Edit");		
 		getContentPane().setLayout(null);
 		getContentPane().setLayout(null);
 		
+		db = new Database();
+		
 		try {
-			JComboBox producten = new JComboBox(db.Get_Productnames());
+			producten = db.Get_Productnames();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("failed to connect productarray to array in db");
 		}
+
+//		System.out.println(Arrays.toString(producten));
+		
+		productlengte = producten.length;
+		
+		combobox = new JLabel("Select:");
+		combobox.setBounds(12, 13, 56, 16);
+		getContentPane().add(combobox);
+		
+		product = new JComboBox(producten);		
+		product.setBounds(85, 13, 116, 22);
+		getContentPane().add(product);
+
+//		Bovenstaande is voor het maken van het combobox.		
 		
 		lblNaam = new JLabel("Naam:");
 		lblNaam.setBounds(12, 42, 56, 16);
@@ -130,8 +151,10 @@ public class Edit_Product extends JDialog implements ActionListener{
 		getContentPane().add(button);
 		
 		btnDelete = new JButton("Delete");
-		btnDelete.setBounds(228, 202, 68, 25);
+		btnDelete.setBounds(228, 202, 75, 25);
 		getContentPane().add(btnDelete);
+
+		product.addActionListener(this);
 		
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);   
         pack();
@@ -141,7 +164,16 @@ public class Edit_Product extends JDialog implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+        if (e.getSource() == product) {
+        	JComboBox jcmbType = (JComboBox) e.getSource();
+        	String cmbType = (String) jcmbType.getSelectedItem();
+//        	System.out.println(cmbType);
+        	db.Edit_Product(cmbType);
+        	ArrayList<String> info = db.Edit_Product(cmbType);
+        	for(int i=0; i<info.size(); i++){
+        		String informatie = info.get(i);
+        		System.out.println(informatie);
+        	}
+        }
 	}
 }
