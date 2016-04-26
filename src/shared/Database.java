@@ -117,7 +117,8 @@ public class Database implements Runnable {
 			while (rs.next()) {
 				ProductNamen.add(rs.getString("productNaam"));
 			}
-			return (String[]) ProductNamen.toArray();			
+			String[] Producten = ProductNamen.toArray(new String[ProductNamen.size()]);
+			return Producten;			
 	}
 	
 	public void Edit_Product(){
