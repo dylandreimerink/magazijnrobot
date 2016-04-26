@@ -2,6 +2,7 @@ package asrsSystem;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -21,6 +22,7 @@ public class Edit_Product extends JDialog implements ActionListener{
 	private JLabel lblPlaats;
 	private JLabel lblX;
 	private JLabel lblY;
+	private JLabel combobox;
 	
 	private JTextField textField;
 	private JTextField txtHoogte;
@@ -34,23 +36,40 @@ public class Edit_Product extends JDialog implements ActionListener{
 	private JButton button;
 	private JButton btnDelete;
 	
-	private Database db;	
+	private Database db;
+	
+	private String [] producten;
+	private int productlengte;
+	private JComboBox product;
 	
 	public Edit_Product() {
-		
-		db = new Database();
-		
 		
         setTitle("Edit");		
 		getContentPane().setLayout(null);
 		getContentPane().setLayout(null);
 		
+		db = new Database();
+		
 		try {
-			JComboBox producten = new JComboBox(db.Get_Productnames());
+			producten = db.Get_Productnames();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("failed to connect productarray to array in db");
 		}
+
+//		System.out.println(Arrays.toString(producten));
+		
+		productlengte = producten.length;
+		
+		combobox = new JLabel("Select:");
+		combobox.setBounds(12, 16, 56, 16);
+		getContentPane().add(combobox);
+		
+		product = new JComboBox(producten);		
+		product.addActionListener(this);
+		product.setBounds(85, 16, 116, 22);
+		getContentPane().add(product);
 		
 		lblNaam = new JLabel("Naam:");
 		lblNaam.setBounds(12, 42, 56, 16);

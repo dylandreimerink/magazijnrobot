@@ -169,6 +169,7 @@ public class gui extends JFrame implements ActionListener {
         panel_5.setLayout(new MigLayout("", "[]", "[]"));
         container.setBorder(null);
         
+
         panel_5.add(container);
         
 		container.setLayout(new MigLayout("", "[10px][]", "[][10px][][][][][][][][]"));
@@ -189,6 +190,11 @@ public class gui extends JFrame implements ActionListener {
         setVisible(true);
 		
         
+
+        panel_5.add(pakbon.panel());
+        setVisible(true);
+             
+
 	}
 	
 	//actionlisteners
