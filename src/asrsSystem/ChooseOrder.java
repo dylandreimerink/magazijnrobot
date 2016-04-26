@@ -29,12 +29,18 @@ public class ChooseOrder {
 	    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 	    File selectedFile = chooser.getSelectedFile();
 	      this.path = selectedFile.getAbsolutePath();
+	      console.printLine("xml bestand geselecteerd. path: "+path);
+	      console.printLine("parsing xml file...");
 	      order = new ParseXML(path);
 	      this.productlist = order.getProductList();
 	      System.out.println(productlist);
+	      console.printLine("parsing compleet! geselecteerde producten:" + productlist);
 	      selected = true;
-	    
-	    } 
+	      
+	      
+	    } else {
+	    	console.printLine("geen order geselecteerd! selecteer een order om het programma te gebruiken!");
+	    }
 	    
 	    
 	}
@@ -59,4 +65,4 @@ public class ChooseOrder {
 		return productlist;
 	}
 	  
-}
+}	
