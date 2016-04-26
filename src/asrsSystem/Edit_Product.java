@@ -170,6 +170,8 @@ public class Edit_Product extends JDialog implements ActionListener{
 //        	System.out.println(cmbType);
         	db.Edit_Product(cmbType);
         	ArrayList<String> info = db.Edit_Product(cmbType);
+//        	String Productnaam = info.get(0);
+        	    	
         	for(int i=0; i<info.size(); i++){
         		String informatie = info.get(i);
         		System.out.println(informatie);
