@@ -63,14 +63,17 @@ public class MainGUI extends JFrame implements ActionListener {
 		add(bf.getPanel());
 		add(ff.getPanel());
 		add(ffd.getPanel());
-
+		
+		JPanel knoppenPanel = new JPanel();
+		add(knoppenPanel);
+		knoppenPanel.setLayout(new GridLayout(4, 1, 0, 0));
 		test = new JButton("Test");
 		test.addActionListener(this);
-		add(test);
+		knoppenPanel.add(test);
 		
 		test2 = new JButton("Test2");
 		test2.addActionListener(this);
-		add(test2);
+		knoppenPanel.add(test2);
 	}
 
 	@Override

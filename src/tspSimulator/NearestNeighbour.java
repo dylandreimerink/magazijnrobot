@@ -57,7 +57,7 @@ public class NearestNeighbour implements Algorithm, Comparator<Location> {
 	}
 
 	@Override
-	public void calculateRoute() {
+	public void calculateRoute(){
 		ArrayList<Location> p1 = this.picklist;
 		// Collections.sort(p1, this);
 		ArrayList<Location> newArrayList = new ArrayList<Location>();
@@ -79,6 +79,7 @@ public class NearestNeighbour implements Algorithm, Comparator<Location> {
 			System.out.println("x: " + newArrayList.get(i).getLocationX() + "y: " + newArrayList.get(i).getLocationY());
 		}
 		resultaat = new Resultaat(newArrayList, 0);
+		this.picklist = newArrayList;
 		panel.updateResultaat(resultaat);
 
 	}
