@@ -17,13 +17,13 @@ public class NearestNeighbour implements Algorithm, Comparator<Location> {
 
 		this.name = name;
 		this.picklist = picklist;
-		resultaat = new Resultaat(picklist, 0);
-		panel = new DrawPanel("First Fit Decreasing", resultaat);
+		resultaat = new Resultaat(picklist, 0 , this.getAfstand());
+		panel = new DrawPanel(name, resultaat);
 	}
 
 	public void updateResultaat(ArrayList<Location> picklist) {
 		this.picklist = picklist;
-		resultaat = new Resultaat(picklist, 0);
+		resultaat = new Resultaat(picklist, 0, this.getAfstand());
 		panel.updateResultaat(resultaat);
 	}
 
@@ -62,6 +62,7 @@ public class NearestNeighbour implements Algorithm, Comparator<Location> {
 		// Collections.sort(p1, this);
 		ArrayList<Location> newArrayList = new ArrayList<Location>();
 		newArrayList.add(p1.get(0));
+		p1.remove(0);
 		int q = 0;
 		while (!p1.isEmpty()) {
 			Location neareast = findNearest(p1, newArrayList.get(q));
@@ -78,7 +79,7 @@ public class NearestNeighbour implements Algorithm, Comparator<Location> {
 		for (int i = 0; i < newArrayList.size(); i++) {
 			System.out.println("x: " + newArrayList.get(i).getLocationX() + "y: " + newArrayList.get(i).getLocationY());
 		}
-		resultaat = new Resultaat(newArrayList, 0);
+		resultaat = new Resultaat(newArrayList, 0, this.getAfstand());
 		this.picklist = newArrayList;
 		panel.updateResultaat(resultaat);
 
@@ -86,14 +87,17 @@ public class NearestNeighbour implements Algorithm, Comparator<Location> {
 
 	@Override
 	public Resultaat getResultaat() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.resultaat;
 	}
 
 	@Override
 	public String getAlgorithmName() {
 		// TODO Auto-generated method stub
 		return name;
+	}
+	
+	private double getAfstand(){
+		return 0;
 	}
 
 	public DrawPanel getPanel() {

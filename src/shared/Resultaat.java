@@ -9,33 +9,32 @@ import tspSimulator.Location;
  */
 
 public class Resultaat {
-//	private Route route;
 	private double time;
+	private double afstand;
 	private String name;
 	private ArrayList<Location> result;
-	
-	public Resultaat(ArrayList<Location> result, double time){
-		//result = new ArrayList<Location>();
+
+	public Resultaat(ArrayList<Location> result, double time, double afstand) {
+		// result = new ArrayList<Location>();
 		this.result = result;
 		this.time = time;
-		
+		this.afstand = afstand;
 	}
-	
-//	public Route getRoute(){
-//		return route;
-//	}
-	
-	
-	
+
 	public ArrayList<Location> getResult() {
 		return result;
 	}
 
-	public double getTijd(){
+	public double getTijd() {
 		return time;
 	}
 	
-	public String getAlgorithmName(){
+	public double getDistance() {
+		return afstand;
+	}
+
+
+	public String getAlgorithmName() {
 		return name;
 	}
 

@@ -3,6 +3,7 @@ package tspSimulator;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Dimension;
 
 /*
  * Authors: Jan Willem Alejandro Casteleijn & Henri van de Munt (ICTM2a)
@@ -10,7 +11,7 @@ import java.awt.Color;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.Line2D;
+import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
@@ -18,8 +19,9 @@ import shared.Resultaat;
 
 public class DrawPanel extends JPanel {
 
-	private static final int HEIGHT = 400;
-	private static final int WIDTH = 400;
+	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	private int HEIGHT = (int) (screenSize.getWidth()/4) - 50;
+	private int WIDTH = (int) (screenSize.getWidth()/4) - 50;
 	private String algoname;
 	private Resultaat resultaat;
 	private int x;
@@ -33,7 +35,6 @@ public class DrawPanel extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawRect(0, 0, HEIGHT, WIDTH);
 		this.x = 10;
 		this.y = 10;
 		int afstandX = WIDTH / x;
@@ -59,7 +60,7 @@ public class DrawPanel extends JPanel {
 			drawProduct(g, location.getLocationX(), location.getLocationY(), afstandX, afstandY, "Product " + x);
 			x++;
 		}
-
+		g.drawString(algoname, 0, HEIGHT);
 	}
 
 	private void drawProduct(Graphics g, int x, int y, int afstandX, int afstandY, String product) {

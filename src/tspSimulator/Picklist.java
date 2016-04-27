@@ -21,7 +21,7 @@ public class Picklist {
 		list0 = new ArrayList<Location>();
 		list1 = new ArrayList<Location>();
 		list2 = new ArrayList<Location>();
-		int aantalProducten = (int) randomWithRange(4, 5);
+		int aantalProducten = (int) randomWithRange(4, 7);
 		Location produc1t = new Location(0, 0);
 		list0.add(produc1t);
 		list1.add(produc1t);
@@ -99,7 +99,7 @@ public class Picklist {
 	public int getBreedte() {
 		return breedte;
 	}
-
+	
 	@Override
 	public String toString() {
 		String toReturn = "";

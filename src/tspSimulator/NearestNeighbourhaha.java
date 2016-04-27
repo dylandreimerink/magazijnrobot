@@ -22,14 +22,14 @@ public class NearestNeighbourhaha implements Algorithm {
 	public NearestNeighbourhaha(String name, ArrayList<Location> picklist) {
 		this.name = name;
 		this.picklist = picklist;
-		resultaat = new Resultaat(picklist, 0);
+		resultaat = new Resultaat(picklist, 0 , this.getAfstand());
 
-		panel = new DrawPanel("First Fit", resultaat);
+		panel = new DrawPanel(name, resultaat);
 
 	}
 	
 	public void updateResultaat(ArrayList<Location> picklist){
-		resultaat = new Resultaat(picklist, 0);
+		resultaat = new Resultaat(picklist, 0, this.getAfstand());
 		panel.updateResultaat(resultaat);
 	}
 
@@ -40,8 +40,11 @@ public class NearestNeighbourhaha implements Algorithm {
 
 	@Override
 	public Resultaat getResultaat() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.resultaat;
+	}
+	
+	private double getAfstand(){
+		return 0;
 	}
 
 	@Override
