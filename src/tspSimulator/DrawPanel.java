@@ -48,17 +48,21 @@ public class DrawPanel extends JPanel {
 
 		Location prevLocation = null;
 		for (Location location : resultaat.getResult()) {
-			drawProduct(g, location.getLocationX(), location.getLocationY(), afstandX, afstandY);
 			if (prevLocation != null) {
 				drawRoute(g, prevLocation.getLocationX(), prevLocation.getLocationY(), location.getLocationX(),
 						location.getLocationY(), afstandX, afstandY);
 			}
 			prevLocation = location;
 		}
+		int x = 1;
+		for (Location location : resultaat.getResult()) {
+			drawProduct(g, location.getLocationX(), location.getLocationY(), afstandX, afstandY, "Product " + x);
+			x++;
+		}
 
 	}
 
-	private void drawProduct(Graphics g, int x, int y, int afstandX, int afstandY) {
+	private void drawProduct(Graphics g, int x, int y, int afstandX, int afstandY, String product) {
 		x = afstandX * x;
 		y = afstandY * y;
 		double middleX = (afstandX / 2) - 7.5 + x;
@@ -67,6 +71,8 @@ public class DrawPanel extends JPanel {
 		int middleYInt = (int) middleY;
 		g.setColor(Color.black);
 		g.fillOval(middleXInt, middleYInt, 15, 15);
+		g.setColor(Color.red);
+		g.drawString(product, middleXInt + 15, middleYInt + 5);
 	}
 
 	private void drawRoute(Graphics g, int beginX, int beginY, int eindX, int eindY, int afstandX, int afstandY) {
@@ -75,12 +81,9 @@ public class DrawPanel extends JPanel {
 		eindX = (int) (eindX * afstandX + afstandX / 2);
 		eindY = (int) (eindY * afstandY + afstandY / 2);
 		Graphics2D g2 = (Graphics2D) g;
-        g2.setStroke(new BasicStroke(3));
+		g2.setStroke(new BasicStroke(3));
 		g.setColor(Color.blue);
 		g.drawLine(beginX, beginY, eindX, eindY);
-
-		
-		
 
 	}
 

@@ -75,7 +75,14 @@ public class MainGUI extends JFrame implements ActionListener {
 		test2.addActionListener(this);
 		knoppenPanel.add(test2);
 	}
+	
+	  private double findLineAngle(int x1, int y1, int x2, int y2) {
+	        if ((x2 - x1) == 0)
+	            return Math.PI / 2;
+	        return Math.atan((y2 - y1) / (x2 - x1));
+	    }
 
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == test) {
