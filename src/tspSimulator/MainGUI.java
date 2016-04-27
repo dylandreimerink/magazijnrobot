@@ -35,13 +35,13 @@ public class MainGUI extends JFrame implements ActionListener {
 	private NearestNeighbourhaha ff;
 	private NearestNeighbour ffd;
 
-	private JLabel BruteForceTime;
-	private JLabel NearestNeighbourhahTime;
-	private JLabel NearestNeighbourTime;
+	private JLabel bruteForceTime;
+	private JLabel nearestNeighbourhahTime;
+	private JLabel nearestNeighbourTime;
 	
-	private JLabel BruteForceDistance;
-	private JLabel NearestNeighbourhahDistance;
-	private JLabel NearestNeighbourDistance;
+	private JLabel bruteForceDistance;
+	private JLabel nearestNeighbourhahDistance;
+	private JLabel nearestNeighbourDistance;
 
 	public MainGUI() {
 		setTitle("TSP Simulator");
@@ -79,29 +79,29 @@ public class MainGUI extends JFrame implements ActionListener {
 		testAlgorithm.addActionListener(this);
 		knoppenPanel.add(testAlgorithm);
 
-		JPanel BruteForceResult = new JPanel();
-		JPanel NearestNeighbourhahResult = new JPanel();
-		JPanel NearestNeighbourResult = new JPanel();
-		add(BruteForceResult);
-		add(NearestNeighbourhahResult);
-		add(NearestNeighbourResult);
-		BruteForceResult.setLayout(new GridLayout(2, 1, 0, 0));
-		NearestNeighbourhahResult.setLayout(new GridLayout(2, 1, 0, 0));
-		NearestNeighbourResult.setLayout(new GridLayout(2, 1, 0, 0));
+		JPanel bruteForceResult = new JPanel();
+		JPanel nearestNeighbourhahResult = new JPanel();
+		JPanel nearestNeighbourResult = new JPanel();
+		add(bruteForceResult);
+		add(nearestNeighbourhahResult);
+		add(nearestNeighbourResult);
+		bruteForceResult.setLayout(new GridLayout(2, 1, 0, 0));
+		nearestNeighbourhahResult.setLayout(new GridLayout(2, 1, 0, 0));
+		nearestNeighbourResult.setLayout(new GridLayout(2, 1, 0, 0));
 		
-		BruteForceTime = new JLabel("Tijd: " + Double.toString(bf.getResultaat().getTijd()));
-		NearestNeighbourhahTime = new JLabel("Tijd: " + Double.toString(ff.getResultaat().getTijd()));
-		NearestNeighbourTime = new JLabel("Tijd: " + Double.toString(ffd.getResultaat().getTijd()));
-		BruteForceResult.add(BruteForceTime);
-		NearestNeighbourhahResult.add(NearestNeighbourhahTime);
-		NearestNeighbourResult.add(NearestNeighbourTime);
+		bruteForceTime = new JLabel("Tijd: " + Double.toString(bf.getResultaat().getTijd()));
+		nearestNeighbourhahTime = new JLabel("Tijd: " + Double.toString(ff.getResultaat().getTijd()));
+		nearestNeighbourTime = new JLabel("Tijd: " + Double.toString(ffd.getResultaat().getTijd()));
+		bruteForceResult.add(bruteForceTime);
+		nearestNeighbourhahResult.add(nearestNeighbourhahTime);
+		nearestNeighbourResult.add(nearestNeighbourTime);
 		
-		BruteForceDistance = new JLabel("Afstand: " + Double.toString(bf.getResultaat().getDistance()));
-		NearestNeighbourhahDistance = new JLabel("Afstand: " + Double.toString(ff.getResultaat().getDistance()));
-		NearestNeighbourDistance = new JLabel("Afstand: " + Double.toString(ffd.getResultaat().getDistance()));
-		BruteForceResult.add(BruteForceDistance);
-		NearestNeighbourhahResult.add(NearestNeighbourhahDistance);
-		NearestNeighbourResult.add(NearestNeighbourDistance);
+		bruteForceDistance = new JLabel("Afstand: " + Double.toString(bf.getResultaat().getDistance()));
+		nearestNeighbourhahDistance = new JLabel("Afstand: " + Double.toString(ff.getResultaat().getDistance()));
+		nearestNeighbourDistance = new JLabel("Afstand: " + Double.toString(ffd.getResultaat().getDistance()));
+		bruteForceResult.add(bruteForceDistance);
+		nearestNeighbourhahResult.add(nearestNeighbourhahDistance);
+		nearestNeighbourResult.add(nearestNeighbourDistance);
 
 		add(new JLabel(""));
 	}
@@ -114,10 +114,16 @@ public class MainGUI extends JFrame implements ActionListener {
 			bf.updateResultaat(this.picklist.getListOne());
 			ff.updateResultaat(this.picklist.getListTwo());
 			ffd.updateResultaat(this.picklist.getListThree());
+			bruteForceDistance.setText("Afstand: " + Double.toString(bf.getResultaat().getDistance()));
+			nearestNeighbourhahDistance.setText("Afstand: " + Double.toString(ff.getResultaat().getDistance()));
+			nearestNeighbourDistance.setText("Afstand: " + Double.toString(ffd.getResultaat().getDistance()));
 			repaint();
 		}
 		if (e.getSource() == testAlgorithm) {
 			ffd.calculateRoute();
+			bruteForceDistance.setText("Afstand: " + Double.toString(bf.getResultaat().getDistance()));
+			nearestNeighbourhahDistance.setText("Afstand: " + Double.toString(ff.getResultaat().getDistance()));
+			nearestNeighbourDistance.setText("Afstand: " + Double.toString(ffd.getResultaat().getDistance()));
 			repaint();
 		}
 	}
