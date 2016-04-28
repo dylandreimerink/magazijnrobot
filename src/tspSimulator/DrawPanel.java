@@ -87,7 +87,10 @@ public class DrawPanel extends JPanel {
 		g.drawLine(beginX, beginY, eindX, eindY);
 	}
 
-	public void updateResultaat(Resultaat resultaat) {
+	public void updateResultaat(Resultaat resultaat) {	
+		System.out.println(resultaat.getAlgorithmName());
+		System.out.println(resultaat.getResult());
+
 		this.resultaat = resultaat;
 	}
 

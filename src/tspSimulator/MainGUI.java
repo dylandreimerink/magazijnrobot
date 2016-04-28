@@ -27,8 +27,8 @@ import shared.Database;
 public class MainGUI extends JFrame implements ActionListener {
 
 	private Picklist picklist;
-	private Picklist picklist1;
-	private Picklist picklist2;
+//	private Picklist picklist1;
+//	private Picklist picklist2;
 	private JButton nieuwePicklist;
 	private JButton testAlgorithm;
 
@@ -56,8 +56,8 @@ public class MainGUI extends JFrame implements ActionListener {
 
 	private void addComponents() {
 		picklist = new Picklist();
-		picklist1 = new Picklist();
-		picklist2 = new Picklist();
+//		picklist1 = new Picklist();
+//		picklist2 = new Picklist();
 		// System.out.println(picklist.toString());
 
 		bf = new BruteForce("BruteForce", picklist.getListOne());
@@ -115,17 +115,20 @@ public class MainGUI extends JFrame implements ActionListener {
 			this.picklist.generateNewPicklist();
 			// System.out.println(this.picklist.toString());
 			bf.updateResultaat(this.picklist.getListOne());
-			ff.updateResultaat(this.picklist.getListTwo());
+			// ff.updateResultaat(this.picklist.getListTwo());
 			ffd.updateResultaat(this.picklist.getListThree());
 			bruteForceDistance.setText("Afstand: " + Double.toString(bf.getResultaat().getDistance()));
-			nearestNeighbourhahDistance.setText("Afstand: " + Double.toString(ff.getResultaat().getDistance()));
+		 //	nearestNeighbourhahDistance.setText("Afstand: " + Double.toString(ff.getResultaat().getDistance()));
 			nearestNeighbourDistance.setText("Afstand: " + Double.toString(ffd.getResultaat().getDistance()));
 			repaint();
 		}
 		if (e.getSource() == testAlgorithm) {
+			bf.calculateRoute();
+			// ff moet nog
 			ffd.calculateRoute();
+			
 			bruteForceDistance.setText("Afstand: " + Double.toString(bf.getResultaat().getDistance()));
-			nearestNeighbourhahDistance.setText("Afstand: " + Double.toString(ff.getResultaat().getDistance()));
+			// nearestNeighbourhahDistance.setText("Afstand: " + Double.toString(ff.getResultaat().getDistance()));
 			nearestNeighbourDistance.setText("Afstand: " + Double.toString(ffd.getResultaat().getDistance()));
 			repaint();
 		}
