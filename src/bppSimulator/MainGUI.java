@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -47,7 +48,7 @@ public class MainGUI extends JFrame implements ActionListener {
 	long start_time;
 	long stop_time;
 
-	PickList picklist;
+	PickList picklist = new PickList();
 	public ArrayList<Box> boxList;
 	public String console;
 	JButton btnStartSimulatie;
@@ -64,6 +65,8 @@ public class MainGUI extends JFrame implements ActionListener {
 	JTextArea textArea;
 	public int score1;
 	JMenu mnFile;
+
+	public boolean pauze = false;
 
 	public MainGUI() {
 		setTitle("BPP Simulator");
@@ -111,12 +114,6 @@ public class MainGUI extends JFrame implements ActionListener {
 		btnStartSimulatie.setMaximumSize(buttonsize);
 		btnStartSimulatie.addActionListener(this);
 		leftPanel.add(btnStartSimulatie);
-
-		btnPauzeerSimulatie = new JButton("Pauzeer simulatie");
-		btnPauzeerSimulatie.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		btnPauzeerSimulatie.setMaximumSize(buttonsize);
-		btnPauzeerSimulatie.addActionListener(this);
-		leftPanel.add(btnPauzeerSimulatie);
 
 		btnAnnuleerSimulatie = new JButton("Annuleer simulatie");
 		btnAnnuleerSimulatie.setAlignmentX(Component.RIGHT_ALIGNMENT);
@@ -202,48 +199,85 @@ public class MainGUI extends JFrame implements ActionListener {
 	}
 
 	public void FirstFitCallback() {
+		appendConsoleText("\nStarten First Fit");
+		
 		boxList = firstFitAlgo.getResult();
 		lblDozenFF.setText("Dozen: " + boxList.size());
+		
 		stop_time = System.nanoTime();
 		double diffTime = (stop_time - start_time) / 1e6;
+		
 		lbltijdFF.setText(Math.round(diffTime) + " ms");
 		simPanel.repaint();
+		
+		appendConsoleText("\nFirst Fit klaar");
+		
 		firstFitAlgo = null;
+		
 		while ((System.nanoTime() - stop_time) < (3000 * 1e6)) {
 
 		}
+		
 		start_time = System.nanoTime();
 		firstFitDescAlgo.start();
 	}
 
 	public void FirstFitDescCallback() {
+		appendConsoleText("\nStarten First Fit Decreasing");
+
 		boxList = firstFitDescAlgo.getResult();
 		lblDozenFFD.setText("Dozen: " + boxList.size());
+
 		stop_time = System.nanoTime();
 		double diffTime = (stop_time - start_time) / 1e6;
+
 		lbltijdFFD.setText(Math.round(diffTime) + " ms");
+
 		simPanel.repaint();
+
+		appendConsoleText("\nFirst Fit Decreasing klaar");
+
 		firstFitDescAlgo = null;
+
 		while ((System.nanoTime() - stop_time) < (3000 * 1e6)) {
 
 		}
+
 		start_time = System.nanoTime();
+		appendConsoleText("\nStarten Brute Force");
+		
 		bruteForceAlgo.start();
+		
 		while ((System.nanoTime() - start_time) < (5000 * 1e6)) {
 
 		}
-		bruteForceAlgo.stop();
-		BruteForceCallback();
+		
+		if (bruteForceAlgo != null) {
+			bruteForceAlgo.stop();
+		}
 	}
 
 	public void BruteForceCallback() {
 		boxList = bruteForceAlgo.getResult();
 		lblDozenBF.setText("Dozen: " + boxList.size());
+		
 		stop_time = System.nanoTime();
 		double diffTime = (stop_time - start_time) / 1e6;
+		
 		lbltijdBF.setText(Math.round(diffTime) + " ms");
+		
 		simPanel.repaint();
+		
+		appendConsoleText("\nBrute Force klaar");
+		
 		bruteForceAlgo = null;
+
+		appendConsoleText("\nSimulatie voltooid");
+	}
+
+	public void appendConsoleText(String text) {
+		textArea.append(text);
+		textArea.setCaretPosition(textArea.getDocument().getLength());
 	}
 
 	@Override
@@ -252,18 +286,22 @@ public class MainGUI extends JFrame implements ActionListener {
 			int response = fc.showOpenDialog(this);
 			if (response == JFileChooser.APPROVE_OPTION) {
 				Bestelling order = new ParseXML(fc.getSelectedFile().getAbsolutePath()).getBestelling();
-				int[] ids = new int[order.getProductList().toArray().length];
-				int i = 0;
-				for (Product p : order.getProductList()) {
-					ids[i] = p.getProductId();
-					i++;
-				}
-				picklist = new PickList(ids);
+				picklist = new PickList(order.getProductList());
+				appendConsoleText("\nXml pakbon successvol geladen");
 			}
 		}
 
 		if (e.getSource() == btnStartSimulatie) {
-			console = "\nSimulatie aan het starten..";
+
+			if (picklist.getProducts().size() == 0) {
+				appendConsoleText("\nLaad eerst een xml pakbon voor je de simulatie start");
+				return;
+			}
+
+			lbltijdFF.setText("*wachten*");
+			lbltijdFFD.setText("*wachten*");
+			lbltijdBF.setText("*wachten*");
+			appendConsoleText("\nSimulatie aan het starten..");
 			if (firstFitAlgo == null) {
 				firstFitAlgo = new BPPFirstFit(picklist, 4, 4, 4);
 				firstFitAlgo.setOnDoneListner(this);
@@ -281,27 +319,17 @@ public class MainGUI extends JFrame implements ActionListener {
 				bruteForceAlgo.setOnDoneListner(this);
 			}
 
-			lbltijdFF.setText("*wachten*");
-			lbltijdFFD.setText("*wachten*");
-			lbltijdBF.setText("*wachten*");
-
-			textArea.append(console);
-			textArea.setCaretPosition(textArea.getDocument().getLength());
-
-		} else if (e.getSource() == btnPauzeerSimulatie) {
-			console = "\nSimulatie aan het pauzeren..";
-			firstFitAlgo.pauze();
-			firstFitDescAlgo.pauze();
-			bruteForceAlgo.pauze();
-			textArea.append(console);
-			textArea.setCaretPosition(textArea.getDocument().getLength());
 		} else if (e.getSource() == btnAnnuleerSimulatie) {
+			new MainGUI().textArea.setText(textArea.getText());
+			this.setVisible(false);
+
 			console = "\nSimulatie aan het annuleren..";
-			firstFitAlgo.stop();
-			firstFitDescAlgo.stop();
-			bruteForceAlgo.stop();
-			textArea.append(console);
-			textArea.setCaretPosition(textArea.getDocument().getLength());
+			if (firstFitAlgo != null)
+				firstFitAlgo.stop();
+			if (firstFitDescAlgo != null)
+				firstFitDescAlgo.stop();
+			if (bruteForceAlgo != null)
+				bruteForceAlgo.stop();
 		}
 	}
 }

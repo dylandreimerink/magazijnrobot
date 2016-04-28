@@ -59,14 +59,15 @@ public class BPPBruteForce implements BPPAlgorithm, Runnable {
 	}
 
 	public void permutations(ArrayList<Product> items, Stack<Product> permutation, int size) {
-
+		
+		if(stop){
+			return;
+		}
+		
 		if (permutation.size() == size) {
 
 			ArrayList<Product> boxlist = new ArrayList<Product>();
 			for (Product p : permutation.toArray(new Product[0])) {
-				while (waiting) {
-
-				}
 				double usedSpace = 0;
 
 				for (Product pp : boxlist) {
@@ -90,9 +91,6 @@ public class BPPBruteForce implements BPPAlgorithm, Runnable {
 			usedBoxes = new ArrayList<Box>();
 		}
 
-		if(stop){
-			return;
-		}
 		
 		/* items available for permutation */
 		Product[] availableItems = items.toArray(new Product[0]);
