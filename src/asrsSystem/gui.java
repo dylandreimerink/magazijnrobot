@@ -47,7 +47,6 @@ public class gui extends JFrame implements ActionListener {
 	
 	ChooseOrder chooser = new ChooseOrder();
 	Console console = new Console();
-	Pakbon pakbon = new Pakbon();
 	JPanel container = new JPanel();
 	private JLabel lblOrderinfoselecteerEenOrder;
 	private Component horizontalStrut;
@@ -186,12 +185,7 @@ public class gui extends JFrame implements ActionListener {
 		
 		horizontalStrut = Box.createHorizontalStrut(300);
 		container.add(horizontalStrut, "cell 0 5 2 1,growy");
-        
-        setVisible(true);
-		
-        
-
-        panel_5.add(pakbon.panel());
+                
         setVisible(true);
              
 

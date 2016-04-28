@@ -16,7 +16,7 @@ public class ChooseOrder {
 	
 	public void ChooseFile() {
 		Console console = new Console();
-		Pakbon pakbon = new Pakbon();
+	
 		
 		
 		
