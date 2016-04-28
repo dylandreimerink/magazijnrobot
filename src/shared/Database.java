@@ -107,8 +107,16 @@ public class Database implements Runnable {
 		}
 	}
 
-	public void delete() throws Exception {
-
+	public void delete(int id){
+		try{
+			connect();
+			preparedStatement = connect.prepareStatement("DELETE FROM product WHERE productId = ?");
+			preparedStatement.setInt(1, id);			
+			preparedStatement.executeUpdate();			
+		}
+		catch(Exception e){
+			System.out.println(e);
+		}
 	}
 	
 	public void Create_Product(String naam, int hoogte, int lengte , int breedte, int x, int y){
