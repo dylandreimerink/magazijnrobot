@@ -1,7 +1,7 @@
 package shared;
 
 /*
- * Authors: Jan Willem Alejandro Casteleijn (ICTM2a)
+ * Authors: Jan Willem Casteleijn & Richard Mastenbroek (ICTM2a)
  */
 
 import java.sql.*;
@@ -89,11 +89,34 @@ public class Database implements Runnable {
 		preparedStatement.executeUpdate();
 	}
 
-	public void update(String naam, int hoogte, int lengte, int breedte, int x, int y){
+	public void update(int Id,String naam, int hoogte, int lengte, int breedte, int x, int y){
+		try{
+			connect();
+			preparedStatement = connect.prepareStatement("UPDATE product SET productNaam = ?, pHoogte = ?, pLengte = ?, pBreedte = ?, locatieX = ?, locatieY = ? WHERE productId = ?");
+			preparedStatement.setString(1, naam);
+			preparedStatement.setInt(2, hoogte);
+			preparedStatement.setInt(3, lengte);
+			preparedStatement.setInt(4, breedte);
+			preparedStatement.setInt(5, x);
+			preparedStatement.setInt(6, y);
+			preparedStatement.setInt(7, Id);
+			preparedStatement.executeUpdate();			
+		}
+		catch(Exception e){
+			System.out.println(e);
+		}
 	}
 
-	public void delete() throws Exception {
-
+	public void delete(int id){
+		try{
+			connect();
+			preparedStatement = connect.prepareStatement("DELETE FROM product WHERE productId = ?");
+			preparedStatement.setInt(1, id);			
+			preparedStatement.executeUpdate();			
+		}
+		catch(Exception e){
+			System.out.println(e);
+		}
 	}
 	
 	public void Create_Product(String naam, int hoogte, int lengte , int breedte, int x, int y){
