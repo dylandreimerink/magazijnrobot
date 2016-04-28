@@ -20,8 +20,8 @@ import shared.Resultaat;
 public class DrawPanel extends JPanel {
 
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	private int HEIGHT = (int) (screenSize.getWidth()/4) - 50;
-	private int WIDTH = (int) (screenSize.getWidth()/4) - 50;
+	private int HEIGHT = (int) (screenSize.getWidth() / 4) - 50;
+	private int WIDTH = (int) (screenSize.getWidth() / 4) - 50;
 	private String algoname;
 	private Resultaat resultaat;
 	private int x;
@@ -85,7 +85,6 @@ public class DrawPanel extends JPanel {
 		g2.setStroke(new BasicStroke(3));
 		g.setColor(Color.blue);
 		g.drawLine(beginX, beginY, eindX, eindY);
-
 	}
 
 	public void updateResultaat(Resultaat resultaat) {

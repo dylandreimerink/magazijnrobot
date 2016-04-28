@@ -21,6 +21,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.JTextArea;
 
+import asrsSystem.Console;
 import shared.Database;
 
 public class MainGUI extends JFrame implements ActionListener {
@@ -102,7 +103,9 @@ public class MainGUI extends JFrame implements ActionListener {
 		bruteForceResult.add(bruteForceDistance);
 		nearestNeighbourhahResult.add(nearestNeighbourhahDistance);
 		nearestNeighbourResult.add(nearestNeighbourDistance);
-
+		
+		
+		Console c1 = new Console();
 		add(new JLabel(""));
 	}
 

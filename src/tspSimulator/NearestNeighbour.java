@@ -17,13 +17,13 @@ public class NearestNeighbour implements Algorithm, Comparator<Location> {
 
 		this.name = name;
 		this.picklist = picklist;
-		resultaat = new Resultaat(picklist, 0 , this.getAfstand(picklist));
+		resultaat = new Resultaat(picklist, 0);
 		panel = new DrawPanel(name, resultaat);
 	}
 
 	public void updateResultaat(ArrayList<Location> picklist) {
 		this.picklist = picklist;
-		resultaat = new Resultaat(picklist, 0, this.getAfstand(picklist));
+		resultaat = new Resultaat(picklist, 0);
 		panel.updateResultaat(resultaat);
 	}
 
@@ -80,8 +80,7 @@ public class NearestNeighbour implements Algorithm, Comparator<Location> {
 			System.out.println("x: " + newArrayList.get(i).getLocationX() + "y: " + newArrayList.get(i).getLocationY());
 		}
 		this.picklist = newArrayList;
-		resultaat = new Resultaat(newArrayList, 0, this.getAfstand(newArrayList));
-		System.out.println(this.getAfstand(newArrayList));
+		resultaat = new Resultaat(newArrayList, 0);
 		panel.updateResultaat(resultaat);
 
 	}
@@ -95,22 +94,6 @@ public class NearestNeighbour implements Algorithm, Comparator<Location> {
 	public String getAlgorithmName() {
 		// TODO Auto-generated method stub
 		return name;
-	}
-	
-	private double getAfstand(ArrayList<Location> p1){
-		Location previousLocation = null;
-		double totaleAfstand = 0;
-		for (int i = 0; i < p1.size(); i++) {
-			double afstand = 0;
-			if(previousLocation == null){
-				previousLocation = p1.get(i);
-			} else {
-				 afstand = calculateDistance(previousLocation, p1.get(i));
-			}
-			previousLocation = p1.get(i);
-			totaleAfstand += afstand;
-		}
-		return totaleAfstand;
 	}
 
 	public DrawPanel getPanel() {

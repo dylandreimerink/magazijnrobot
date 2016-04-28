@@ -21,13 +21,13 @@ public class BruteForce implements Algorithm {
 	public BruteForce(String name, ArrayList<Location> picklist) {
 		this.name = name;
 		this.picklist = picklist;
-		resultaat = new Resultaat(picklist, 0, this.getAfstand());
+		resultaat = new Resultaat(picklist, 0);
 		
 		panel = new DrawPanel(name, resultaat);
 	}
 	
 	public void updateResultaat(ArrayList<Location> picklist){
-		resultaat = new Resultaat(picklist, 0, this.getAfstand());
+		resultaat = new Resultaat(picklist, 0);
 		panel.updateResultaat(resultaat);
 	}
 	
@@ -37,9 +37,6 @@ public class BruteForce implements Algorithm {
 	
 	}
 	
-	private double getAfstand(){
-		return 0;
-	}
 	
 	@Override
 	public Resultaat getResultaat() {

@@ -15,34 +15,26 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-/**
- * Authors: Jan Willem en Henri Class: ICTM2A
- * 
- */
-
-
-
 public class Bestelling {
 	private Klant klant;
 	private ArrayList<Product> productList;
 	private int ordernummer;
 
-
 	public Bestelling(Klant klant, int ordernummer) {
 		productList = new ArrayList();
 		this.klant = klant;
 		this.ordernummer = ordernummer;
-		
+
 	}
-	
-	public Klant getKlant(){
+
+	public Klant getKlant() {
 		return klant;
 	}
-	
+
 	public int getOrdernr() {
 		return ordernummer;
 	}
-	
+
 	public void addProduct(Product product) {
 		productList.add(product);
 	}
@@ -53,11 +45,11 @@ public class Bestelling {
 
 	public void printPakbon() {
 		System.out.println("####################### PAKLIJST #######################");
-		System.out.println(
-				"Aan: " + klant.getVoorNaam() + klant.getAchterNaam() + ", " + klant.getAdres() + ", " + klant.getPostcode() + klant.getPlaats());
+		System.out.println("Aan: " + klant.getVoorNaam() + klant.getAchterNaam() + ", " + klant.getAdres() + ", "
+				+ klant.getPostcode() + klant.getPlaats());
 		System.out.println("Inhoud doos:");
 		for (Product product : productList) {
-		    System.out.println(product.getProductName());
+			System.out.println(product.getProductName());
 		}
 	}
 }
