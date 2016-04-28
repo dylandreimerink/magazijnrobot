@@ -41,6 +41,7 @@ public class Edit_Product extends JDialog implements ActionListener{
 	
 	private String [] producten;
 	private int productlengte;
+	private int productId;
 	private JComboBox product;
 	
 	public Edit_Product() {
@@ -165,17 +166,18 @@ public class Edit_Product extends JDialog implements ActionListener{
 
 	public void actionPerformed(ActionEvent e) {
         if (e.getSource() == product) {
+        	
         	JComboBox jcmbType = (JComboBox) e.getSource();
         	String cmbType = (String) jcmbType.getSelectedItem();
 //        	System.out.println(cmbType);
         	db.Edit_Product(cmbType);
         	
         	ArrayList<String> info = db.Edit_Product(cmbType);
-        	
-//        	String Productnaam = info.get(0);
-//        	naam.setText(Productnaam);
+        	productId = Integer.parseInt(info.get(6));
         	
         	for(int i=0; i<info.size(); i++){
+        		
+//        		System.out.println(info.get(i));
         		
         		String Productinformatie = info.get(i);
         		
@@ -198,6 +200,9 @@ public class Edit_Product extends JDialog implements ActionListener{
         			TextField_Y.setText(Productinformatie);
         		}
         	}
+        }
+        if(e.getSource() == btnApply){
+        	
         }
 	}
 }

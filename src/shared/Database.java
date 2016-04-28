@@ -89,8 +89,7 @@ public class Database implements Runnable {
 		preparedStatement.executeUpdate();
 	}
 
-	public void update() throws Exception {
-
+	public void update(String naam, int hoogte, int lengte, int breedte, int x, int y){
 	}
 
 	public void delete() throws Exception {
@@ -100,7 +99,7 @@ public class Database implements Runnable {
 	public void Create_Product(String naam, int hoogte, int lengte , int breedte, int x, int y){
 		try{
 			connect();
-			preparedStatement = connect.prepareStatement("INSERT INTO product (productNaam, pLengte, pBreedte, pHoogte, productPlaatsX, productPlaatsY, voorraad) VALUES ('"+naam+"', '"+lengte+"', '"+breedte+"', '"+hoogte+"', '"+x+"', '"+y+"', 2)");
+			preparedStatement = connect.prepareStatement("INSERT INTO product (productNaam, pLengte, pBreedte, pHoogte, locatieX, locatieY, voorraad) VALUES ('"+naam+"', '"+lengte+"', '"+breedte+"', '"+hoogte+"', '"+x+"', '"+y+"', 2)");
 			preparedStatement.executeUpdate();
 		}
 		catch(Exception e){
@@ -137,8 +136,9 @@ public class Database implements Runnable {
 			ProductInformatie.add(rs.getString("pBreedte"));
 			ProductInformatie.add(rs.getString("pHoogte"));
 			ProductInformatie.add(rs.getString("pLengte"));
-			ProductInformatie.add(rs.getString("productPlaatsX"));
-			ProductInformatie.add(rs.getString("productPlaatsY"));			
+			ProductInformatie.add(rs.getString("locatieX"));
+			ProductInformatie.add(rs.getString("locatieY"));
+			ProductInformatie.add(rs.getString("productId"));
 			}
 		}
 		catch(Exception e){
