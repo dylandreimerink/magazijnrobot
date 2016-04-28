@@ -34,11 +34,15 @@ public class Create_Product extends JDialog implements ActionListener{
 	private JButton btnApply;
 	
 	private Database db;
+//	Benodigde knoppen voor de layout.	
 	
 	public Create_Product() {
 				
 		db = new Database();
-        setTitle("Create");		
+        setTitle("Create");
+        
+//	Database is nodig voor het aanmaken van producten.
+        
 		getContentPane().setLayout(null);
 		getContentPane().setLayout(null);
 		
@@ -50,6 +54,8 @@ public class Create_Product extends JDialog implements ActionListener{
 		Create_Naam.setBounds(80, 10, 116, 22);
 		getContentPane().add(Create_Naam);
 		Create_Naam.setColumns(10);
+
+//	Het invullen voor het productnaam.		
 		
 		lblDimensie = new JLabel("Dimensie:");
 		lblDimensie.setBounds(12, 42, 75, 16);
@@ -60,6 +66,7 @@ public class Create_Product extends JDialog implements ActionListener{
 		txtHoogte.setBounds(80, 39, 82, 22);
 		getContentPane().add(txtHoogte);
 		txtHoogte.setColumns(10);
+		
 		
 		lblCm1 = new JLabel("cm");
 		lblCm1.setBounds(174, 42, 56, 16);
@@ -85,6 +92,8 @@ public class Create_Product extends JDialog implements ActionListener{
 		lblCm3.setBounds(174, 104, 56, 16);
 		getContentPane().add(lblCm3);
 		
+//	Invullen hoogte, lengte & breedte.		
+		
 		lblPositie = new JLabel("Positie:");
 		lblPositie.setBounds(12, 136, 75, 16);
 		getContentPane().add(lblPositie);
@@ -107,6 +116,8 @@ public class Create_Product extends JDialog implements ActionListener{
 		textField_Y.setBounds(99, 165, 63, 22);
 		getContentPane().add(textField_Y);
 		
+//	Invullen X & Y as.		
+		
 		btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(12, 194, 85, 25);
 		getContentPane().add(btnCancel);
@@ -117,36 +128,53 @@ public class Create_Product extends JDialog implements ActionListener{
 
         btnCancel.addActionListener(this);
         btnApply.addActionListener(this);		
-		
+
+//	Knoppen Cancel & Apply toevoegen.        
+        
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);   
         pack();
 		this.setSize(new Dimension(400,300));
 		this.setResizable(false);
-        this.setVisible(true);
+        this.setVisible(true);        
         
 	}
 
 	public void actionPerformed(ActionEvent e) {
 	
         if (e.getSource() == btnApply) {
+        	
+//	De volgende acties gebeuren wanneer er op de knop Apply is gedrukt.        	
+        	
         	String naam = Create_Naam.getText();
+        	
+//	De naam van het product wordt opgehaald.        	
+        	
         	try{
         	int hoogte = Integer.parseInt(txtHoogte.getText());
         	int lengte = Integer.parseInt(txtLengte.getText());
         	int breedte = Integer.parseInt(txtBreedte.getText());
         	int x = Integer.parseInt(textField_X.getText());
         	int y = Integer.parseInt(textField_Y.getText());
+        	
+//	Haalt de gegevens van de TextFields en maakt er Int variabelen van.        	
+        	
         	db.Create_Product(naam, hoogte, lengte, breedte, x, y);
+     
+//	Het product wordt aangemaakt in de database klasse.        	
+        	
         	JOptionPane.showMessageDialog(null, "Product is saved");        	
         	}
         	catch(NumberFormatException ne){
         		System.out.println("Dimensie & positie moeten getallen zijn");
         	}
         	
+//	Nadat het gelukt is komt er een melding "Product is saved of een foutmelding als het niet werkt."        	
+        	
         }
         if (e.getSource() == btnCancel) {
+        	this.setVisible(false);
         }
-		
+//	Als er op Cancel wordt gedrukt wordt het scherm verborgen.		
 	}
 
 }

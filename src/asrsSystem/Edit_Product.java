@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import shared.Database;
@@ -40,6 +41,7 @@ public class Edit_Product extends JDialog implements ActionListener{
 	private Database db;
 	
 	private String [] producten;
+	private String productnaam;
 	private int productlengte;
 	private int productId;
 	private JComboBox product;
@@ -147,15 +149,16 @@ public class Edit_Product extends JDialog implements ActionListener{
 		btnApply.setBounds(133, 202, 68, 25);
 		getContentPane().add(btnApply);
 		
-		button = new JButton("New button");
-		button.setBounds(0, 0, 0, 0);
-		getContentPane().add(button);
+//		button = new JButton("New button");
+//		button.setBounds(0, 0, 0, 0);
+//		getContentPane().add(button);
 		
 		btnDelete = new JButton("Delete");
 		btnDelete.setBounds(228, 202, 75, 25);
 		getContentPane().add(btnDelete);
 
 		product.addActionListener(this);
+		btnApply.addActionListener(this);
 		
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);   
         pack();
@@ -202,7 +205,19 @@ public class Edit_Product extends JDialog implements ActionListener{
         	}
         }
         if(e.getSource() == btnApply){
-        	
+        	productnaam = naam.getText();
+        	try{
+        	int hoogte = Integer.parseInt(txtHoogte.getText());
+        	int lengte = Integer.parseInt(txtLengte.getText());
+        	int breedte = Integer.parseInt(txtBreedte.getText());
+        	int x = Integer.parseInt(TextField_X.getText());
+        	int y = Integer.parseInt(TextField_Y.getText());
+        	db.update(productId, productnaam, hoogte, lengte, breedte, x, y);
+        	JOptionPane.showMessageDialog(null, "Product is saved");        	
+        	}
+        	catch(NumberFormatException ne){
+        		System.out.println("Het werkt nog niet");
+        	}        	
         }
 	}
 }
