@@ -12,7 +12,6 @@ public class ChooseOrder {
 	
 	private String path;
 	private ArrayList<shared.Product> productlist;
-	public static boolean selected = false;
 	ParseXML order;
 	
 	public void ChooseFile() {
@@ -35,7 +34,7 @@ public class ChooseOrder {
 	      this.productlist = order.getProductList();
 	      System.out.println(productlist);
 	      console.printLine("parsing compleet! geselecteerde producten:" + productlist);
-	      selected = true;
+	      
 	      
 	      
 	    } else {
@@ -45,9 +44,7 @@ public class ChooseOrder {
 	    
 	}
 	
-	public static boolean returnSelected() {
-		return selected;
-	}
+
 	
 	public String getKlantInfo() {
 		return ""+order.getBestelling().getKlant().getVoorNaam()+" "+order.getBestelling().getKlant().getAchterNaam();
