@@ -1,3 +1,7 @@
+/*
+ * Authors: Richard Mastenbroek (ICTM2a)
+ */
+
 package asrsSystem;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
