@@ -44,6 +44,8 @@ public class Edit_Product extends JDialog implements ActionListener{
 	private String productnaam;
 	private int productId;
 	private JComboBox product;
+	
+	Console console = new Console();
 
 //	Voegt de benodigde buttons toe om het scherm te kunnen maken.	
 	
@@ -62,7 +64,7 @@ public class Edit_Product extends JDialog implements ActionListener{
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("failed to connect productarray to array in db");
+			console.printLine("database error: productenlijst kon niet opgehaalt worden");
 		}
 
 //	Haalt alle productnamen op van de database	
@@ -237,23 +239,25 @@ public class Edit_Product extends JDialog implements ActionListener{
         	
         	db.update(productId, productnaam, hoogte, lengte, breedte, x, y);
         	
-// Update de productinformatie in de database klasse.        	
+// Update de productinformatie in de database klasse.   
         	
-        	JOptionPane.showMessageDialog(null, "Product is saved");        	
+        	console.printLine("Product "+productnaam+" is succesvol opgeslagen");
+        	JOptionPane.showMessageDialog(null, "Product is opgeslagen");        	
         	}
         	catch(NumberFormatException ne){
-        		System.out.println("Het werkt nog niet");
+        		console.printLine("dimensies en locaties moeten getallen zijn!");
         	}
 //	Wanneer het gelukt is krijgt de gebruiker een saved melding en anders een foutmelding.        	
         }
         if (e.getSource() == btnCancel) {        	
 //	Wanneer er op de knop Cancel wordt gedrukt wordt onderstaande uitgevoerd.    
         	
-        	this.setVisible(false);        	
+        	dispose();        	
         }
         if (e.getSource() == btnDelete){
         	db.delete(productId);
-        	JOptionPane.showMessageDialog(null, "Product is deleted");        	
+        	console.printLine("Product met productId "+productId+" is succesvol verwijderd!");
+        	JOptionPane.showMessageDialog(null, "Product is verwijderd");        	
         }
 	}
 }

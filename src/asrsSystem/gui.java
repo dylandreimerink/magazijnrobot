@@ -98,16 +98,13 @@ public class gui extends JFrame implements ActionListener {
 		mntmBewerkArtikel = new JMenuItem("Bewerk artikel");
 		mntmBewerkArtikel.addActionListener(this);
 		mnBestand.add(mntmBewerkArtikel);
-		
-		mntmDeleteArtikel = new JMenuItem("Delete artikel");
-		mntmDeleteArtikel.addActionListener(this);
-		mnBestand.add(mntmDeleteArtikel);
+		mntmBewerkArtikel.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, InputEvent.CTRL_MASK));
 		
 		// bewerk artikel NOT DONE
 		mntmVoegToe = new JMenuItem("Voeg artikel toe");
 		mntmVoegToe.addActionListener(this);
 		mnBestand.add(mntmVoegToe);
-		
+		mntmVoegToe.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, InputEvent.CTRL_MASK));
 
 
         

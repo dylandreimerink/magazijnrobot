@@ -163,9 +163,9 @@ public class Create_Product extends JDialog implements ActionListener{
         	db.Create_Product(naam, hoogte, lengte, breedte, x, y);
      
 //	Het product wordt aangemaakt in de database klasse.        	
-        	
-        	JOptionPane.showMessageDialog(null, "Product is saved"); 
         	console.printLine("product "+naam+" is opgeslagen in de database met de volgende waarden: hoogte: "+hoogte+", lengte: "+lengte+", breedte: "+breedte+", X: "+x+", Y: "+y+"" );
+        	JOptionPane.showMessageDialog(null, "Product is saved"); 
+        	
         	}
         	catch(NumberFormatException ne){
         		console.printLine("Dimensie & positie moeten getallen zijn");
