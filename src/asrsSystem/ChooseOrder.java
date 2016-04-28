@@ -30,6 +30,8 @@ public class ChooseOrder {
 	      this.path = selectedFile.getAbsolutePath();
 	      console.printLine("xml bestand geselecteerd. path: "+path);
 	      console.printLine("parsing xml file...");
+	      // vanuit creatie ParseXML object word hele product-database ophaal koppeling afgewerkt.
+	      // vanaf hier kan je productlist ophalen met order.getProductList(); of met de getter in deze klasse
 	      order = new ParseXML(path);
 	      this.productlist = order.getProductList();
 	      System.out.println(productlist);

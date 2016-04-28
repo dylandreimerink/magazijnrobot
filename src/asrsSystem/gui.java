@@ -51,6 +51,9 @@ public class gui extends JFrame implements ActionListener {
 	JPanel container = new JPanel();
 	private JLabel lblOrderinfoselecteerEenOrder;
 	private Component horizontalStrut;
+	
+	
+	// creërt gui componenten
 	private void addComponents() {
 
 		Console console = new Console();
@@ -169,7 +172,8 @@ public class gui extends JFrame implements ActionListener {
         panel_5.setLayout(new MigLayout("", "[]", "[]"));
         container.setBorder(null);
         
-
+        
+        //rechterzijde van gui, het info paneel
         panel_5.add(container);
         
 		container.setLayout(new MigLayout("", "[10px][]", "[][10px][][][][][][][][]"));
@@ -202,6 +206,7 @@ public class gui extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == mntmOpenOrder) {
 			
+			//aanroepen choosefile, tekst weergave op Jlabels aanpassen aan opgehaalde informatie
 			chooser.ChooseFile();
 			String ordernr = chooser.getOrderNr();
 			orderNr.setText("Ordernummer: "+ordernr);

@@ -18,7 +18,8 @@ public class Console  {
 	private static int counter = 1;
 	
 	public Console() {
- 
+		// in iedere nieuwe klasse waar consoleinfo gepritn kan worden moet deze constructor worden aangeroepen.
+		// vervolgens kan je overal printen door objectnaam.printLine("String") te gebruiken
 	}
     public JPanel console() {
     	textAreaC = new JTextArea(7, 7);
