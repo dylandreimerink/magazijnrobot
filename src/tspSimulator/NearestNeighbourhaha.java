@@ -43,6 +43,7 @@ public class NearestNeighbourhaha implements Algorithm {
 
 		// repeat until no improvement is made
 		int improve = 0;
+		System.out.println("Improvements: " + improve);
 
 		while (improve < 20) {
 			double best_distance = getAfstand(picklist);
