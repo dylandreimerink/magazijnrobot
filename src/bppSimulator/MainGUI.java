@@ -7,6 +7,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 
 import java.awt.BorderLayout;
 import javax.swing.JButton;
@@ -40,16 +41,26 @@ public class MainGUI extends JFrame implements ActionListener {
 
 	private Dimension buttonsize;
 	private JMenuItem mntmOpenPakbon;
-	private SimulatiePanel simPanel;
+	private SimulatiePanel simPanelFF;
+	private SimulatiePanel simPanelFFD;
+	private SimulatiePanel simPanelBF;
+	
 	private BPPFirstFit firstFitAlgo;
 	private BPPFirstFitDescending firstFitDescAlgo;
 	private BPPBruteForce bruteForceAlgo;
+	
+	int FFTime = 0, FFDTime = 0, BFTime = 0;
+	int FFDozen = 0, FFDDozen = 0, BFDozen = 0;
 
 	long start_time;
 	long stop_time;
 
 	PickList picklist = new PickList();
-	public ArrayList<Box> boxList;
+	
+	public ArrayList<Box> boxListFF;
+	public ArrayList<Box> boxListFFD;
+	public ArrayList<Box> boxListBF;
+	
 	public String console;
 	JButton btnStartSimulatie;
 	JButton btnPauzeerSimulatie;
@@ -61,6 +72,7 @@ public class MainGUI extends JFrame implements ActionListener {
 	JLabel lblDozenFF;
 	JLabel lblDozenFFD;
 	JLabel lblDozenBF;
+	JLabel lblGekozenAlgoritme;
 
 	JTextArea textArea;
 	public int score1;
@@ -73,7 +85,9 @@ public class MainGUI extends JFrame implements ActionListener {
 		setSize(960, 1032);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		boxList = new ArrayList<Box>();
+		boxListFF = new ArrayList<Box>();
+		boxListFFD = new ArrayList<Box>();
+		boxListBF = new ArrayList<Box>();
 
 		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
@@ -115,7 +129,7 @@ public class MainGUI extends JFrame implements ActionListener {
 		btnStartSimulatie.addActionListener(this);
 		leftPanel.add(btnStartSimulatie);
 
-		btnAnnuleerSimulatie = new JButton("Annuleer simulatie");
+		btnAnnuleerSimulatie = new JButton("Herstart simulatie");
 		btnAnnuleerSimulatie.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		btnAnnuleerSimulatie.setMaximumSize(buttonsize);
 		btnAnnuleerSimulatie.addActionListener(this);
@@ -131,7 +145,7 @@ public class MainGUI extends JFrame implements ActionListener {
 		lbltijdFF = new JLabel("*tijd*");
 		dataPanel.add(lbltijdFF);
 
-		JLabel lblAlgoritme_1 = new JLabel("First Fit Descending: ");
+		JLabel lblAlgoritme_1 = new JLabel("First Fit Decreasing: ");
 		dataPanel.add(lblAlgoritme_1);
 
 		lbltijdFFD = new JLabel("*tijd*");
@@ -146,8 +160,8 @@ public class MainGUI extends JFrame implements ActionListener {
 		JLabel lblGekozen = new JLabel("Gekozen");
 		dataPanel.add(lblGekozen);
 
-		JLabel lblAlgoritme_3 = new JLabel("algoritme");
-		dataPanel.add(lblAlgoritme_3);
+		lblGekozenAlgoritme = new JLabel("algoritme");
+		dataPanel.add(lblGekozenAlgoritme);
 
 		JLabel lblEinddata = new JLabel("Einddata:");
 		dataPanel.add(lblEinddata);
@@ -177,10 +191,27 @@ public class MainGUI extends JFrame implements ActionListener {
 		panel.add(panel_3, BorderLayout.CENTER);
 		panel_3.setLayout(new BoxLayout(panel_3, BoxLayout.Y_AXIS));
 
-		simPanel = new SimulatiePanel(this);
-		simPanel.setSize(new Dimension(0, 200));
-		simPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel_3.add(simPanel);
+		JTabbedPane tabbedPane = new JTabbedPane();
+		
+		simPanelFF = new SimulatiePanel();
+		simPanelFF.setSize(new Dimension(0, 200));
+		simPanelFF.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		tabbedPane.add("First Fit", simPanelFF);
+		
+		simPanelFFD = new SimulatiePanel();
+		simPanelFFD.setSize(new Dimension(0, 200));
+		simPanelFFD.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		tabbedPane.add("First Fit Decreasing", simPanelFFD);
+		
+		simPanelBF = new SimulatiePanel();
+		simPanelBF.setSize(new Dimension(0, 200));
+		simPanelBF.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		tabbedPane.add("Brute Force", simPanelBF);
+		
+		panel_3.add(tabbedPane);
 
 		textArea = new JTextArea();
 
@@ -201,77 +232,80 @@ public class MainGUI extends JFrame implements ActionListener {
 	public void FirstFitCallback() {
 		appendConsoleText("\nStarten First Fit");
 		
-		boxList = firstFitAlgo.getResult();
-		lblDozenFF.setText("Dozen: " + boxList.size());
+		boxListFF = firstFitAlgo.getResult();
+		lblDozenFF.setText("Dozen: " + boxListFF.size());
+		FFDozen = boxListFF.size();
 		
 		stop_time = System.nanoTime();
 		double diffTime = (stop_time - start_time) / 1e6;
 		
 		lbltijdFF.setText(Math.round(diffTime) + " ms");
-		simPanel.repaint();
+		FFTime = (int)Math.round(diffTime);
+		
+		simPanelFF.setBoxList(boxListFF);
+		simPanelFF.repaint();
 		
 		appendConsoleText("\nFirst Fit klaar");
 		
 		firstFitAlgo = null;
-		
-		while ((System.nanoTime() - stop_time) < (3000 * 1e6)) {
-
-		}
-		
-		start_time = System.nanoTime();
-		firstFitDescAlgo.start();
 	}
 
 	public void FirstFitDescCallback() {
 		appendConsoleText("\nStarten First Fit Decreasing");
 
-		boxList = firstFitDescAlgo.getResult();
-		lblDozenFFD.setText("Dozen: " + boxList.size());
-
+		boxListFFD = firstFitDescAlgo.getResult();
+		lblDozenFFD.setText("Dozen: " + boxListFFD.size());
+		FFDDozen = boxListFFD.size();
+		
 		stop_time = System.nanoTime();
 		double diffTime = (stop_time - start_time) / 1e6;
 
 		lbltijdFFD.setText(Math.round(diffTime) + " ms");
+		FFDTime = (int) Math.round(diffTime);
 
-		simPanel.repaint();
+		simPanelFFD.setBoxList(boxListFFD);
+		simPanelFFD.repaint();
 
 		appendConsoleText("\nFirst Fit Decreasing klaar");
 
-		firstFitDescAlgo = null;
+		firstFitDescAlgo = null;		
 
-		while ((System.nanoTime() - stop_time) < (3000 * 1e6)) {
-
-		}
-
-		start_time = System.nanoTime();
-		appendConsoleText("\nStarten Brute Force");
-		
-		bruteForceAlgo.start();
-		
-		while ((System.nanoTime() - start_time) < (5000 * 1e6)) {
-
-		}
-		
-		if (bruteForceAlgo != null) {
-			bruteForceAlgo.stop();
-		}
 	}
 
 	public void BruteForceCallback() {
-		boxList = bruteForceAlgo.getResult();
-		lblDozenBF.setText("Dozen: " + boxList.size());
+		boxListBF = bruteForceAlgo.getResult();
+		lblDozenBF.setText("Dozen: " + boxListBF.size());
+		BFDozen = boxListBF.size();
 		
 		stop_time = System.nanoTime();
 		double diffTime = (stop_time - start_time) / 1e6;
 		
 		lbltijdBF.setText(Math.round(diffTime) + " ms");
+		BFTime = (int) Math.round(diffTime);
 		
-		simPanel.repaint();
+		simPanelBF.setBoxList(boxListBF);
+		simPanelBF.repaint();
 		
 		appendConsoleText("\nBrute Force klaar");
 		
 		bruteForceAlgo = null;
 
+		if(FFDozen < FFDDozen && FFDozen < BFDozen){
+			lblGekozenAlgoritme.setText("First Fit");
+		}else if(FFDDozen < FFDozen && FFDDozen < BFDozen){
+			lblGekozenAlgoritme.setText("First Fit Decreasing");
+		}else if(BFDozen < FFDDozen && BFDozen < FFDozen){
+			System.out.println("BF: " + BFDozen + ", FF: " + FFDDozen + ", FFD: " + FFDDozen);
+			lblGekozenAlgoritme.setText("Brute Force");
+		}else{
+			if(FFTime < FFDTime && FFTime < BFTime){
+				lblGekozenAlgoritme.setText("First Fit");
+			}else if(FFDTime < FFTime && FFDTime < BFTime){
+				lblGekozenAlgoritme.setText("First Fit Decreasing");
+			}else{
+				lblGekozenAlgoritme.setText("Brute Force");
+			}
+		}
 		appendConsoleText("\nSimulatie voltooid");
 	}
 
@@ -297,17 +331,16 @@ public class MainGUI extends JFrame implements ActionListener {
 				appendConsoleText("\nLaad eerst een xml pakbon voor je de simulatie start");
 				return;
 			}
-
+			
 			lbltijdFF.setText("*wachten*");
 			lbltijdFFD.setText("*wachten*");
 			lbltijdBF.setText("*wachten*");
 			appendConsoleText("\nSimulatie aan het starten..");
+			
 			if (firstFitAlgo == null) {
 				firstFitAlgo = new BPPFirstFit(picklist, 4, 4, 4);
 				firstFitAlgo.setOnDoneListner(this);
-			}
-			start_time = System.nanoTime();
-			firstFitAlgo.start();
+			}	
 
 			if (firstFitDescAlgo == null) {
 				firstFitDescAlgo = new BPPFirstFitDescending(picklist, 4, 4, 4);
@@ -317,6 +350,19 @@ public class MainGUI extends JFrame implements ActionListener {
 			if (bruteForceAlgo == null) {
 				bruteForceAlgo = new BPPBruteForce(picklist, 4, 4, 4);
 				bruteForceAlgo.setOnDoneListner(this);
+			}
+			
+			start_time = System.nanoTime();
+			firstFitAlgo.start();
+			firstFitDescAlgo.start();
+			bruteForceAlgo.start();
+			
+			while ((System.nanoTime() - start_time) < (5000 * 1e6)) {
+
+			}
+			
+			if (bruteForceAlgo != null) {
+				bruteForceAlgo.stop();
 			}
 
 		} else if (e.getSource() == btnAnnuleerSimulatie) {

@@ -6,7 +6,7 @@ import shared.Product;
 public class BPPFirstFit implements BPPAlgorithm, Runnable {
 
 	protected ArrayList<Box> usedBoxes = new ArrayList<Box>();
-	protected ArrayList<Product> products;
+	protected ArrayList<Product> products = new ArrayList<Product>();
 	protected Thread t = new Thread(this);
 
 	protected boolean waiting = false;
@@ -17,7 +17,9 @@ public class BPPFirstFit implements BPPAlgorithm, Runnable {
 	MainGUI onComplete;
 
 	public BPPFirstFit(PickList picklist, int boxWidth, int boxHeight, int boxLength) {
-		products = picklist.getProducts();
+		for(Product p : picklist.getProducts().toArray(new Product[0])){
+			products.add(p);
+		}
 		boxUnits = new boolean[boxWidth][boxHeight][boxLength];
 	}
 
@@ -54,7 +56,8 @@ public class BPPFirstFit implements BPPAlgorithm, Runnable {
 
 	@Override
 	public void run() {
-		System.out.println(products);
+		//System.out.print("First Fit: ");
+		//System.out.println(products);
 		ArrayList<Product> boxlist = new ArrayList<Product>();
 		for (Product p : products) {
 			while (waiting) {

@@ -9,6 +9,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -19,18 +20,22 @@ import shared.Product;
 
 public class SimulatiePanel extends JPanel {
 
-	MainGUI parent;
+	ArrayList<Box> boxlist;
 
 	Dimension productDimensions = new Dimension(50, 50);
 	Dimension boxDimentions = new Dimension(50, 50);
 	Dimension productTextOffset = new Dimension(-10, 0);
 
-	public SimulatiePanel(MainGUI parant) {
+	public SimulatiePanel() {
 		super();
-		this.parent = parant;
-
+		boxlist = new ArrayList<Box>();
+		
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		setVisible(true);
+	}
+	
+	public void setBoxList(ArrayList<Box> boxlist){
+		this.boxlist = boxlist;
 	}
 
 	public Dimension getPreferredSize() {
@@ -61,7 +66,7 @@ public class SimulatiePanel extends JPanel {
 
 		g.setFont(font);
 
-		for (Box b : parent.boxList) {
+		for (Box b : boxlist) {
 			double boxCapacity = b.getBreedte() * b.getHoogte() * b.getLengte();
 			totalEfficiency = 100;
 
