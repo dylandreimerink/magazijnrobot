@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MainGUI extends JFrame implements ActionListener {
+	
+	private TSPController controller;
 
 	private JButton nieuwePicklist;
 	private JButton testAlgorithm;
@@ -22,19 +24,25 @@ public class MainGUI extends JFrame implements ActionListener {
 	private JLabel nearestNeighbourhahDistance;
 	private JLabel nearestNeighbourDistance;
 
-	public MainGUI() {
+	public MainGUI(DrawPanel drawpanel1, DrawPanel drawpanel2, DrawPanel drawpanel3, TSPController controller) {
+		this.controller = controller;
 		setTitle("TSP Simulator");
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		addComponents();
+		addComponents(drawpanel1,drawpanel2,drawpanel3);
 
 		setVisible(true);
 	}
 
-	private void addComponents() {
+	private void addComponents(DrawPanel drawpanel1, DrawPanel drawpanel2, DrawPanel drawpanel3) {
 		setLayout(new GridLayout(2, 4, 0, 0));
-
+		
+		add(drawpanel1);
+		add(drawpanel2);
+		add(drawpanel3);
+		
+		
 		JPanel knoppenPanel = new JPanel();
 		add(knoppenPanel);
 		knoppenPanel.setLayout(new GridLayout(4, 1, 0, 0));
@@ -62,13 +70,13 @@ public class MainGUI extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == nieuwePicklist) {
-
-			repaint();
+			controller.generateNewPicklist();
+			
 		}
 		if (e.getSource() == testAlgorithm) {
 
-			repaint();
 		}
+		repaint();
 	}
 
 }
