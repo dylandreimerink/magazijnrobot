@@ -10,7 +10,14 @@ import tspSimulator.Location;
  */
 
 public interface Algorithm {
+	
 
 	public void calculateRoute();
+	
+	public Resultaat getResultaat();
+	
+	public String getAlgorithmName();
+	
+	public DrawPanel getPanel();
 	
 }

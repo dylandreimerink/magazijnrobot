@@ -1,5 +1,9 @@
 package tspSimulatorv2;
 
-public class NearestNeighbour {
+import java.util.ArrayList;
 
+public class NearestNeighbour {
+	public NearestNeighbour(ArrayList<Location> picklist) {
+
+	}
 }

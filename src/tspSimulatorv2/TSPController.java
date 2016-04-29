@@ -6,7 +6,7 @@ public class TSPController {
 	private Bruteforce bruteforce;
 	private TwoOpt twoopt;
 	private NearestNeighbour nearestneighbour;
-	private MainGUI maingGui;
+	private MainGUI mainGui;
 
 	public TSPController() {
 		/*
@@ -16,16 +16,18 @@ public class TSPController {
 		/*
 		 * Generate new Algorithms
 		 */
-		bruteforce = new Bruteforce();
-		twoopt = new TwoOpt();
-		nearestneighbour = new NearestNeighbour();
+		bruteforce = new Bruteforce(picklist.getListOne());
+		twoopt = new TwoOpt(picklist.getListTwo());
+		nearestneighbour = new NearestNeighbour(picklist.getListThree());
 		
-		maingGui = new MainGUI();
+		mainGui = new MainGUI();
+		
 		
 		
 		
 		
 	}
+	
 	/*
 	 * Resultaat ophalen en doorsturen naar drawpanel
 	 */

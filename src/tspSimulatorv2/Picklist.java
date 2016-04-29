@@ -2,7 +2,6 @@ package tspSimulatorv2;
 
 import java.util.ArrayList;
 
-import tspSimulator.Location;
 
 public class Picklist {
 

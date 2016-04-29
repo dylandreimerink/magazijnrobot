@@ -11,5 +11,7 @@ import shared.Route;
  * Authors: Jan Willem en Henri Class: ICTM2A
  */
 public class TwoOpt {
+	public TwoOpt(ArrayList<Location> picklist) {
 
+	}
 }

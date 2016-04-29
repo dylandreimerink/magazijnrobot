@@ -1,5 +1,10 @@
 package tspSimulatorv2;
 
-public class Bruteforce {
+import java.util.ArrayList;
 
+public class Bruteforce {
+	
+	public Bruteforce(ArrayList<Location> picklist){
+		
+	}
 }
