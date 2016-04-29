@@ -52,8 +52,11 @@ public class BruteForce implements Algorithm {
 	private void permutations(ArrayList<Location> items, Stack<Location> permutation, int size) {
 
 		if (permutation.size() == size) {
+			
 			ArrayList<Location> tempList = new ArrayList<Location>(permutation);
-			if (getAfstand(shortestPicklist) > getAfstand(tempList)) {
+			
+			Location check = new Location(0,0);
+			if (getAfstand(shortestPicklist) > getAfstand(tempList) && check.equals(tempList.get(0))) {
 				this.shortestPicklist = tempList;
 
 			}

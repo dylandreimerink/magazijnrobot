@@ -113,22 +113,22 @@ public class MainGUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == nieuwePicklist) {
 			this.picklist.generateNewPicklist();
-			// System.out.println(this.picklist.toString());
+			System.out.println(this.picklist.toString());
 			bf.updateResultaat(this.picklist.getListOne());
-			// ff.updateResultaat(this.picklist.getListTwo());
+			ff.updateResultaat(this.picklist.getListTwo());
 			ffd.updateResultaat(this.picklist.getListThree());
 			bruteForceDistance.setText("Afstand: " + Double.toString(bf.getResultaat().getDistance()));
-		 //	nearestNeighbourhahDistance.setText("Afstand: " + Double.toString(ff.getResultaat().getDistance()));
+		 	nearestNeighbourhahDistance.setText("Afstand: " + Double.toString(ff.getResultaat().getDistance()));
 			nearestNeighbourDistance.setText("Afstand: " + Double.toString(ffd.getResultaat().getDistance()));
 			repaint();
 		}
 		if (e.getSource() == testAlgorithm) {
 			bf.calculateRoute();
-			// ff moet nog
+			//ff.calculateRoute();
 			ffd.calculateRoute();
 			
 			bruteForceDistance.setText("Afstand: " + Double.toString(bf.getResultaat().getDistance()));
-			// nearestNeighbourhahDistance.setText("Afstand: " + Double.toString(ff.getResultaat().getDistance()));
+			nearestNeighbourhahDistance.setText("Afstand: " + Double.toString(ff.getResultaat().getDistance()));
 			nearestNeighbourDistance.setText("Afstand: " + Double.toString(ffd.getResultaat().getDistance()));
 			repaint();
 		}
