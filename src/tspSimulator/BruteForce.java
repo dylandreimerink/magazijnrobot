@@ -30,7 +30,7 @@ public class BruteForce implements Algorithm {
 
 		panel = new DrawPanel(name, resultaat);
 		shortestPicklist = new ArrayList<Location>();
-		for (Location l : picklist.toArray(new Location[0])) {
+		for (Location l : picklist.toArray(new Location[0])) { 
 			shortestPicklist.add(l);
 		}
 	}

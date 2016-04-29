@@ -81,4 +81,8 @@ public class DrawPanel extends JPanel {
 		g.setColor(Color.blue);
 		g.drawLine(beginX, beginY, eindX, eindY);
 	}
+
+	public void setResultaat(Result resultaat) {
+		this.resultaat = resultaat;
+	}
 }

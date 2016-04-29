@@ -70,11 +70,10 @@ public class MainGUI extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == nieuwePicklist) {
-			controller.generateNewPicklist();
-			
+			controller.generateNewPicklist();	
 		}
 		if (e.getSource() == testAlgorithm) {
-
+			controller.testAlgorithm();
 		}
 		repaint();
 	}

@@ -59,6 +59,26 @@ public class Result {
 		return time;
 	}
 
+	public double getTime() {
+		return time;
+	}
+
+	public void setTime(double time) {
+		this.time = time;
+	}
+
+	public double getAfstand() {
+		return afstand;
+	}
+
+	public void setAfstand(double afstand) {
+		this.afstand = afstand;
+	}
+
+	public void setResult(ArrayList<Location> result) {
+		this.result = result;
+	}
+
 	public double getDistance() {
 		return afstand;
 	}
