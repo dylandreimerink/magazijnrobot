@@ -108,6 +108,7 @@ public class BPPBruteForce implements BPPAlgorithm, Runnable {
 			items.add(permutation.pop());
 		}
 	}
+	
 
 	private void checkBoxes(ArrayList<Box> used) {
 
