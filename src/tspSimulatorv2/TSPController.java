@@ -78,7 +78,7 @@ public class TSPController {
 		//nearestneighbour.calculateRoute();
 		bruteforceResults = bruteforce.calculateRoute(picklist.getListOne());
 		//twooptDrawResults.setResult(picklist.getListTwo());
-		//nearestneighbourResults.setResult(picklist.getListThree());
+		nearestneighbourResults =  nearestneighbour.calculateRoute(picklist.getListThree());
 		
 		bruteforceDrawPanel.setResultaat(bruteforceResults);
 		twooptDrawPanel.setResultaat(twooptDrawResults);
