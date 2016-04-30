@@ -35,8 +35,12 @@ public class NearestNeighbour implements Algorithm {
 
 	@Override
 	public Result calculateRoute(ArrayList<Location> picklist) {
-		ArrayList<Location> p1 = picklist;
-	
+		ArrayList<Location> p1 = new ArrayList<Location>();
+		
+		for (Location l : picklist.toArray(new Location[0])) {
+			p1.add(l);
+		}
+		
 		// Collections.sort(p1, this);
 		ArrayList<Location> newArrayList = new ArrayList<Location>();
 		newArrayList.add(p1.get(0));
