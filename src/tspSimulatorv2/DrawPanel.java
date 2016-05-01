@@ -55,7 +55,7 @@ public class DrawPanel extends JPanel {
 			drawProduct(g, location.getLocationX(), location.getLocationY(), afstandX, afstandY, "Product " + x);
 			x++;
 		}
-		g.drawString(algoname, 0, HEIGHT);
+		g.drawString(algoname + "           afstand: " +resultaat.getAfstand() + "           tijd: " + resultaat.getTime(), 0, HEIGHT);
 	}
 
 	private void drawProduct(Graphics g, int x, int y, int afstandX, int afstandY, String product) {

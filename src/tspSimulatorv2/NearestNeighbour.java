@@ -21,7 +21,7 @@ public class NearestNeighbour implements Algorithm {
 	}
 
 	public Location findNearest(ArrayList<Location> picklist, Location p) {
-		System.out.println("Locatie p:" + p.getLocationX() + " " + p.getLocationY());
+		//System.out.println("Locatie p:" + p.getLocationX() + " " + p.getLocationY());
 		Location nearest = null;
 		double distance = 999999999;
 		for (Location s : picklist) {
@@ -52,14 +52,14 @@ public class NearestNeighbour implements Algorithm {
 			p1.remove(neareast);
 			q++;
 		}
-		System.out.println("Oude array:");
-		for (int i = 0; i < p1.size(); i++) {
-			System.out.println("x: " + p1.get(i).getLocationX() + "y: " + p1.get(i).getLocationY());
-		}
-		System.out.println("Nieuwe array:");
-		for (int i = 0; i < newArrayList.size(); i++) {
-			System.out.println("x: " + newArrayList.get(i).getLocationX() + "y: " + newArrayList.get(i).getLocationY());
-		}
+//		System.out.println("Oude array:");
+//		for (int i = 0; i < p1.size(); i++) {
+//			System.out.println("x: " + p1.get(i).getLocationX() + "y: " + p1.get(i).getLocationY());
+//		}
+//		System.out.println("Nieuwe array:");
+//		for (int i = 0; i < newArrayList.size(); i++) {
+//			System.out.println("x: " + newArrayList.get(i).getLocationX() + "y: " + newArrayList.get(i).getLocationY());
+//		}
 		picklist = newArrayList;
 		Result resultaat = new Result(newArrayList, 0);
 		return resultaat;

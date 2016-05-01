@@ -55,10 +55,6 @@ public class Result {
 		return result;
 	}
 
-	public double getTijd() {
-		return time;
-	}
-
 	public double getTime() {
 		return time;
 	}

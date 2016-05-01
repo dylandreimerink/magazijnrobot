@@ -73,11 +73,8 @@ public class TSPController {
 	
 	
 	public void testAlgorithm(){
-		//picklist.generateNewPicklist();
-		//twoopt.calculateRoute();
-		//nearestneighbour.calculateRoute();
-		bruteforceResults = bruteforce.calculateRoute(picklist.getListOne());
-		//twooptDrawResults.setResult(picklist.getListTwo());
+		//bruteforceResults = bruteforce.calculateRoute(picklist.getListOne());
+		twooptDrawResults = twoopt.calculateRoute(picklist.getListTwo());
 		nearestneighbourResults =  nearestneighbour.calculateRoute(picklist.getListThree());
 		bruteforceDrawPanel.setResultaat(bruteforceResults);
 		twooptDrawPanel.setResultaat(twooptDrawResults);
