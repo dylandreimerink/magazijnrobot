@@ -6,38 +6,31 @@ import java.util.ArrayList;
  * Authors: Jan Willem en Henri Class: ICTM2A
  */
 public class TwoOpt implements Algorithm {
-	
-	private ArrayList<Location> picklist;
-	private ArrayList<Location> newArrayList;
-	
-	@Override
-	public Result calculateRoute(ArrayList<Location> picklist1) {
-		
-		this.picklist = picklist1;
-		this.newArrayList = new ArrayList<Location>();
 
-		for (Location l : picklist.toArray(new Location[0])) {
-			newArrayList.add(l);
-		}
+	@Override
+	public Result calculateRoute(ArrayList<Location> tour) {
 
 		// Get tour size
-		int size = picklist.size();
+		int size = tour.size();
 
 		// repeat until no improvement is made
 		int improve = 0;
 
 		while (improve < 20) {
-			double best_distance = getAfstand(this.picklist);
+			double best_distance = getAfstand(tour);
 
 			for (int i = 0; i < size - 1; i++) {
 				for (int k = i + 1; k < size; k++) {
-					TwoOptSwap( i, k);
+					ArrayList<Location> new_tour;
+					new_tour = twoOptSwap(tour, i, k);
 
-					double new_distance = getAfstand(this.newArrayList);
-					if (new_distance < best_distance) {
+					double new_distance = getAfstand(new_tour);
+					Location check = new Location(0, 0);
+					
+					if (new_distance < best_distance  && check.equals(new_tour.get(0))) {
 						// Improvement found so reset
 						improve = 0;
-						this.picklist = this.newArrayList;
+						tour = new_tour;
 						best_distance = new_distance;
 						System.out.println(best_distance);
 					}
@@ -45,34 +38,37 @@ public class TwoOpt implements Algorithm {
 			}
 
 			improve++;
-
 		}
 
-		Result resultaat = new Result(picklist, 0);
+		Result resultaat = new Result(tour, 0);
 		return resultaat;
 	}
 
-	private void TwoOptSwap(int i, int k) {
-		double size = picklist.size();
+	private ArrayList<Location> twoOptSwap(ArrayList<Location> tour, int i, int k) {
 
-		// 1. take route[0] to route[i-1] and add them in order to new_route
+		ArrayList<Location> new_tour = new ArrayList<Location>();
+
+		int size = tour.size();
 		for (int c = 0; c <= i - 1; ++c) {
-			this.newArrayList.set(c, this.picklist.get(c));
+			new_tour.add(tour.get(c));
 		}
 
 		// 2. take route[i] to route[k] and add them in reverse order to
 		// new_route
 		int dec = 0;
 		for (int c = i; c <= k; ++c) {
-			this.newArrayList.set(c, this.picklist.get(k - dec));
+			// new_tour.SetCity( c, tour.GetCity( k - dec ) );
+			new_tour.add(tour.get(k - dec));
 			dec++;
 		}
 
 		// 3. take route[k+1] to end and add them in order to new_route
 		for (int c = k + 1; c < size; ++c) {
-			newArrayList.set(c, this.picklist.get(c));
+			// new_tour.SetCity( c, tour.GetCity( c ) );
+			new_tour.add(tour.get(c));
 		}
 
+		return new_tour;
 	}
 
 	private double calculateDistance(Location locatieA, Location locatieB) {
