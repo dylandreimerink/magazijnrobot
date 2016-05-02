@@ -11,6 +11,7 @@ public class Picklist {
 	private ArrayList<Location> list1;
 	private ArrayList<Location> list2;
 	private ArrayList<Location> list3;
+	private ArrayList<Location> list4;
 
 	public Picklist() {
 		generateNewPicklist();
@@ -20,11 +21,13 @@ public class Picklist {
 		list1 = new ArrayList<Location>();
 		list2 = new ArrayList<Location>();
 		list3 = new ArrayList<Location>();
-		int aantalProducten = (int) randomWithRange(9, 9);
+		list4 = new ArrayList<Location>();
+		int aantalProducten = (int) randomWithRange(9, 12);
 		Location produc1t = new Location(0, 0);
 		list1.add(produc1t);
 		list2.add(produc1t);
 		list3.add(produc1t);
+		list4.add(produc1t);
 		for (int z = 0; z < aantalProducten; z++) {
 			int x = randomWithRange(0, breedte - 1);
 			int y = randomWithRange(0, hoogte - 1);
@@ -42,6 +45,7 @@ public class Picklist {
 				list1.add(product);
 				list2.add(product);
 				list3.add(product);
+				list4.add(product);
 			}
 		}
 	}
@@ -56,6 +60,10 @@ public class Picklist {
 
 	public ArrayList<Location> getListThree() {
 		return list3;
+	}
+	
+	public ArrayList<Location> getListFour() {
+		return list4;
 	}
 
 	private int randomWithRange(int min, int max) {

@@ -16,7 +16,7 @@ public class TwoOpt implements Algorithm {
 		// repeat until no improvement is made
 		int improve = 0;
 
-		while (improve < 20) {
+		while (improve < 500) {
 			double best_distance = getAfstand(tour);
 
 			for (int i = 0; i < size - 1; i++) {
