@@ -38,7 +38,8 @@ public class TSPController {
 		/*
 		 * Generate new Algorithms
 		 */
-		bruteforce = new Bruteforce();
+		
+		(bruteforce = new Bruteforce()).start();
 		twoopt = new TwoOpt();
 		nearestneighbour = new NearestNeighbour();
 		nearestneighbourandtwoopt = new NearestNeighbourAndTwoOpt();
@@ -63,7 +64,8 @@ public class TSPController {
 		/*
 		 * Create MainGUI
 		 */
-		mainGui = new MainGUI(bruteforceDrawPanel, twooptDrawPanel, nearestneighbourDrawPanel, nearestneighbourandtwooptDrawPanel, this);
+		mainGui = new MainGUI(bruteforceDrawPanel, twooptDrawPanel, nearestneighbourDrawPanel,
+				nearestneighbourandtwooptDrawPanel, this);
 	}
 
 	public void generateNewPicklist() {
@@ -72,7 +74,7 @@ public class TSPController {
 		twooptDrawResults.setResult(picklist.getListTwo());
 		nearestneighbourResults.setResult(picklist.getListThree());
 		nearestneighbourandtwooptResult.setResult(picklist.getListFour());
-		
+
 		bruteforceDrawPanel.setResultaat(bruteforceResults);
 		twooptDrawPanel.setResultaat(twooptDrawResults);
 		nearestneighbourDrawPanel.setResultaat(nearestneighbourResults);
@@ -80,11 +82,15 @@ public class TSPController {
 	}
 
 	public void testAlgorithm() {
+
 		bruteforceResults = bruteforce.calculateRoute(picklist.getListOne());
 		twooptDrawResults = twoopt.calculateRoute(picklist.getListOne());
+		//new Thread(twoopt).start();
 		nearestneighbourResults = nearestneighbour.calculateRoute(picklist.getListOne());
+		//new Thread(nearestneighbour).start();
 		nearestneighbourandtwooptResult = nearestneighbourandtwoopt.calculateRoute(picklist.getListOne());
-		
+		//new Thread(nearestneighbourandtwoopt).start();
+
 		bruteforceDrawPanel.setResultaat(bruteforceResults);
 		twooptDrawPanel.setResultaat(twooptDrawResults);
 		nearestneighbourDrawPanel.setResultaat(nearestneighbourResults);
