@@ -32,7 +32,7 @@ public class Result {
 			previousLocation = p1.get(i);
 			totaleAfstand += afstand;
 		}
-		return Math.round(totaleAfstand * 100.0) / 100.0;
+		return Math.round(totaleAfstand * 100) / 100;
 	}
 
 	private double calculateDistance(Location locatieA, Location locatieB) {

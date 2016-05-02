@@ -16,7 +16,7 @@ public class TwoOpt implements Algorithm {
 		// repeat until no improvement is made
 		int improve = 0;
 
-		while (improve < 500) {
+		while (improve < 100) {
 			double best_distance = getAfstand(tour);
 
 			for (int i = 0; i < size - 1; i++) {
@@ -26,7 +26,7 @@ public class TwoOpt implements Algorithm {
 
 					double new_distance = getAfstand(new_tour);
 					Location check = new Location(0, 0);
-					
+					System.out.println(improve);
 					if (new_distance < best_distance  && check.equals(new_tour.get(0))) {
 						// Improvement found so reset
 						improve = 0;
@@ -100,7 +100,7 @@ public class TwoOpt implements Algorithm {
 			previousLocation = p1.get(i);
 			totaleAfstand += afstand;
 		}
-		return Math.round(totaleAfstand * 100.0) / 100.0;
+		return totaleAfstand;
 	}
 
 	public Location findNearest(ArrayList<Location> picklist, Location p) {

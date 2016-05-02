@@ -5,30 +5,17 @@ import java.util.ArrayList;
 /**
  * Authors: Jan Willem en Henri Class: ICTM2A
  */
-public class NearestNeighbourAndTwoOpt implements Algorithm {
+public class NearestNeighbourAndTwoOpt extends NearestNeighbour implements Algorithm {
 
 	@Override
 	public Result calculateRoute(ArrayList<Location> tour) {
+		Result nearestNeighbour = super.calculateRoute(tour);
 
-		ArrayList<Location> p1 = new ArrayList<Location>();
+		tour = new ArrayList<Location>();
 
-		for (Location l : tour.toArray(new Location[0])) {
-			p1.add(l);
+		for (Location l : nearestNeighbour.getResult().toArray(new Location[0])) {
+			tour.add(l);
 		}
-
-		// Collections.sort(p1, this);
-		ArrayList<Location> newArrayList = new ArrayList<Location>();
-		newArrayList.add(p1.get(0));
-		p1.remove(0);
-		int q = 0;
-		while (!p1.isEmpty()) {
-			Location neareast = findNearest(p1, newArrayList.get(q));
-			newArrayList.add(neareast);
-			p1.remove(neareast);
-			q++;
-		}
-		
-		tour = newArrayList;
 
 		// Get tour size
 		int size = tour.size();
@@ -61,7 +48,11 @@ public class NearestNeighbourAndTwoOpt implements Algorithm {
 		}
 
 		Result resultaat = new Result(tour, 0);
-		return resultaat;
+		if (resultaat.getAfstand() > nearestNeighbour.getAfstand()) {
+			return nearestNeighbour;
+		} else {
+			return resultaat;
+		}
 	}
 
 	private ArrayList<Location> twoOptSwap(ArrayList<Location> tour, int i, int k) {
@@ -120,7 +111,7 @@ public class NearestNeighbourAndTwoOpt implements Algorithm {
 			previousLocation = p1.get(i);
 			totaleAfstand += afstand;
 		}
-		return Math.round(totaleAfstand * 100.0) / 100.0;
+		return totaleAfstand;
 	}
 
 	public Location findNearest(ArrayList<Location> picklist, Location p) {
