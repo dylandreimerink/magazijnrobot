@@ -39,7 +39,7 @@ public class TSPController {
 		 * Generate new Algorithms
 		 */
 		
-		(bruteforce = new Bruteforce()).start();
+		bruteforce = new Bruteforce();
 		twoopt = new TwoOpt();
 		nearestneighbour = new NearestNeighbour();
 		nearestneighbourandtwoopt = new NearestNeighbourAndTwoOpt();
