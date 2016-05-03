@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-
-
 public class DrawPanel extends JPanel {
+
+	private boolean showRaster;
 
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private int HEIGHT = (int) (screenSize.getWidth() / 4) - 50;
@@ -22,24 +22,30 @@ public class DrawPanel extends JPanel {
 	private int x;
 	private int y;
 
-	public DrawPanel(String algoname, Result resultaat) {
+	public DrawPanel(String algoname, Result resultaat, int hoogte, int breedte, boolean showRaster) {
 		this.algoname = algoname;
 		this.resultaat = resultaat;
+		this.x = breedte;
+		this.y = hoogte;
+		
+		this.showRaster = showRaster;
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		this.x = 10;
-		this.y = 10;
+		// this.x = 10;
+		// this.y = 10;
 		int afstandX = WIDTH / x;
 		int afstandY = HEIGHT / y;
 
-		for (int j = 0; j <= HEIGHT; j += afstandX) {
-			g.drawLine(j, 0, j, HEIGHT);
-		}
-		for (int j = 0; j <= WIDTH; j += afstandY) {
-			g.drawLine(0, j, WIDTH, j);
+		if(showRaster){
+			for (int j = 0; j <= HEIGHT; j += afstandX) {
+				g.drawLine(j, 0, j, HEIGHT);
+			}
+			for (int j = 0; j <= WIDTH; j += afstandY) {
+				g.drawLine(0, j, WIDTH, j);
+			}
 		}
 
 		Location prevLocation = null;
@@ -55,18 +61,20 @@ public class DrawPanel extends JPanel {
 			drawProduct(g, location.getLocationX(), location.getLocationY(), afstandX, afstandY, "Product " + x);
 			x++;
 		}
-		g.drawString(algoname + "           afstand: " +resultaat.getAfstand() + "           tijd: " + resultaat.getTime(), 0, HEIGHT);
+		g.drawString(
+				algoname + "           afstand: " + resultaat.getAfstand() + "           tijd: " + resultaat.getTime(),
+				0, HEIGHT);
 	}
 
 	private void drawProduct(Graphics g, int x, int y, int afstandX, int afstandY, String product) {
 		x = afstandX * x;
 		y = afstandY * y;
-		double middleX = (afstandX / 2) - 7.5 + x;
-		double middleY = (afstandY / 2) - 7.5 + y;
+		double middleX = (afstandX / 2) - 6 + x;
+		double middleY = (afstandY / 2) - 6 + y;
 		int middleXInt = (int) middleX;
 		int middleYInt = (int) middleY;
 		g.setColor(Color.black);
-		g.fillOval(middleXInt, middleYInt, 15, 15);
+		g.fillOval(middleXInt, middleYInt, 12, 12);
 		g.setColor(Color.red);
 		g.drawString(product, middleXInt + 15, middleYInt + 5);
 	}

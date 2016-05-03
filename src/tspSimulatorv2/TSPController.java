@@ -3,6 +3,15 @@ package tspSimulatorv2;
 import java.util.ArrayList;
 
 public class TSPController {
+	/*
+	 * Dimensions
+	 */
+	private final int HEIGHT = 10;
+	private final int WIDTH = 10;
+	private final int MAXPRODUCTS = 9;
+	private final int MINPRODUCTS = 9;
+	private final boolean SHOWRASTER = true;
+
 	private Picklist picklist;
 
 	/*
@@ -34,11 +43,11 @@ public class TSPController {
 		/*
 		 * Init picklist
 		 */
-		picklist = new Picklist();
+		picklist = new Picklist(MAXPRODUCTS, MINPRODUCTS, HEIGHT, WIDTH);
 		/*
 		 * Generate new Algorithms
 		 */
-		
+
 		bruteforce = new Bruteforce();
 		twoopt = new TwoOpt();
 		nearestneighbour = new NearestNeighbour();
@@ -47,19 +56,20 @@ public class TSPController {
 		/*
 		 * Generate temporately Result
 		 */
-		bruteforceResults = new Result(picklist.getListOne(), 0);
-		twooptDrawResults = new Result(picklist.getListTwo(), 0);
-		nearestneighbourResults = new Result(picklist.getListThree(), 0);
-		nearestneighbourandtwooptResult = new Result(picklist.getListFour(), 0);
+		bruteforceResults = new Result(picklist.getPicklist(), 0);
+		twooptDrawResults = new Result(picklist.getPicklist(), 0);
+		nearestneighbourResults = new Result(picklist.getPicklist(), 0);
+		nearestneighbourandtwooptResult = new Result(picklist.getPicklist(), 0);
 
 		/*
 		 * Generate new DrawPanels
 		 */
-		bruteforceDrawPanel = new DrawPanel("Bruteforce", bruteforceResults);
-		twooptDrawPanel = new DrawPanel("TwoOpt", twooptDrawResults);
-		nearestneighbourDrawPanel = new DrawPanel("NearestNeighbour", nearestneighbourResults);
-		nearestneighbourandtwooptDrawPanel = new DrawPanel("NearestNeighbour + TwoOpt",
-				nearestneighbourandtwooptResult);
+		bruteforceDrawPanel = new DrawPanel("Bruteforce", bruteforceResults, HEIGHT, WIDTH, SHOWRASTER);
+		twooptDrawPanel = new DrawPanel("TwoOpt", twooptDrawResults, HEIGHT, WIDTH, SHOWRASTER);
+		nearestneighbourDrawPanel = new DrawPanel("NearestNeighbour", nearestneighbourResults, HEIGHT, WIDTH,
+				SHOWRASTER);
+		nearestneighbourandtwooptDrawPanel = new DrawPanel("NearestNeighbour + TwoOpt", nearestneighbourandtwooptResult,
+				HEIGHT, WIDTH, SHOWRASTER);
 
 		/*
 		 * Create MainGUI
@@ -70,10 +80,10 @@ public class TSPController {
 
 	public void generateNewPicklist() {
 		picklist.generateNewPicklist();
-		bruteforceResults.setResult(picklist.getListOne());
-		twooptDrawResults.setResult(picklist.getListTwo());
-		nearestneighbourResults.setResult(picklist.getListThree());
-		nearestneighbourandtwooptResult.setResult(picklist.getListFour());
+		bruteforceResults.setResult(picklist.getPicklist());
+		twooptDrawResults.setResult(picklist.getPicklist());
+		nearestneighbourResults.setResult(picklist.getPicklist());
+		nearestneighbourandtwooptResult.setResult(picklist.getPicklist());
 
 		bruteforceDrawPanel.setResultaat(bruteforceResults);
 		twooptDrawPanel.setResultaat(twooptDrawResults);
@@ -83,13 +93,13 @@ public class TSPController {
 
 	public void testAlgorithm() {
 
-		//bruteforceResults = bruteforce.calculateRoute(picklist.getListOne());
-		twooptDrawResults = twoopt.calculateRoute(picklist.getListOne());
-		//new Thread(twoopt).start();
-		nearestneighbourResults = nearestneighbour.calculateRoute(picklist.getListOne());
-		//new Thread(nearestneighbour).start();
-		nearestneighbourandtwooptResult = nearestneighbourandtwoopt.calculateRoute(picklist.getListOne());
-		//new Thread(nearestneighbourandtwoopt).start();
+		bruteforceResults = bruteforce.calculateRoute(picklist.getPicklist());
+		twooptDrawResults = twoopt.calculateRoute(picklist.getPicklist());
+		// new Thread(twoopt).start();
+		nearestneighbourResults = nearestneighbour.calculateRoute(picklist.getPicklist());
+		// new Thread(nearestneighbour).start();
+		nearestneighbourandtwooptResult = nearestneighbourandtwoopt.calculateRoute(picklist.getPicklist());
+		// new Thread(nearestneighbourandtwoopt).start();
 
 		bruteforceDrawPanel.setResultaat(bruteforceResults);
 		twooptDrawPanel.setResultaat(twooptDrawResults);
