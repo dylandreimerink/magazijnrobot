@@ -34,8 +34,6 @@ public class DrawPanel extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		// this.x = 10;
-		// this.y = 10;
 		int afstandX = WIDTH / x;
 		int afstandY = HEIGHT / y;
 
@@ -67,14 +65,15 @@ public class DrawPanel extends JPanel {
 	}
 
 	private void drawProduct(Graphics g, int x, int y, int afstandX, int afstandY, String product) {
+		int breedteStip = (int) (screenSize.getWidth() / afstandX) / 4;
 		x = afstandX * x;
 		y = afstandY * y;
-		double middleX = (afstandX / 2) - 6 + x;
-		double middleY = (afstandY / 2) - 6 + y;
+		double middleX = (afstandX / 2) - breedteStip/2 + x;
+		double middleY = (afstandY / 2) - breedteStip/2 + y;
 		int middleXInt = (int) middleX;
 		int middleYInt = (int) middleY;
 		g.setColor(Color.black);
-		g.fillOval(middleXInt, middleYInt, 12, 12);
+		g.fillOval(middleXInt, middleYInt, breedteStip, breedteStip);
 		g.setColor(Color.red);
 		g.drawString(product, middleXInt + 15, middleYInt + 5);
 	}
