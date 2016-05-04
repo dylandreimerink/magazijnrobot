@@ -75,7 +75,7 @@ public class DrawPanel extends JPanel {
 		g.setColor(Color.black);
 		g.fillOval(middleXInt, middleYInt, breedteStip, breedteStip);
 		g.setColor(Color.red);
-		g.drawString(product, middleXInt + 15, middleYInt + 5);
+		g.drawString(product, middleXInt + 15, middleYInt);
 	}
 
 	private void drawRoute(Graphics g, int beginX, int beginY, int eindX, int eindY, int afstandX, int afstandY) {
