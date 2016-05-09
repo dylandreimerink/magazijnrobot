@@ -36,6 +36,9 @@ public class TSPController {
 	private Result twooptResults;
 	private Result nearestneighbourResults;
 	private Result nearestneighbourandtwooptResult;
+	
+	long start_time;
+	long stop_time;
 
 	private MainGUI mainGui;
 
@@ -94,6 +97,8 @@ public class TSPController {
 
 	public void testAlgorithm() {
 		
+		start_time = System.nanoTime();
+		
 		bruteforce.setOnDoneListner(this);
 		bruteforce.start(picklist.getListOne());
 		
@@ -102,7 +107,6 @@ public class TSPController {
 		
 		nearestneighbour.setOnDoneListner(this);
 		nearestneighbour.start(picklist.getListThree());
-		
 		
 		nearestneighbourandtwoopt.setOnDoneListner(this);
 		nearestneighbourandtwoopt.start(picklist.getListThree());
@@ -120,26 +124,42 @@ public class TSPController {
 	
 	
 	public void BruteForceCallback() {
+		stop_time = System.nanoTime();
+		double diffTime = (stop_time - start_time) / 1e6;
+		
 		bruteforceResults = bruteforce.getResult();
+		bruteforceResults.setTime(Math.round(diffTime));
 		bruteforceDrawPanel.setResultaat(bruteforceResults);
 		mainGui.repaint();
 	}
 	
 	public void TwoOptCallback() {
+		stop_time = System.nanoTime();
+		double diffTime = (stop_time - start_time) / 1e6;
+		
 		twooptResults = twoopt.getResult();
+		twooptResults.setTime(Math.round(diffTime));
 		twooptDrawPanel.setResultaat(twooptResults);
 		mainGui.repaint();
 	}
 	
 	public void nearestNeighbourCallback() {
+		stop_time = System.nanoTime();
+		double diffTime = (stop_time - start_time) / 1e6;
+		
 		nearestneighbourResults = nearestneighbour.getResult();
+		nearestneighbourResults.setTime(Math.round(diffTime));
 		nearestneighbourDrawPanel.setResultaat(nearestneighbourResults);
 		mainGui.repaint();
 	}
 	
 	
 	public void nearestNeighbourAndTwoOptCallback() {
+		stop_time = System.nanoTime();
+		double diffTime = (stop_time - start_time) / 1e6;
+		
 		nearestneighbourandtwooptResult = nearestneighbourandtwoopt.getResult();
+		nearestneighbourandtwooptResult.setTime(Math.round(diffTime));
 		nearestneighbourandtwooptDrawPanel.setResultaat(nearestneighbourResults);
 		mainGui.repaint();
 	}
