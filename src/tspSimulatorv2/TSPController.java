@@ -8,8 +8,8 @@ public class TSPController {
 	 */
 	private final int HEIGHT = 10;
 	private final int WIDTH = 10;
-	private final int MAXPRODUCTS = 13;
-	private final int MINPRODUCTS = 13;
+	private final int MAXPRODUCTS = 10;
+	private final int MINPRODUCTS = 10;
 	private final boolean SHOWRASTER = true;
 
 	private Picklist picklist;
@@ -149,6 +149,30 @@ public class TSPController {
 
 		nearestneighbourandtwooptResult = nearestneighbourandtwoopt.getResult();
 		nearestneighbourandtwooptResult.setTime(Math.round(diffTime));
+		nearestneighbourandtwooptDrawPanel.setResultaat(nearestneighbourandtwooptResult);
+		mainGui.repaint();
+	}
+
+	public void setBruteforceResults(Result bruteforceResults) {
+		this.bruteforceResults = bruteforceResults;
+		bruteforceDrawPanel.setResultaat(bruteforceResults);
+		mainGui.repaint();
+	}
+
+	public void setTwooptResults(Result twooptResults) {
+		this.twooptResults = twooptResults;
+		twooptDrawPanel.setResultaat(twooptResults);
+		mainGui.repaint();
+	}
+
+	public void setNearestneighbourResults(Result nearestneighbourResults) {
+		this.nearestneighbourResults = nearestneighbourResults;
+		nearestneighbourDrawPanel.setResultaat(nearestneighbourResults);
+		mainGui.repaint();
+	}
+
+	public void setNearestneighbourandtwooptResult(Result nearestneighbourandtwooptResult) {
+		this.nearestneighbourandtwooptResult = nearestneighbourandtwooptResult;
 		nearestneighbourandtwooptDrawPanel.setResultaat(nearestneighbourandtwooptResult);
 		mainGui.repaint();
 	}

@@ -36,8 +36,13 @@ public class Bruteforce implements Algorithm, Runnable {
 			if (getAfstand(shortestPicklist) > getAfstand(tempList) && check.equals(tempList.get(0))) {
 				this.shortestPicklist = tempList;
 			}
+			Result tempResult = new Result(tempList, 0);
+			onComplete.setBruteforceResults(tempResult);
+			
 		}
 
+	
+		
 		/* items available for permutation */
 		Location[] availableItems = items.toArray(new Location[0]);
 		for (Location i : availableItems) {
