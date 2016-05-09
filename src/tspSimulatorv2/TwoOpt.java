@@ -40,6 +40,8 @@ public class TwoOpt implements Runnable, Algorithm {
 						tour = new_tour;
 						best_distance = new_distance;
 						System.out.println(best_distance);
+						Result tempResult = new Result(new_tour, 0);
+						onComplete.setTwooptResults(tempResult);
 					}
 				}
 			}
