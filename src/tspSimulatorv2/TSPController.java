@@ -8,8 +8,8 @@ public class TSPController {
 	 */
 	private final int HEIGHT = 10;
 	private final int WIDTH = 10;
-	private final int MAXPRODUCTS = 15;
-	private final int MINPRODUCTS = 9;
+	private final int MAXPRODUCTS = 13;
+	private final int MINPRODUCTS = 13;
 	private final boolean SHOWRASTER = true;
 
 	private Picklist picklist;
