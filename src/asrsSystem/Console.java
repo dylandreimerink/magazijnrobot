@@ -27,6 +27,7 @@ public class Console  {
     	textAreaC.setColumns (5);
     	textAreaC.setLineWrap (true);
     	textAreaC.setWrapStyleWord (false); 
+    	textAreaC.setAutoscrolls(true);
     	
 		JPanel panel_3 = new JPanel();
 		panel_3.setLayout(new BoxLayout(panel_3, BoxLayout.Y_AXIS));
