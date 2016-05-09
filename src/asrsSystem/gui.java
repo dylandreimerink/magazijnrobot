@@ -221,8 +221,8 @@ public class gui extends JFrame implements ActionListener {
 		}
 		if(e.getSource()== disconnect) {
 			
-			connection.serialPort.close();
-			connection.connectState = false;
+			connection.setpressedDisconnect(true);
+			
 		}
 	}
 

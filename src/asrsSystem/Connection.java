@@ -11,12 +11,11 @@ public class Connection implements Runnable{
 	SerialPort serialPort;
 	Thread t = new Thread(this);
 	Console console = new Console();
-	boolean connectState = false;
+	private boolean pressedDisconnect = false;
+	
 	
 	public Connection(){
-		if(connectState == true) {
-			console.printLine("er is al een bestaande arduino connectie!");
-		}else {
+		
 		
 		Enumeration<CommPortIdentifier> ports = CommPortIdentifier.getPortIdentifiers();
 		while (ports.hasMoreElements())
@@ -27,12 +26,16 @@ public class Connection implements Runnable{
 		
 		portName = info.getName();
 		serialPort = null;
-		}
+		
 	
 	}
 	
 	public void start(){
 		t.start();
+	}
+	
+	public void setpressedDisconnect(boolean value) {
+		this.pressedDisconnect = value;
 	}
 	
 	public void run() {
@@ -47,7 +50,7 @@ public class Connection implements Runnable{
 			if(port!=null)
 			{
 				CommPort commPort = port.open(portName, 2000);
-				connectState = true;
+				
 				if(commPort instanceof SerialPort)
 				{
 					serialPort = (SerialPort) commPort;
@@ -59,6 +62,7 @@ public class Connection implements Runnable{
 					int pin = 1;
 					while(true)
 					{
+						if (pressedDisconnect == true) {
 						System.out.println("Send command: " + Integer.toString(pin));
 						
 						String d = Integer.toString(pin);
@@ -71,6 +75,10 @@ public class Connection implements Runnable{
 						}
 						
 						t.sleep(200);
+						} else if (pressedDisconnect == false) {
+							break;
+						}
+						
 					}
 				}
 				else
