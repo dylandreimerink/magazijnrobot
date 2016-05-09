@@ -40,6 +40,7 @@ public class gui extends JFrame implements ActionListener {
 	JLabel kNaam;
 	JLabel kAdres;
 	
+	Connection connection;
 	
 	public gui() {
 		addComponents();
@@ -215,10 +216,14 @@ public class gui extends JFrame implements ActionListener {
 			// todo code here
 		}
 		if(e.getSource()== connect) {
-			Connection connection = new Connection();
-			connection.RunConnection();
+			connection = new Connection();
+			connection.t = new Thread(connection);
+			connection.t.run();
 		}
-		
+		if(e.getSource()== disconnect) {
+			
+			connection.serialPort.close();
+		}
 	}
 
 

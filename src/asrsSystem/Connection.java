@@ -4,13 +4,16 @@ import java.util.Enumeration;
 
 import gnu.io.*;
 
-public class Connection {
+public class Connection implements Runnable {
 
 	CommPortIdentifier info;
 	String portName;
 	SerialPort serialPort;
+	Thread t;
 	
 	public Connection(){
+		
+		
 		Enumeration<CommPortIdentifier> ports = CommPortIdentifier.getPortIdentifiers();
 		while (ports.hasMoreElements())
 		{
@@ -21,10 +24,10 @@ public class Connection {
 		portName = info.getName();
 		serialPort = null;
 		
-		
 	}
 	
-	public void RunConnection() {
+	@Override
+	public void run() {
 		try
 		{
 			CommPortIdentifier port = CommPortIdentifier.getPortIdentifier(portName);
@@ -58,7 +61,7 @@ public class Connection {
 							pin = 1;
 						}
 						
-						Thread.sleep(2000);
+						t.sleep(200);
 					}
 				}
 				else
@@ -77,7 +80,11 @@ public class Connection {
 			{
 				System.out.println("Close serial port");
 				serialPort.close();
+				t.stop();
 			}
 		}
-	}
+	}	
 }
+
+
+
