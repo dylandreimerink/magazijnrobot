@@ -10,9 +10,13 @@ public class Connection implements Runnable{
 	String portName;
 	SerialPort serialPort;
 	Thread t = new Thread(this);
+	Console console = new Console();
+	boolean connectState = false;
 	
 	public Connection(){
-		
+		if(connectState == true) {
+			console.printLine("er is al een bestaande arduino connectie!");
+		}else {
 		
 		Enumeration<CommPortIdentifier> ports = CommPortIdentifier.getPortIdentifiers();
 		while (ports.hasMoreElements())
@@ -23,7 +27,7 @@ public class Connection implements Runnable{
 		
 		portName = info.getName();
 		serialPort = null;
-		
+		}
 	
 	}
 	
@@ -43,6 +47,7 @@ public class Connection implements Runnable{
 			if(port!=null)
 			{
 				CommPort commPort = port.open(portName, 2000);
+				connectState = true;
 				if(commPort instanceof SerialPort)
 				{
 					serialPort = (SerialPort) commPort;
