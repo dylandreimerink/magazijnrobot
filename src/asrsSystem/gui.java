@@ -39,6 +39,7 @@ public class gui extends JFrame implements ActionListener {
 	JLabel orderNr;
 	JLabel kNaam;
 	JLabel kAdres;
+	private boolean connected;
 	
 	Connection connection;
 	
@@ -216,11 +217,14 @@ public class gui extends JFrame implements ActionListener {
 			// todo code here
 		}
 		if(e.getSource()== connect) {
-			connection = new Connection();
-			connection.start();
+			if(connected == false){
+				connection = new Connection();
+				connection.openConnection();
+				connected = true;
+			}
 		}
 		if(e.getSource()== disconnect) {
-			
+			connected = false;
 			connection.setpressedDisconnect(true);
 			
 		}

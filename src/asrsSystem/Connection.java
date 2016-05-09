@@ -12,23 +12,22 @@ public class Connection implements Runnable{
 	Thread t = new Thread(this);
 	Console console = new Console();
 	private boolean pressedDisconnect = false;
+	private boolean pressedConnect = false;
 	
 	
-	public Connection(){
-		
+	public void openConnection(){
 		
 		Enumeration<CommPortIdentifier> ports = CommPortIdentifier.getPortIdentifiers();
 		while (ports.hasMoreElements())
 		{
 			info = ports.nextElement();
-			System.out.println(info.getName());
+        	console.printLine(info.getName());			
 		}
 		
 		portName = info.getName();
 		serialPort = null;
-		
-	
-	}
+		start();
+		}
 	
 	public void start(){
 		t.start();
@@ -44,8 +43,7 @@ public class Connection implements Runnable{
 			CommPortIdentifier port = CommPortIdentifier.getPortIdentifier(portName);
 			if(port.isCurrentlyOwned())
 			{
-				System.out.println("Error: Port is currently in use");
-				return;
+	        	console.printLine("Error: Port is currently in use");				
 			}
 			if(port!=null)
 			{
@@ -62,9 +60,8 @@ public class Connection implements Runnable{
 					int pin = 1;
 					while(true)
 					{
-						if (pressedDisconnect == true) {
-						System.out.println("Send command: " + Integer.toString(pin));
-						
+						if (pressedDisconnect == false) {
+			        	console.printLine("Send command: " + Integer.toString(pin));						
 						String d = Integer.toString(pin);
 						out.write(d.getBytes());
 						
@@ -75,7 +72,8 @@ public class Connection implements Runnable{
 						}
 						
 						t.sleep(200);
-						} else if (pressedDisconnect == false) {
+						} 
+					else if (pressedDisconnect == true) {
 							break;
 						}
 						
@@ -83,24 +81,24 @@ public class Connection implements Runnable{
 				}
 				else
 				{
-					System.out.println("Can't access serial port");
+		        	console.printLine("Can't access serial port");					
 				}
 			}
 		}
 		catch(Exception ex)
 		{
-			System.out.println(ex.getMessage());
+        	console.printLine(ex.getMessage());			
 		}
 		finally
 		{
 			if(serialPort!=null)
 			{
-				System.out.println("Close serial port");
+	        	console.printLine("Close serial port");				
 				serialPort.close();
 				t.stop();
 			}
 		}
-	}	
+	}		
 }
 
 
