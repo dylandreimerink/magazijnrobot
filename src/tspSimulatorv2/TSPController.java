@@ -33,7 +33,7 @@ public class TSPController {
 	 * Results
 	 */
 	private Result bruteforceResults;
-	private Result twooptDrawResults;
+	private Result twooptResults;
 	private Result nearestneighbourResults;
 	private Result nearestneighbourandtwooptResult;
 
@@ -57,7 +57,7 @@ public class TSPController {
 		 * Generate temporately Result
 		 */
 		bruteforceResults = new Result(picklist.getPicklist(), 0);
-		twooptDrawResults = new Result(picklist.getPicklist(), 0);
+		twooptResults = new Result(picklist.getPicklist(), 0);
 		nearestneighbourResults = new Result(picklist.getPicklist(), 0);
 		nearestneighbourandtwooptResult = new Result(picklist.getPicklist(), 0);
 
@@ -65,7 +65,7 @@ public class TSPController {
 		 * Generate new DrawPanels
 		 */
 		bruteforceDrawPanel = new DrawPanel("Bruteforce", bruteforceResults, HEIGHT, WIDTH, SHOWRASTER);
-		twooptDrawPanel = new DrawPanel("TwoOpt", twooptDrawResults, HEIGHT, WIDTH, SHOWRASTER);
+		twooptDrawPanel = new DrawPanel("TwoOpt", twooptResults, HEIGHT, WIDTH, SHOWRASTER);
 		nearestneighbourDrawPanel = new DrawPanel("NearestNeighbour", nearestneighbourResults, HEIGHT, WIDTH,
 				SHOWRASTER);
 		nearestneighbourandtwooptDrawPanel = new DrawPanel("NearestNeighbour + TwoOpt", nearestneighbourandtwooptResult,
@@ -81,30 +81,67 @@ public class TSPController {
 	public void generateNewPicklist() {
 		picklist.generateNewPicklist();
 		bruteforceResults.setResult(picklist.getPicklist());
-		twooptDrawResults.setResult(picklist.getPicklist());
+		twooptResults.setResult(picklist.getPicklist());
 		nearestneighbourResults.setResult(picklist.getPicklist());
 		nearestneighbourandtwooptResult.setResult(picklist.getPicklist());
 
 		bruteforceDrawPanel.setResultaat(bruteforceResults);
-		twooptDrawPanel.setResultaat(twooptDrawResults);
+		twooptDrawPanel.setResultaat(twooptResults);
 		nearestneighbourDrawPanel.setResultaat(nearestneighbourResults);
 		nearestneighbourandtwooptDrawPanel.setResultaat(nearestneighbourandtwooptResult);
+		mainGui.repaint();
 	}
 
 	public void testAlgorithm() {
+		
+		bruteforce.setOnDoneListner(this);
+		bruteforce.start(picklist.getListOne());
+		
+		twoopt.setOnDoneListner(this);
+		twoopt.start(picklist.getListTwo());
+		
+		nearestneighbour.setOnDoneListner(this);
+		nearestneighbour.start(picklist.getListThree());
+		
+		
+		nearestneighbourandtwoopt.setOnDoneListner(this);
+		nearestneighbourandtwoopt.start(picklist.getListThree());
+		
+//      bruteforceResults = bruteforce.calculateRoute(picklist.getPicklist());
+//		twooptResults = twoopt.calculateRoute(picklist.getPicklist());
+//		nearestneighbourResults = nearestneighbour.calculateRoute(picklist.getPicklist());
+//		nearestneighbourandtwooptResult = nearestneighbourandtwoopt.calculateRoute(picklist.getPicklist());
 
-		bruteforceResults = bruteforce.calculateRoute(picklist.getPicklist());
-		twooptDrawResults = twoopt.calculateRoute(picklist.getPicklist());
-		// new Thread(twoopt).start();
-		nearestneighbourResults = nearestneighbour.calculateRoute(picklist.getPicklist());
-		// new Thread(nearestneighbour).start();
-		nearestneighbourandtwooptResult = nearestneighbourandtwoopt.calculateRoute(picklist.getPicklist());
-		// new Thread(nearestneighbourandtwoopt).start();
-
+//		bruteforceDrawPanel.setResultaat(bruteforceResults);
+//		twooptDrawPanel.setResultaat(twooptDrawResults);
+//		nearestneighbourDrawPanel.setResultaat(nearestneighbourResults);
+//		nearestneighbourandtwooptDrawPanel.setResultaat(nearestneighbourandtwooptResult);
+	}
+	
+	
+	public void BruteForceCallback() {
+		bruteforceResults = bruteforce.getResult();
 		bruteforceDrawPanel.setResultaat(bruteforceResults);
-		twooptDrawPanel.setResultaat(twooptDrawResults);
+		mainGui.repaint();
+	}
+	
+	public void TwoOptCallback() {
+		twooptResults = twoopt.getResult();
+		twooptDrawPanel.setResultaat(twooptResults);
+		mainGui.repaint();
+	}
+	
+	public void nearestNeighbourCallback() {
+		nearestneighbourResults = nearestneighbour.getResult();
 		nearestneighbourDrawPanel.setResultaat(nearestneighbourResults);
-		nearestneighbourandtwooptDrawPanel.setResultaat(nearestneighbourandtwooptResult);
+		mainGui.repaint();
+	}
+	
+	
+	public void nearestNeighbourAndTwoOptCallback() {
+		nearestneighbourandtwooptResult = nearestneighbourandtwoopt.getResult();
+		nearestneighbourandtwooptDrawPanel.setResultaat(nearestneighbourResults);
+		mainGui.repaint();
 	}
 
 }

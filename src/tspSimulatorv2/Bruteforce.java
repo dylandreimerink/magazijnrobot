@@ -7,18 +7,21 @@ package tspSimulatorv2;
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class Bruteforce implements Algorithm {
+public class Bruteforce implements Algorithm, Runnable {
 
 	private ArrayList<Location> picklist;
 	private ArrayList<Location> shortestPicklist;
+	protected Thread t = new Thread(this);
+	private Result result;
 
-	@Override
-	public Result calculateRoute(ArrayList<Location> p) {
-		this.picklist = p;
+	private TSPController onComplete;
+
+	public Result calculateRoute() {
 		shortestPicklist = new ArrayList<Location>();
 		for (Location l : picklist.toArray(new Location[0])) {
 			shortestPicklist.add(l);
 		}
+
 
 		permutations(picklist, new Stack<Location>(), picklist.size());
 		Result result = new Result(shortestPicklist, 0);
@@ -83,4 +86,36 @@ public class Bruteforce implements Algorithm {
 		}
 		return Math.round(totaleAfstand * 100.0) / 100.0;
 	}
+
+	@Override
+	public void run() {
+		this.result = calculateRoute();
+
+		if (onComplete != null) {
+			callBack();
+		}
+	}
+
+	public Result getResult() {
+		System.out.println(result);
+		return result;
+	}
+
+	public void start(ArrayList<Location> p) {
+		this.picklist = p;
+
+		t = new Thread(this);
+		t.start();
+	
+	}
+
+	public void setOnDoneListner(TSPController listnerClass) {
+		onComplete = listnerClass;
+	}
+
+	public void callBack() {
+		onComplete.BruteForceCallback();
+	}
+
+
 }

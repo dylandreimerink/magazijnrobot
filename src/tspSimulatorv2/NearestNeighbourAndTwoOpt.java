@@ -5,11 +5,35 @@ import java.util.ArrayList;
 /**
  * Authors: Jan Willem en Henri Class: ICTM2A
  */
-public class NearestNeighbourAndTwoOpt extends NearestNeighbour implements Algorithm {
-
+public class NearestNeighbourAndTwoOpt implements Runnable, Algorithm {
+	
+	private ArrayList<Location> tour;
+	protected Thread t = new Thread(this);
+	private Result result;
+	
+	private TSPController onComplete;
+	
 	@Override
-	public Result calculateRoute(ArrayList<Location> tour) {
-		Result nearestNeighbour = super.calculateRoute(tour);
+	public Result calculateRoute() {
+		
+        ArrayList<Location> p1 = new ArrayList<Location>();
+		
+		for (Location l : tour.toArray(new Location[0])) {
+			p1.add(l);
+		}
+		ArrayList<Location> newArrayList = new ArrayList<Location>();
+		newArrayList.add(p1.get(0));
+		p1.remove(0);
+		int q = 0;
+		while (!p1.isEmpty()) {
+			Location neareast = findNearest(p1, newArrayList.get(q));
+			newArrayList.add(neareast);
+			p1.remove(neareast);
+			q++;
+		}
+		tour = newArrayList;
+		Result nearestNeighbour = new Result(newArrayList, 0);
+
 
 		tour = new ArrayList<Location>();
 
@@ -126,6 +150,36 @@ public class NearestNeighbourAndTwoOpt extends NearestNeighbour implements Algor
 			}
 		}
 		return nearest;
+	}
+
+	@Override
+	public void run() {
+		this.result = calculateRoute();
+
+		if (onComplete != null) {
+			callBack();
+		}
+	}
+
+	public Result getResult() {
+		System.out.println(result);
+		return result;
+	}
+
+	public void start(ArrayList<Location> p) {
+		this.tour = p;
+
+		t = new Thread(this);
+		t.start();
+	
+	}
+
+	public void setOnDoneListner(TSPController listnerClass) {
+		onComplete = listnerClass;
+	}
+
+	public void callBack() {
+		onComplete.nearestNeighbourAndTwoOptCallback();
 	}
 
 }

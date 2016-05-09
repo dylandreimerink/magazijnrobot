@@ -68,7 +68,6 @@ public class MainGUI extends JFrame implements ActionListener {
 		if (e.getSource() == testAlgorithm) {
 			controller.testAlgorithm();
 		}
-		repaint();
 	}
 
 }
