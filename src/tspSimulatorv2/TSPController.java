@@ -60,9 +60,13 @@ public class TSPController {
 		 * Generate temporately Result
 		 */
 		bruteforceResults = new Result(picklist.getPicklist(), 0);
+		bruteforceResults.setShowPointsonly(true);
 		twooptResults = new Result(picklist.getPicklist(), 0);
+		twooptResults.setShowPointsonly(true);
 		nearestneighbourResults = new Result(picklist.getPicklist(), 0);
+		nearestneighbourResults.setShowPointsonly(true);
 		nearestneighbourandtwooptResult = new Result(picklist.getPicklist(), 0);
+		nearestneighbourandtwooptResult.setShowPointsonly(true);
 
 		/*
 		 * Generate new DrawPanels
@@ -82,6 +86,21 @@ public class TSPController {
 	}
 
 	public void generateNewPicklist() {
+//		if(bruteforce.t.isAlive()){
+//			bruteforce.t.interrupt();
+//		}
+//		
+//		if(twoopt.t.isAlive()){
+//			twoopt.t.interrupt();
+//		}
+//		if(nearestneighbour.t.isAlive()){
+//			nearestneighbour.t.interrupt();
+//		}
+//		if(nearestneighbourandtwoopt.t.isAlive()){
+//			nearestneighbourandtwoopt.t.interrupt();
+//		}
+//		
+		
 		picklist.generateNewPicklist();
 		bruteforceResults.setResult(picklist.getPicklist());
 		twooptResults.setResult(picklist.getPicklist());
@@ -92,6 +111,12 @@ public class TSPController {
 		twooptDrawPanel.setResultaat(twooptResults);
 		nearestneighbourDrawPanel.setResultaat(nearestneighbourResults);
 		nearestneighbourandtwooptDrawPanel.setResultaat(nearestneighbourandtwooptResult);
+		
+		bruteforceResults.setShowPointsonly(true);
+		twooptResults.setShowPointsonly(true);
+		nearestneighbourResults.setShowPointsonly(true);
+		nearestneighbourandtwooptResult.setShowPointsonly(true);
+		
 		mainGui.repaint();
 	}
 

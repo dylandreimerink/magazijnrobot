@@ -11,12 +11,15 @@ public class Result {
 	private double afstand;
 	private String name;
 	private ArrayList<Location> result;
+	
+	private boolean showPointsonly;
 
 	public Result(ArrayList<Location> result, double time) {
 		// result = new ArrayList<Location>();
 		this.result = result;
 		this.time = time;
 		this.afstand = getAfstand(result);
+		showPointsonly = false;
 	}
 
 	private double getAfstand(ArrayList<Location> p1) {
@@ -82,5 +85,15 @@ public class Result {
 	public String getAlgorithmName() {
 		return name;
 	}
+
+	public boolean isShowPointsonly() {
+		return showPointsonly;
+	}
+
+	public void setShowPointsonly(boolean showPointsonly) {
+		this.showPointsonly = showPointsonly;
+	}
+	
+	
 
 }

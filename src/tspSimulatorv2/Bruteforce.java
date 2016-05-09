@@ -36,7 +36,9 @@ public class Bruteforce implements Algorithm, Runnable {
 			if (getAfstand(shortestPicklist) > getAfstand(tempList) && check.equals(tempList.get(0))) {
 				this.shortestPicklist = tempList;
 			}
-			Result tempResult = new Result(tempList, 0);
+			onComplete.stop_time = System.nanoTime();
+			double diffTime = (onComplete.stop_time - onComplete.start_time) / 1e6;
+			Result tempResult = new Result(tempList, Math.round(diffTime));
 			onComplete.setBruteforceResults(tempResult);
 			
 		}

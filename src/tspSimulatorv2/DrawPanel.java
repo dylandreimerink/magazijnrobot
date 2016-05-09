@@ -27,7 +27,7 @@ public class DrawPanel extends JPanel {
 		this.resultaat = resultaat;
 		this.x = breedte;
 		this.y = hoogte;
-		
+
 		this.showRaster = showRaster;
 	}
 
@@ -37,7 +37,7 @@ public class DrawPanel extends JPanel {
 		int afstandX = WIDTH / x;
 		int afstandY = HEIGHT / y;
 
-		if(showRaster){
+		if (showRaster) {
 			for (int j = 0; j <= HEIGHT; j += afstandX) {
 				g.drawLine(j, 0, j, HEIGHT);
 			}
@@ -49,8 +49,10 @@ public class DrawPanel extends JPanel {
 		Location prevLocation = null;
 		for (Location location : resultaat.getResult()) {
 			if (prevLocation != null) {
-				drawRoute(g, prevLocation.getLocationX(), prevLocation.getLocationY(), location.getLocationX(),
-						location.getLocationY(), afstandX, afstandY);
+				if (resultaat.isShowPointsonly() == false) {
+					drawRoute(g, prevLocation.getLocationX(), prevLocation.getLocationY(), location.getLocationX(),
+							location.getLocationY(), afstandX, afstandY);
+				}
 			}
 			prevLocation = location;
 		}
@@ -59,23 +61,25 @@ public class DrawPanel extends JPanel {
 			drawProduct(g, location.getLocationX(), location.getLocationY(), afstandX, afstandY, "Product " + x);
 			x++;
 		}
-		g.drawString(
-				algoname + "           afstand: " + resultaat.getAfstand() + "           tijd: " + resultaat.getTime() +" ms",
-				0, HEIGHT);
+		g.drawString(algoname + "           afstand: " + resultaat.getAfstand() + "           tijd: "
+				+ resultaat.getTime() + " ms", 0, HEIGHT);
 	}
 
 	private void drawProduct(Graphics g, int x, int y, int afstandX, int afstandY, String product) {
 		int breedteStip = (int) (screenSize.getWidth() / afstandX) / 4;
 		x = afstandX * x;
 		y = afstandY * y;
-		double middleX = (afstandX / 2) - breedteStip/2 + x;
-		double middleY = (afstandY / 2) - breedteStip/2 + y;
+		double middleX = (afstandX / 2) - breedteStip / 2 + x;
+		double middleY = (afstandY / 2) - breedteStip / 2 + y;
 		int middleXInt = (int) middleX;
 		int middleYInt = (int) middleY;
 		g.setColor(Color.black);
 		g.fillOval(middleXInt, middleYInt, breedteStip, breedteStip);
 		g.setColor(Color.red);
-		g.drawString(product, middleXInt + 15, middleYInt);
+
+		if (resultaat.isShowPointsonly() == false) {
+			g.drawString(product, middleXInt + 15, middleYInt);
+		}
 	}
 
 	private void drawRoute(Graphics g, int beginX, int beginY, int eindX, int eindY, int afstandX, int afstandY) {
