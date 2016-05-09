@@ -214,6 +214,10 @@ public class gui extends JFrame implements ActionListener {
 		if(e.getSource()== mntmDeleteArtikel) {
 			// todo code here
 		}
+		if(e.getSource()== connect) {
+			Connection connection = new Connection();
+			connection.RunConnection();
+		}
 		
 	}
 
