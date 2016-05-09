@@ -149,7 +149,7 @@ public class TSPController {
 
 		nearestneighbourandtwooptResult = nearestneighbourandtwoopt.getResult();
 		nearestneighbourandtwooptResult.setTime(Math.round(diffTime));
-		nearestneighbourandtwooptDrawPanel.setResultaat(nearestneighbourResults);
+		nearestneighbourandtwooptDrawPanel.setResultaat(nearestneighbourandtwooptResult);
 		mainGui.repaint();
 	}
 
