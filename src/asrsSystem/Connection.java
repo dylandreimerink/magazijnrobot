@@ -71,7 +71,7 @@ public class Connection implements Runnable{
 							pin = 1;
 						}
 						
-						t.sleep(200);
+						t.sleep(150);
 						} 
 					else if (pressedDisconnect == true) {
 							break;
