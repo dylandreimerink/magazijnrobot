@@ -4,12 +4,12 @@ import java.util.Enumeration;
 
 import gnu.io.*;
 
-public class Connection  {
+public class Connection implements Runnable{
 
 	CommPortIdentifier info;
 	String portName;
 	SerialPort serialPort;
-	Thread t;
+	Thread t = new Thread(this);
 	
 	public Connection(){
 		
@@ -25,8 +25,12 @@ public class Connection  {
 		serialPort = null;
 		
 	
+	}
 	
-	t = new Thread() {
+	public void start(){
+		t.start();
+	}
+	
 	public void run() {
 		try
 		{
@@ -83,9 +87,7 @@ public class Connection  {
 				t.stop();
 			}
 		}
-	}};	
-	t.start();
-	}
+	}	
 }
 
 
