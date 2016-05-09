@@ -60,7 +60,7 @@ public class DrawPanel extends JPanel {
 			x++;
 		}
 		g.drawString(
-				algoname + "           afstand: " + resultaat.getAfstand() + "           tijd: " + resultaat.getTime() +" ms ",
+				algoname + "           afstand: " + resultaat.getAfstand() + "           tijd: " + resultaat.getTime() +" ms",
 				0, HEIGHT);
 	}
 
