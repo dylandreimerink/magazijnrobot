@@ -4,7 +4,7 @@ import java.util.Enumeration;
 
 import gnu.io.*;
 
-public class Connection implements Runnable {
+public class Connection  {
 
 	CommPortIdentifier info;
 	String portName;
@@ -24,9 +24,9 @@ public class Connection implements Runnable {
 		portName = info.getName();
 		serialPort = null;
 		
-	}
 	
-	@Override
+	
+	t = new Thread() {
 	public void run() {
 		try
 		{
@@ -83,7 +83,9 @@ public class Connection implements Runnable {
 				t.stop();
 			}
 		}
-	}	
+	}};	
+	t.start();
+	}
 }
 
 

@@ -217,8 +217,7 @@ public class gui extends JFrame implements ActionListener {
 		}
 		if(e.getSource()== connect) {
 			connection = new Connection();
-			connection.t = new Thread(connection);
-			connection.t.run();
+			
 		}
 		if(e.getSource()== disconnect) {
 			
