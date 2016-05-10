@@ -15,8 +15,8 @@ public class DrawPanel extends JPanel {
 	private boolean showRaster;
 
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	private int HEIGHT = (int) (screenSize.getWidth() / 4) - 50;
-	private int WIDTH = (int) (screenSize.getWidth() / 4) - 50;
+	private int height = (int) (screenSize.getWidth() / 4) - 50;
+	private int width = (int) (screenSize.getWidth() / 4) - 50;
 	private String algoname;
 	private Result resultaat;
 	private int x;
@@ -34,16 +34,16 @@ public class DrawPanel extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		int afstandX = WIDTH / x;
-		int afstandY = HEIGHT / y;
+		int afstandX = width / x;
+		int afstandY = height / y;
 
 		if (showRaster) {
 			System.out.println(showRaster);
-			for (int j = 0; j <= HEIGHT; j += afstandX) {
-				g.drawLine(j, 0, j, HEIGHT);
+			for (int j = 0; j <= height; j += afstandX) {
+				g.drawLine(j, 0, j, height);
 			}
-			for (int j = 0; j <= WIDTH; j += afstandY) {
-				g.drawLine(0, j, WIDTH, j);
+			for (int j = 0; j <= width; j += afstandY) {
+				g.drawLine(0, j, width, j);
 			}
 		}else {
 			System.out.println(showRaster);
@@ -65,7 +65,7 @@ public class DrawPanel extends JPanel {
 			x++;
 		}
 		g.drawString(algoname + "           afstand: " + resultaat.getAfstand() + "           tijd: "
-				+ resultaat.getTime() + " ms", 0, HEIGHT);
+				+ resultaat.getTime() + " ms", 0, height);
 	}
 
 	private void drawProduct(Graphics g, int x, int y, int afstandX, int afstandY, String product) {

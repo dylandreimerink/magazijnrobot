@@ -15,6 +15,8 @@ public class Bruteforce implements Algorithm, Runnable {
 	private Result result;
 
 	private TSPController onComplete;
+	
+
 
 	public Result calculateRoute() {
 		shortestPicklist = new ArrayList<Location>();
@@ -60,6 +62,7 @@ public class Bruteforce implements Algorithm, Runnable {
 			/* pop and put the removed item back */
 			items.add(permutation.pop());
 		}
+
 	}
 
 	private double calculateDistance(Location locatieA, Location locatieB) {
@@ -96,6 +99,7 @@ public class Bruteforce implements Algorithm, Runnable {
 
 	@Override
 	public void run() {
+		
 		this.result = calculateRoute();
 
 		if (onComplete != null) {

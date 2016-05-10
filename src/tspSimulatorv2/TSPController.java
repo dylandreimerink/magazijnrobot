@@ -8,8 +8,8 @@ public class TSPController {
 	 */
 	private final int HEIGHT = 10;
 	private final int WIDTH = 10;
-	private final int MAXPRODUCTS = 10;
-	private final int MINPRODUCTS = 10;
+	private final int MAXPRODUCTS = 11;
+	private final int MINPRODUCTS = 11;
 	public boolean SHOWRASTER = true;
 
 	private Picklist picklist;
@@ -93,21 +93,7 @@ public class TSPController {
 		mainGui.repaint();
 	}
 
-	public void generateNewPicklist() {
-//		if(bruteforce.t.isAlive()){
-//			bruteforce.t.interrupt();
-//		}
-//		
-//		if(twoopt.t.isAlive()){
-//			twoopt.t.interrupt();
-//		}
-//		if(nearestneighbour.t.isAlive()){
-//			nearestneighbour.t.interrupt();
-//		}
-//		if(nearestneighbourandtwoopt.t.isAlive()){
-//			nearestneighbourandtwoopt.t.interrupt();
-//		}
-//		
+	public void generateNewPicklist() {	
 		
 		picklist.generateNewPicklist();
 		bruteforceResults.setResult(picklist.getPicklist());
