@@ -10,7 +10,7 @@ public class TSPController {
 	private final int WIDTH = 10;
 	private final int MAXPRODUCTS = 10;
 	private final int MINPRODUCTS = 10;
-	private final boolean SHOWRASTER = true;
+	public boolean SHOWRASTER = true;
 
 	private Picklist picklist;
 
@@ -83,6 +83,14 @@ public class TSPController {
 		 */
 		mainGui = new MainGUI(bruteforceDrawPanel, twooptDrawPanel, nearestneighbourDrawPanel,
 				nearestneighbourandtwooptDrawPanel, this);
+	}
+	
+	public void setRaster(boolean mode) {
+		bruteforceDrawPanel.setShowRaster(mode);
+		twooptDrawPanel.setShowRaster(mode);
+		nearestneighbourDrawPanel.setShowRaster(mode);
+		nearestneighbourandtwooptDrawPanel.setShowRaster(mode);
+		mainGui.repaint();
 	}
 
 	public void generateNewPicklist() {

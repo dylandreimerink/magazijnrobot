@@ -38,12 +38,15 @@ public class DrawPanel extends JPanel {
 		int afstandY = HEIGHT / y;
 
 		if (showRaster) {
+			System.out.println(showRaster);
 			for (int j = 0; j <= HEIGHT; j += afstandX) {
 				g.drawLine(j, 0, j, HEIGHT);
 			}
 			for (int j = 0; j <= WIDTH; j += afstandY) {
 				g.drawLine(0, j, WIDTH, j);
 			}
+		}else {
+			System.out.println(showRaster);
 		}
 
 		Location prevLocation = null;
@@ -96,4 +99,10 @@ public class DrawPanel extends JPanel {
 	public void setResultaat(Result resultaat) {
 		this.resultaat = resultaat;
 	}
+
+	public void setShowRaster(boolean showRaster) {
+		this.showRaster = showRaster;
+	}
+	
+	
 }

@@ -15,6 +15,8 @@ public class MainGUI extends JFrame implements ActionListener {
 
 	private JButton nieuwePicklist;
 	private JButton testAlgorithm;
+	private JButton rasterOn;
+	private JButton rasterOff;
 
 
 	public MainGUI(DrawPanel drawpanel1, DrawPanel drawpanel2, DrawPanel drawpanel3, DrawPanel drawpanel4, TSPController controller) {
@@ -46,6 +48,14 @@ public class MainGUI extends JFrame implements ActionListener {
 		testAlgorithm.addActionListener(this);
 		knoppenPanel.add(testAlgorithm);
 		
+		rasterOn = new JButton("Raster on");
+		rasterOn.addActionListener(this);
+		knoppenPanel.add(rasterOn);
+	
+		rasterOff = new JButton("Raster off");
+		rasterOff.addActionListener(this);
+		knoppenPanel.add(rasterOff);
+	
 		
 		add(drawpanel4);
 
@@ -67,6 +77,12 @@ public class MainGUI extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == testAlgorithm) {
 			controller.testAlgorithm();
+		}
+		if (e.getSource() == rasterOn) {
+			controller.setRaster(true);
+		}
+		if (e.getSource() == rasterOff) {
+			controller.setRaster(false);
 		}
 	}
 
