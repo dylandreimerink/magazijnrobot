@@ -22,6 +22,7 @@ import javax.swing.border.SoftBevelBorder;
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.border.MatteBorder;
+import java.awt.GridLayout;
 public class gui extends JFrame implements ActionListener {
 
 	
@@ -52,6 +53,7 @@ public class gui extends JFrame implements ActionListener {
 	JPanel container = new JPanel();
 	private JLabel lblOrderinfoselecteerEenOrder;
 	private Component horizontalStrut;
+	private JPanel panel_6;
 	private void addComponents() {
 
 		Console console = new Console();
@@ -184,7 +186,15 @@ public class gui extends JFrame implements ActionListener {
 		
 		horizontalStrut = Box.createHorizontalStrut(300);
 		container.add(horizontalStrut, "cell 0 5 2 1,growy");
-                
+		
+		JPanel drawer = new JPanel();
+		panel.add(drawer, BorderLayout.CENTER);
+		drawer.setLayout(new GridLayout(0, 1, 0, 0));
+        
+		DrawPanel drawRoute = new DrawPanel(drawer);
+		drawer.add(drawRoute);
+		//drawPanel drawDoos = new drawPanel(drawer);
+		//drawer.add(drawDoos);
         setVisible(true);
              
 
