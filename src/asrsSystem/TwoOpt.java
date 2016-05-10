@@ -1,22 +1,26 @@
-package tspSimulatorv2;
+package asrsSystem;
 
 import java.util.ArrayList;
 
-import tspSimulatorv2.TSPController;
+import asrsSystem.twooptController;
+import shared.Algorithm;
+import shared.Resultaat;
+import tspSimulator.DrawPanel;
+import tspSimulatorv2.Location;
+import tspSimulatorv2.Result;
 
 /**
  * Authors: Jan Willem en Henri Class: ICTM2A
  */
-public class TwoOpt implements Runnable, Algorithm {
+public class TwoOpt implements Runnable{
 	
 	private ArrayList<Location> tour;
 	
 	protected Thread t = new Thread(this);
 	private Result result;
 	
-	private TSPController onComplete;
+	private twooptController onComplete;
 
-	@Override
 	public Result calculateRoute() {
 
 		// Get tour size
@@ -130,19 +134,15 @@ public class TwoOpt implements Runnable, Algorithm {
 	}
 
 
-	@Override
 	public void callBack() {
 		onComplete.TwoOptCallback();
 	}
-	
 
-	@Override
-	public void setOnDoneListner(TSPController listnerClass) {
-		onComplete = listnerClass;
+	
+	public void setOnDoneListner(twooptController listnerClass){
+		onComplete= listnerClass;
 	}
-	
 
-	@Override
 	public void start(ArrayList<Location> p) {
 		this.tour = p;
 		
@@ -150,7 +150,6 @@ public class TwoOpt implements Runnable, Algorithm {
 		t.start();
 	}
 
-	@Override
 	public Result getResult() {
 		return result;
 	}
@@ -164,5 +163,4 @@ public class TwoOpt implements Runnable, Algorithm {
 		}
 
 	}
-
 }

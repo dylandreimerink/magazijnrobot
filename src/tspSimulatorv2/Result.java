@@ -76,6 +76,7 @@ public class Result {
 
 	public void setResult(ArrayList<Location> result) {
 		this.result = result;
+		
 	}
 
 	public double getDistance() {

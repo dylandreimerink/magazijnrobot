@@ -97,7 +97,7 @@ public class TSPController {
 		
 		picklist.generateNewPicklist();
 		bruteforceResults.setResult(picklist.getPicklist());
-		twooptResults.setResult(picklist.getPicklist());
+ 		twooptResults.setResult(picklist.getPicklist());
 		nearestneighbourResults.setResult(picklist.getPicklist());
 		nearestneighbourandtwooptResult.setResult(picklist.getPicklist());
 
