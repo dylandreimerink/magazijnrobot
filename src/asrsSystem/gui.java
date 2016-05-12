@@ -36,24 +36,25 @@ public class gui extends JFrame implements ActionListener {
 	JButton stopRobot;
 	JButton connect;
 	JButton disconnect;
-	JButton savePakbon;
+	JButton genRoute;
 	JLabel orderNr;
 	JLabel kNaam;
 	JLabel kAdres;
 	private boolean connected;
-	
 	Connection connection;
-	
-	public gui() {
-		addComponents();
-	}
-	
+	twooptController controller;
 	ChooseOrder chooser = new ChooseOrder();
 	Console console = new Console();
 	JPanel container = new JPanel();
 	private JLabel lblOrderinfoselecteerEenOrder;
 	private Component horizontalStrut;
 	private JPanel panel_6;
+	private JPanel drawer;
+	
+	public gui() {
+		addComponents();
+	}
+	
 	private void addComponents() {
 
 		Console console = new Console();
@@ -149,9 +150,9 @@ public class gui extends JFrame implements ActionListener {
         connect.addActionListener(this);
         panel_3.add(connect, "cell 0 1,growx,aligny top");
         
-        savePakbon = new JButton("pakbon opslaan");
-        savePakbon.addActionListener(this);
-        panel_3.add(savePakbon, "cell 0 2,alignx center,aligny top");
+        genRoute = new JButton("genereer route");
+        genRoute.addActionListener(this);
+        panel_3.add(genRoute, "cell 0 2,alignx center,aligny top");
         
         JPanel panel_4 = new JPanel();
         panel_4.setBorder(new TitledBorder(new EmptyBorder(2, 0, 0, 0), "Console", TitledBorder.LEFT, TitledBorder.TOP, null, Color.DARK_GRAY));
@@ -187,12 +188,11 @@ public class gui extends JFrame implements ActionListener {
 		horizontalStrut = Box.createHorizontalStrut(300);
 		container.add(horizontalStrut, "cell 0 5 2 1,growy");
 		
-		JPanel drawer = new JPanel();
+		drawer = new JPanel();
 		panel.add(drawer, BorderLayout.CENTER);
 		drawer.setLayout(new GridLayout(0, 1, 0, 0));
         
-		DrawPanel drawRoute = new DrawPanel(drawer);
-		drawer.add(drawRoute);
+
 		//drawPanel drawDoos = new drawPanel(drawer);
 		//drawer.add(drawDoos);
         setVisible(true);
@@ -237,6 +237,10 @@ public class gui extends JFrame implements ActionListener {
 			connected = false;
 			connection.setpressedDisconnect(true);
 			
+		}
+		if(e.getSource() == genRoute) {
+			controller = new twooptController();
+			controller.start();
 		}
 	}
 

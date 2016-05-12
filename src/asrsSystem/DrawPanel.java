@@ -11,13 +11,12 @@ public class DrawPanel extends JPanel {
 	
 	
 	private int magazijnSize = 5;
-	Dimension dPanelsize;
 	private int WIDTH = 600;
 	private int HEIGHT = 600;
 	private boolean showRaster = true;
 	
-	public DrawPanel(JPanel drawer) {
-		dPanelsize = drawer.getSize();
+	public DrawPanel() {
+		
 		
 		
 		//WIDTH = (int) dPanelsize.getWidth();
