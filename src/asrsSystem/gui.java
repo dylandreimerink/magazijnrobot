@@ -239,8 +239,8 @@ public class gui extends JFrame implements ActionListener {
 			
 		}
 		if(e.getSource() == genRoute) {
-			controller = new twooptController();
-			controller.start();
+			//controller = new twooptController();
+			//controller.start();
 		}
 	}
 
