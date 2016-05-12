@@ -312,7 +312,11 @@ public class MainGUI extends JFrame implements ActionListener {
 		appendConsoleText("\nBrute Force klaar");
 		
 		bruteForceAlgo = null;
-
+	
+		lbltijdFF.setText(FFTime + " ms");
+		lbltijdFFD.setText(FFDTime + " ms");
+		lbltijdBF.setText(BFTime + " ms");
+		
 		if(FFDozen < FFDDozen && FFDozen < BFDozen){
 			lblGekozenAlgoritme.setText("First Fit");
 		}else if(FFDDozen < FFDozen && FFDDozen < BFDozen){
@@ -321,9 +325,10 @@ public class MainGUI extends JFrame implements ActionListener {
 			System.out.println("BF: " + BFDozen + ", FF: " + FFDDozen + ", FFD: " + FFDDozen);
 			lblGekozenAlgoritme.setText("Brute Force");
 		}else{
-			if(FFTime < FFDTime && FFTime < BFTime){
+			System.out.println("dozen gelijk");
+			if(FFTime <= FFDTime && FFTime <= BFTime){
 				lblGekozenAlgoritme.setText("First Fit");
-			}else if(FFDTime < FFTime && FFDTime < BFTime){
+			}else if(FFDTime <= FFTime && FFDTime <= BFTime){
 				lblGekozenAlgoritme.setText("First Fit Decreasing");
 			}else{
 				lblGekozenAlgoritme.setText("Brute Force");
