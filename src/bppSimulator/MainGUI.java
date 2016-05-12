@@ -230,7 +230,6 @@ public class MainGUI extends JFrame implements ActionListener {
 	}
 
 	public void FirstFitCallback() {
-		appendConsoleText("\nStarten First Fit");
 		
 		boxListFF = firstFitAlgo.getResult();
 		lblDozenFF.setText("Dozen: " + boxListFF.size());
@@ -251,7 +250,7 @@ public class MainGUI extends JFrame implements ActionListener {
 	}
 
 	public void FirstFitDescCallback() {
-		appendConsoleText("\nStarten First Fit Decreasing");
+		
 
 		boxListFFD = firstFitDescAlgo.getResult();
 		lblDozenFFD.setText("Dozen: " + boxListFFD.size());
@@ -353,17 +352,23 @@ public class MainGUI extends JFrame implements ActionListener {
 			}
 			
 			start_time = System.nanoTime();
+			appendConsoleText("\nStarten First Fit");
 			firstFitAlgo.start();
+			appendConsoleText("\nStarten First Fit Decreasing");
 			firstFitDescAlgo.start();
+			appendConsoleText("\nStarten Brute Force");
 			bruteForceAlgo.start();
 			
-			while ((System.nanoTime() - start_time) < (5000 * 1e6)) {
+			new Thread(new Runnable() {
+				public void run() {
+					while ((System.nanoTime() - start_time) < (3000 * 1e6)) {
 
-			}
-			
-			if (bruteForceAlgo != null) {
-				bruteForceAlgo.stop();
-			}
+					}
+					if (bruteForceAlgo != null) {
+						bruteForceAlgo.stop();
+					}
+				}
+			}).start();
 
 		} else if (e.getSource() == btnAnnuleerSimulatie) {
 			new MainGUI().textArea.setText(textArea.getText());
