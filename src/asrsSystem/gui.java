@@ -42,7 +42,6 @@ public class gui extends JFrame implements ActionListener {
 	JLabel kAdres;
 	private boolean connected;
 	Connection connection;
-	twooptController controller;
 	ChooseOrder chooser = new ChooseOrder();
 	Console console = new Console();
 	JPanel container = new JPanel();
@@ -239,8 +238,8 @@ public class gui extends JFrame implements ActionListener {
 			
 		}
 		if(e.getSource() == genRoute) {
-			//controller = new twooptController();
-			//controller.start();
+			twooptController controller = new twooptController();
+			controller.startTwoOpt(chooser.getProductList());
 		}
 	}
 

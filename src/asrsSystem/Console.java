@@ -4,6 +4,7 @@ package asrsSystem;
  */
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -45,5 +46,16 @@ public class Console  {
     	textAreaC.append(counter + ": "+text);
     	counter++;
     }
+	public void printArray(ArrayList<Location> loclist) {
+    	if(counter > 1){
+    		textAreaC.append("\n");
+    		
+    	}
+    	textAreaC.append(counter+": ");
+    	String text = loclist.toString();
+    	textAreaC.append(text);
+    	
+		
+	}
     
 }
