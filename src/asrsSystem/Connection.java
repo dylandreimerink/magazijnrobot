@@ -59,27 +59,27 @@ public class Connection implements Runnable{
 					
 					OutputStream out = serialPort.getOutputStream();
 					
-//					int pin = 1;
-//					while(true)
-//					{
-//						if (pressedDisconnect == false) {
-//			        	console.printLine("Send command: " + Integer.toString(pin));						
-//						String d = Integer.toString(pin);
-//						out.write(d.getBytes());
-//						
-//						pin++;
-//						if(pin>3)
-//						{
-//							pin = 1;
-//						}
-//						
-//						t.sleep(150);
-//						} 
-//					else if (pressedDisconnect == true) {
-//							break;
-//						}
-//						
-//					}
+					int pin = 1;
+					while(true)
+					{
+						if (pressedDisconnect == false) {
+			        	console.printLine("Send command: " + Integer.toString(pin));						
+						String d = Integer.toString(pin);
+						out.write(d.getBytes());
+						
+						pin++;
+						if(pin>3)
+						{
+							pin = 1;
+						}
+						
+						t.sleep(150);
+						} 
+					else if (pressedDisconnect == true) {
+							break;
+						}
+						
+					}
 				}
 				else
 				{
