@@ -1,8 +1,10 @@
 package asrsSystem;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 import gnu.io.*;
+import tspSimulatorv2.Location;
 
 public class Connection implements Runnable{
 
@@ -57,27 +59,27 @@ public class Connection implements Runnable{
 					
 					OutputStream out = serialPort.getOutputStream();
 					
-					int pin = 1;
-					while(true)
-					{
-						if (pressedDisconnect == false) {
-			        	console.printLine("Send command: " + Integer.toString(pin));						
-						String d = Integer.toString(pin);
-						out.write(d.getBytes());
-						
-						pin++;
-						if(pin>3)
-						{
-							pin = 1;
-						}
-						
-						t.sleep(150);
-						} 
-					else if (pressedDisconnect == true) {
-							break;
-						}
-						
-					}
+//					int pin = 1;
+//					while(true)
+//					{
+//						if (pressedDisconnect == false) {
+//			        	console.printLine("Send command: " + Integer.toString(pin));						
+//						String d = Integer.toString(pin);
+//						out.write(d.getBytes());
+//						
+//						pin++;
+//						if(pin>3)
+//						{
+//							pin = 1;
+//						}
+//						
+//						t.sleep(150);
+//						} 
+//					else if (pressedDisconnect == true) {
+//							break;
+//						}
+//						
+//					}
 				}
 				else
 				{
@@ -98,7 +100,10 @@ public class Connection implements Runnable{
 				t.stop();
 			}
 		}
-	}		
+	}
+	public void GetPositions(ArrayList<Location> Locaties){
+		
+	}
 }
 
 
