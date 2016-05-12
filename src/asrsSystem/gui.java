@@ -9,6 +9,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import java.awt.event.InputEvent;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
@@ -42,7 +44,6 @@ public class gui extends JFrame implements ActionListener {
 	JLabel kAdres;
 	private boolean connected;
 	Connection connection;
-	twooptController controller;
 	ChooseOrder chooser = new ChooseOrder();
 	Console console = new Console();
 	JPanel container = new JPanel();
@@ -239,8 +240,8 @@ public class gui extends JFrame implements ActionListener {
 			
 		}
 		if(e.getSource() == genRoute) {
-			controller = new twooptController();
-			controller.start();
+			twooptController controller = new twooptController();
+			controller.startTwoOpt(chooser.getProductList());
 		}
 	}
 

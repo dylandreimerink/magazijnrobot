@@ -14,15 +14,17 @@ import tspSimulatorv2.Result;
  */
 public class TwoOpt implements Runnable{
 	
-	private ArrayList<Location> tour;
+	private ArrayList<asrsSystem.Location> tour;
+	private ArrayList<asrsSystem.Location> optimizedTour;
 	
-	protected Thread t = new Thread(this);
-	private Result result;
-	
-	private twooptController onComplete;
+	protected Thread t;
 
-	public Result calculateRoute() {
-
+	public void calculateRoute(ArrayList<asrsSystem.Location> initialTour) {
+		
+		t = new Thread(this);
+		t.start();
+		
+		tour = initialTour;
 		// Get tour size
 		int size = tour.size();
 
@@ -34,14 +36,12 @@ public class TwoOpt implements Runnable{
 
 			for (int i = 0; i < size - 1; i++) {
 				for (int k = i + 1; k < size; k++) {
-					ArrayList<Location> new_tour;
+					ArrayList<asrsSystem.Location> new_tour;
 					new_tour = twoOptSwap(tour, i, k);
 
 					double new_distance = getAfstand(new_tour);
 					Location check = new Location(0, 0);
 					System.out.println("Improve: " + improve);
-					Result tempResult = new Result(new_tour, 0);
-					onComplete.setTwooptResults(tempResult);
 					if (new_distance < best_distance  && check.equals(new_tour.get(0))) {
 						// Improvement found so reset
 						improve = 0;
@@ -56,13 +56,19 @@ public class TwoOpt implements Runnable{
 			improve++;
 		}
 
-		Result resultaat = new Result(tour, 0);
-		return resultaat;
+		optimizedTour = tour;
+		
 	}
+	
+	
+	public ArrayList<asrsSystem.Location> getOptimizedTour() {
+		return optimizedTour;
+	}
+	
 
-	private ArrayList<Location> twoOptSwap(ArrayList<Location> tour, int i, int k) {
+	private ArrayList<asrsSystem.Location> twoOptSwap(ArrayList<asrsSystem.Location> tour, int i, int k) {
 
-		ArrayList<Location> new_tour = new ArrayList<Location>();
+		ArrayList<asrsSystem.Location> new_tour = new ArrayList<asrsSystem.Location>();
 
 		int size = tour.size();
 		for (int c = 0; c <= i - 1; ++c) {
@@ -87,7 +93,7 @@ public class TwoOpt implements Runnable{
 		return new_tour;
 	}
 
-	private double calculateDistance(Location locatieA, Location locatieB) {
+	private double calculateDistance(asrsSystem.Location locatieA, asrsSystem.Location locatieB) {
 		double temp;
 		double temp1;
 		if (locatieA.getLocationX() > locatieB.getLocationX()) {
@@ -103,8 +109,8 @@ public class TwoOpt implements Runnable{
 		return Math.sqrt(Math.pow(temp, 2) + Math.pow(temp1, 2));
 	}
 
-	private double getAfstand(ArrayList<Location> p1) {
-		Location previousLocation = null;
+	private double getAfstand(ArrayList<asrsSystem.Location> p1) {
+		asrsSystem.Location previousLocation = null;
 		double totaleAfstand = 0;
 		for (int i = 0; i < p1.size(); i++) {
 			double afstand = 0;
@@ -119,48 +125,11 @@ public class TwoOpt implements Runnable{
 		return totaleAfstand;
 	}
 
-	public Location findNearest(ArrayList<Location> picklist, Location p) {
-		// System.out.println("Locatie p:" + p.getLocationX() + " " +
-		// p.getLocationY());
-		Location nearest = null;
-		double distance = 999999999;
-		for (Location s : picklist) {
-			if (this.calculateDistance(p, s) < distance) {
-				distance = this.calculateDistance(p, s);
-				nearest = s;
-			}
-		}
-		return nearest;
-	}
-
-
-	public void callBack() {
-		onComplete.TwoOptCallback();
-	}
-
-	
-	public void setOnDoneListner(twooptController listnerClass){
-		onComplete= listnerClass;
-	}
-
-	public void start(ArrayList<Location> p) {
-		this.tour = p;
-		
-		t = new Thread(this);
-		t.start();
-	}
-
-	public Result getResult() {
-		return result;
-	}
 
 	@Override
 	public void run() {
-		this.result = calculateRoute();
-
-		if (onComplete != null) {
-			callBack();
-		}
-
+		
+		
 	}
+
 }

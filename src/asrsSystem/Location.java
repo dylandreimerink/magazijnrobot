@@ -11,7 +11,7 @@ public class Location {
 	
 	private int locatieX;
 	private int locatieY;
-	private ArrayList<Location> location;
+	private ArrayList<Location> location = new ArrayList<Location>();
 
 	public Location(int x, int y) {
 		locatieX = x;
@@ -20,15 +20,32 @@ public class Location {
 	
 	
 	
-	public void generateLocationlist(ArrayList<Product> productlist){
+	public Location() {
+		// let this stay.
+	}
+
+
+
+	public ArrayList<Location> generateLocationlist(ArrayList<Product> productlist){
 		int index = 0;
 		for(Product p: productlist) {
 			int x = productlist.get(index).getLocationX();
 			int y = productlist.get(index).getLocationY();
 			Location locatie = new Location(x, y);
 			location.add(locatie);
+			index++;
 		}
+		
+		return location;
 
+	}
+	
+	public int getLocationX() {
+		return locatieX;
+	}
+	
+	public int getLocationY() {
+		return locatieY;
 	}
 	
 	public ArrayList<Location> getLocationList() {
