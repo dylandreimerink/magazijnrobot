@@ -123,9 +123,9 @@ public class MainGUI extends JFrame implements ActionListener {
 			repaint();
 		}
 		if (e.getSource() == testAlgorithm) {
-			bf.calculateRoute();
-			//ff.calculateRoute();
-			ffd.calculateRoute();
+			//bf.calculateRoute();
+			ff.calculateRoute();
+			//ffd.calculateRoute();
 			
 			bruteForceDistance.setText("Afstand: " + Double.toString(bf.getResultaat().getDistance()));
 			nearestNeighbourhahDistance.setText("Afstand: " + Double.toString(ff.getResultaat().getDistance()));

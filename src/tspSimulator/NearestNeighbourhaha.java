@@ -2,11 +2,9 @@
 package tspSimulator;
 
 import java.util.ArrayList;
-import java.util.Stack;
 
 import shared.Algorithm;
 import shared.Resultaat;
-import shared.Route;
 
 /**
  * Authors: Jan Willem en Henri Class: ICTM2A
@@ -26,7 +24,11 @@ public class NearestNeighbourhaha implements Algorithm {
 		resultaat = new Resultaat(picklist, 0);
 
 		panel = new DrawPanel(name, resultaat);
-		newPicklist = picklist;
+		newPicklist = new  ArrayList<Location>();
+		
+		for (Location l : picklist.toArray(new Location[0])) {
+			newPicklist.add(l);
+		}
 
 	}
 
@@ -43,6 +45,7 @@ public class NearestNeighbourhaha implements Algorithm {
 
 		// repeat until no improvement is made
 		int improve = 0;
+		System.out.println("Improvements: " + improve);
 
 		while (improve < 20) {
 			double best_distance = getAfstand(picklist);
@@ -53,7 +56,7 @@ public class NearestNeighbourhaha implements Algorithm {
 					this.TwoOptSwap(i, k);
 
 					double new_distance = getAfstand(newPicklist);
-
+					
 					if (new_distance < best_distance) {
 						// Improvement found so reset
 						improve = 0;

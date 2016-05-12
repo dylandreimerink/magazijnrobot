@@ -34,6 +34,9 @@ import shared.Product;
 
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JMenuItem;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class MainGUI extends JFrame implements ActionListener {
 
@@ -136,55 +139,72 @@ public class MainGUI extends JFrame implements ActionListener {
 		leftPanel.add(btnAnnuleerSimulatie);
 
 		JPanel dataPanel = new JPanel();
+		dataPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		leftPanel.add(dataPanel);
 		dataPanel.setLayout(new GridLayout(8, 2, 0, 0));
 
 		JLabel lblAlgoritme = new JLabel("First Fit: ");
+		lblAlgoritme.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lblAlgoritme);
 
 		lbltijdFF = new JLabel("*tijd*");
+		lbltijdFF.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lbltijdFF);
 
 		JLabel lblAlgoritme_1 = new JLabel("First Fit Decreasing: ");
+		lblAlgoritme_1.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lblAlgoritme_1);
 
 		lbltijdFFD = new JLabel("*tijd*");
+		lbltijdFFD.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lbltijdFFD);
 
 		JLabel lblAlgoritme_2 = new JLabel("Brute Force: ");
+		lblAlgoritme_2.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lblAlgoritme_2);
 
 		lbltijdBF = new JLabel("*tijd*");
+		lbltijdBF.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lbltijdBF);
 
 		JLabel lblGekozen = new JLabel("Gekozen");
+		lblGekozen.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lblGekozen);
 
 		lblGekozenAlgoritme = new JLabel("algoritme");
+		lblGekozenAlgoritme.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lblGekozenAlgoritme);
 
 		JLabel lblEinddata = new JLabel("Einddata:");
+		lblEinddata.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lblEinddata);
 
 		JLabel lblniks = new JLabel("");
+		lblniks.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lblniks);
 
 		JLabel lblGegevens = new JLabel("Gegevens:");
+		lblGegevens.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lblGegevens);
 
 		lblDozenFF = new JLabel("(niks)");
+		lblDozenFF.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lblDozenFF);
 
 		JLabel lblGegevens_1 = new JLabel("Gegevens:");
+		lblGegevens_1.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lblGegevens_1);
 
 		lblDozenFFD = new JLabel("(niks)");
+		lblDozenFFD.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lblDozenFFD);
 
 		JLabel lblGegevens_2 = new JLabel("Gegevens:");
+		lblGegevens_2.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lblGegevens_2);
 
 		lblDozenBF = new JLabel("(niks)");
+		lblDozenBF.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lblDozenBF);
 
 		JPanel panel_3 = new JPanel();
@@ -216,16 +236,20 @@ public class MainGUI extends JFrame implements ActionListener {
 		textArea = new JTextArea();
 
 		console = "Programma is succesvol opgestart";
-
-		textArea = new JTextArea(7, 7);
-		JScrollPane scrollPane = new JScrollPane(textArea);
-		textArea.setFont(new Font("Arial", Font.PLAIN, 12));
-		textArea.setEditable(false);
-		textArea.setColumns(5);
-		textArea.setLineWrap(true);
-		textArea.setWrapStyleWord(false);
-		textArea.append(console);
-		panel_3.add(scrollPane);
+		
+		JPanel panel_1 = new JPanel();
+		panel.add(panel_1, BorderLayout.SOUTH);
+				panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.X_AXIS));
+		
+				textArea = new JTextArea(13, 7);
+				JScrollPane scrollPane = new JScrollPane(textArea);
+				panel_1.add(scrollPane);
+				textArea.setFont(new Font("Arial", Font.PLAIN, 12));
+				textArea.setEditable(false);
+				textArea.setColumns(5);
+				textArea.setLineWrap(true);
+				textArea.setWrapStyleWord(false);
+				textArea.append(console);
 
 	}
 
