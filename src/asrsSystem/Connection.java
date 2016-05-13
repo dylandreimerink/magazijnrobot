@@ -28,7 +28,7 @@ public class Connection implements Runnable{
 		
 		portName = info.getName();
 		serialPort = null;
-		start();
+		
 		}
 	
 	public void start(){

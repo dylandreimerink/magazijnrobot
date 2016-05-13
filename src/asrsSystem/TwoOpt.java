@@ -40,9 +40,10 @@ public class TwoOpt implements Runnable{
 					new_tour = twoOptSwap(tour, i, k);
 
 					double new_distance = getAfstand(new_tour);
-					Location check = new Location(0, 0);
+					asrsSystem.Location checkStart_end = new asrsSystem.Location(1,5);
 					System.out.println("Improve: " + improve);
-					if (new_distance < best_distance  && check.equals(new_tour.get(0))) {
+					
+					if (new_distance < best_distance  && checkStart_end.equals(new_tour.get(0)) && checkStart_end.equals(new_tour.get(new_tour.size()-1))) {
 						// Improvement found so reset
 						improve = 0;
 						tour = new_tour;

@@ -4,6 +4,8 @@ import gnu.io.*;
 
 public class Robot {
 
-SerialPort serialport = null;	
+public void startRobot() {
+	
+}
 	
 }

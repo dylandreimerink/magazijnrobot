@@ -3,8 +3,6 @@ package asrsSystem;
 import java.util.ArrayList;
 
 import shared.Product;
-import tspSimulatorv2.Picklist;
-import tspSimulatorv2.Result;
 
 
 public class Location {
@@ -28,6 +26,8 @@ public class Location {
 
 	public ArrayList<Location> generateLocationlist(ArrayList<Product> productlist){
 		int index = 0;
+		Location begin_end = new Location(1,5);
+		location.add(begin_end);
 		for(Product p: productlist) {
 			int x = productlist.get(index).getLocationX();
 			int y = productlist.get(index).getLocationY();
@@ -35,6 +35,7 @@ public class Location {
 			location.add(locatie);
 			index++;
 		}
+		location.add(begin_end);
 		
 		return location;
 
@@ -54,5 +55,19 @@ public class Location {
 	
 	public String toString() {
 		return "locY: "+locatieY+", locX: "+locatieX;
+	}
+	
+	
+	public boolean equals(Object object) {
+		if (object instanceof Location) {
+			if (((Location) object).getLocationX() == this.getLocationX()
+					&& ((Location) object).getLocationY() == this.getLocationY()) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 }

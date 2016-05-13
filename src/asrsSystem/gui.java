@@ -23,6 +23,14 @@ import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.border.MatteBorder;
 import java.awt.GridLayout;
+import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 public class gui extends JFrame implements ActionListener {
 
 	
@@ -42,13 +50,15 @@ public class gui extends JFrame implements ActionListener {
 	JLabel kAdres;
 	private boolean connected;
 	Connection connection;
+	twooptController controller;
 	ChooseOrder chooser = new ChooseOrder();
 	Console console = new Console();
 	JPanel container = new JPanel();
 	private JLabel lblOrderinfoselecteerEenOrder;
 	private Component horizontalStrut;
 	private JPanel panel_6;
-	private JPanel drawer;
+	private JPanel drawerContainer;
+	private JLabel lblNewLabel;
 	
 	public gui() {
 		addComponents();
@@ -187,16 +197,12 @@ public class gui extends JFrame implements ActionListener {
 		horizontalStrut = Box.createHorizontalStrut(300);
 		container.add(horizontalStrut, "cell 0 5 2 1,growy");
 		
-		drawer = new JPanel();
-		panel.add(drawer, BorderLayout.CENTER);
-		drawer.setLayout(new GridLayout(0, 1, 0, 0));
+		drawerContainer = new JPanel();
+		panel.add(drawerContainer, BorderLayout.CENTER);
+        drawerContainer.setLayout(new MigLayout("", "[10px][grow]", "[354px,grow]"));
         
-
-		//drawPanel drawDoos = new drawPanel(drawer);
-		//drawer.add(drawDoos);
+        controller = new twooptController(drawerContainer);
         setVisible(true);
-             
-
 	}
 	
 	//actionlisteners
@@ -232,13 +238,15 @@ public class gui extends JFrame implements ActionListener {
 				connected = true;
 			}
 		}
+		if(e.getSource() == startRobot){
+			connection.start();
+		}
 		if(e.getSource()== disconnect) {
 			connected = false;
 			connection.setpressedDisconnect(true);
 			
 		}
 		if(e.getSource() == genRoute) {
-			twooptController controller = new twooptController();
 			controller.startTwoOpt(chooser.getProductList());
 		}
 	}
