@@ -8,8 +8,9 @@ public class TSPController {
 	 */
 	private final int HEIGHT = 10;
 	private final int WIDTH = 10;
-	private final int MAXPRODUCTS = 10;
-	private final int MINPRODUCTS = 10;
+	private int maxproducts = 11;
+	private int minproducts = 11;
+	
 	public boolean SHOWRASTER = true;
 
 	private Picklist picklist;
@@ -46,7 +47,7 @@ public class TSPController {
 		/*
 		 * Init picklist
 		 */
-		picklist = new Picklist(MAXPRODUCTS, MINPRODUCTS, HEIGHT, WIDTH);
+		picklist = new Picklist(maxproducts, minproducts, HEIGHT, WIDTH);
 		/*
 		 * Generate new Algorithms
 		 */
@@ -84,7 +85,7 @@ public class TSPController {
 		mainGui = new MainGUI(bruteforceDrawPanel, twooptDrawPanel, nearestneighbourDrawPanel,
 				nearestneighbourandtwooptDrawPanel, this);
 	}
-	
+
 	public void setRaster(boolean mode) {
 		bruteforceDrawPanel.setShowRaster(mode);
 		twooptDrawPanel.setShowRaster(mode);
@@ -93,11 +94,12 @@ public class TSPController {
 		mainGui.repaint();
 	}
 
-	public void generateNewPicklist() {	
-		
+	public void generateNewPicklist() {
+		picklist.setMaximaalAantalproducten(maxproducts);
+		picklist.setMinimaalAantalproducten(minproducts);
 		picklist.generateNewPicklist();
 		bruteforceResults.setResult(picklist.getPicklist());
- 		twooptResults.setResult(picklist.getPicklist());
+		twooptResults.setResult(picklist.getPicklist());
 		nearestneighbourResults.setResult(picklist.getPicklist());
 		nearestneighbourandtwooptResult.setResult(picklist.getPicklist());
 
@@ -105,12 +107,12 @@ public class TSPController {
 		twooptDrawPanel.setResultaat(twooptResults);
 		nearestneighbourDrawPanel.setResultaat(nearestneighbourResults);
 		nearestneighbourandtwooptDrawPanel.setResultaat(nearestneighbourandtwooptResult);
-		
+
 		bruteforceResults.setShowPointsonly(true);
 		twooptResults.setShowPointsonly(true);
 		nearestneighbourResults.setShowPointsonly(true);
 		nearestneighbourandtwooptResult.setShowPointsonly(true);
-		
+
 		mainGui.repaint();
 	}
 
@@ -195,5 +197,25 @@ public class TSPController {
 		nearestneighbourandtwooptDrawPanel.setResultaat(nearestneighbourandtwooptResult);
 		mainGui.repaint();
 	}
+	
+	public void setMaxproducts(int maxproducts) {
+		this.maxproducts = maxproducts;
+	}
+
+	public void setMinproducts(int minproducts) {
+		this.minproducts = minproducts;
+	}
+
+	public int getHEIGHT() {
+		return HEIGHT;
+	}
+
+	public int getWIDTH() {
+		return WIDTH;
+	}
+
+
+	
+	
 
 }
