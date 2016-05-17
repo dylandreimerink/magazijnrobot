@@ -35,7 +35,7 @@ public class TwoOpt implements Runnable, Algorithm {
 
 					double new_distance = getAfstand(new_tour);
 					Location check = new Location(0, 0);
-					System.out.println("Improve: " + improve);
+				//	System.out.println("Improve: " + improve);
 					Result tempResult = new Result(new_tour, 0);
 					onComplete.setTwooptResults(tempResult);
 					if (new_distance < best_distance  && check.equals(new_tour.get(0))) {
@@ -43,7 +43,7 @@ public class TwoOpt implements Runnable, Algorithm {
 						improve = 0;
 						tour = new_tour;
 						best_distance = new_distance;
-						System.out.println("Best distance: " + best_distance);
+						//System.out.println("Best distance: " + best_distance);
 						
 					}
 				}

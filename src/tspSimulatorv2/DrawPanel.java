@@ -38,17 +38,13 @@ public class DrawPanel extends JPanel {
 		int afstandY = height / y;
 
 		if (showRaster) {
-			System.out.println(showRaster);
 			for (int j = 0; j <= height; j += afstandX) {
 				g.drawLine(j, 0, j, height);
 			}
 			for (int j = 0; j <= width; j += afstandY) {
 				g.drawLine(0, j, width, j);
 			}
-		}else {
-			System.out.println(showRaster);
 		}
-
 		Location prevLocation = null;
 		for (Location location : resultaat.getResult()) {
 			if (prevLocation != null) {

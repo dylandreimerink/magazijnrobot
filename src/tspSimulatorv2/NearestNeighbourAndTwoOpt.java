@@ -63,7 +63,6 @@ public class NearestNeighbourAndTwoOpt implements Runnable, Algorithm {
 						improve = 0;
 						tour = new_tour;
 						best_distance = new_distance;
-						System.out.println(best_distance);
 						Result tempResult = new Result(new_tour, 0);
 						onComplete.setNearestneighbourandtwooptResult(tempResult);
 					}
@@ -164,7 +163,6 @@ public class NearestNeighbourAndTwoOpt implements Runnable, Algorithm {
 	}
 
 	public Result getResult() {
-		System.out.println(result);
 		return result;
 	}
 
