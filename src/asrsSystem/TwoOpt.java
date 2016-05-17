@@ -2,7 +2,7 @@ package asrsSystem;
 
 import java.util.ArrayList;
 
-import asrsSystem.twooptController;
+import asrsSystem.Controller;
 import shared.Algorithm;
 import shared.Resultaat;
 import tspSimulator.DrawPanel;

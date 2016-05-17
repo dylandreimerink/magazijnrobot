@@ -48,9 +48,9 @@ public class gui extends JFrame implements ActionListener {
 	JLabel orderNr;
 	JLabel kNaam;
 	JLabel kAdres;
-	private boolean connected;
-	Connection connection;
-	twooptController controller;
+
+	
+	Controller controller;
 	ChooseOrder chooser = new ChooseOrder();
 	Console console = new Console();
 	JPanel container = new JPanel();
@@ -201,7 +201,7 @@ public class gui extends JFrame implements ActionListener {
 		panel.add(drawerContainer, BorderLayout.CENTER);
         drawerContainer.setLayout(new MigLayout("", "[10px][grow]", "[354px,grow]"));
         
-        controller = new twooptController(drawerContainer);
+        controller = new Controller(drawerContainer);
         setVisible(true);
 	}
 	
@@ -232,21 +232,14 @@ public class gui extends JFrame implements ActionListener {
 			// todo code here
 		}
 		if(e.getSource()== connect) {
-			if(connected == false){
-				connection = new Connection();
-				connection.openConnection();
-				connected = true;
-			}
-		}
-		if(e.getSource() == startRobot){
-			connection.start();
-		}
-		if(e.getSource()== disconnect) {
-			connected = false;
-			connection.setpressedDisconnect(true);
 			
 		}
-		if(e.getSource() == genRoute) {
+		if(e.getSource() == startRobot){
+			
+		}
+		if(e.getSource()== disconnect) {
+		}
+		if(e.getSource()== genRoute) {
 			controller.startTwoOpt(chooser.getProductList());
 		}
 	}
