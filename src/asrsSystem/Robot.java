@@ -31,7 +31,7 @@ public class Robot implements Runnable{
 		while (ports.hasMoreElements())
 		{
 			info = ports.nextElement();
-        	System.out.println(info.getName());			
+        	System.out.println("arduino poort: "+info.getName());			
 		}
 		
 		portName = info.getName();
@@ -53,18 +53,18 @@ public class Robot implements Runnable{
 			CommPortIdentifier port = CommPortIdentifier.getPortIdentifier(portName);
 			if(port.isCurrentlyOwned())
 			{
-	        	System.out.println("Error: Port is currently in use");				
+	        	System.out.println("Error: Port is currently in use");		
+	 
 			}
 			if(port!=null)
 			{
 				CommPort commPort = port.open(portName, 2000);
-				
+
 				if(commPort instanceof SerialPort)
 				{
 					serialPort = (SerialPort) commPort;
 					serialPort.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
 					serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN | SerialPort.FLOWCONTROL_RTSCTS_OUT);
-					
 					OutputStream out = serialPort.getOutputStream();
 					int i = 0;
 					for(Location l:list) {
@@ -148,6 +148,7 @@ public class Robot implements Runnable{
 						
 					out.write(command.getBytes());
 					out.flush();
+
 					
 					} else if(command == "o;") {
 						String tX = "X"+x+";";
@@ -156,6 +157,7 @@ public class Robot implements Runnable{
 						out.write(tY.getBytes());
 					}
 					
+
 					String line = "";
 					if ((reader.ready()) && (line = reader.readLine()) != null)
 					{
@@ -164,11 +166,15 @@ public class Robot implements Runnable{
 							//out.close();
 							System.out.println("stopping");
 						}
+
 						if(line.contains("C")) {
 							System.out.println("command done");
 							out.close();
 						}
 						System.out.println(line);
+
+						System.out.println("Line:"+line);
+
 					}
 					
 				}

@@ -232,12 +232,13 @@ public class gui extends JFrame implements ActionListener {
 			// todo code here
 		}
 		if(e.getSource()== connect) {
-			
+			controller.Connect();
 		}
 		if(e.getSource() == startRobot){
-			
+			controller.StartRobot();
 		}
 		if(e.getSource()== disconnect) {
+			controller.Disconnect();
 		}
 		if(e.getSource()== genRoute) {
 			controller.startTwoOpt(chooser.getProductList());
