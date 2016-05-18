@@ -66,28 +66,14 @@ public class Robot implements Runnable{
 					serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN | SerialPort.FLOWCONTROL_RTSCTS_OUT);
 					
 					OutputStream out = serialPort.getOutputStream();
-					SendCordinates(list);
-//					int pin = 1;
-//					while(true)
-//					{
-//						if (pressedDisconnect == false) {
-//			        	console.printLine("Send command: " + Integer.toString(pin));						
-//						String d = Integer.toString(pin);
-//						out.write(d.getBytes());
-//						
-//						pin++;
-//						if(pin>3)
-//						{
-//							pin = 1;
-//						}
-//						
-//						t.sleep(150);
-//						} 
-//					else if (pressedDisconnect == true) {
-//							break;
-//						}
-//						
-//					}
+					int i = 0;
+					for(Location l:list) {
+						SendCommand("s;");
+						sendCords(i);
+						i++;
+					}
+					
+
 				}
 				else
 				{
@@ -137,16 +123,17 @@ public class Robot implements Runnable{
 		}
 	}*/
 	
-	public void SendCordinates(ArrayList <Location> list){
-		for(int i = 0; i < list.size(); i++) {   
-		    int intx = list.get(i).getLocationX();
-		    int inty = list.get(i).getLocationY();
-		    System.out.println("intX: " + intx);
-		    System.out.println("intY: " + inty);		    
-		    x = Integer.toString(intx);
-		    y = Integer.toString(inty);		    
-		    System.out.println("X: " + x);
-		    System.out.println("Y: " + y);
+	private void sendCords(int index) {
+		int x = list.get(index).getLocationX();
+		this.x = Integer.toString(x);
+		int y = list.get(index).getLocationY();
+		this.y = Integer.toString(y);
+		SendCommand("o;");// o is to make clear you are sending coordinates, not a standard command
+		
+	}
+	
+	private void SendCommand(String command){
+
 		    
 		    try {
 		    	
@@ -154,24 +141,32 @@ public class Robot implements Runnable{
 				InputStream input = serialPort.getInputStream();
 				BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 				
-				String xString = "X" + x + ";";
-				String yString = "Y" + y + ";";
-				String zString = "Z1;";
 				
 				boolean go = true;
 				while(go){
-					out.write(xString.getBytes());
-					out.write(yString.getBytes());
-					out.write(zString.getBytes());
+					if(command != "o;") {
+						
+					out.write(command.getBytes());
 					out.flush();
+					
+					} else if(command == "o;") {
+						String tX = "X"+x+";";
+						String tY = "Y"+y+";";
+						out.write(tX.getBytes());
+						out.write(tY.getBytes());
+					}
 					
 					String line = "";
 					if ((reader.ready()) && (line = reader.readLine()) != null)
 					{
 						if(line.contains("OK")){
 							go = false;
-							out.close();
+							//out.close();
 							System.out.println("stopping");
+						}
+						if(line.contains("C")) {
+							System.out.println("command done");
+							out.close();
 						}
 						System.out.println(line);
 					}
@@ -189,7 +184,7 @@ public class Robot implements Runnable{
 			}
 		} 		
 	}
-}
+
 
 
 
