@@ -31,6 +31,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JProgressBar;
 public class gui extends JFrame implements ActionListener {
 
 	
@@ -59,6 +60,7 @@ public class gui extends JFrame implements ActionListener {
 	private JPanel panel_6;
 	private JPanel drawerContainer;
 	private JLabel lblNewLabel;
+	int value = 0;
 	
 	public gui() {
 		addComponents();
@@ -199,9 +201,11 @@ public class gui extends JFrame implements ActionListener {
 		
 		drawerContainer = new JPanel();
 		panel.add(drawerContainer, BorderLayout.CENTER);
-        drawerContainer.setLayout(new MigLayout("", "[10px][grow]", "[354px,grow]"));
+        drawerContainer.setLayout(new MigLayout("", "[10px][grow]", "[354px,grow][]"));
         
         controller = new Controller(drawerContainer);
+        controller.createProgressBar();
+        drawerContainer.add(controller.getProgressBar(), "cell 1 1,grow");
         setVisible(true);
 	}
 	
@@ -242,6 +246,13 @@ public class gui extends JFrame implements ActionListener {
 		}
 		if(e.getSource()== genRoute) {
 			controller.startRoute(chooser.getProductList());
+		}
+		if(e.getSource() == stopRobot) {
+			value = value+5;
+			controller.updatePBar(value);
+		}
+		if(e.getSource() == pauseRobot) {
+			controller.updatePBar(0);
 		}
 	}
 

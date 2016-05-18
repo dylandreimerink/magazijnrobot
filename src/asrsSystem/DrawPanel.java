@@ -6,8 +6,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,6 +22,8 @@ import shared.Product;
 public class DrawPanel extends JPanel {
 	
 	
+	
+	private BufferedImage image;
 	
 	private int magazijnSize = 5;
 	private int WIDTH = 650;
@@ -32,7 +38,11 @@ public class DrawPanel extends JPanel {
 	
 	
 	public DrawPanel() {
-		
+	       try {                
+	           image = ImageIO.read(new File("src/crate.png"));
+	        } catch (IOException ex) {
+	             // handle exception...
+	        }
 	}
 	
 	
@@ -58,6 +68,7 @@ public class DrawPanel extends JPanel {
 		if(drawRoute == true) {
 			int index = 0;
 			int maxindex = route.size();
+			
 			for(Location loc: route) {
 				if(index < maxindex-1){
 					System.out.println(route);
@@ -85,11 +96,13 @@ public class DrawPanel extends JPanel {
 			
 			int dX = (afstandX*x) - (afstandX/2);
 			int dY = (afstandY*y) - (afstandY/2);
+			g.drawImage(image, dX-64, dY-64, null);
 			g.setColor(Color.DARK_GRAY);
 			g.fillOval(dX-8,dY-8,18,18);
 			g.setColor(Color.blue);
 			g.drawString(product.get(index).getProductName(),dX-18,dY-18);
 			index++;
+			
 		}
 		int x = 6;
 		int y = 5;
