@@ -68,7 +68,8 @@ public class Robot implements Runnable{
 					OutputStream out = serialPort.getOutputStream();
 					int i = 0;
 					for(Location l:list) {
-						SendCommand("s;");
+						System.out.println("test");
+						SendCommand("S");
 						sendCords(i);
 						i++;
 					}
@@ -128,7 +129,7 @@ public class Robot implements Runnable{
 		this.x = Integer.toString(x);
 		int y = list.get(index).getLocationY();
 		this.y = Integer.toString(y);
-		SendCommand("o;");// o is to make clear you are sending coordinates, not a standard command
+		SendCommand("O");// o is to make clear you are sending coordinates, not a standard command
 		
 	}
 	
@@ -144,13 +145,14 @@ public class Robot implements Runnable{
 				
 				boolean go = true;
 				while(go){
-					if(command != "o;") {
-						
+					if(command != "O") {
+					
+						System.out.println(command);
 					out.write(command.getBytes());
 					out.flush();
 
 					
-					} else if(command == "o;") {
+					} else if(command == "O") {
 						String tX = "X"+x+";";
 						String tY = "Y"+y+";";
 						out.write(tX.getBytes());
@@ -161,7 +163,7 @@ public class Robot implements Runnable{
 					String line = "";
 					if ((reader.ready()) && (line = reader.readLine()) != null)
 					{
-						if(line.contains("OK")){
+						if(line.contains("O")){
 							go = false;
 							//out.close();
 							System.out.println("stopping");
