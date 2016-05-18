@@ -12,6 +12,10 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/j3dutils.jar"/>
 	<classpathentry kind="lib" path="lib/vecmath.jar"/>
-	<classpathentry kind="lib" path="lib/RXTXcomm.jar"/>
+	<classpathentry kind="lib" path="lib/RXTXcomm.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="magazijnrobot"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
