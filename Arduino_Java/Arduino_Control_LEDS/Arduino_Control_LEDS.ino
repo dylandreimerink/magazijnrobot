@@ -18,10 +18,13 @@ void loop() {
   bool hasy = false;
   bool hasz = false;
   char curVal = '0';
+  char command;
   if (Serial.available() > 0){
-    delay(20);
-     int data;
-     while(Serial.available() > 0){
+    command = Serial.read();
+    if(command == "r") {
+      delay(20);
+      int data;
+      while(Serial.available() > 0){
         data = Serial.read();
         if(data < 128){
           Serial.print("I received: ");
@@ -51,6 +54,9 @@ void loop() {
           }
         }
      }
+    } else if(command == "g") {
+      Serial.println("yes this worked")
+    }
      Serial.println("OK");
     if(x=='1'){
       digitalWrite(led1, HIGH);

@@ -54,7 +54,7 @@ public class Location {
 	}
 	
 	public String toString() {
-		return "locY: "+locatieY+", locX: "+locatieX;
+		return "Y: "+locatieY+", X: "+locatieX;
 	}
 	
 	
