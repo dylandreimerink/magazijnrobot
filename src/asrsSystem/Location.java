@@ -26,8 +26,6 @@ public class Location {
 
 	public ArrayList<Location> generateLocationlist(ArrayList<Product> productlist){
 		int index = 0;
-		Location begin_end = new Location(1,5);
-		location.add(begin_end);
 		for(Product p: productlist) {
 			int x = productlist.get(index).getLocationX();
 			int y = productlist.get(index).getLocationY();
@@ -35,7 +33,7 @@ public class Location {
 			location.add(locatie);
 			index++;
 		}
-		location.add(begin_end);
+
 		
 		return location;
 

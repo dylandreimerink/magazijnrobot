@@ -21,7 +21,7 @@ public class Controller {
 		route.calculateRoute(initialTour);
 		optimizedTour = route.getOptimizedTour();
 		console.printArray(optimizedTour);
-		drawer.setResult(optimizedTour);
+		drawer.setResult(optimizedTour, initialTour, productlist);
 		drawer.repaint();
 
 	}
