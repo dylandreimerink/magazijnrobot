@@ -241,7 +241,7 @@ public class gui extends JFrame implements ActionListener {
 			controller.Disconnect();
 		}
 		if(e.getSource()== genRoute) {
-			controller.startTwoOpt(chooser.getProductList());
+			controller.startRoute(chooser.getProductList());
 		}
 	}
 

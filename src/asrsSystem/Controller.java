@@ -13,13 +13,13 @@ public class Controller {
 	private DrawPanel drawer;
 	private Robot robot;
 	
-	public void startTwoOpt(ArrayList<Product> productlist) {
+	public void startRoute(ArrayList<Product> productlist) {
 		Location location = new Location();
 		initialTour = location.generateLocationlist(productlist);
 		System.out.println("inittour"+initialTour);
-		TwoOpt twoopt = new TwoOpt();
-		twoopt.calculateRoute(initialTour);
-		optimizedTour = twoopt.getOptimizedTour();
+		Route route = new Route();
+		route.calculateRoute(initialTour);
+		optimizedTour = route.getOptimizedTour();
 		console.printArray(optimizedTour);
 		drawer.setResult(optimizedTour);
 		drawer.repaint();
