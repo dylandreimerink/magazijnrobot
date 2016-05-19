@@ -1,6 +1,4 @@
-const int SENSOR_X = A1;
-const int SENSOR_Y = A2;
-const int SensorIsZwart = 400;
+
 int X = 0;
 int Y = 0;
 

@@ -23,8 +23,9 @@ void rechts() {
   while(readingSensor) {
     digitalWrite(MOTOR_GROUND, HIGH);
     analogWrite(MOTOR_GROUND_SPEED, 175);
-    if(sensorread is black) {
-      currentY++;
+    readSensor_X();
+    if(readSensor()) {
+      currentX++;
     }
   }
 }
@@ -33,8 +34,8 @@ void links() {
   while(readingSensor) {
     digitalWrite(MOTOR_GROUND, LOW);
     analogWrite(MOTOR_GROUND_SPEED, 175);
-    if(sensorread is black) {
-      currentY--;
+    if(readSensor_X()) {
+      currentX--;
     }
   }
 }
@@ -43,8 +44,9 @@ void omhoog() {
   while(readingSensor) {
     digitalWrite(MOTOR_LIFT, HIGH);
     analogWrite(MOTOR_LIFT_SPEED, 175);
-    if(sensorread is black) {
-      posX++;
+    readSensor_Y();
+    if(readSensor_Y()) {
+      posY++;
     }
   }
 }
@@ -53,28 +55,33 @@ void omlaag() {
   while(readingSensor) {
     digitalWrite(MOTOR_LIFT, HIGH);
     analogWrite(MOTOR_LIFT_SPEED, 175);
-    if(sensorread is black) {
-      posX--;
+    readSensor_Y();
+    if(readSensor_Y()) {
+      posY--;
     }
   }
 }
 
-boolean ReadSensor_X(){
-  Serial.println(analogRead(SENSOR_X));
-  if(analogRead(SENSOR_X) < SensorIsZwart){
+boolean readSensor_X(){
+  Serial.println(analogRead(sensorX));
+  if(analogRead(sensorX) < SensorIsZwart){
     return(true);
+    Serial.println(sensorX);
   }
   else{
     return(false);
+    Serial.println(sensorX);
   }
 }
 
-boolean ReadSensor_Y(){
-  Serial.println(analogRead(SENSOR_Y));
-  if(analogRead(SENSOR_Y) < SensorIsZwart){
+boolean readSensor_Y(){
+  Serial.println(analogRead(sensorY));
+  if(analogRead(sensorY) < SensorIsZwart){
      return(true);
-  }
+     Serial.println(sensorY);
+   }
   else{
     return(false);
+    Serial.println(sensorY);
   }
 }

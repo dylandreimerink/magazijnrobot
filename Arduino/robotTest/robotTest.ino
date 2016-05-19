@@ -1,4 +1,14 @@
-const int SensorIsZwart = 400;  
+/*
+ * Analog ports of sensors
+ */
+  const int SENSOR_X = A1;
+  const int SENSOR_Y = A2;
+
+ /*
+  * 
+  */
+  const int sensorValBlack = 400;  
+  
  /*
   * Pins defined for moters 
   */
@@ -29,6 +39,6 @@ void setup() {
 }
 
 void loop() {
-
+  
 }
 
