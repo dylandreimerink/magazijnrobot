@@ -7,11 +7,17 @@
   int MOTOR_LIFT = 7;
   int MOTOR_LIFT_SPEED = 6;
 
-/*
- * X & Y to determine the current pos
- */
-  int CURRENT_X = 0;
-  int CURRENT_Y = 0;
+ /*
+  * X & Y to determine the current pos
+  */
+  int currentX = 0;
+  int currentY = 0;
+  
+  /*
+   * boolean read sensors.  
+   * While the robot is moving, readingSensor is TRUE
+   */
+  boolean readingSensor = false;
   
 
 void setup() {
