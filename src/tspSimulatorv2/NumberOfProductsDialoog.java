@@ -62,7 +62,7 @@ public class NumberOfProductsDialoog extends JDialog implements ActionListener {
 			} else if (this.getAantal() > (controller.getHEIGHT() * controller.getWIDTH())){
 				JOptionPane.showMessageDialog(this, "Het magazijn is " + controller.getHEIGHT() + " bij " + controller.getWIDTH()+ " groot,  er kunnn dus nooit meer dan " + controller.getHEIGHT() * controller.getWIDTH() + " producten ingevoerd worden!");
 			} else {
-				isOk = true;
+				isOk = true; 
 				setVisible(false);
 			}
 		} else {
