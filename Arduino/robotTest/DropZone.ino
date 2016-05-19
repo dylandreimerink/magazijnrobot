@@ -43,13 +43,13 @@ boolean ReadSensor_Y(){
   }
 }
 
-void DropZone(int positie_X, int positie_Y){ //DropZone voor paketten is X=1, Y=1
+void DropZone(int positie_X, int positie_Y){ //DropZone voor paketten is X=0, Y=0
   X = positie_X; //Robot krijgt de huidige positie X mee
   Y = positie_Y; //Robot krijgt de huidige positie Y mee
-  while(X > 1){ // Robot rijdt naar links totdat de positie op X=1 staat
+  while(X > 0){ // Robot rijdt naar links totdat de positie op X=1 staat
      RijLinks(positie_X);  
   }
-  while(Y > 1){ // Robot rijdt naar beneden totdat de positie op Y=1 staat
+  while(Y > 0){ // Robot rijdt naar beneden totdat de positie op Y=1 staat
     NaarBeneden();
   }
 }

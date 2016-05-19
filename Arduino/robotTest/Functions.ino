@@ -1,4 +1,3 @@
-
 void moveToDest(x, y) {
   readingSensor = true;
   while(currentX ! = x && currentY != y) {
@@ -57,5 +56,25 @@ void omlaag() {
     if(sensorread is black) {
       posX--;
     }
+  }
+}
+
+boolean ReadSensor_X(){
+  Serial.println(analogRead(SENSOR_X));
+  if(analogRead(SENSOR_X) < SensorIsZwart){
+    return(true);
+  }
+  else{
+    return(false);
+  }
+}
+
+boolean ReadSensor_Y(){
+  Serial.println(analogRead(SENSOR_Y));
+  if(analogRead(SENSOR_Y) < SensorIsZwart){
+     return(true);
+  }
+  else{
+    return(false);
   }
 }

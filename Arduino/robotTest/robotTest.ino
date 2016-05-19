@@ -1,4 +1,4 @@
-  
+const int SensorIsZwart = 400;  
  /*
   * Pins defined for moters 
   */
