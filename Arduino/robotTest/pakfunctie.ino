@@ -1,15 +1,7 @@
 //ARDUINO VOOR DE GRIJPER EN HOOGTE HIERMEE GEBRUIKEN
 int MOTOR_GRAB = 4;
 int MOTOR_GRAB_SPEED = 5;
-int MOTOR_LIFT = 7;
-int MOTOR_LIFT_SPEED = 6;
 int grabHeight = 200;
-
-void setup() {
-   for(int i = 4; i < 8; i++){
-    pinMode(i, OUTPUT); 
-  }
-}
 
 void pak(){
   //Grijper naar voren
@@ -35,8 +27,3 @@ void pak(){
   delay(200);
 }
 
-void loop() {
-  //delay(500);
-  pak();
-  //delay(1000);
-}

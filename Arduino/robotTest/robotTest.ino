@@ -1,8 +1,8 @@
 /*
  * Analog ports of sensors
  */
-  const int SENSOR_X = A1;
-  const int SENSOR_Y = A2;
+  const int sensorX = A1;
+  const int sensorY = A2;
 
  /*
   * 
@@ -22,12 +22,17 @@
   */
   int currentX = 0;
   int currentY = 0;
-  
+
+ /*
+  * x, y pos from asrs 
+  */
+  int x, y;
   /*
    * boolean read sensors.  
    * While the robot is moving, readingSensor is TRUE
    */
   boolean readingSensor = false;
+  //boolean readSensor;
   
 
 void setup() {
