@@ -10,6 +10,8 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
+import javax.swing.JProgressBar;
+
 import gnu.io.*;
 import sun.net.ProgressSource.State;
 
@@ -54,7 +56,7 @@ public class Robot implements Runnable{
 	public void setpressedDisconnect(boolean value) {
 		this.pressedDisconnect = value;
 	}
-		
+	
 	public void run() {
 		try
 		{
@@ -76,6 +78,7 @@ public class Robot implements Runnable{
 					OutputStream out = serialPort.getOutputStream();
 					int i = 0;
 					for(Location l:list) {
+						SendCommand("s;");
 						sendCords(i);
 						i++;
 					}
@@ -110,39 +113,13 @@ public class Robot implements Runnable{
 		}
 	}
 	
-	/*private void openSerialPort(){
-		if(serialPort instanceof SerialPort)
-			return;
-		
-		try {
-			CommPortIdentifier port = CommPortIdentifier.getPortIdentifier(portName);
-			if(port.isCurrentlyOwned())
-			{
-				System.out.println("Error: Port is currently in use");				
-			}
-			if(port!=null)
-			{
-				CommPort commPort = port.open(portName, 2000);
-				
-				if(commPort instanceof SerialPort)
-				{
-					serialPort = (SerialPort) commPort;
-					serialPort.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
-					serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN | SerialPort.FLOWCONTROL_RTSCTS_OUT);
-				}
-			}
-		} catch (NoSuchPortException | PortInUseException | UnsupportedCommOperationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}*/
 	
 	private void sendCords(int index) {
 		int x = list.get(index).getLocationX();
 		this.x = Integer.toString(x);
 		int y = list.get(index).getLocationY();
 		this.y = Integer.toString(y);
-		String line = "";
+		SendCommand("o;");// o is to make clear you are sending coordinates, not a standard command
 		
 	    try {
 	    	
@@ -190,33 +167,68 @@ public class Robot implements Runnable{
 						//out.close();
 						go = false;
 					}
-				}
-			}
-				
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    try {
-			t.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	} 
-	boolean hasOK(BufferedReader reader) throws IOException{
-		String line = "";
-		if ((reader.ready()) && (line = reader.readLine()) != null)
-		{
-			if(line.contains("O")){
-				System.out.println("OK received");
-				return true;
-			}
-		}
-		return false;
 	}
-}
+	
+	private void SendCommand(String command){
+
+		    
+		    try {
+		    	
+				OutputStream out = serialPort.getOutputStream();
+				InputStream input = serialPort.getInputStream();
+				BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+				
+				
+				boolean go = true;
+				while(go){
+					if(command != "o;") {
+						
+					out.write(command.getBytes());
+					out.flush();
+
+					
+					} else if(command == "o;") {
+						String tX = "X"+x+";";
+						String tY = "Y"+y+";";
+						out.write(tX.getBytes());
+						out.write(tY.getBytes());
+					}
+					
+
+					String line = "";
+					if ((reader.ready()) && (line = reader.readLine()) != null)
+					{
+						if(line.contains("O")){
+							go = false;
+							//out.close();
+							System.out.println("stopping");
+						}
+
+						if(line.contains("C")) {
+							System.out.println("command done");
+							out.close();
+						}
+						System.out.println(line);
+
+						System.out.println("Line:"+line);
+
+					}
+					
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    try {
+				t.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} 
+	
+	
+	}
 
 
 

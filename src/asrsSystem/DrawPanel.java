@@ -6,26 +6,43 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import shared.Product;
 
 
 public class DrawPanel extends JPanel {
 	
 	
 	
+	private BufferedImage image;
+	
 	private int magazijnSize = 5;
 	private int WIDTH = 650;
 	private int HEIGHT = 650;
-	public ArrayList<Location> route;
+	private ArrayList<Location> route;
+	private	ArrayList<Location> prodLoc;
+	private ArrayList<Product> product;
 	JLabel JLRoute;
 	public boolean drawRoute = false;
+	private int afstandX;
+	private int afstandY;
+	
 	
 	public DrawPanel() {
-		
+	       try {                
+	           image = ImageIO.read(new File("src/crate.png"));
+	        } catch (IOException ex) {
+	             // handle exception...
+	        }
 	}
 	
 	
@@ -35,8 +52,8 @@ public class DrawPanel extends JPanel {
 		super.paintComponent(g);
 		//System.out.println(WIDTH);
 		//System.out.println(HEIGHT);
-		int afstandX = (WIDTH / magazijnSize);
-		int afstandY = (HEIGHT / magazijnSize);
+		this.afstandX = (WIDTH / magazijnSize);
+		this.afstandY = (HEIGHT / magazijnSize);
 		//System.out.println(afstandX);
 
 		
@@ -51,6 +68,7 @@ public class DrawPanel extends JPanel {
 		if(drawRoute == true) {
 			int index = 0;
 			int maxindex = route.size();
+			
 			for(Location loc: route) {
 				if(index < maxindex-1){
 					System.out.println(route);
@@ -64,26 +82,39 @@ public class DrawPanel extends JPanel {
 					drawRoute(g,beginX,beginY,eindX,eindY,afstandX,afstandY);
 				}
 			}
+			drawProduct(g);
 		}
 		
 	}
-/*
-	private void drawProduct(Graphics g, int x, int y, int afstandX, int afstandY, String product) {
-		int breedteStip = (int) (drawPanel.getWidth() / afstandX) / 4;
-		x = afstandX * x;
-		y = afstandY * y;
-		double middleX = (afstandX / 2) - breedteStip/2 + x;
-		double middleY = (afstandY / 2) - breedteStip/2 + y;
-		int middleXInt = (int) middleX;
-		int middleYInt = (int) middleY;
-		g.setColor(Color.black);
-		g.fillOval(middleXInt, middleYInt, breedteStip, breedteStip);
-		g.setColor(Color.red);
-		g.drawString(product, middleXInt + 15, middleYInt);
-		
-	}
-	*/
+	
 
+	private void drawProduct(Graphics g) {
+		int index = 0;
+		for(Product l:product) {
+			int x = product.get(index).getLocationX();
+			int y = product.get(index).getLocationY();
+			
+			int dX = (afstandX*x) - (afstandX/2);
+			int dY = (afstandY*y) - (afstandY/2);
+			g.drawImage(image, dX-64, dY-64, null);
+			g.setColor(Color.DARK_GRAY);
+			g.fillOval(dX-8,dY-8,18,18);
+			g.setColor(Color.blue);
+			g.drawString(product.get(index).getProductName(),dX-18,dY-18);
+			index++;
+			
+		}
+		int x = 6;
+		int y = 5;
+		
+		int dX = (afstandX*x) - (afstandX/2);
+		int dY = (afstandY*y) - (afstandY/2);
+		g.setColor(Color.DARK_GRAY);
+		g.fillOval(dX-8,dY-8,18,18);
+		g.setColor(Color.RED);
+		g.drawString("Lopende band",dX+18,dY);
+	}
+	
 	private void drawRoute(Graphics g, int beginX, int beginY, int eindX, int eindY, int afstandX, int afstandY) {
 		
 		int bX = (afstandX*beginX) - (afstandX/2);
@@ -92,15 +123,18 @@ public class DrawPanel extends JPanel {
 		int eY = (afstandY*eindY) - (afstandY/2);
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(3));
-		g.setColor(Color.blue);
+		g.setColor(Color.DARK_GRAY);
 		g.drawLine(bX, bY, eX, eY);
 		System.out.println(beginX+","+beginY+"|"+eindX+","+eindY);
 		
+		
 	}
 	
-	public void setResult(ArrayList<Location> route) {
+	public void setResult(ArrayList<Location> route,ArrayList<Location> productLoc, ArrayList<Product> productlist) {
 		drawRoute = true;
 		this.route = route;
+		prodLoc = productLoc;
+		this.product = productlist;
 		repaint();
 	}
 	

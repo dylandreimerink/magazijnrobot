@@ -3,6 +3,7 @@ package asrsSystem;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 
 import shared.Product;
 
@@ -12,16 +13,17 @@ public class Controller {
 	private Console console = new Console();
 	private DrawPanel drawer;
 	private Robot robot;
+	private JProgressBar progressBar;
 	
-	public void startTwoOpt(ArrayList<Product> productlist) {
+	public void startRoute(ArrayList<Product> productlist) {
 		Location location = new Location();
 		initialTour = location.generateLocationlist(productlist);
 		System.out.println("inittour"+initialTour);
-		TwoOpt twoopt = new TwoOpt();
-		twoopt.calculateRoute(initialTour);
-		optimizedTour = twoopt.getOptimizedTour();
+		Route route = new Route();
+		route.calculateRoute(initialTour);
+		optimizedTour = route.getOptimizedTour();
 		console.printArray(optimizedTour);
-		drawer.setResult(optimizedTour);
+		drawer.setResult(optimizedTour, initialTour, productlist);
 		drawer.repaint();
 
 	}
@@ -46,5 +48,23 @@ public class Controller {
 	
 	public void StartRobot() {
 		robot.start();
+	}
+	
+	public void createProgressBar() {
+        progressBar = new JProgressBar();
+        progressBar.setMinimum(0);
+        progressBar.setMaximum(100);
+        progressBar.setStringPainted(true);
+	}
+	
+	public JProgressBar getProgressBar() {
+		return progressBar;
+		
+	}
+	
+	public void updatePBar(int value) {
+		if(value > 0 && value <= 100) {
+			progressBar.setValue(value);
+		}
 	}
 }
