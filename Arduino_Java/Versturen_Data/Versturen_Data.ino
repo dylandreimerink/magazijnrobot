@@ -1,13 +1,3 @@
-//Rij y=1
-int led1 = 1;
-int led2 = 2;
-int led3 = 3;
-
-//Rij y=2
-int led8 = 8;
-int led9 = 9;
-int led10 = 10; 
-
 int x = 0;
 int y = 0;
 bool hasx = false;

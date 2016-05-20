@@ -59,11 +59,11 @@ public class DrawPanel extends JPanel {
 		
 			for (int j = 0; j <= HEIGHT; j += afstandX) {
 				g.drawLine(j, 0, j, HEIGHT);
-				System.out.println("testheigth");
+				//System.out.println("testheigth");
 			}
 			for (int j = 0; j <= WIDTH; j += afstandY) {
 				g.drawLine(0, j, WIDTH, j);
-				System.out.println("testwidth");
+				//System.out.println("testwidth");
 			}
 		if(drawRoute == true) {
 			int index = 0;
