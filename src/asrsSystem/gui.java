@@ -9,6 +9,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
@@ -23,6 +25,8 @@ import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.border.MatteBorder;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -41,6 +45,7 @@ public class gui extends JFrame implements ActionListener {
 	private JMenuItem mntmBewerkArtikel;
 	private JMenuItem mntmVoegToe;
 	private JMenuItem mntmDeleteArtikel;
+	private JMenuItem mntmGenRoute;
 	JButton startRobot;
 	JButton pauseRobot;
 	JButton stopRobot;
@@ -66,6 +71,7 @@ public class gui extends JFrame implements ActionListener {
 	private JLabel lblDoosEen;
 	private JLabel lblDoosTwee;
 	private JLabel lblDoosinfo;
+	private Image image;
 	
 	
 	public gui() {
@@ -75,8 +81,10 @@ public class gui extends JFrame implements ActionListener {
 	private void addComponents() {
 
 		Console console = new Console();
+		Toolkit kit = Toolkit.getDefaultToolkit();
+	
+		image = kit.createImage("src/smallCrate.png");
 		
-
 
 		//scherm opbouwen
 		JFrame frame = new JFrame();
@@ -84,6 +92,7 @@ public class gui extends JFrame implements ActionListener {
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("AS/RS Systeem");
+        this.setIconImage(image);
         getContentPane().setLayout(new BorderLayout(0, 0));
 
 
@@ -115,7 +124,10 @@ public class gui extends JFrame implements ActionListener {
 		mntmExit.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, InputEvent.CTRL_MASK));
 		mnBestand.add(mntmExit);
 		
-		
+		mntmGenRoute = new JMenuItem("Genereer route");
+		mntmGenRoute.addActionListener(this);
+		mntmGenRoute.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, InputEvent.CTRL_MASK));
+		mnBestand.add(mntmGenRoute);
 		
 		// bewerk artikel NOT DONE
 		mntmBewerkArtikel = new JMenuItem("Bewerk artikel");
@@ -281,6 +293,10 @@ public class gui extends JFrame implements ActionListener {
 		}
 		if(e.getSource() == pauseRobot) {
 			controller.updatePBar(0);
+		}
+		if(e.getSource() == mntmGenRoute) {
+			controller.startRoute(chooser.getProductList(),panel_7);
+			setVisible(true);
 		}
 	}
 

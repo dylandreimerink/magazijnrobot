@@ -13,7 +13,7 @@ public class Controller {
 	private ArrayList<Location> initialTour;
 	private ArrayList<Location> optimizedTour;
 	private ArrayList<Doos> doosList;
-	private Console console = new Console();
+	Console console = new Console();
 	private DrawPanel drawer;
 	private Robot robot;
 	private JProgressBar progressBar;
@@ -27,12 +27,12 @@ public class Controller {
 		Route route = new Route();
 		route.calculateRoute(initialTour);
 		optimizedTour = route.getOptimizedTour();
-		console.printArray(optimizedTour);
+		console.printLine("Route gevonden!");
 		drawer.setResult(optimizedTour, initialTour, productlist);
 		drawer.repaint();
 		Doos doos = new Doos();
 		doosList = doos.generateDoosList(productlist);
-		console.printArrayD(doosList);
+		
 		updateDoosinfo(panel);
 
 	}
