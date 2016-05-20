@@ -5,23 +5,24 @@
   const int sensorY = A2;
 
  /*
-  * 
+  * When sensor reads black
   */
-  const int sensorValBlack = 800;  
+  const int sensorValBlack = 800; 
+  const int motorSpeed = 255; 
   
  /*
   * Pins defined for moters 
   */
-  int MOTOR_GROUND = 6;
-  int MOTOR_GROUND_SPEED = 7;
-  int MOTOR_LIFT = 7;
-  int MOTOR_LIFT_SPEED = 6;
+  int MOTOR_GROUND = 7;
+  int MOTOR_GROUND_SPEED = 6;
+  int MOTOR_LIFT = 4;
+  int MOTOR_LIFT_SPEED = 5;
 
  /*
   * X & Y to determine the current pos
   */
-  int currentX = 0;
-  int currentY = 0;
+  int currentX = 1;
+  int currentY = 5;
 
  /*
   * x, y pos from asrs 
@@ -41,10 +42,12 @@ void setup() {
     pinMode(i, OUTPUT); 
   }
   Serial.begin(9600);
-   moveToDest(1,0);
+  
 }
 
 void loop() {
- 
+  currentY = 1;
+  moveToDestY(2);
+
 }
 
