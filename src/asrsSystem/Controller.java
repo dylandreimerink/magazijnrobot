@@ -3,7 +3,9 @@ package asrsSystem;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
@@ -19,6 +21,7 @@ public class Controller {
 	private JProgressBar progressBar;
 	private ImageIcon image;
 	private boolean pressedGenerateRoute;
+	Warningfunctions warning = new Warningfunctions();
 	
 	public void startRoute(ArrayList<Product> productlist, JPanel panel) {
 		Location location = new Location();
@@ -48,16 +51,27 @@ public class Controller {
 	}
 	
 	public void Connect() {
+		if(optimizedTour == null) {
+			warning.showNullpointerWarning(null);
+		}else{
 		robot = new Robot();
 		robot.openConnection(optimizedTour);
+		}
 	}
 	
 	public void Disconnect() {
+		if(robot == null) {
+			warning.showNoRobotMessage(null);
+		}
 		robot.t.stop();
 	}
 	
 	public void StartRobot() {
+		if(robot == null) {
+			warning.showNoRobotMessage(null);
+		}else{
 		robot.start();
+		}
 	}
 	
 	public void createProgressBar() {
@@ -77,6 +91,8 @@ public class Controller {
 			progressBar.setValue(value);
 		}
 	}
+	
+
 	
 	public void updateDoosinfo(JPanel panel) {
 		

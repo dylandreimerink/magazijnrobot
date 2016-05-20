@@ -40,6 +40,7 @@ public class Create_Product extends JDialog implements ActionListener{
 	private Database db;
 	
 	Console console = new Console();
+	Warningfunctions warning = new Warningfunctions();
 //	Benodigde knoppen voor de layout.	
 	
 	public Create_Product() {
@@ -168,11 +169,11 @@ public class Create_Product extends JDialog implements ActionListener{
      
 //	Het product wordt aangemaakt in de database klasse.        	
         	console.printLine("product "+naam+" is opgeslagen in de database met de volgende waarden: hoogte: "+hoogte+", lengte: "+lengte+", breedte: "+breedte+", X: "+x+", Y: "+y+"" );
-        	JOptionPane.showMessageDialog(null, "Product is saved"); 
+        		warning.showConfirmationMessage(null, "product is opgeslagen!");
         	
         	}
         	catch(NumberFormatException ne){
-        		console.printLine("Dimensie & positie moeten getallen zijn");
+        		warning.showWrongInformation(null, "Dimensie & positie moeten getallen zijn");
         	}
         	
 //	Nadat het gelukt is komt er een melding "Product is saved of een foutmelding als het niet werkt."        	

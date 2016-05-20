@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -61,6 +62,7 @@ public class gui extends JFrame implements ActionListener {
 	ChooseOrder chooser = new ChooseOrder();
 	Console console = new Console();
 	JPanel container = new JPanel();
+	Warningfunctions warning = new Warningfunctions();
 	private JLabel lblOrderinfoselecteerEenOrder;
 	private Component horizontalStrut;
 	private Component horizontalStrut_2;
@@ -72,6 +74,7 @@ public class gui extends JFrame implements ActionListener {
 	private JLabel lblDoosTwee;
 	private JLabel lblDoosinfo;
 	private Image image;
+	private JFrame frame;
 	
 	
 	public gui() {
@@ -87,7 +90,7 @@ public class gui extends JFrame implements ActionListener {
 		
 
 		//scherm opbouwen
-		JFrame frame = new JFrame();
+		frame = new JFrame();
         this.setSize(1200,900);
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -283,8 +286,12 @@ public class gui extends JFrame implements ActionListener {
 			controller.Disconnect();
 		}
 		if(e.getSource()== genRoute) {
+			if(chooser.getProductList()== null) {
+				warning.showNullpointerWarning(frame);
+			} else {
 			controller.startRoute(chooser.getProductList(),panel_7);
 			setVisible(true);
+			}
 		}
 		if(e.getSource() == stopRobot) {
 			int value = 0;
@@ -295,8 +302,12 @@ public class gui extends JFrame implements ActionListener {
 			controller.updatePBar(0);
 		}
 		if(e.getSource() == mntmGenRoute) {
+			if(chooser.getProductList()== null) {
+				warning.showNullpointerWarning(frame);
+			} else {
 			controller.startRoute(chooser.getProductList(),panel_7);
 			setVisible(true);
+			}
 		}
 	}
 

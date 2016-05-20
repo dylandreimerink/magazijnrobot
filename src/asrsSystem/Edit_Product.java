@@ -49,6 +49,7 @@ public class Edit_Product extends JDialog implements ActionListener{
 	private JComboBox product;
 	
 	Console console = new Console();
+	Warningfunctions warning = new Warningfunctions();
 
 //	Voegt de benodigde buttons toe om het scherm te kunnen maken.	
 	
@@ -67,7 +68,7 @@ public class Edit_Product extends JDialog implements ActionListener{
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			console.printLine("database error: productenlijst kon niet opgehaalt worden");
+			warning.showCriticalError(null, "de productlijst kon niet uit de database opgehaalt worden!");
 		}
 
 //	Haalt alle productnamen op van de database	
@@ -244,11 +245,11 @@ public class Edit_Product extends JDialog implements ActionListener{
         	
 // Update de productinformatie in de database klasse.   
         	
-        	console.printLine("Product "+productnaam+" is succesvol opgeslagen");
-        	JOptionPane.showMessageDialog(null, "Product is opgeslagen");        	
+        	
+        	warning.showConfirmationMessage(null, "Product is opgeslagen!");       	
         	}
         	catch(NumberFormatException ne){
-        		console.printLine("dimensies en locaties moeten getallen zijn!");
+        		warning.showWrongInformation(null, "Dimensie & positie moeten getallen zijn");
         	}
 //	Wanneer het gelukt is krijgt de gebruiker een saved melding en anders een foutmelding.        	
         }
