@@ -18,6 +18,7 @@ public class Controller {
 	private Robot robot;
 	private JProgressBar progressBar;
 	private ImageIcon image;
+	private boolean pressedGenerateRoute;
 	
 	public void startRoute(ArrayList<Product> productlist, JPanel panel) {
 		Location location = new Location();
@@ -78,9 +79,23 @@ public class Controller {
 	}
 	
 	public void updateDoosinfo(JPanel panel) {
+		
 		image = new ImageIcon("src/smallCrate.png");
 		
 		int counter = 1;
+		if(pressedGenerateRoute == true) {
+			panel.removeAll();
+	        JLabel lblDoosinfo = new JLabel("Doosinfo:");
+	        panel.add(lblDoosinfo, "cell 1 1");
+	        
+	        JLabel lblDoosEen = new JLabel("Doos 1:");
+	        panel.add(lblDoosEen, "cell 0 2");
+	        
+	        JLabel lblDoosTwee = new JLabel("Doos 2:");
+	        panel.add(lblDoosTwee, "cell 0 3");
+			panel.revalidate();
+			panel.repaint();
+		}
 		for(Doos l:doosList) {
 			
 			if(l.getDoosId() == 1) {
@@ -91,15 +106,16 @@ public class Controller {
 			}
 		}
 		counter = 1;
-		for(Doos l:doosList)
+		for(Doos l:doosList) 
 			if(l.getDoosId() == 2) {
 				JLabel imageIcon = new JLabel(image);
 				panel.add(imageIcon, "cell "+counter+" 3");
 				System.out.println(l.getDoosId());
 			}
-			counter++;
-			
-			
+		
+		counter++;
+		pressedGenerateRoute = true;
 		}
+	
 	}
 
