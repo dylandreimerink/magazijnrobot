@@ -2,6 +2,8 @@ package asrsSystem;
 
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
@@ -15,8 +17,9 @@ public class Controller {
 	private DrawPanel drawer;
 	private Robot robot;
 	private JProgressBar progressBar;
+	private ImageIcon image;
 	
-	public void startRoute(ArrayList<Product> productlist) {
+	public void startRoute(ArrayList<Product> productlist, JPanel panel) {
 		Location location = new Location();
 		initialTour = location.generateLocationlist(productlist);
 		System.out.println("inittour"+initialTour);
@@ -29,6 +32,7 @@ public class Controller {
 		Doos doos = new Doos();
 		doosList = doos.generateDoosList(productlist);
 		console.printArrayD(doosList);
+		updateDoosinfo(panel);
 
 	}
 	
@@ -72,4 +76,30 @@ public class Controller {
 			progressBar.setValue(value);
 		}
 	}
-}
+	
+	public void updateDoosinfo(JPanel panel) {
+		image = new ImageIcon("src/smallCrate.png");
+		
+		int counter = 1;
+		for(Doos l:doosList) {
+			
+			if(l.getDoosId() == 1) {
+				JLabel imageIcon = new JLabel(image);
+				panel.add(imageIcon,"cell "+counter+" 2");
+				System.out.println(l.getDoosId());
+			
+			}
+		}
+		counter = 1;
+		for(Doos l:doosList)
+			if(l.getDoosId() == 2) {
+				JLabel imageIcon = new JLabel(image);
+				panel.add(imageIcon, "cell "+counter+" 3");
+				System.out.println(l.getDoosId());
+			}
+			counter++;
+			
+			
+		}
+	}
+
