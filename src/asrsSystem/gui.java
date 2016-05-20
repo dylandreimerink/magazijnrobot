@@ -31,6 +31,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JProgressBar;
 public class gui extends JFrame implements ActionListener {
 
@@ -57,10 +58,15 @@ public class gui extends JFrame implements ActionListener {
 	JPanel container = new JPanel();
 	private JLabel lblOrderinfoselecteerEenOrder;
 	private Component horizontalStrut;
+	private Component horizontalStrut_2;
 	private JPanel panel_6;
 	private JPanel drawerContainer;
 	private JLabel lblNewLabel;
-	int value = 0;
+	private JPanel panel_7;
+	private JLabel lblDoosEen;
+	private JLabel lblDoosTwee;
+	private JLabel lblDoosinfo;
+	
 	
 	public gui() {
 		addComponents();
@@ -69,6 +75,7 @@ public class gui extends JFrame implements ActionListener {
 	private void addComponents() {
 
 		Console console = new Console();
+		
 
 
 		//scherm opbouwen
@@ -178,11 +185,25 @@ public class gui extends JFrame implements ActionListener {
         JPanel panel_5 = new JPanel();
         panel_5.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.DARK_GRAY));
         panel.add(panel_5, BorderLayout.EAST);
-        panel_5.setLayout(new MigLayout("", "[]", "[]"));
-        container.setBorder(null);
+        panel_5.setLayout(new MigLayout("", "[grow][]", "[grow][][]"));
+        
+        panel_7 = new JPanel();
+        panel_7.setBorder(new MatteBorder(0, 0, 0, 1, (Color) new Color(0, 0, 0)));
+        panel_5.add(panel_7, "cell 0 0,grow");
+        panel_7.setLayout(new MigLayout("", "[][][]", "[][][][]"));
+        
+        lblDoosinfo = new JLabel("Doosinfo:");
+        panel_7.add(lblDoosinfo, "cell 1 1");
+        
+        lblDoosEen = new JLabel("Doos 1:");
+        panel_7.add(lblDoosEen, "cell 0 2");
+        
+        lblDoosTwee = new JLabel("Doos 2:");
+        panel_7.add(lblDoosTwee, "cell 0 3");
+        container.setBorder(new EmptyBorder(0, 0, 0, 0));
         
 
-        panel_5.add(container);
+        panel_5.add(container, "cell 1 0,aligny top");
         
 		container.setLayout(new MigLayout("", "[10px][]", "[][10px][][][][][][][][]"));
 		orderNr = new JLabel("Ordernummer: onbekend");
@@ -199,13 +220,18 @@ public class gui extends JFrame implements ActionListener {
 		horizontalStrut = Box.createHorizontalStrut(300);
 		container.add(horizontalStrut, "cell 0 5 2 1,growy");
 		
+		horizontalStrut_2 = Box.createHorizontalStrut(300);
+		panel_5.add(horizontalStrut_2, "cell 0 2,alignx center,aligny bottom");
+		
 		drawerContainer = new JPanel();
+		drawerContainer.setBorder(new MatteBorder(1, 1, 1, 0, (Color) new Color(0, 0, 0)));
 		panel.add(drawerContainer, BorderLayout.CENTER);
         drawerContainer.setLayout(new MigLayout("", "[10px][grow]", "[354px,grow][]"));
         
         controller = new Controller(drawerContainer);
         controller.createProgressBar();
         drawerContainer.add(controller.getProgressBar(), "cell 1 1,grow");
+        
         setVisible(true);
 	}
 	
@@ -245,9 +271,11 @@ public class gui extends JFrame implements ActionListener {
 			controller.Disconnect();
 		}
 		if(e.getSource()== genRoute) {
-			controller.startRoute(chooser.getProductList());
+			controller.startRoute(chooser.getProductList(),panel_7);
+			setVisible(true);
 		}
 		if(e.getSource() == stopRobot) {
+			int value = 0;
 			value = value+5;
 			controller.updatePBar(value);
 		}

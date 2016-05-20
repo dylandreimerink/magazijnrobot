@@ -23,6 +23,10 @@ public class Doos {
 		maxInDoos = value;
 	}
 	
+	public int getDoosId() {
+		return doosID;
+	}
+	
 	public ArrayList<Doos> generateDoosList(ArrayList<Product> productlist) {
 		doosList = new ArrayList<Doos>();
 			int aantal = productlist.size()/2;
