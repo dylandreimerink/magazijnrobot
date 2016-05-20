@@ -71,11 +71,9 @@ boolean readSensor_X(){
   Serial.println(analogRead(sensorX));
   if(analogRead(sensorX) < sensorValBlack){
     return(true);
-    Serial.println(sensorX);
   }
   else{
     return(false);
-    Serial.println(sensorX);
   }
 }
 
@@ -83,10 +81,8 @@ boolean readSensor_Y(){
   Serial.println(analogRead(sensorY));
   if(analogRead(sensorY) < sensorValBlack){
      return(true);
-     Serial.println(sensorY);
    }
   else{
     return(false);
-    Serial.println(sensorY);
   }
 }

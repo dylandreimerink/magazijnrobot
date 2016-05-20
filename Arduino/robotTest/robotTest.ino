@@ -1,7 +1,7 @@
 /*
  * Analog ports of sensors
  */
-  const int sensorX = A1;
+  const int sensorX = A0;
   const int sensorY = A2;
 
  /*
@@ -40,10 +40,11 @@ void setup() {
   for(int i = 4; i < 8; i++){
     pinMode(i, OUTPUT); 
   }
+  Serial.begin(9600);
 
 }
 
 void loop() {
-  
+  readSensor_Y();
 }
 

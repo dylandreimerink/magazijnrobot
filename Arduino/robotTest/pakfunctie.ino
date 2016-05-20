@@ -3,7 +3,7 @@ int MOTOR_GRAB = 4;
 int MOTOR_GRAB_SPEED = 5;
 int grabHeight = 200;
 
-void pak(){
+void pak() {
   //Grijper naar voren
   digitalWrite(MOTOR_GRAB, HIGH);
   analogWrite(MOTOR_GRAB_SPEED, 125);
