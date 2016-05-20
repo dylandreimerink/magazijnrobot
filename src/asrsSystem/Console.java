@@ -57,5 +57,16 @@ public class Console  {
     	
 		
 	}
+	
+	
+	public void printArrayD(ArrayList<Doos> dooslist) {
+    	if(counter > 1){
+    		textAreaC.append("\n");
+    		
+    	}
+    	textAreaC.append(counter+": ");
+    	String text = dooslist.toString();
+    	textAreaC.append(text);
+	}
     
 }
