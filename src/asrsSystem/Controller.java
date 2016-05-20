@@ -10,6 +10,7 @@ import shared.Product;
 public class Controller {
 	private ArrayList<Location> initialTour;
 	private ArrayList<Location> optimizedTour;
+	private ArrayList<Doos> doosList;
 	private Console console = new Console();
 	private DrawPanel drawer;
 	private Robot robot;
@@ -25,8 +26,12 @@ public class Controller {
 		console.printArray(optimizedTour);
 		drawer.setResult(optimizedTour, initialTour, productlist);
 		drawer.repaint();
+		Doos doos = new Doos();
+		doosList = doos.generateDoosList(productlist);
+		console.printArrayD(doosList);
 
 	}
+	
 	
 	public ArrayList<Location> getOptimizedTour() {
 		return optimizedTour;

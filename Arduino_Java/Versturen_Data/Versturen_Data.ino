@@ -24,6 +24,7 @@ void loop() {
             start = true;
             Serial.println('O');
           }else if(data == 'C'){
+            //TODO cancel code
             cancel();
             break;
           }
@@ -50,10 +51,9 @@ void loop() {
                  Serial.println('O');
                }
                if(hasx && hasy){
-                Serial.println('O');
                 //TODO: move
+                delay(2000);
                 cancel();
-                
                 break;
                }
              }

@@ -13,6 +13,7 @@ import java.util.Enumeration;
 import javax.swing.JProgressBar;
 
 import gnu.io.*;
+import sun.net.ProgressSource.State;
 
 public class Robot implements Runnable{
 
@@ -25,6 +26,8 @@ public class Robot implements Runnable{
 	private ArrayList <Location> list;
 	private String x;
 	private String y;
+	OutputStream out;
+	InputStream input;
 	
 	public void openConnection(ArrayList <Location> list){
 		
@@ -42,6 +45,11 @@ public class Robot implements Runnable{
 		}
 	
 	public void start(){
+		System.out.println(t.getState());
+		if(t.getState() != Thread.State.NEW){
+			t.destroy();
+			t = new Thread(this);
+		}
 		t.start();
 	}
 	
@@ -91,7 +99,14 @@ public class Robot implements Runnable{
 		{
 			if(serialPort!=null)
 			{
-	        	System.out.println("Close serial port");				
+	        	System.out.println("Close serial port");	
+	        	try {
+					out.close();
+					input.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				serialPort.close();
 				t.stop();
 			}
@@ -106,6 +121,52 @@ public class Robot implements Runnable{
 		this.y = Integer.toString(y);
 		SendCommand("o;");// o is to make clear you are sending coordinates, not a standard command
 		
+	    try {
+	    	
+			out = serialPort.getOutputStream();
+			input = serialPort.getInputStream();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+			
+			
+			boolean go = true;
+			while(go){
+				out.write('S');
+				out.flush();
+				System.out.println("sending S");
+				if(hasOK(reader)){
+					go = false;
+				}
+			}
+			go = true;
+			String tX = "X"+x+";";
+			String tY = "Y"+y+";";
+			while(go){
+					out.write(tX.getBytes());
+					System.out.println("sending X");
+					if(hasOK(reader)){
+						go = false;
+					}
+			}
+			go = true;
+			
+			while(go){
+					out.write(tY.getBytes());
+					System.out.println("sending Y");
+					if(hasOK(reader)){
+						go = false;
+					}
+			}
+			
+			go = true;
+			
+			while(go){
+				if ((reader.ready()) && (line = reader.readLine()) != null)
+				{
+					if(line.contains("C")) {
+						System.out.println("command done");
+						//out.close();
+						go = false;
+					}
 	}
 	
 	private void SendCommand(String command){
