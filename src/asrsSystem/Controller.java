@@ -15,6 +15,7 @@ public class Controller {
 	private ArrayList<Location> initialTour;
 	private ArrayList<Location> optimizedTour;
 	private ArrayList<Doos> doosList;
+	private ArrayList<Product> prodlist;
 	Console console = new Console();
 	private DrawPanel drawer;
 	private Robot robot;
@@ -24,6 +25,7 @@ public class Controller {
 	Warningfunctions warning = new Warningfunctions();
 	
 	public void startRoute(ArrayList<Product> productlist, JPanel panel) {
+		this.prodlist = productlist;
 		Location location = new Location();
 		initialTour = location.generateLocationlist(productlist);
 		System.out.println("inittour"+initialTour);
@@ -100,6 +102,7 @@ public class Controller {
 		image = new ImageIcon("src/smallCrate.png");
 		
 		int counter = 1;
+		int index = 0;
 		if(pressedGenerateRoute == true) {
 			panel.removeAll();
 	        JLabel lblDoosinfo = new JLabel("Doosinfo:");
@@ -117,17 +120,24 @@ public class Controller {
 			
 			if(l.getDoosId() == 1) {
 				JLabel imageIcon = new JLabel(image);
+				JLabel pInfo = new JLabel(prodlist.get(index).getProductName());
 				panel.add(imageIcon,"cell "+counter+" 2");
+				panel.add(pInfo,"cell "+counter+" 2");
 				System.out.println(l.getDoosId());
+				index++;
 			
 			}
+			
 		}
 		counter = 1;
-		for(Doos l:doosList) 
-			if(l.getDoosId() == 2) {
+		for(Doos l1:doosList) 
+			if(l1.getDoosId() == 2) {
 				JLabel imageIcon = new JLabel(image);
+				JLabel pInfo = new JLabel(prodlist.get(index).getProductName());
 				panel.add(imageIcon, "cell "+counter+" 3");
-				System.out.println(l.getDoosId());
+				panel.add(pInfo,"cell "+counter+" 3");
+				System.out.println(l1.getDoosId());
+				index++;
 			}
 		
 		counter++;
@@ -135,4 +145,5 @@ public class Controller {
 		}
 	
 	}
+
 
