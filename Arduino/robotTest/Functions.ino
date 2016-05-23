@@ -17,6 +17,15 @@
 //   }
 //}
 
+void moveToLocation(int x, int y) {
+  moveToDestX(x);
+  moveToDestY(y);
+  delay(2000);
+}
+
+void moveToStart(){
+  moveToLocation(1, 5);
+}
 void moveToDestX(int x){
    while(currentX != x){
       Serial.print("X: "); Serial.println(currentX);
@@ -29,14 +38,14 @@ void moveToDestX(int x){
    hold();
 }
 
-
+//BIJ Y AS ALLES ANDERSOM OMDAT Y-AS VAN BOVEN NAAR BENEDEN WORDT GETELD
 void moveToDestY(int y){
    while(currentY != y){
       Serial.print("Y: "); Serial.println(currentY);
-      if(currentY <= y){
-        omlaag();
-      }else if(currentY >= y){
+      if(currentY > y){
         omhoog();
+      }else if(currentY < y){
+        omlaag();
       }
    }
    hold();
@@ -51,7 +60,7 @@ void hold() {
 void rechts() {
     digitalWrite(MOTOR_GROUND, LOW);
     analogWrite(MOTOR_GROUND_SPEED, motorSpeed);
-    delay(1000);
+    delay(300);
     while(readSensor_X() != true){
       Serial.println("wacht op volgende zwarte blokje..:)");
     }
@@ -61,7 +70,7 @@ void rechts() {
 void links() {
     digitalWrite(MOTOR_GROUND, HIGH);
     analogWrite(MOTOR_GROUND_SPEED, motorSpeed);
-    delay(1000);
+    delay(300);
     while(readSensor_X() != true){
       Serial.println("wacht op volgende zwarte blokje..:)");
     }
@@ -72,7 +81,7 @@ void omhoog() {
     digitalWrite(MOTOR_LIFT, HIGH);
     analogWrite(MOTOR_LIFT_SPEED, motorSpeed);
     delay(1000);
-      while(readSensor_Y() != true){
+    while(readSensor_Y() != true){
       Serial.println("wacht op volgende zwarte blokje..:)");
     }
     currentY--;
@@ -92,7 +101,7 @@ void omlaag() {
 
 boolean readSensor_X(){
   Serial.println(analogRead(sensorX));
-  if(analogRead(sensorX) > sensorValBlack){
+  if(analogRead(sensorX) > sensorXBlack){
     Serial.println("zwart");
     return(true);
   }
@@ -103,8 +112,9 @@ boolean readSensor_X(){
 
 boolean readSensor_Y(){
   Serial.println(analogRead(sensorY));
-  if(analogRead(sensorY) > sensorValBlack){
+  if(analogRead(sensorY) > sensorYBlack){
     Serial.println("zwart");
+    delay(100);
     return(true);
   }
   else{
