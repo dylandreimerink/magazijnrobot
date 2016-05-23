@@ -1,12 +1,16 @@
 boolean left = 0;
+boolean start = 0;
+const int MotorDir = 4;
+const int MotorSpeed = 5;
 
 
 void setup(){
-  
+  pinMode(MotorDir, OUTPUT);
+  pinMode(MotorSpeed, OUTPUT);
+  Serial.begin(9600);
 }
 
 void loop() {
-
   if (Serial.available() > 0){
      delay(20);
      int data;
@@ -16,15 +20,19 @@ void loop() {
           if(data == 'S'){
             start = true;
             Serial.println('O');
+          }else if(data == 'C'){
+             Serial.println('C');
+             analogWrite(MotorSpeed, 0);
+             cancel();
           }
         }else{
           if(data == 'L'){
             Serial.println('O');
-            //TODO moveLeft();
+            moveLeft();
             cancel();
           }else if(data == 'R'){
             Serial.println('O');
-            //TODO moveRight()
+            moveRight();
             cancel();
           }           
          }
@@ -34,18 +42,16 @@ void loop() {
 }
 
 void moveLeft(){
-  
+  digitalWrite(MotorDir, HIGH);
+  analogWrite(MotorSpeed, 255);
 }
 
 void moveRight(){
-  
+  digitalWrite(MotorDir, LOW);
+  analogWrite(MotorSpeed, 255);
 }
 
 void cancel(){
-  x = 0;
-  y = 0;
-  hasx = false;
-  hasy = false;
   start = false; 
   Serial.println('C');
   while(Serial.available() > 0){
