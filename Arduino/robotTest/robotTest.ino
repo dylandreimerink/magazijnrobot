@@ -59,11 +59,11 @@ void setup() {
 }
 
 void loop() {
-  moveToLocation(1,9);
-//  moveToLocation(5,1);
-//  moveToLocation(1,2);
-//  moveToLocation(3,3);
-//  moveToStart();
+  moveToLocation(4,4);
+  moveToLocation(5,1);
+  moveToLocation(1,2);
+  moveToLocation(3,3);
+  moveToStart();
   delay(5000);
 }
 
