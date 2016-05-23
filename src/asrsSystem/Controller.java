@@ -62,8 +62,9 @@ public class Controller {
 	public void Disconnect() {
 		if(robot == null) {
 			warning.showNoRobotMessage(null);
-		}
+		}else{
 		robot.t.stop();
+		}
 	}
 	
 	public void StartRobot() {
