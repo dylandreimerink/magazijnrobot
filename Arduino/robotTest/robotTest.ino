@@ -7,7 +7,8 @@
  /*
   * When sensor reads black
   */
-  const int sensorValBlack = 800; 
+  const int sensorYBlack = 200; 
+  const int sensorXBlack = 200; 
   const int motorSpeed = 255; 
   
  /*
@@ -32,22 +33,37 @@
    * boolean read sensors.  
    * While the robot is moving, readingSensor is TRUE
    */
+  String readString="";
   boolean readingSensor = false;
   //boolean readSensor;
   
 
 void setup() {
-  // put your setup code here, to run once:
-  for(int i = 4; i < 8; i++){
-    pinMode(i, OUTPUT); 
-  }
-  Serial.begin(9600);
+  //LANGS ALLE VAKJES 1 VOOR 1 MET EEN HALVE SECONDE DELAY
+//  for(int i = 4; i < 12; i++){
+//    pinMode(i, OUTPUT); 
+//  }
+//  Serial.begin(9600);
+//  for(int i=5; i>0; i--){
+//    moveToDestY(i);
+//    for(int ii=1; ii<3;ii++){
+//      moveToDestX(ii);
+//      delay(700);
+//    }
+//  }
   
+  //NAAR EINDE
+//  moveToDestX(1);
+//  moveToDestY(5);
+//  pak();
 }
 
 void loop() {
-  currentY = 1;
-  moveToDestY(2);
-
+  moveToLocation(4,4);
+  moveToLocation(5,1);
+  moveToLocation(1,2);
+  moveToLocation(3,3);
+  moveToStart();
+  delay(5000);
 }
 
