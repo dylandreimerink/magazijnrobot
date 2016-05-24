@@ -18,6 +18,9 @@
   int MOTOR_GROUND_SPEED = 6;
   int MOTOR_LIFT = 4;
   int MOTOR_LIFT_SPEED = 5;
+  int MOTOR_PAK0 = 52;
+  int MOTOR_PAK1 = 53; 
+  int MOTOR_PAK_SPEED = 11; //pwm
 
  /*
   * X & Y to determine the current pos
@@ -56,14 +59,44 @@ void setup() {
 //  moveToDestX(1);
 //  moveToDestY(5);
 //  pak();
+digitalWrite(8, LOW);
+digitalWrite(9, LOW);
 }
 
 void loop() {
-  moveToLocation(4,4);
-  moveToLocation(5,1);
-  moveToLocation(1,2);
-  moveToLocation(3,3);
-  moveToStart();
-  delay(5000);
+  //moveToLocation(4,4);
+  //moveToLocation(5,1);
+  //moveToLocation(1,2);
+  //moveToLocation(3,2);
+  //moveToStart();
+  //delay(5000);
+  digitalWrite(MOTOR_LIFT, HIGH);
+  analogWrite(MOTOR_LIFT_SPEED, 255);
+  delay(300);
+  analogWrite(MOTOR_LIFT_SPEED, 0);
+  
+  digitalWrite(MOTOR_PAK0, HIGH);
+  digitalWrite(MOTOR_PAK1, LOW);
+  analogWrite(MOTOR_PAK_SPEED, 255);
+  delay(1500);
+  analogWrite(MOTOR_PAK_SPEED, 0);
+  
+  digitalWrite(MOTOR_LIFT, HIGH);
+  analogWrite(MOTOR_LIFT_SPEED, 255);
+  delay(800);
+ analogWrite(MOTOR_LIFT_SPEED, 0);
+//  
+//  digitalWrite(MOTOR_PAK0, HIGH);
+//  digitalWrite(MOTOR_PAK1, LOW);
+//  analogWrite(MOTOR_PAK_SPEED, 255);
+//  delay(1500);
+//  analogWrite(MOTOR_PAK_SPEED, 0);
+//
+//  digitalWrite(MOTOR_LIFT, LOW);
+//  analogWrite(MOTOR_LIFT_SPEED, 255);
+//  delay(1200);
+//  analogWrite(MOTOR_LIFT_SPEED, 0);
+    
+  delay(1000);
 }
 
