@@ -1,5 +1,3 @@
-
-
 /*
  * Analog ports of sensors
  */
