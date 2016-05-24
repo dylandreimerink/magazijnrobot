@@ -17,9 +17,59 @@
 //   }
 //}
 
+
+
+
 void moveToLocation(int x, int y) {
-  moveToDestX(x);
-  moveToDestY(y);
+   while(currentX != x || currentY != y){
+      Serial.print("X: "); Serial.println(currentX);
+      Serial.print("Y: "); Serial.println(currentY);
+      if(currentX < x){
+        //gaat naar rechts
+         digitalWrite(MOTOR_GROUND, LOW);
+         analogWrite(MOTOR_GROUND_SPEED, motorSpeed);
+      }else if(currentX > x){
+        //gaat naar links
+         digitalWrite(MOTOR_GROUND, HIGH);
+         analogWrite(MOTOR_GROUND_SPEED, motorSpeed);
+      }else {
+        analogWrite(MOTOR_GROUND_SPEED, 0);
+      }
+
+      if(currentX < x){
+         if(readSensor_X() != true){
+            currentX++;
+          }   
+      }else if(currentX > x){
+          if(readSensor_X() != true){
+            currentX--;
+          }   
+      }
+      
+      if(currentY > y){
+        //gaat omhoog
+        digitalWrite(MOTOR_LIFT, HIGH);
+        analogWrite(MOTOR_LIFT_SPEED, motorSpeed);
+      }else if(currentY < y){
+        // gaat omlaag
+        digitalWrite(MOTOR_LIFT, LOW);
+        analogWrite(MOTOR_LIFT_SPEED, motorSpeed);
+      } else {
+        analogWrite(MOTOR_LIFT_SPEED, 0);
+      }
+
+      if(currentY > y){
+        while(readSensor_Y() != true){
+            currentY--;
+           }
+      }else if(currentY < y){
+          while(readSensor_Y() != true){
+            currentY++;
+           }
+      } 
+      
+   }
+   hold(); 
   delay(2000);
 }
 
@@ -121,3 +171,11 @@ boolean readSensor_Y(){
     return(false);
   }
 }
+
+
+
+
+
+
+
+
