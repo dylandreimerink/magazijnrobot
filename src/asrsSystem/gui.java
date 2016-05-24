@@ -62,6 +62,7 @@ public class gui extends JFrame implements ActionListener {
 	ChooseOrder chooser = new ChooseOrder();
 	Console console = new Console();
 	JPanel container = new JPanel();
+	ProgressBar PBar;
 	Warningfunctions warning = new Warningfunctions();
 	private JLabel lblOrderinfoselecteerEenOrder;
 	private Component horizontalStrut;
@@ -244,8 +245,9 @@ public class gui extends JFrame implements ActionListener {
         drawerContainer.setLayout(new MigLayout("", "[10px][grow]", "[354px,grow][]"));
         
         controller = new Controller(drawerContainer);
-        controller.createProgressBar();
-        drawerContainer.add(controller.getProgressBar(), "cell 1 1,grow");
+        PBar = new ProgressBar();
+      
+        drawerContainer.add(PBar.getProgressBar(), "cell 1 1,grow");
         
         setVisible(true);
 	}
@@ -296,10 +298,10 @@ public class gui extends JFrame implements ActionListener {
 		if(e.getSource() == stopRobot) {
 			int value = 0;
 			value = value+5;
-			controller.updatePBar(value);
+			PBar.updatePBar(value);
 		}
 		if(e.getSource() == pauseRobot) {
-			controller.updatePBar(0);
+			PBar.updatePBar(0);
 		}
 		if(e.getSource() == mntmGenRoute) {
 			if(chooser.getProductList()== null) {

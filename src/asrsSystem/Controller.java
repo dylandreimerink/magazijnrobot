@@ -19,7 +19,6 @@ public class Controller {
 	Console console = new Console();
 	private DrawPanel drawer;
 	private Robot robot;
-	private JProgressBar progressBar;
 	private ImageIcon image;
 	private boolean pressedGenerateRoute;
 	Warningfunctions warning = new Warningfunctions();
@@ -77,23 +76,7 @@ public class Controller {
 		}
 	}
 	
-	public void createProgressBar() {
-        progressBar = new JProgressBar();
-        progressBar.setMinimum(0);
-        progressBar.setMaximum(100);
-        progressBar.setStringPainted(true);
-	}
-	
-	public JProgressBar getProgressBar() {
-		return progressBar;
-		
-	}
-	
-	public void updatePBar(int value) {
-		if(value > 0 && value <= 100) {
-			progressBar.setValue(value);
-		}
-	}
+
 	
 
 	
