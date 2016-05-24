@@ -1,3 +1,6 @@
+const int bppEnablePin = 8;
+const int bppDirPin = 9;
+
 int x = 0;
 int y = 0;
 bool hasx = false;
@@ -6,9 +9,11 @@ bool start = false;
 char curVal = '0';
 
 void setup() {
-  pinMode(led1, OUTPUT);
-  pinMode(led2, OUTPUT);
-  pinMode(led3, OUTPUT);
+  pinMode(bppEnablePin, OUTPUT);
+  pinMode(bppDirPin, OUTPUT);
+  digitalWrite(bppEnablePin, LOW);
+  digitalWrite(bppDirPin, LOW);
+  
   Serial.begin(9600);  
 }
 
@@ -20,15 +25,34 @@ void loop() {
      while(Serial.available() > 0){
         data = Serial.read();
         if(!start){
+          if(data == 'I'){
+            Serial.println('0'); 
+          }
           if(data == 'S'){
             start = true;
             Serial.println('O');
           }else if(data == 'C'){
+            digitalWrite(bppEnablePin, LOW);
             //TODO cancel code
             cancel();
             break;
+          }else if(data == 'B'){
+            digitalWrite(bppEnablePin, LOW);
+            cancel();
           }
         }else{
+          if(data == 'L'){
+           digitalWrite(bppDirPin, LOW);
+           digitalWrite(bppEnablePin, HIGH);
+           Serial.println('O');
+           cancel();
+          }
+          if(data == 'R'){
+           digitalWrite(bppDirPin, HIGH);
+            digitalWrite(bppEnablePin, HIGH);
+            Serial.println('O');
+            cancel();
+          }
           if(data == 'X' || data == 'Y'){
             curVal = data;
           }else if(data == 'P'){
