@@ -10,7 +10,7 @@
   */
   const int sensorYBlack = 200; 
   const int sensorXBlack = 200; 
-  const int motorSpeed = 255; 
+  const int motorSpeed = 180; 
   
  /*
   * Pins defined for moters 
@@ -60,11 +60,10 @@ void setup() {
 //  moveToDestX(1);
 //  moveToDestY(5);
 //  pak();
-pinMode(randSeed, INPUT);
-digitalWrite(8, LOW);
-digitalWrite(9, LOW);
-randomSeed(analogRead(randSeed));
-
+  pinMode(randSeed, INPUT);
+  digitalWrite(8, LOW);
+  digitalWrite(9, LOW);
+  randomSeed(analogRead(randSeed));
 }
 
 void loop() {
@@ -74,12 +73,12 @@ void loop() {
   int x = random(1,6);
   int y = random(1,6);
 
-  moveToLocation(x,y);
+  moveToLocation(3,1);
   //moveToStart();
   //delay(5000);
   digitalWrite(MOTOR_LIFT, HIGH);
   analogWrite(MOTOR_LIFT_SPEED, 255);
-  delay(500);
+  delay(300);
   analogWrite(MOTOR_LIFT_SPEED, 0);
   
   digitalWrite(MOTOR_PAK0, HIGH);
@@ -90,7 +89,7 @@ void loop() {
   
   digitalWrite(MOTOR_LIFT, HIGH);
   analogWrite(MOTOR_LIFT_SPEED, 255);
-  delay(1100);
+  delay(900); //delay to lift the product
  analogWrite(MOTOR_LIFT_SPEED, 0);
   
   digitalWrite(MOTOR_PAK0, LOW);
@@ -106,7 +105,7 @@ void loop() {
     
   delay(1000);
   //moveToLocation(x,5);
-  moveToLocation(6,3);
+  moveToLocation(6,3); //boven de bpp
   
   digitalWrite(MOTOR_PAK0, HIGH);
   digitalWrite(MOTOR_PAK1, LOW);
@@ -121,6 +120,8 @@ void loop() {
   analogWrite(MOTOR_PAK_SPEED, 255);
   delay(1500);
   analogWrite(MOTOR_PAK_SPEED, 0);
+
+  moveToLocation(6,3);
   //delay(1000);
   //moveToStart();
   //delay(5000);
