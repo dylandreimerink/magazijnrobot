@@ -5,6 +5,7 @@
  */
   const int sensorX = A0;
   const int sensorY = A2;
+  const int randSeed = A5;
 
  /*
   * When sensor reads black
@@ -61,20 +62,26 @@ void setup() {
 //  moveToDestX(1);
 //  moveToDestY(5);
 //  pak();
+pinMode(randSeed, INPUT);
 digitalWrite(8, LOW);
 digitalWrite(9, LOW);
+randomSeed(analogRead(randSeed));
+
 }
 
 void loop() {
   //moveToLocation(4,4);
   //moveToLocation(5,1);
   //moveToLocation(1,2);
-  //moveToLocation(3,2);
+  int x = random(1,6);
+  int y = random(1,6);
+
+  moveToLocation(x,y);
   //moveToStart();
   //delay(5000);
   digitalWrite(MOTOR_LIFT, HIGH);
   analogWrite(MOTOR_LIFT_SPEED, 255);
-  delay(300);
+  delay(500);
   analogWrite(MOTOR_LIFT_SPEED, 0);
   
   digitalWrite(MOTOR_PAK0, HIGH);
@@ -85,20 +92,39 @@ void loop() {
   
   digitalWrite(MOTOR_LIFT, HIGH);
   analogWrite(MOTOR_LIFT_SPEED, 255);
-  delay(800);
+  delay(1100);
  analogWrite(MOTOR_LIFT_SPEED, 0);
-//  
-//  digitalWrite(MOTOR_PAK0, HIGH);
-//  digitalWrite(MOTOR_PAK1, LOW);
-//  analogWrite(MOTOR_PAK_SPEED, 255);
-//  delay(1500);
-//  analogWrite(MOTOR_PAK_SPEED, 0);
-//
-//  digitalWrite(MOTOR_LIFT, LOW);
-//  analogWrite(MOTOR_LIFT_SPEED, 255);
-//  delay(1200);
-//  analogWrite(MOTOR_LIFT_SPEED, 0);
+  
+  digitalWrite(MOTOR_PAK0, LOW);
+  digitalWrite(MOTOR_PAK1, HIGH);
+  analogWrite(MOTOR_PAK_SPEED, 255);
+  delay(1500);
+  analogWrite(MOTOR_PAK_SPEED, 0);
+
+  digitalWrite(MOTOR_LIFT, LOW);
+  analogWrite(MOTOR_LIFT_SPEED, 255);
+  delay(1400);
+  analogWrite(MOTOR_LIFT_SPEED, 0);
     
   delay(1000);
+  //moveToLocation(x,5);
+  moveToLocation(6,3);
+  
+  digitalWrite(MOTOR_PAK0, HIGH);
+  digitalWrite(MOTOR_PAK1, LOW);
+  analogWrite(MOTOR_PAK_SPEED, 255);
+  delay(1500);
+  analogWrite(MOTOR_PAK_SPEED, 0);
+  
+  moveToLocation(6,4);
+
+  digitalWrite(MOTOR_PAK0, LOW);
+  digitalWrite(MOTOR_PAK1, HIGH);
+  analogWrite(MOTOR_PAK_SPEED, 255);
+  delay(1500);
+  analogWrite(MOTOR_PAK_SPEED, 0);
+  //delay(1000);
+  //moveToStart();
+  //delay(5000);
 }
 

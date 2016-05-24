@@ -21,6 +21,7 @@
 
 
 void moveToLocation(int x, int y) {
+<<<<<<< Updated upstream
    while(currentX != x || currentY != y){
       Serial.print("X: "); Serial.println(currentX);
       Serial.print("Y: "); Serial.println(currentY);
@@ -71,6 +72,10 @@ void moveToLocation(int x, int y) {
    }
    hold(); 
   delay(2000);
+=======
+  moveToDestX(x);
+  moveToDestY(y);
+>>>>>>> Stashed changes
 }
 
 void moveToStart(){
