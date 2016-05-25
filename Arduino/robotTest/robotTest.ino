@@ -64,64 +64,23 @@ void setup() {
   digitalWrite(8, LOW);
   digitalWrite(9, LOW);
   randomSeed(analogRead(randSeed));
+//  for(int i = 0; i < 4; i++) {
+//    omlaag();
+//  }
+  Serial.begin(9600);
+  
 }
 
 void loop() {
-  //moveToLocation(4,4);
-  //moveToLocation(5,1);
-  //moveToLocation(1,2);
-  int x = random(1,6);
-  int y = random(1,6);
 
-  moveToLocation(3,1);
+ 
+//  int x = random(1,6);
+ // int y = random(1,6);
+
+  moveToLocation(3,3);
   //moveToStart();
   //delay(5000);
-  digitalWrite(MOTOR_LIFT, HIGH);
-  analogWrite(MOTOR_LIFT_SPEED, 255);
-  delay(300);
-  analogWrite(MOTOR_LIFT_SPEED, 0);
-  
-  digitalWrite(MOTOR_PAK0, HIGH);
-  digitalWrite(MOTOR_PAK1, LOW);
-  analogWrite(MOTOR_PAK_SPEED, 255);
-  delay(1500);
-  analogWrite(MOTOR_PAK_SPEED, 0);
-  
-  digitalWrite(MOTOR_LIFT, HIGH);
-  analogWrite(MOTOR_LIFT_SPEED, 255);
-  delay(900); //delay to lift the product
- analogWrite(MOTOR_LIFT_SPEED, 0);
-  
-  digitalWrite(MOTOR_PAK0, LOW);
-  digitalWrite(MOTOR_PAK1, HIGH);
-  analogWrite(MOTOR_PAK_SPEED, 255);
-  delay(1500);
-  analogWrite(MOTOR_PAK_SPEED, 0);
-
-  digitalWrite(MOTOR_LIFT, LOW);
-  analogWrite(MOTOR_LIFT_SPEED, 255);
-  delay(1400);
-  analogWrite(MOTOR_LIFT_SPEED, 0);
-    
-  delay(1000);
-  //moveToLocation(x,5);
-  moveToLocation(6,3); //boven de bpp
-  
-  digitalWrite(MOTOR_PAK0, HIGH);
-  digitalWrite(MOTOR_PAK1, LOW);
-  analogWrite(MOTOR_PAK_SPEED, 255);
-  delay(1500);
-  analogWrite(MOTOR_PAK_SPEED, 0);
-  
-  moveToLocation(6,4);
-
-  digitalWrite(MOTOR_PAK0, LOW);
-  digitalWrite(MOTOR_PAK1, HIGH);
-  analogWrite(MOTOR_PAK_SPEED, 255);
-  delay(1500);
-  analogWrite(MOTOR_PAK_SPEED, 0);
-
-  moveToLocation(6,3);
+//  pak();
   //delay(1000);
   //moveToStart();
   //delay(5000);
