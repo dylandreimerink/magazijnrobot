@@ -10,7 +10,7 @@
   */
   const int sensorYBlack = 200; 
   const int sensorXBlack = 200; 
-  const int motorSpeed = 180; 
+  const int motorSpeed = 200; 
   
  /*
   * Pins defined for moters 
@@ -61,26 +61,32 @@ void setup() {
 //  moveToDestY(5);
 //  pak();
   pinMode(randSeed, INPUT);
-  digitalWrite(8, LOW);
-  digitalWrite(9, LOW);
+  digitalWrite(8, HIGH);
+  digitalWrite(9, HIGH);
   randomSeed(analogRead(randSeed));
-//  for(int i = 0; i < 4; i++) {
-//    omlaag();
-//  }
   Serial.begin(9600);
-  
 }
 
 void loop() {
+//   currentX = 5;
+//   currentY = 2;
+// 
+  int x = random(1,6);
+  int y = random(1,6);
 
- 
-//  int x = random(1,6);
- // int y = random(1,6);
+for(int x = 1; x <= 5;  x++){
+  for(int y = 5; y >=1 ; y--){
+    moveToLocation(x,y);
+    pak();
+  }
+}
 
-  moveToLocation(3,3);
+  
+
+
   //moveToStart();
   //delay(5000);
-//  pak();
+  pak();
   //delay(1000);
   //moveToStart();
   //delay(5000);
