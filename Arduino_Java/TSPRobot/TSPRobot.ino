@@ -38,7 +38,7 @@ void loop() {
             break;
           }else if(data == 'B'){
             digitalWrite(bppEnablePin, LOW);
-            cancel();
+            cancel();  
           }
         }else{
           if(data == 'L'){

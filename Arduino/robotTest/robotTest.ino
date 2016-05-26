@@ -29,6 +29,18 @@
   int currentX = 1;
   int currentY = 5;
 
+
+const int bppEnablePin = 8;
+const int bppDirPin = 9;
+
+int getx = 0;
+int gety = 0;
+bool hasx = false;
+bool hasy = false;
+bool start = false;
+char curVal = '0';
+
+
  /*
   * x, y pos from asrs 
   */
@@ -61,34 +73,91 @@ void setup() {
 //  moveToDestY(5);
 //  pak();
   pinMode(randSeed, INPUT);
-  digitalWrite(8, HIGH);
-  digitalWrite(9, HIGH);
+  pinMode(bppEnablePin, OUTPUT);
+  pinMode(bppDirPin, OUTPUT);
+  digitalWrite(bppEnablePin, LOW);
+  digitalWrite(bppDirPin, LOW);
   randomSeed(analogRead(randSeed));
   Serial.begin(9600);
 }
 
 void loop() {
-//   currentX = 5;
-//   currentY = 2;
-// 
-  int x = random(1,6);
-  int y = random(1,6);
-
-for(int x = 1; x <= 5;  x++){
-  for(int y = 5; y >=1 ; y--){
-    moveToLocation(x,y);
-    pak();
-  }
+if (Serial.available() > 0){
+     delay(20);
+     int data;
+     while(Serial.available() > 0){
+        data = Serial.read();
+        if(!start){
+          if(data == 'I'){
+            Serial.println('0'); 
+          }
+          if(data == 'S'){
+            start = true;
+            Serial.println('O');
+          }else if(data == 'C'){
+            digitalWrite(bppEnablePin, LOW);
+            moveToLocation(1, 5);
+            cancel();
+            break;
+          }else if(data == 'B'){
+            digitalWrite(bppEnablePin, LOW);
+            cancel();  
+          }
+        }else{
+          if(data == 'L'){
+           digitalWrite(bppDirPin, LOW);
+           digitalWrite(bppEnablePin, HIGH);
+           Serial.println('O');
+           cancel();
+          }
+          if(data == 'R'){
+           digitalWrite(bppDirPin, HIGH);
+            digitalWrite(bppEnablePin, HIGH);
+            Serial.println('O');
+            cancel();
+          }
+          if(data == 'X' || data == 'Y'){
+            curVal = data;
+          }else if(data == 'P'){
+            Serial.println('O');
+            pak();
+            cancel();
+            break;
+          }else if(curVal != '0'){
+            if(data == ';'){
+              curVal = '0';
+            }else{
+               if(curVal == 'X'){
+                 getx = data - 48;
+                 hasx = true;
+                 Serial.println('O');
+               }
+               if(curVal == 'Y'){
+                 gety = data - 48;
+                 hasy = true;
+                 Serial.println('O');
+               }
+               if(hasx && hasy){
+                moveToLocation(getx, gety);
+                cancel();
+                break;
+               }
+             }
+           }
+         }
+       }
+     
+   }
 }
 
-  
-
-
-  //moveToStart();
-  //delay(5000);
-  pak();
-  //delay(1000);
-  //moveToStart();
-  //delay(5000);
+void cancel(){
+  x = 0;
+  y = 0;
+  hasx = false;
+  hasy = false;
+  start = false; 
+  Serial.println('C');
+  while(Serial.available() > 0){
+   Serial.read();
+  } 
 }
-

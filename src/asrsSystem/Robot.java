@@ -192,6 +192,61 @@ public class Robot implements Runnable{
 					}
 				}
 			}
+			
+			go = true;
+			
+			while(go){
+				out.write('S');
+				out.flush();
+				System.out.println("sending S");
+				if(hasOK(reader)){
+					go = false;
+				}
+			}
+			
+			go = true;
+			
+			while(go){
+				out.write('L');
+				out.flush();
+				System.out.println("sending S");
+				if(hasOK(reader)){
+					go = false;
+				}
+			}
+			
+			go = true;
+			
+			while(go){
+				out.write('S');
+				out.flush();
+				System.out.println("sending S");
+				if(hasOK(reader)){
+					go = false;
+				}
+			}
+			
+			go = true;
+			
+			while(go){
+				out.write('P');
+				out.flush();
+				System.out.println("sending S");
+				if(hasOK(reader)){
+					go = false;
+				}
+			}
+			
+			go = true;
+			
+			while(go){
+				out.write('B');
+				out.flush();
+				System.out.println("sending S");
+				if(hasOK(reader)){
+					go = false;
+				}
+			}
 				
 			
 		} catch (IOException e) {
