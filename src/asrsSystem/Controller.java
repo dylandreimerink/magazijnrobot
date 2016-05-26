@@ -16,12 +16,12 @@ public class Controller {
 	private ArrayList<Location> optimizedTour;
 	private ArrayList<Doos> doosList;
 	private ArrayList<Product> prodlist;
-	Console console = new Console();
+	private Console console = new Console();
 	private DrawPanel drawer;
 	private Robot robot;
 	private ImageIcon image;
 	private boolean pressedGenerateRoute;
-	Warningfunctions warning = new Warningfunctions();
+	private Warningfunctions warning = new Warningfunctions();
 	
 	public void startRoute(ArrayList<Product> productlist, JPanel panel) {
 		this.prodlist = productlist;
@@ -68,6 +68,10 @@ public class Controller {
 		}
 	}
 	
+	public void stopRobot() {
+		drawer.setRobotCounter();
+	}
+	
 	public void StartRobot() {
 		if(robot == null) {
 			warning.showNoRobotMessage(null);
@@ -76,6 +80,9 @@ public class Controller {
 		}
 	}
 	
+	public void updateRobotLocation() {
+		drawer.setRobotCounter();
+	}
 
 	
 

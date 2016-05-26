@@ -26,6 +26,7 @@ public class DrawPanel extends JPanel {
 	private Resultaat resultaat;
 	private int x;
 	private int y;
+	
 
 	public DrawPanel(String algoname, Resultaat resultaat) {
 		this.algoname = algoname;
