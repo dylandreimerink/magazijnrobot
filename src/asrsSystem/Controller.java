@@ -82,7 +82,7 @@ public class Controller {
 	
 	public void updateDoosinfo(JPanel panel) {
 		
-		image = new ImageIcon("src/smallCrate.png");
+		image = new ImageIcon("src/img/smallCrate.png");
 		
 		int counter = 1;
 		int index = 0;

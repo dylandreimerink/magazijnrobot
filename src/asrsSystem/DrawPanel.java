@@ -39,7 +39,7 @@ public class DrawPanel extends JPanel {
 	
 	public DrawPanel() {
 	       try {                
-	           image = ImageIO.read(new File("src/crate.png"));
+	           image = ImageIO.read(new File("src/img/crate.png"));
 	        } catch (IOException ex) {
 	             // handle exception...
 	        }
@@ -138,5 +138,16 @@ public class DrawPanel extends JPanel {
 		repaint();
 	}
 	
+	public ArrayList<Location> getRoute() {
+		return route;
+	}
+	
+	public int getAfstandX() {
+		return afstandX;
+	}
+	
+	public int getAfstandY() {
+		return afstandY;
+	}
 
 }

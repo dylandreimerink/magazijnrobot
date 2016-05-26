@@ -87,7 +87,7 @@ public class gui extends JFrame implements ActionListener {
 		Console console = new Console();
 		Toolkit kit = Toolkit.getDefaultToolkit();
 	
-		image = kit.createImage("src/smallCrate.png");
+		image = kit.createImage("src/img/smallCrate.png");
 		
 
 		//scherm opbouwen
