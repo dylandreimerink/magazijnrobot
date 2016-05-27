@@ -140,14 +140,22 @@ public class DrawPanel extends JPanel {
 	}
 	
 	private void drawRobot(Graphics g, int afstandX, int afstandY, int counter) {
-		
+		if(counter == 0) {
 			int x = route.get(counter).getLocationX();
 			int y = route.get(counter).getLocationY();
 			int bX = (afstandX*x) - (afstandX/2);
 			int bY = (afstandY*y) - (afstandY/2);
-		
 			g.drawImage(robotImage, bX-32, bY-32, null);
 			repaint();
+		}else {
+			int x = route.get(counter-1).getLocationX();
+			int y = route.get(counter-1).getLocationY();
+			int bX = (afstandX*x) - (afstandX/2);
+			int bY = (afstandY*y) - (afstandY/2);
+			g.drawImage(robotImage, bX-32, bY-32, null);
+			repaint();
+		}
+			
 
 	}
 	

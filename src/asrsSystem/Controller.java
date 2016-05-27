@@ -55,7 +55,7 @@ public class Controller {
 			warning.showNullpointerWarning(null);
 		}else{
 		robot = new Robot();
-		robot.openConnection(optimizedTour, doosList);
+		robot.openConnection(optimizedTour, doosList, this);
 		}
 	}
 	
