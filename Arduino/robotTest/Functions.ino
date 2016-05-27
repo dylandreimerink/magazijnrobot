@@ -99,7 +99,7 @@ void moveToLocation(int x, int y) {
 void pak(){
    digitalWrite(MOTOR_LIFT, HIGH);
   analogWrite(MOTOR_LIFT_SPEED, 255);
-  delay(160); //kleinstukje omhoog voor het pakken
+  delay(200); //kleinstukje omhoog voor het pakken
   analogWrite(MOTOR_LIFT_SPEED, 0);
   
   digitalWrite(MOTOR_PAK0, HIGH);
@@ -110,18 +110,18 @@ void pak(){
   
   digitalWrite(MOTOR_LIFT, HIGH);
   analogWrite(MOTOR_LIFT_SPEED, 255);
-  delay(400); //delay to lift the product
+  delay(500); //delay to lift the product
  analogWrite(MOTOR_LIFT_SPEED, 0);
   
   digitalWrite(MOTOR_PAK0, LOW);
   digitalWrite(MOTOR_PAK1, HIGH);
   analogWrite(MOTOR_PAK_SPEED, 255);
-  delay(1800);
+  delay(1850);
   analogWrite(MOTOR_PAK_SPEED, 0);
 
   digitalWrite(MOTOR_LIFT, LOW);
   analogWrite(MOTOR_LIFT_SPEED, 255);
-  delay(800);
+  delay(900);
   analogWrite(MOTOR_LIFT_SPEED, 0);
     
   //moveToLocation(x,5);
@@ -138,7 +138,7 @@ void pak(){
   digitalWrite(MOTOR_PAK0, LOW);
   digitalWrite(MOTOR_PAK1, HIGH);
   analogWrite(MOTOR_PAK_SPEED, 255);
-  delay(1500);
+  delay(1550);
   analogWrite(MOTOR_PAK_SPEED, 0);
 
   moveToLocation(6,3);

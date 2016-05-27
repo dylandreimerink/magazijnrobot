@@ -133,16 +133,19 @@ if (Serial.available() > 0){
             }else{
                if(curVal == 'X'){
                  getx = data - 48;
-                 hasx = true;
-                 Serial.print("O ");
-                 Serial.println(getx);
-                 
+                 if(getx >= 0 && getx <= 9){
+                  hasx = true;
+                   Serial.print("O ");
+                   Serial.println(getx);
+                 } 
                }
                if(curVal == 'Y'){
                  gety = data - 48;
-                 hasy = true;
-                 Serial.print("O ");
-                 Serial.println(gety);
+                 if(gety >= 0 && gety <= 9){
+                  hasy = true;
+                  Serial.print("O ");
+                  Serial.println(gety);
+                 }
                }
                if(hasx && hasy){
                 moveToLocation(getx, gety);

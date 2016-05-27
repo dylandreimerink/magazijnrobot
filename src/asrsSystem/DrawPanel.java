@@ -78,8 +78,8 @@ public class DrawPanel extends JPanel {
 			
 			for(Location loc: route) {
 				if(index < maxindex-1){
-					System.out.println(route);
-					System.out.println("maxindex: "+maxindex);
+					//System.out.println(route);
+					//System.out.println("maxindex: "+maxindex);
 				
 					int beginX = route.get(index).getLocationX();
 					int beginY = route.get(index).getLocationY();
@@ -134,7 +134,7 @@ public class DrawPanel extends JPanel {
 		g2.setStroke(new BasicStroke(3));
 		g.setColor(Color.DARK_GRAY);
 		g.drawLine(bX, bY, eX, eY);
-		System.out.println(beginX+","+beginY+"|"+eindX+","+eindY);
+		//System.out.println(beginX+","+beginY+"|"+eindX+","+eindY);
 		
 		
 	}

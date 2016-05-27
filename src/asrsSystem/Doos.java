@@ -7,44 +7,41 @@ import java.util.ArrayList;
 import shared.Product;
 
 public class Doos {
-	private int doosID;
-	private int maxInDoos;
-	private ArrayList<Doos> doosList;
+	private ArrayList<Product> productList = new ArrayList<Product>();
+	public int doosId;
 	
-	public Doos(int doosID){
-		this.doosID = doosID;
+	public Doos(int doosId){
+		this.doosId = doosId;
 	}
 	
-	public Doos() {
-		//let this stay
+	public void addProduct(Product p){
+		productList.add(p);
 	}
 	
-	public void setMaxInDoos(int value) {
-		maxInDoos = value;
+	public ArrayList<Product> getProductList(){
+		return productList;
 	}
 	
-	public int getDoosId() {
-		return doosID;
-	}
-	
-	public ArrayList<Doos> generateDoosList(ArrayList<Product> productlist) {
-		doosList = new ArrayList<Doos>();
-			int aantal = productlist.size()/2;
-			int doosId = 1;
-			for(int i=0; i <= aantal; i++) {
-				Doos doos = new Doos(doosId);
-				doosList.add(doos);
+	public static ArrayList<Doos> generateDoosList(ArrayList<Product> productlist) {
+		ArrayList<Doos> doosList = new ArrayList<Doos>();
+		Doos doos1 = new Doos(1);
+		Doos doos2 = new Doos(2);
+		int i = 0;
+		for(Product p : productlist){
+			if(i % 2 == 1){
+				doos1.addProduct(p);
+			}else{
+				doos2.addProduct(p);
 			}
-			doosId++;
-			for(int i=aantal; i< productlist.size()-1; i++) {
-				Doos doos = new Doos(doosId);
-				doosList.add(doos);
-			}		
+			i++;
+		}
+		doosList.add(doos1);
+		doosList.add(doos2);
 		return doosList;
 	}
 	
 	public String toString() {
-		return "Doos: "+doosID+", ";
+		return "Doos: "+productList.toString()+", ";
 		
 	}
 	

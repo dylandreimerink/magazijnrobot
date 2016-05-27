@@ -21,14 +21,14 @@ public class Route {
 
 	public void calculateRoute(ArrayList<asrsSystem.Location> initialTour) {
 		optimizedTour = new ArrayList<asrsSystem.Location>();
-		asrsSystem.Location begin_eind = new asrsSystem.Location(6,5);
+		//asrsSystem.Location begin_eind = new asrsSystem.Location(6,5);
 		for(asrsSystem.Location l:initialTour) {
 			
-			optimizedTour.add(begin_eind);
+			//optimizedTour.add(begin_eind);
 			optimizedTour.add(initialTour.get(index));
 			index++;
 		}
-		optimizedTour.add(begin_eind);
+		//optimizedTour.add(begin_eind);
 	}
 	
 	public ArrayList<asrsSystem.Location> getOptimizedTour() {

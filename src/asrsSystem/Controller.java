@@ -34,8 +34,7 @@ public class Controller {
 		console.printLine("Route gevonden!");
 		drawer.setResult(optimizedTour, initialTour, productlist);
 		drawer.repaint();
-		Doos doos = new Doos();
-		doosList = doos.generateDoosList(productlist);
+		doosList = Doos.generateDoosList(productlist);
 		
 		updateDoosinfo(panel);
 
@@ -56,7 +55,7 @@ public class Controller {
 			warning.showNullpointerWarning(null);
 		}else{
 		robot = new Robot();
-		robot.openConnection(optimizedTour);
+		robot.openConnection(optimizedTour, doosList);
 		}
 	}
 	
@@ -108,26 +107,29 @@ public class Controller {
 		}
 		for(Doos l:doosList) {
 			
-			if(l.getDoosId() == 1) {
-				JLabel imageIcon = new JLabel(image);
-				JLabel pInfo = new JLabel(prodlist.get(index).getProductName());
-				panel.add(imageIcon,"cell "+counter+" 2");
-				panel.add(pInfo,"cell "+counter+" 2");
-				System.out.println(l.getDoosId());
-				index++;
-			
+			if(l.doosId == 1) {
+				for(Product p : l.getProductList()){
+					JLabel imageIcon = new JLabel(image);
+					JLabel pInfo = new JLabel(prodlist.get(index).getProductName());
+					panel.add(imageIcon,"cell "+counter+" 2");
+					panel.add(pInfo,"cell "+counter+" 2");
+					System.out.println(l.doosId);
+					index++;
+				}
 			}
 			
 		}
 		counter = 1;
 		for(Doos l1:doosList) 
-			if(l1.getDoosId() == 2) {
-				JLabel imageIcon = new JLabel(image);
-				JLabel pInfo = new JLabel(prodlist.get(index).getProductName());
-				panel.add(imageIcon, "cell "+counter+" 3");
-				panel.add(pInfo,"cell "+counter+" 3");
-				System.out.println(l1.getDoosId());
-				index++;
+			if(l1.doosId == 2) {
+				for(Product p : l1.getProductList()){
+					JLabel imageIcon = new JLabel(image);
+					JLabel pInfo = new JLabel(prodlist.get(index).getProductName());
+					panel.add(imageIcon, "cell "+counter+" 3");
+					panel.add(pInfo,"cell "+counter+" 3");
+					System.out.println(l1.doosId);
+					index++;
+				}
 			}
 		
 		counter++;
