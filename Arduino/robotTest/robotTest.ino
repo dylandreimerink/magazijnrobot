@@ -19,8 +19,8 @@
   int MOTOR_GROUND_SPEED = 6;
   int MOTOR_LIFT = 4;
   int MOTOR_LIFT_SPEED = 5;
-  int MOTOR_PAK0 = 52;
-  int MOTOR_PAK1 = 53; 
+  int MOTOR_PAK0 = 12;
+  int MOTOR_PAK1 = 13; 
   int MOTOR_PAK_SPEED = 11; //pwm
 
  /*
@@ -75,6 +75,9 @@ void setup() {
   pinMode(randSeed, INPUT);
   pinMode(bppEnablePin, OUTPUT);
   pinMode(bppDirPin, OUTPUT);
+  pinMode(MOTOR_PAK0, OUTPUT);
+   pinMode(MOTOR_PAK1, OUTPUT);
+   pinMode(MOTOR_PAK_SPEED, OUTPUT);
   digitalWrite(bppEnablePin, LOW);
   digitalWrite(bppDirPin, LOW);
   randomSeed(analogRead(randSeed));
@@ -100,6 +103,7 @@ if (Serial.available() > 0){
             cancel();
             break;
           }else if(data == 'B'){
+            Serial.println('O');
             digitalWrite(bppEnablePin, LOW);
             cancel();  
           }
@@ -130,12 +134,15 @@ if (Serial.available() > 0){
                if(curVal == 'X'){
                  getx = data - 48;
                  hasx = true;
-                 Serial.println('O');
+                 Serial.print("O ");
+                 Serial.println(getx);
+                 
                }
                if(curVal == 'Y'){
                  gety = data - 48;
                  hasy = true;
-                 Serial.println('O');
+                 Serial.print("O ");
+                 Serial.println(gety);
                }
                if(hasx && hasy){
                 moveToLocation(getx, gety);

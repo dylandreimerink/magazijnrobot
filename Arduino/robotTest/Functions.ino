@@ -149,7 +149,6 @@ void moveToStart(){
 }
 void moveToDestX(int x){
    while(currentX != x){
-      Serial.print("X: "); Serial.println(currentX);
       if(currentX <= x){
         rechts();
       }else if(currentX >= x){
@@ -162,7 +161,6 @@ void moveToDestX(int x){
 //BIJ Y AS ALLES ANDERSOM OMDAT Y-AS VAN BOVEN NAAR BENEDEN WORDT GETELD
 void moveToDestY(int y){
    while(currentY != y){
-      Serial.print("Y: "); Serial.println(currentY);
       if(currentY > y){
         omhoog();
       }else if(currentY < y){
@@ -175,7 +173,6 @@ void moveToDestY(int y){
 void hold() {
     analogWrite(MOTOR_GROUND_SPEED, 0);
     analogWrite(MOTOR_LIFT_SPEED, 0);
-    Serial.println("HOLD");
 }
 
 void rechts() {
@@ -183,7 +180,7 @@ void rechts() {
     analogWrite(MOTOR_GROUND_SPEED, motorSpeed);
     delay(300);
     while(readSensor_X() != true){
-      Serial.println("wacht op volgende zwarte blokje..:)");
+     // Serial.println("wacht op volgende zwarte blokje..:)");
     }
     currentX++;    
 }
@@ -193,7 +190,7 @@ void links() {
     analogWrite(MOTOR_GROUND_SPEED, motorSpeed);
     delay(300);
     while(readSensor_X() != true){
-      Serial.println("wacht op volgende zwarte blokje..:)");
+     // Serial.println("wacht op volgende zwarte blokje..:)");
     }
     currentX--;
 }
@@ -203,7 +200,7 @@ void omhoog() {
     analogWrite(MOTOR_LIFT_SPEED, motorSpeed);
     delay(1000);
     while(readSensor_Y() != true){
-      Serial.println("wacht op volgende zwarte blokje..:)");
+      //Serial.println("wacht op volgende zwarte blokje..:)");
     }
     currentY--;
 }
@@ -211,11 +208,11 @@ void omhoog() {
 void omlaag() {
     digitalWrite(MOTOR_LIFT, LOW);
     analogWrite(MOTOR_LIFT_SPEED, motorSpeed);
-    Serial.println("delay");
+    //Serial.println("delay");
     delay(1000);
 
     while(readSensor_Y() != true){
-      Serial.println("wacht op volgende zwarte blokje..:)");
+     // Serial.println("wacht op volgende zwarte blokje..:)");
     }
     currentY++;
 }
@@ -223,7 +220,7 @@ void omlaag() {
 boolean readSensor_X(){
  // Serial.println(analogRead(sensorX));
   if(analogRead(sensorX) > sensorXBlack){
-    Serial.println("zwart");
+   // Serial.println("zwart");
     return(true);
   }
   else{
@@ -234,7 +231,7 @@ boolean readSensor_X(){
 boolean readSensor_Y(){
  // Serial.println(analogRead(sensorY));
   if(analogRead(sensorY) > sensorYBlack){
-    Serial.println("zwart");
+    //Serial.println("zwart");
     delay(100);
     return(true);
   }

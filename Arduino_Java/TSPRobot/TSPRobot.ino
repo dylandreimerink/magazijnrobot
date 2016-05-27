@@ -37,6 +37,7 @@ void loop() {
             cancel();
             break;
           }else if(data == 'B'){
+            Serial.println('O');
             digitalWrite(bppEnablePin, LOW);
             cancel();  
           }
