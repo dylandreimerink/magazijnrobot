@@ -28,8 +28,10 @@ public class Robot implements Runnable{
 	private String y;
 	OutputStream out;
 	InputStream input;
+	Controller controller;
 	
-	public void openConnection(ArrayList <Location> list, ArrayList <Doos> boxlist){
+	public void openConnection(ArrayList <Location> list, ArrayList <Doos> boxlist, Controller controller){
+		this.controller = controller;
 		this.boxlist = boxlist;
 		this.list = list;
 		Enumeration<CommPortIdentifier> ports = CommPortIdentifier.getPortIdentifiers();
@@ -213,6 +215,7 @@ public class Robot implements Runnable{
 					if(line.contains("C")) {
 						System.out.println("command done");
 						//out.close();
+						controller.updateRobotLocation();
 						go = false;
 					}
 				}
