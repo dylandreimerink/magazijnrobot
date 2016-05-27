@@ -216,6 +216,7 @@ public class Robot implements Runnable{
 						System.out.println("command done");
 						//out.close();
 						controller.updateRobotLocation();
+						
 						go = false;
 					}
 				}
