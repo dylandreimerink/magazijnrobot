@@ -32,6 +32,7 @@ public class DrawPanel extends JPanel {
 	private int afstandX;
 	private int afstandY;
 	private int counter = 0;
+	private Warningfunctions warning = new Warningfunctions();
 	
 	
 	
@@ -41,7 +42,7 @@ public class DrawPanel extends JPanel {
 	           image = ImageIO.read(new File("src/img/crate.png"));
 	           robotImage = ImageIO.read(new File("src/img/robot.png"));
 	        } catch (IOException ex) {
-	             // handle exception...
+	             warning.showCriticalError(null, "afbeelding lezen error! controleer de img folder!");
 	        }
 	       
 			this.afstandX = (WIDTH / magazijnSize);
@@ -57,16 +58,17 @@ public class DrawPanel extends JPanel {
 		super.paintComponent(g);
 
 			
-		
+			// afstandx en y staat voor de afstand tussen magazijncoordinaten, 
+			//bv: tussen vakje 3 en 4 zitten 100 x coords
 			for (int j = 0; j <= HEIGHT; j += afstandX) {
 				g.drawLine(j, 0, j, HEIGHT);
-				//System.out.println("testheigth");
+				
 			}
 			for (int j = 0; j <= WIDTH; j += afstandY) {
 				g.drawLine(0, j, WIDTH, j);
-				//System.out.println("testwidth");
+			
 			}
-			//drawrobot.createImage(g);
+			
 		if(drawRoute == true) {
 
 			int index = 0;
@@ -74,9 +76,8 @@ public class DrawPanel extends JPanel {
 			
 			for(Location loc: route) {
 				if(index < maxindex-1){
-					//System.out.println(route);
-					//System.out.println("maxindex: "+maxindex);
-				
+
+					
 					int beginX = route.get(index).getLocationX();
 					int beginY = route.get(index).getLocationY();
 					index++;
@@ -130,13 +131,13 @@ public class DrawPanel extends JPanel {
 		g2.setStroke(new BasicStroke(3));
 		g.setColor(Color.DARK_GRAY);
 		g.drawLine(bX, bY, eX, eY);
-		//System.out.println(beginX+","+beginY+"|"+eindX+","+eindY);
+		
 		
 		
 	}
 	
 	private void drawRobot(Graphics g, int afstandX, int afstandY, int counter) {
-		if(counter == 0 || counter == route.size()-1) {
+		if(counter == 0) {
 			int x = route.get(counter).getLocationX();
 			int y = route.get(counter).getLocationY();
 			int bX = (afstandX*x) - (afstandX/2);
@@ -163,10 +164,10 @@ public class DrawPanel extends JPanel {
 	}
 	
 	public void setRobotCounter() {
-		if(counter < route.size()-1) {
+		if(counter < route.size()) {
 			counter++;
 		}else{
-			counter = 0;
+			counter = route.size();
 		}
 	}
 

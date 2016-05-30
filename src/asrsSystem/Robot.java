@@ -36,7 +36,8 @@ public class Robot implements Runnable{
         	System.out.println("arduino poort: "+info.getName());			
 		}
 		
-		portName = info.getName();
+		//portName = info.getName();
+		portName = "COM9";
 		serialPort = null;
 		
 		}
