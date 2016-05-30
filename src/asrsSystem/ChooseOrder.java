@@ -15,11 +15,6 @@ public class ChooseOrder {
 	ParseXML order;
 	
 	public void ChooseFile() {
-		Console console = new Console();
-	
-		
-		
-		
 	    JFileChooser chooser = new JFileChooser();
 	    chooser.setCurrentDirectory(new java.io.File("."));
 	    chooser.setDialogTitle("kies uw XML file");
@@ -28,17 +23,17 @@ public class ChooseOrder {
 	    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 	    File selectedFile = chooser.getSelectedFile();
 	      this.path = selectedFile.getAbsolutePath();
-	      console.printLine("xml bestand geselecteerd. path: "+path);
-	      console.printLine("parsing xml file...");
+	      Console.printLine("xml bestand geselecteerd. path: "+path);
+	      Console.printLine("parsing xml file...");
 	      order = new ParseXML(path);
 	      this.productlist = order.getProductList();
 	      System.out.println(productlist);
-	      console.printLine("parsing compleet! geselecteerde producten:" + productlist);
+	      Console.printLine("parsing compleet! geselecteerde producten:" + productlist);
 	      
 	      
 	      
 	    } else {
-	    	console.printLine("geen order geselecteerd! selecteer een order om het programma te gebruiken!");
+	    	Console.printLine("geen order geselecteerd! selecteer een order om het programma te gebruiken!");
 	    }
 	    
 	    

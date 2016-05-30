@@ -5,7 +5,6 @@ package bppSimulator;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.text.DecimalFormat;
@@ -13,9 +12,6 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.plaf.synth.SynthSeparatorUI;
-
 import shared.Product;
 
 public class SimulatiePanel extends JPanel {
@@ -54,22 +50,13 @@ public class SimulatiePanel extends JPanel {
 		int lineY1 = rectYOffset + 10;
 		int lineY2 = rectYOffset + 10;
 		int currentBox = 0;
-		int efficiency;
-		int totalEfficiency;
-		int listEfficiency;
-		int unusedX1 = 0;
-		int unusedY1 = 0;
-		int oldY1 = 0;
-
 		Font font = new Font("product", Font.PLAIN, 14);
-		FontMetrics metrics = g.getFontMetrics();
+		g.getFontMetrics();
 
 		g.setFont(font);
 
 		for (Box b : boxlist) {
 			double boxCapacity = b.getBreedte() * b.getHoogte() * b.getLengte();
-			totalEfficiency = 100;
-
 			g.setColor(Color.red);
 			Rectangle box = new Rectangle(rectX, rectY - 1, rectXOffset, rectYOffset);
 			g.drawRect(box.x, box.y, box.width, box.height);
@@ -89,10 +76,6 @@ public class SimulatiePanel extends JPanel {
 				g.drawString(p.getProductName() + " " + df.format(fillPercentage) + "%", lineX1 + 2, lineY1 + 14);
 
 				System.out.println(lineY1);
-
-				unusedX1 = lineX1;
-				unusedY1 = lineY1;
-				oldY1 = lineY1;
 			}
 
 			currentBox = currentBox + 1;

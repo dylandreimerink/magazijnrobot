@@ -16,7 +16,6 @@ public class Product {
 	private double lenght;
 	
 	Database db = new Database();
-	Console console = new Console();
 
 
 	public Product(int productId, String productName, int locationX, int locationY, double height, double width,
@@ -56,7 +55,7 @@ public class Product {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				console.printLine("Producten niet gevonden! (vul database op met voldoende testproducten!)");
+				Console.printLine("Producten niet gevonden! (vul database op met voldoende testproducten!)");
 			}
 			
 			//this(productId, "Onbekend", 0, 0, 0, 0, 0);

@@ -6,8 +6,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -38,7 +36,6 @@ public class Edit_Product extends JDialog implements ActionListener{
 	
 	private JButton btnCancel;
 	private JButton btnApply;
-	private JButton button;
 	private JButton btnDelete;
 	
 	private Database db;
@@ -48,7 +45,6 @@ public class Edit_Product extends JDialog implements ActionListener{
 	private int productId;
 	private JComboBox product;
 	
-	Console console = new Console();
 	Warningfunctions warning = new Warningfunctions();
 
 //	Voegt de benodigde buttons toe om het scherm te kunnen maken.	
@@ -260,7 +256,7 @@ public class Edit_Product extends JDialog implements ActionListener{
         }
         if (e.getSource() == btnDelete){
         	db.delete(productId);
-        	console.printLine("Product met productId "+productId+" is succesvol verwijderd!");
+        	Console.printLine("Product met productId "+productId+" is succesvol verwijderd!");
         	JOptionPane.showMessageDialog(null, "Product is verwijderd");        	
         }
 	}

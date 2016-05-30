@@ -1,33 +1,16 @@
 package tspSimulator;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
-import shared.Algorithm;
-import shared.Resultaat;
-
-public class NearestNeighbour implements Algorithm, Comparator<Location> {
-
-	private String name;
+public class NearestNeighbour implements Runnable,  Algorithm {
+	
 	private ArrayList<Location> picklist;
-	private DrawPanel panel;
-	private Resultaat resultaat;
+	protected Thread t = new Thread(this);
+	private Result result;
+	
+	private TSPController onComplete;
 
-	public NearestNeighbour(String name, ArrayList<Location> picklist) {
-
-		this.name = name;
-		this.picklist = picklist;
-		resultaat = new Resultaat(picklist, 0);
-		panel = new DrawPanel(name, resultaat);
-	}
-
-	public void updateResultaat(ArrayList<Location> picklist) {
-		this.picklist = picklist;
-		resultaat = new Resultaat(picklist, 0);
-		panel.updateResultaat(resultaat);
-	}
-
-	private double calculateDistance(Location locatieA , Location locatieB) {
+	private double calculateDistance(Location locatieA, Location locatieB) {
 		double temp;
 		double temp1;
 		if (locatieA.getLocationX() > locatieB.getLocationX()) {
@@ -44,7 +27,6 @@ public class NearestNeighbour implements Algorithm, Comparator<Location> {
 	}
 
 	public Location findNearest(ArrayList<Location> picklist, Location p) {
-		System.out.println("Locatie p:" + p.getLocationX() + " " + p.getLocationY());
 		Location nearest = null;
 		double distance = 999999999;
 		for (Location s : picklist) {
@@ -57,9 +39,12 @@ public class NearestNeighbour implements Algorithm, Comparator<Location> {
 	}
 
 	@Override
-	public void calculateRoute(){
-		ArrayList<Location> p1 = this.picklist;
-		// Collections.sort(p1, this);
+	public Result calculateRoute() {
+		ArrayList<Location> p1 = new ArrayList<Location>();
+		
+		for (Location l : picklist.toArray(new Location[0])) {
+			p1.add(l);
+		}
 		ArrayList<Location> newArrayList = new ArrayList<Location>();
 		newArrayList.add(p1.get(0));
 		p1.remove(0);
@@ -70,48 +55,45 @@ public class NearestNeighbour implements Algorithm, Comparator<Location> {
 			p1.remove(neareast);
 			q++;
 		}
-		resultaat = null;
-		System.out.println("Oude array:");
-		for (int i = 0; i < p1.size(); i++) {
-			System.out.println("x: " + p1.get(i).getLocationX() + "y: " + p1.get(i).getLocationY());
-		}
-		System.out.println("Nieuwe array:");
-		for (int i = 0; i < newArrayList.size(); i++) {
-			System.out.println("x: " + newArrayList.get(i).getLocationX() + "y: " + newArrayList.get(i).getLocationY());
-		}
-		this.picklist = newArrayList;
-		resultaat = new Resultaat(newArrayList, 0);
-		panel.updateResultaat(resultaat);
-
+		picklist = newArrayList;
+		Result resultaat = new Result(newArrayList, 0);
+		return resultaat;
 	}
 
 	@Override
-	public Resultaat getResultaat() {
-		return this.resultaat;
+	public void callBack() {
+		onComplete.nearestNeighbourCallback();
 	}
 
 	@Override
-	public String getAlgorithmName() {
-		// TODO Auto-generated method stub
-		return name;
-	}
-
-	public DrawPanel getPanel() {
-		return panel;
+	public void setOnDoneListner(TSPController listnerClass) {
+		onComplete = listnerClass;
 	}
 
 	@Override
-	public int compare(Location arg0, Location arg1) {
-		if (arg0.getLocationX() > arg1.getLocationX() && arg0.getLocationY() > arg1.getLocationY()) {
-			return 1;
-		} else if (arg0.getLocationX() == arg1.getLocationX() && arg0.getLocationY() > arg1.getLocationY()
-				|| arg0.getLocationX() > arg1.getLocationX() && arg0.getLocationY() == arg1.getLocationY()) {
-			return 1;
-		} else if (arg0.getLocationX() < arg1.getLocationX() || arg0.getLocationY() < arg1.getLocationY()) {
-			return -1;
-		} else {
-			return 0;
+	public void start(ArrayList<Location> p) {
+		this.picklist = p;
+
+		t = new Thread(this);
+		t.start();
+	
+	}
+
+
+	@Override
+	public Result getResult() {
+		System.out.println(result);
+		return result;
+	}
+
+	@Override
+	public void run() {
+		this.result = calculateRoute();
+
+		if (onComplete != null) {
+			callBack();
 		}
-
 	}
+
+
 }

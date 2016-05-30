@@ -1,9 +1,5 @@
 package bppSimulator;
 
-import java.util.ArrayList;
-
-import shared.Product;
-
 public class Box {
 	private double hoogte;
 	private double breedte;

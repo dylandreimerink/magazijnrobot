@@ -4,16 +4,7 @@ package shared;
  * Authors: Jan Willem Alejandro Casteleijn & Henri van de Munt (ICTM2a)
  */
 
-import java.io.File;
 import java.util.ArrayList;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 public class Bestelling {
 	private Klant klant;
@@ -21,7 +12,7 @@ public class Bestelling {
 	private int ordernummer;
 
 	public Bestelling(Klant klant, int ordernummer) {
-		productList = new ArrayList();
+		productList = new ArrayList<Product>();
 		this.klant = klant;
 		this.ordernummer = ordernummer;
 

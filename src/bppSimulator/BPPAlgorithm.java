@@ -2,8 +2,6 @@ package bppSimulator;
 
 import java.util.ArrayList;
 
-import shared.Product;
-
 public interface BPPAlgorithm {
 	
 	public void start();

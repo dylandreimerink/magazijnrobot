@@ -1,4 +1,4 @@
-package tspSimulatorv2;
+package tspSimulator;
 /*
  * Authors: Jan Willem Alejandro Casteleijn & Henri van de Munt (ICTM2a)
  */

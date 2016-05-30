@@ -1,57 +1,55 @@
-
 package tspSimulator;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
-
-/*
- * Authors: Jan Willem Alejandro Casteleijn & Henri van de Munt (ICTM2a)
- */
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
-
 import javax.swing.JPanel;
-
-import shared.Resultaat;
 
 public class DrawPanel extends JPanel {
 
+	private boolean showRaster;
+
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	private int HEIGHT = (int) (screenSize.getWidth() / 4) - 50;
-	private int WIDTH = (int) (screenSize.getWidth() / 4) - 50;
+	private int height = (int) (screenSize.getWidth() / 4) - 50;
+	private int width = (int) (screenSize.getWidth() / 4) - 50;
 	private String algoname;
-	private Resultaat resultaat;
+	private Result resultaat;
 	private int x;
 	private int y;
 
-	public DrawPanel(String algoname, Resultaat resultaat) {
+	public DrawPanel(String algoname, Result resultaat, int hoogte, int breedte, boolean showRaster) {
 		this.algoname = algoname;
 		this.resultaat = resultaat;
+		this.x = breedte;
+		this.y = hoogte;
+
+		this.showRaster = showRaster;
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		this.x = 10;
-		this.y = 10;
-		int afstandX = WIDTH / x;
-		int afstandY = HEIGHT / y;
+		int afstandX = width / x;
+		int afstandY = height / y;
 
-		for (int j = 0; j <= HEIGHT; j += afstandX) {
-			g.drawLine(j, 0, j, HEIGHT);
+		if (showRaster) {
+			for (int j = 0; j <= height; j += afstandX) {
+				g.drawLine(j, 0, j, height);
+			}
+			for (int j = 0; j <= width; j += afstandY) {
+				g.drawLine(0, j, width, j);
+			}
 		}
-		for (int j = 0; j <= WIDTH; j += afstandY) {
-			g.drawLine(0, j, WIDTH, j);
-		}
-
 		Location prevLocation = null;
 		for (Location location : resultaat.getResult()) {
 			if (prevLocation != null) {
-				drawRoute(g, prevLocation.getLocationX(), prevLocation.getLocationY(), location.getLocationX(),
-						location.getLocationY(), afstandX, afstandY);
+				if (resultaat.isShowPointsonly() == false) {
+					drawRoute(g, prevLocation.getLocationX(), prevLocation.getLocationY(), location.getLocationX(),
+							location.getLocationY(), afstandX, afstandY);
+				}
 			}
 			prevLocation = location;
 		}
@@ -60,20 +58,25 @@ public class DrawPanel extends JPanel {
 			drawProduct(g, location.getLocationX(), location.getLocationY(), afstandX, afstandY, "Product " + x);
 			x++;
 		}
-		g.drawString(algoname, 0, HEIGHT);
+		g.drawString(algoname + "           afstand: " + resultaat.getAfstand() + "           tijd: "
+				+ resultaat.getTime() + " ms", 0, height);
 	}
 
 	private void drawProduct(Graphics g, int x, int y, int afstandX, int afstandY, String product) {
+		int breedteStip = (int) (screenSize.getWidth() / afstandX) / 4;
 		x = afstandX * x;
 		y = afstandY * y;
-		double middleX = (afstandX / 2) - 7.5 + x;
-		double middleY = (afstandY / 2) - 7.5 + y;
+		double middleX = (afstandX / 2) - breedteStip / 2 + x;
+		double middleY = (afstandY / 2) - breedteStip / 2 + y;
 		int middleXInt = (int) middleX;
 		int middleYInt = (int) middleY;
 		g.setColor(Color.black);
-		g.fillOval(middleXInt, middleYInt, 15, 15);
+		g.fillOval(middleXInt, middleYInt, breedteStip, breedteStip);
 		g.setColor(Color.red);
-		g.drawString(product, middleXInt + 15, middleYInt + 5);
+
+		if (resultaat.isShowPointsonly() == false) {
+			g.drawString(product, middleXInt + 15, middleYInt);
+		}
 	}
 
 	private void drawRoute(Graphics g, int beginX, int beginY, int eindX, int eindY, int afstandX, int afstandY) {
@@ -87,11 +90,13 @@ public class DrawPanel extends JPanel {
 		g.drawLine(beginX, beginY, eindX, eindY);
 	}
 
-	public void updateResultaat(Resultaat resultaat) {	
-		System.out.println(resultaat.getAlgorithmName());
-		System.out.println(resultaat.getResult());
-
+	public void setResultaat(Result resultaat) {
 		this.resultaat = resultaat;
 	}
 
+	public void setShowRaster(boolean showRaster) {
+		this.showRaster = showRaster;
+	}
+	
+	
 }

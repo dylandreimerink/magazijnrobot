@@ -7,37 +7,21 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
-
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import net.miginfocom.swing.MigLayout;
-import javax.swing.border.BevelBorder;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.SoftBevelBorder;
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.border.MatteBorder;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
-import javax.swing.JProgressBar;
 public class gui extends JFrame implements ActionListener {
 
 	
@@ -67,9 +51,7 @@ public class gui extends JFrame implements ActionListener {
 	private JLabel lblOrderinfoselecteerEenOrder;
 	private Component horizontalStrut;
 	private Component horizontalStrut_2;
-	private JPanel panel_6;
 	private JPanel drawerContainer;
-	private JLabel lblNewLabel;
 	private JPanel panel_7;
 	private JLabel lblDoosEen;
 	private JLabel lblDoosTwee;
@@ -193,8 +175,8 @@ public class gui extends JFrame implements ActionListener {
         panel_1.add(panel_4, "cell 2 0,grow");
         
         panel_4.add(console.console());
-        console.printLine("Programma is succesvol opgestart!");
-        console.printLine("Selecteer een order om te beginnen!");
+        Console.printLine("Programma is succesvol opgestart!");
+        Console.printLine("Selecteer een order om te beginnen!");
         panel_4.setLayout(new BoxLayout(panel_4, BoxLayout.X_AXIS));
         
         
@@ -270,10 +252,10 @@ public class gui extends JFrame implements ActionListener {
 			System.exit(0);
 		}
 		if(e.getSource()== mntmBewerkArtikel) {
-			Edit_Product edit = new Edit_Product();
+			new Edit_Product();
 		}
 		if(e.getSource()== mntmVoegToe) {
-			Create_Product creator = new Create_Product();
+			new Create_Product();
 		}
 		if(e.getSource()== mntmDeleteArtikel) {
 			// todo code here

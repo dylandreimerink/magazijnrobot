@@ -7,8 +7,8 @@ package tspSimulator;
 public class Location {
 	private int locationX;
 	private int locationY;
-	
-	public Location(int x, int y){
+
+	public Location(int x, int y) {
 		this.locationX = x;
 		this.locationY = y;
 	}
@@ -20,10 +20,11 @@ public class Location {
 	public int getLocationY() {
 		return locationY;
 	}
-	
-	public boolean equals(Object object){
-		if(object instanceof Location){
-			if(((Location) object).getLocationX() == this.getLocationX() && ((Location) object).getLocationY() == this.getLocationY()){
+
+	public boolean equals(Object object) {
+		if (object instanceof Location) {
+			if (((Location) object).getLocationX() == this.getLocationX()
+					&& ((Location) object).getLocationY() == this.getLocationY()) {
 				return true;
 			} else {
 				return false;
@@ -37,7 +38,5 @@ public class Location {
 	public String toString() {
 		return locationX + " " + locationY;
 	}
-	
-	
-	
+
 }

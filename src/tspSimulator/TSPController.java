@@ -1,6 +1,4 @@
-package tspSimulatorv2;
-
-import java.util.ArrayList;
+package tspSimulator;
 
 public class TSPController {
 	/*

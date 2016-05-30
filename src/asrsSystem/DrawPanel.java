@@ -1,9 +1,7 @@
 package asrsSystem;
 
 import java.awt.BasicStroke;
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -12,7 +10,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -29,7 +26,6 @@ public class DrawPanel extends JPanel {
 	private int WIDTH = 650;
 	private int HEIGHT = 650;
 	private ArrayList<Location> route;
-	private	ArrayList<Location> prodLoc;
 	private ArrayList<Product> product;
 	JLabel JLRoute;
 	public boolean drawRoute = false;
@@ -133,7 +129,6 @@ public class DrawPanel extends JPanel {
 	public void setResult(ArrayList<Location> route,ArrayList<Location> productLoc, ArrayList<Product> productlist) {
 		drawRoute = true;
 		this.route = route;
-		prodLoc = productLoc;
 		this.product = productlist;
 		repaint();
 	}

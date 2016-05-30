@@ -3,12 +3,8 @@ package asrsSystem;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-
 import shared.Product;
 
 public class Controller {
@@ -16,7 +12,6 @@ public class Controller {
 	private ArrayList<Location> optimizedTour;
 	private ArrayList<Doos> doosList;
 	private ArrayList<Product> prodlist;
-	Console console = new Console();
 	private DrawPanel drawer;
 	private Robot robot;
 	private ImageIcon image;
@@ -31,7 +26,7 @@ public class Controller {
 		Route route = new Route();
 		route.calculateRoute(initialTour);
 		optimizedTour = route.getOptimizedTour();
-		console.printLine("Route gevonden!");
+		Console.printLine("Route gevonden!");
 		drawer.setResult(optimizedTour, initialTour, productlist);
 		drawer.repaint();
 		Doos doos = new Doos();

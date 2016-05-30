@@ -1,8 +1,8 @@
-package tspSimulatorv2;
+package tspSimulator;
 
 import java.util.ArrayList;
 
-import tspSimulatorv2.TSPController;
+import tspSimulator.TSPController;
 
 /**
  * Authors: Jan Willem en Henri Class: ICTM2A

@@ -2,19 +2,11 @@ package asrsSystem;
 
 import java.util.ArrayList;
 
-import asrsSystem.Controller;
-import shared.Algorithm;
-import shared.Resultaat;
-import tspSimulator.DrawPanel;
-import tspSimulatorv2.Location;
-import tspSimulatorv2.Result;
-
 /**
  * Authors: Jan Willem en Henri Class: ICTM2A
  */
 public class Route {
 	
-	private ArrayList<asrsSystem.Location> tour;
 	private ArrayList<asrsSystem.Location> optimizedTour;
 	private int index = 0;
 	protected Thread t;

@@ -1,17 +1,14 @@
 package asrsSystem;
 
 import java.io.BufferedReader;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
 import gnu.io.*;
-import sun.net.ProgressSource.State;
 
 public class Robot implements Runnable{
 
@@ -19,8 +16,6 @@ public class Robot implements Runnable{
 	String portName;
 	SerialPort serialPort;
 	Thread t = new Thread(this);
-	private boolean pressedDisconnect = false;
-	private boolean pressedConnect = false;
 	private ArrayList <Location> list;
 	private String x;
 	private String y;
@@ -52,7 +47,6 @@ public class Robot implements Runnable{
 	}
 	
 	public void setpressedDisconnect(boolean value) {
-		this.pressedDisconnect = value;
 	}
 		
 	public void run() {
@@ -73,9 +67,7 @@ public class Robot implements Runnable{
 					serialPort = (SerialPort) commPort;
 					serialPort.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
 					serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN | SerialPort.FLOWCONTROL_RTSCTS_OUT);
-					OutputStream out = serialPort.getOutputStream();
-					int i = 0;
-					for(Location l:list) {
+					for(int i = 0; i < list.size(); i++) {
 						sendCords(i);
 						i++;
 					}

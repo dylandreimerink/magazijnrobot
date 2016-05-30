@@ -1,77 +1,47 @@
-
 package tspSimulator;
 
-/*
- * Authors: Jan Willem Alejandro Casteleijn & Henri van de Munt (ICTM2a)
- */
-
-import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import javax.swing.JButton;
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import javax.swing.JTextArea;
 
-import asrsSystem.Console;
-import shared.Database;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class MainGUI extends JFrame implements ActionListener {
 
-	private Picklist picklist;
-//	private Picklist picklist1;
-//	private Picklist picklist2;
+	private TSPController controller;
+
 	private JButton nieuwePicklist;
 	private JButton testAlgorithm;
+	private JButton rasterOn;
+	private JButton rasterOff;
+	private JButton numberOfProducts;
 
-	private BruteForce bf;
-	private NearestNeighbourhaha ff;
-	private NearestNeighbour ffd;
-
-	private JLabel bruteForceTime;
-	private JLabel nearestNeighbourhahTime;
-	private JLabel nearestNeighbourTime;
-	
-	private JLabel bruteForceDistance;
-	private JLabel nearestNeighbourhahDistance;
-	private JLabel nearestNeighbourDistance;
-
-	public MainGUI() {
+	public MainGUI(DrawPanel drawpanel1, DrawPanel drawpanel2, DrawPanel drawpanel3, DrawPanel drawpanel4,
+			TSPController controller) {
+		this.controller = controller;
 		setTitle("TSP Simulator");
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		addComponents();
+		addComponents(drawpanel1, drawpanel2, drawpanel3, drawpanel4);
 
 		setVisible(true);
 	}
 
-	private void addComponents() {
-		picklist = new Picklist();
-//		picklist1 = new Picklist();
-//		picklist2 = new Picklist();
-		// System.out.println(picklist.toString());
-
-		bf = new BruteForce("BruteForce", picklist.getListOne());
-		ff = new NearestNeighbourhaha("Onbekend", picklist.getListTwo());
-		ffd = new NearestNeighbour("Nearest Neighbour", picklist.getListThree());
+	private void addComponents(DrawPanel drawpanel1, DrawPanel drawpanel2, DrawPanel drawpanel3, DrawPanel drawpanel4) {
 		setLayout(new GridLayout(2, 4, 0, 0));
 
-		add(bf.getPanel());
-		add(ff.getPanel());
-		add(ffd.getPanel());
+		add(drawpanel1);
+		add(drawpanel2);
+		add(drawpanel3);
 
 		JPanel knoppenPanel = new JPanel();
 		add(knoppenPanel);
-		knoppenPanel.setLayout(new GridLayout(4, 1, 0, 0));
+		knoppenPanel.setLayout(new GridLayout(5, 1, 0, 0));
 		nieuwePicklist = new JButton("Nieuwe Picklist");
 		nieuwePicklist.addActionListener(this);
 		knoppenPanel.add(nieuwePicklist);
@@ -80,57 +50,54 @@ public class MainGUI extends JFrame implements ActionListener {
 		testAlgorithm.addActionListener(this);
 		knoppenPanel.add(testAlgorithm);
 
-		JPanel bruteForceResult = new JPanel();
-		JPanel nearestNeighbourhahResult = new JPanel();
-		JPanel nearestNeighbourResult = new JPanel();
-		add(bruteForceResult);
-		add(nearestNeighbourhahResult);
-		add(nearestNeighbourResult);
-		bruteForceResult.setLayout(new GridLayout(2, 1, 0, 0));
-		nearestNeighbourhahResult.setLayout(new GridLayout(2, 1, 0, 0));
-		nearestNeighbourResult.setLayout(new GridLayout(2, 1, 0, 0));
-		
-		bruteForceTime = new JLabel("Tijd: " + Double.toString(bf.getResultaat().getTijd()));
-		nearestNeighbourhahTime = new JLabel("Tijd: " + Double.toString(ff.getResultaat().getTijd()));
-		nearestNeighbourTime = new JLabel("Tijd: " + Double.toString(ffd.getResultaat().getTijd()));
-		bruteForceResult.add(bruteForceTime);
-		nearestNeighbourhahResult.add(nearestNeighbourhahTime);
-		nearestNeighbourResult.add(nearestNeighbourTime);
-		
-		bruteForceDistance = new JLabel("Afstand: " + Double.toString(bf.getResultaat().getDistance()));
-		nearestNeighbourhahDistance = new JLabel("Afstand: " + Double.toString(ff.getResultaat().getDistance()));
-		nearestNeighbourDistance = new JLabel("Afstand: " + Double.toString(ffd.getResultaat().getDistance()));
-		bruteForceResult.add(bruteForceDistance);
-		nearestNeighbourhahResult.add(nearestNeighbourhahDistance);
-		nearestNeighbourResult.add(nearestNeighbourDistance);
-		
-		
-		Console c1 = new Console();
+		rasterOn = new JButton("Raster on");
+		rasterOn.addActionListener(this);
+		knoppenPanel.add(rasterOn);
+
+		rasterOff = new JButton("Raster off");
+		rasterOff.addActionListener(this);
+		knoppenPanel.add(rasterOff);
+
+		numberOfProducts = new JButton("Selecteer aantal Producten");
+		numberOfProducts.addActionListener(this);
+		knoppenPanel.add(numberOfProducts);
+
+		add(drawpanel4);
+
+		// hieronder is bullchit
 		add(new JLabel(""));
+		add(new JLabel(""));
+		add(new JLabel(""));
+		// hierboven is bullchit
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == nieuwePicklist) {
-			this.picklist.generateNewPicklist();
-			System.out.println(this.picklist.toString());
-			bf.updateResultaat(this.picklist.getListOne());
-			ff.updateResultaat(this.picklist.getListTwo());
-			ffd.updateResultaat(this.picklist.getListThree());
-			bruteForceDistance.setText("Afstand: " + Double.toString(bf.getResultaat().getDistance()));
-		 	nearestNeighbourhahDistance.setText("Afstand: " + Double.toString(ff.getResultaat().getDistance()));
-			nearestNeighbourDistance.setText("Afstand: " + Double.toString(ffd.getResultaat().getDistance()));
-			repaint();
+			controller.generateNewPicklist();
 		}
 		if (e.getSource() == testAlgorithm) {
-			//bf.calculateRoute();
-			ff.calculateRoute();
-			//ffd.calculateRoute();
-			
-			bruteForceDistance.setText("Afstand: " + Double.toString(bf.getResultaat().getDistance()));
-			nearestNeighbourhahDistance.setText("Afstand: " + Double.toString(ff.getResultaat().getDistance()));
-			nearestNeighbourDistance.setText("Afstand: " + Double.toString(ffd.getResultaat().getDistance()));
-			repaint();
+			controller.testAlgorithm();
+		}
+		if (e.getSource() == rasterOn) {
+			controller.setRaster(true);
+		}
+		if (e.getSource() == rasterOff) {
+			controller.setRaster(false);
+		}
+		if (e.getSource() == numberOfProducts) {
+			NumberOfProductsDialoog dialoog = new NumberOfProductsDialoog(this, controller);
+			if (dialoog.isOk()) {
+				int aantal = dialoog.getAantal();
+
+				JOptionPane.showMessageDialog(this,
+						"Als er een nieuwe picklist gegenereerd wordt zal deze " + aantal + " producten bevatten.");
+				aantal--;
+				controller.setMaxproducts(aantal);
+				controller.setMinproducts(aantal);
+			}
 		}
 	}
+
 }

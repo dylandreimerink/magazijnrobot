@@ -9,9 +9,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import shared.Database;
@@ -168,7 +166,7 @@ public class Create_Product extends JDialog implements ActionListener{
         	db.Create_Product(naam, hoogte, lengte, breedte, x, y);
      
 //	Het product wordt aangemaakt in de database klasse.        	
-        	console.printLine("product "+naam+" is opgeslagen in de database met de volgende waarden: hoogte: "+hoogte+", lengte: "+lengte+", breedte: "+breedte+", X: "+x+", Y: "+y+"" );
+        	Console.printLine("product "+naam+" is opgeslagen in de database met de volgende waarden: hoogte: "+hoogte+", lengte: "+lengte+", breedte: "+breedte+", X: "+x+", Y: "+y+"" );
         		warning.showConfirmationMessage(null, "product is opgeslagen!");
         	
         	}

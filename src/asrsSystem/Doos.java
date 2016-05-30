@@ -8,7 +8,6 @@ import shared.Product;
 
 public class Doos {
 	private int doosID;
-	private int maxInDoos;
 	private ArrayList<Doos> doosList;
 	
 	public Doos(int doosID){
@@ -20,7 +19,6 @@ public class Doos {
 	}
 	
 	public void setMaxInDoos(int value) {
-		maxInDoos = value;
 	}
 	
 	public int getDoosId() {

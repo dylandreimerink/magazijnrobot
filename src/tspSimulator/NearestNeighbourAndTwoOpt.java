@@ -1,4 +1,4 @@
-package tspSimulatorv2;
+package tspSimulator;
 
 import java.util.ArrayList;
 

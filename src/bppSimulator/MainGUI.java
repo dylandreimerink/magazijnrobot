@@ -17,7 +17,6 @@ import javax.swing.JLabel;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -28,11 +27,7 @@ import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import shared.Bestelling;
-import shared.Database;
 import shared.ParseXML;
-import shared.Product;
-
-import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
