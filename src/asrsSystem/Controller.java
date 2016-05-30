@@ -54,17 +54,6 @@ public class Controller {
 		}
 	}
 	
-	public void Disconnect() {
-		if(robot == null) {
-			warning.showNoRobotMessage(null);
-		}else{
-		robot.t.stop();
-		}
-	}
-	
-	public void stopRobot() {
-		drawer.setRobotCounter();
-	}
 	
 	public void StartRobot() {
 		if(robot == null) {
@@ -105,7 +94,7 @@ public class Controller {
 			if(l.doosId == 1) {
 				for(Product p : l.getProductList()){
 					JLabel imageIcon = new JLabel(image);
-					JLabel pInfo = new JLabel(prodlist.get(index).getProductName());
+					JLabel pInfo = new JLabel(p.getProductName());
 					panel.add(imageIcon,"cell "+counter+" 2");
 					panel.add(pInfo,"cell "+counter+" 2");
 					System.out.println(l.doosId);
@@ -119,7 +108,7 @@ public class Controller {
 			if(l1.doosId == 2) {
 				for(Product p : l1.getProductList()){
 					JLabel imageIcon = new JLabel(image);
-					JLabel pInfo = new JLabel(prodlist.get(index).getProductName());
+					JLabel pInfo = new JLabel(p.getProductName());
 					panel.add(imageIcon, "cell "+counter+" 3");
 					panel.add(pInfo,"cell "+counter+" 3");
 					System.out.println(l1.doosId);

@@ -46,7 +46,6 @@ public class gui extends JFrame implements ActionListener {
 	ChooseOrder chooser = new ChooseOrder();
 	Console console = new Console();
 	JPanel container = new JPanel();
-	ProgressBar PBar;
 	Warningfunctions warning = new Warningfunctions();
 	private JLabel lblOrderinfoselecteerEenOrder;
 	private Component horizontalStrut;
@@ -138,32 +137,18 @@ public class gui extends JFrame implements ActionListener {
         panel.add(panel_1, BorderLayout.SOUTH);
         panel_1.setLayout(new MigLayout("", "[115px][121px][grow]", "[91px,grow]"));
         
-        JPanel panel_2 = new JPanel();
-        panel_1.add(panel_2, "cell 0 0,alignx left,aligny top");
-        panel_2.setLayout(new MigLayout("", "[101px]", "[23px][23px][23px]"));
-        
-        startRobot = new JButton("start robot");
-        startRobot.addActionListener(this);
-        panel_2.add(startRobot, "flowy,cell 0 0,growx,aligny top");
-        
-        stopRobot = new JButton("stop robot");
-        stopRobot.addActionListener(this);
-        panel_2.add(stopRobot, "cell 0 1,growx,aligny top");
-        
-        pauseRobot = new JButton("pauseer robot");
-        pauseRobot.addActionListener(this);
-        panel_2.add(pauseRobot, "cell 0 2,alignx left,aligny top");
         
         JPanel panel_3 = new JPanel();
         panel_1.add(panel_3, "cell 1 0,alignx left,aligny top");
         panel_3.setLayout(new MigLayout("", "[107px]", "[][][23px]"));
         
-        disconnect = new JButton("disconnect");
-        disconnect.addActionListener(this);
-        panel_3.add(disconnect, "flowy,cell 0 0,growx,aligny top");
         
         connect = new JButton("connect");
         connect.addActionListener(this);
+        
+        startRobot = new JButton("start robot");
+        panel_3.add(startRobot, "cell 0 0,growx");
+        startRobot.addActionListener(this);
         panel_3.add(connect, "cell 0 1,growx,aligny top");
         
         genRoute = new JButton("genereer route");
@@ -226,11 +211,7 @@ public class gui extends JFrame implements ActionListener {
 		panel.add(drawerContainer, BorderLayout.CENTER);
         drawerContainer.setLayout(new MigLayout("", "[10px][grow]", "[354px,grow][]"));
         
-        controller = new Controller(drawerContainer);
-        PBar = new ProgressBar();
-      
-        drawerContainer.add(PBar.getProgressBar(), "cell 1 1,grow");
-        
+        controller = new Controller(drawerContainer);        
         setVisible(true);
 	}
 	
@@ -267,9 +248,6 @@ public class gui extends JFrame implements ActionListener {
 		if(e.getSource() == startRobot){
 			controller.StartRobot();
 		}
-		if(e.getSource()== disconnect) {
-			controller.Disconnect();
-		}
 		if(e.getSource()== genRoute) {
 			if(chooser.getProductList()== null) {
 				warning.showNullpointerWarning(frame);
@@ -277,12 +255,6 @@ public class gui extends JFrame implements ActionListener {
 			controller.startRoute(chooser.getProductList(),panel_7);
 			setVisible(true);
 			}
-		}
-		if(e.getSource() == stopRobot) {
-			controller.stopRobot();
-		}
-		if(e.getSource() == pauseRobot) {
-			
 		}
 		if(e.getSource() == mntmGenRoute) {
 			if(chooser.getProductList()== null) {
