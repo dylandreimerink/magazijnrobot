@@ -14,7 +14,7 @@ public class MainGUI extends JFrame implements ActionListener {
 
 	private TSPController controller;
 
-	private JButton nieuwePicklist;
+	private JButton newPicklist;
 	private JButton testAlgorithm;
 	private JButton rasterOn;
 	private JButton rasterOff;
@@ -39,42 +39,42 @@ public class MainGUI extends JFrame implements ActionListener {
 		add(drawpanel2);
 		add(drawpanel3);
 
-		JPanel knoppenPanel = new JPanel();
-		add(knoppenPanel);
-		knoppenPanel.setLayout(new GridLayout(5, 1, 0, 0));
-		nieuwePicklist = new JButton("Nieuwe Picklist");
-		nieuwePicklist.addActionListener(this);
-		knoppenPanel.add(nieuwePicklist);
+		JPanel buttonPanel = new JPanel();
+		add(buttonPanel);
+		buttonPanel.setLayout(new GridLayout(5, 1, 0, 0));
+		newPicklist = new JButton("Nieuwe Picklist");
+		newPicklist.addActionListener(this);
+		buttonPanel.add(newPicklist);
 
 		testAlgorithm = new JButton("Test Algoritmes");
 		testAlgorithm.addActionListener(this);
-		knoppenPanel.add(testAlgorithm);
+		buttonPanel.add(testAlgorithm);
 
 		rasterOn = new JButton("Raster on");
 		rasterOn.addActionListener(this);
-		knoppenPanel.add(rasterOn);
+		buttonPanel.add(rasterOn);
 
 		rasterOff = new JButton("Raster off");
 		rasterOff.addActionListener(this);
-		knoppenPanel.add(rasterOff);
+		buttonPanel.add(rasterOff);
 
 		numberOfProducts = new JButton("Selecteer aantal Producten");
 		numberOfProducts.addActionListener(this);
-		knoppenPanel.add(numberOfProducts);
+		buttonPanel.add(numberOfProducts);
 
 		add(drawpanel4);
 
-		// hieronder is bullchit
-		add(new JLabel(""));
-		add(new JLabel(""));
-		add(new JLabel(""));
-		// hierboven is bullchit
+		// hieronder is bullchit om gritlayout op te vullen
+		for(int i = 0; i <= 2; i++){
+			add(new JLabel(""));
+		}
+		// hierboven is bullchit om gritlayout op te vullen
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == nieuwePicklist) {
+		if (e.getSource() == newPicklist) {
 			controller.generateNewPicklist();
 		}
 		if (e.getSource() == testAlgorithm) {

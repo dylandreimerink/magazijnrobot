@@ -10,18 +10,18 @@ public class NearestNeighbour implements Runnable,  Algorithm {
 	
 	private TSPController onComplete;
 
-	private double calculateDistance(Location locatieA, Location locatieB) {
+	private double calculateDistance(Location locationA, Location locationB) {
 		double temp;
 		double temp1;
-		if (locatieA.getLocationX() > locatieB.getLocationX()) {
-			temp = locatieA.getLocationX() - locatieB.getLocationX();
+		if (locationA.getLocationX() > locationB.getLocationX()) {
+			temp = locationA.getLocationX() - locationB.getLocationX();
 		} else {
-			temp = locatieB.getLocationX() - locatieA.getLocationX();
+			temp = locationB.getLocationX() - locationA.getLocationX();
 		}
-		if (locatieA.getLocationY() > locatieB.getLocationY()) {
-			temp1 = locatieA.getLocationY() - locatieB.getLocationY();
+		if (locationA.getLocationY() > locationB.getLocationY()) {
+			temp1 = locationA.getLocationY() - locationB.getLocationY();
 		} else {
-			temp1 = locatieB.getLocationY() - locatieA.getLocationY();
+			temp1 = locationB.getLocationY() - locationA.getLocationY();
 		}
 		return Math.sqrt(Math.pow(temp, 2) + Math.pow(temp1, 2));
 	}
