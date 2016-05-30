@@ -35,34 +35,48 @@ import java.awt.Color;
 
 public class MainGUI extends JFrame implements ActionListener {
 
+	//file picker for xml file
 	final JFileChooser fc = new JFileChooser();
-
+	
+	//standard button size
 	private Dimension buttonsize;
-	private JMenuItem mntmOpenPakbon;
+	
+	//the tabs for the algotithms
 	private SimulatiePanel simPanelFF;
 	private SimulatiePanel simPanelFFD;
 	private SimulatiePanel simPanelBF;
 	
+	//the algorithms
 	private BPPFirstFit firstFitAlgo;
 	private BPPFirstFitDescending firstFitDescAlgo;
 	private BPPBruteForce bruteForceAlgo;
 	
+	//the time the algorithms took
 	int FFTime = 0, FFDTime = 0, BFTime = 0;
-	int FFDozen = 0, FFDDozen = 0, BFDozen = 0;
+	
+	//the amount of boxes
+	int FFBoxes = 0, FFDBoxes = 0, BFBoxes = 0;
 
+	//start and stop time buffer variables
 	long start_time;
 	long stop_time;
 
+	//the picklist that was loaded using the xml parser and xml order
 	PickList picklist = new PickList();
 	
+	//the list of boxes the algorithms gave
 	public ArrayList<Box> boxListFF;
 	public ArrayList<Box> boxListFFD;
 	public ArrayList<Box> boxListBF;
 	
+	//the console string
 	public String console;
+	
+	//all global ui elements
 	JButton btnStartSimulatie;
 	JButton btnPauzeerSimulatie;
 	JButton btnAnnuleerSimulatie;
+	private JMenuItem mntmOpenPakbon;
 
 	JLabel lbltijdFF;
 	JLabel lbltijdFFD;
@@ -73,60 +87,71 @@ public class MainGUI extends JFrame implements ActionListener {
 	JLabel lblGekozenAlgoritme;
 
 	JTextArea textArea;
-	public int score1;
 	JMenu mnFile;
 
-	public boolean pauze = false;
-
 	public MainGUI() {
+		//init jframe
 		setTitle("BPP Simulator");
 		setSize(960, 1032);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+		//init boxlists
 		boxListFF = new ArrayList<Box>();
 		boxListFFD = new ArrayList<Box>();
 		boxListBF = new ArrayList<Box>();
 
+		//init file picker
 		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
 		fc.setDialogTitle("Open Pakbon");
 		// set selected filter
 		fc.setFileFilter(xmlfilter);
 
+		//load components
 		addComponents();
 
+		//make jframe viable
 		setVisible(true);
 	}
 
 	private void addComponents() {
+		//set button size
 		buttonsize = new Dimension(200, 30);
 
+		//init menu
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
+		//init file menu
 		mnFile = new JMenu("File");
 		menuBar.add(mnFile);
 
+		//add open pakbon option
 		mntmOpenPakbon = new JMenuItem("Open Pakbon");
 		mntmOpenPakbon.addActionListener(this);
 		mnFile.add(mntmOpenPakbon);
 
+		//add action listener
 		mnFile.addActionListener(this);
 
+		//add main panel with all the draw panels
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(new BorderLayout(0, 0));
 
+		//add left panel with controls
 		JPanel leftPanel = new JPanel();
 		panel.add(leftPanel, BorderLayout.WEST);
 		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
 
+		//add start stimulatie button to the control panel
 		btnStartSimulatie = new JButton("Start simulatie");
 		btnStartSimulatie.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		btnStartSimulatie.setMaximumSize(buttonsize);
 		btnStartSimulatie.addActionListener(this);
 		leftPanel.add(btnStartSimulatie);
 
+		
 		btnAnnuleerSimulatie = new JButton("Herstart simulatie");
 		btnAnnuleerSimulatie.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		btnAnnuleerSimulatie.setMaximumSize(buttonsize);
@@ -252,7 +277,7 @@ public class MainGUI extends JFrame implements ActionListener {
 		
 		boxListFF = firstFitAlgo.getResult();
 		lblDozenFF.setText("Dozen: " + boxListFF.size());
-		FFDozen = boxListFF.size();
+		FFBoxes = boxListFF.size();
 		
 		stop_time = System.nanoTime();
 		double diffTime = (stop_time - start_time) / 1e6;
@@ -273,7 +298,7 @@ public class MainGUI extends JFrame implements ActionListener {
 
 		boxListFFD = firstFitDescAlgo.getResult();
 		lblDozenFFD.setText("Dozen: " + boxListFFD.size());
-		FFDDozen = boxListFFD.size();
+		FFDBoxes = boxListFFD.size();
 		
 		stop_time = System.nanoTime();
 		double diffTime = (stop_time - start_time) / 1e6;
@@ -293,7 +318,7 @@ public class MainGUI extends JFrame implements ActionListener {
 	public void BruteForceCallback() {
 		boxListBF = bruteForceAlgo.getResult();
 		lblDozenBF.setText("Dozen: " + boxListBF.size());
-		BFDozen = boxListBF.size();
+		BFBoxes = boxListBF.size();
 		
 		stop_time = System.nanoTime();
 		double diffTime = (stop_time - start_time) / 1e6;
@@ -312,12 +337,12 @@ public class MainGUI extends JFrame implements ActionListener {
 		lbltijdFFD.setText(FFDTime + " ms");
 		lbltijdBF.setText(BFTime + " ms");
 		
-		if(FFDozen < FFDDozen && FFDozen < BFDozen){
+		if(FFBoxes < FFDBoxes && FFBoxes < BFBoxes){
 			lblGekozenAlgoritme.setText("First Fit");
-		}else if(FFDDozen < FFDozen && FFDDozen < BFDozen){
+		}else if(FFDBoxes < FFBoxes && FFDBoxes < BFBoxes){
 			lblGekozenAlgoritme.setText("First Fit Decreasing");
-		}else if(BFDozen < FFDDozen && BFDozen < FFDozen){
-			System.out.println("BF: " + BFDozen + ", FF: " + FFDDozen + ", FFD: " + FFDDozen);
+		}else if(BFBoxes < FFDBoxes && BFBoxes < FFBoxes){
+			System.out.println("BF: " + BFBoxes + ", FF: " + FFDBoxes + ", FFD: " + FFDBoxes);
 			lblGekozenAlgoritme.setText("Brute Force");
 		}else{
 			System.out.println("dozen gelijk");

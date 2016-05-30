@@ -83,187 +83,227 @@
     </display>  
   </interface>  
   <association id="10">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="11" name="onComplete"/>      
-      <multiplicity id="12" minimum="0" maximum="1"/>    
+    <bendpoint x="1097" y="1568"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="11" name="onComplete">        
+        <position height="17" width="68" x="1224" y="1155"/>      
+      </attribute>      
+      <multiplicity id="12" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="13">    
-    <bendpoint x="905" y="1352"/>    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="14" name="simPanelBF">        
-        <position height="17" width="65" x="823" y="1398"/>      
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="14" name="onComplete">        
+        <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="15" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="16">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="9"/>  
-  </realization>  
-  <association id="17">    
-    <bendpoint x="1097" y="1568"/>    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="18" name="onComplete">        
-        <position height="17" width="68" x="1224" y="1155"/>      
-      </attribute>      
-      <multiplicity id="19" minimum="0" maximum="1"/>    
+      <multiplicity id="15" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="20">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="21" name="usedBoxes"/>      
-      <multiplicity id="22" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="23">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="24" name="bestBoxes">        
-        <position height="17" width="59" x="271" y="1306"/>      
-      </attribute>      
-      <multiplicity id="25" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="26">    
-    <bendpoint x="942" y="1255"/>    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="27" name="simPanelFFD">        
-        <position height="17" width="73" x="814" y="1346"/>      
-      </attribute>      
-      <multiplicity id="28" minimum="0" maximum="1">        
-        <position height="15" width="23" x="788" y="1348"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="29">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="30" name="picklist"/>      
-      <multiplicity id="31" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="32">    
-    <bendpoint x="471" y="1102"/>    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="33" name="boxListFFD">        
-        <position height="17" width="65" x="368" y="1059"/>      
-      </attribute>      
-      <multiplicity id="34" minimum="0" maximum="2147483647">        
-        <position height="15" width="21" x="360" y="1097"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="35">    
-    <bendpoint x="387" y="1082"/>    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="36" name="boxListBF">        
-        <position height="17" width="57" x="382" y="1096"/>      
-      </attribute>      
-      <multiplicity id="37" minimum="0" maximum="2147483647">        
-        <position height="15" width="21" x="349" y="1060"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="38">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="39" name="inBox"/>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="41">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <association id="42">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="43" name="usedBoxes">        
-        <position height="17" width="62" x="120" y="1304"/>      
-      </attribute>      
-      <multiplicity id="44" minimum="0" maximum="2147483647">        
-        <position height="15" width="21" x="196" y="1304"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="45">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="9"/>  
-  </realization>  
-  <association id="46">    
-    <bendpoint x="1029" y="1518"/>    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="47" name="bruteForceAlgo"/>      
-      <multiplicity id="48" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="49">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="50" name="boxlist"/>      
-      <multiplicity id="51" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="52">    
-    <bendpoint x="470" y="1121"/>    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="53" name="boxListFF">        
-        <position height="17" width="57" x="385" y="1138"/>      
-      </attribute>      
-      <multiplicity id="54" minimum="0" maximum="2147483647">        
-        <position height="15" width="21" x="359" y="1139"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="55">    
+  <association id="16">    
     <bendpoint x="828" y="1275"/>    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="56" name="simPanelFF"/>      
-      <multiplicity id="57" minimum="0" maximum="1">        
+      <attribute id="17" name="simPanelFF">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="18" minimum="0" maximum="1">        
         <position height="15" width="23" x="794" y="1323"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="58">    
+  <association id="19">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="20" name="inBox">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="21" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="22">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="23" name="boxlist">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="24" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="25">    
+    <bendpoint x="1029" y="1518"/>    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="59" name="firstFitAlgo"/>      
-      <multiplicity id="60" minimum="0" maximum="1"/>    
+      <attribute id="26" name="bruteForceAlgo">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="27" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="28">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="29" name="bestBoxes">        
+        <position height="17" width="59" x="271" y="1306"/>      
+      </attribute>      
+      <multiplicity id="30" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="31">    
+    <bendpoint x="387" y="1082"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="32" name="boxListBF">        
+        <position height="17" width="57" x="382" y="1096"/>      
+      </attribute>      
+      <multiplicity id="33" minimum="0" maximum="2147483647">        
+        <position height="15" width="21" x="349" y="1060"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="34">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="35" name="firstFitAlgo">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="36" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="61">    
+  <association id="37">    
+    <bendpoint x="471" y="1102"/>    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="62" name="firstFitDescAlgo"/>      
-      <multiplicity id="63" minimum="0" maximum="1"/>    
+      <attribute id="38" name="boxListFFD">        
+        <position height="17" width="65" x="368" y="1059"/>      
+      </attribute>      
+      <multiplicity id="39" minimum="0" maximum="2147483647">        
+        <position height="15" width="21" x="360" y="1097"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="40">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="41">    
+    <bendpoint x="905" y="1352"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="42" name="simPanelBF">        
+        <position height="17" width="65" x="823" y="1398"/>      
+      </attribute>      
+      <multiplicity id="43" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="44">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <realization id="45">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <association id="46">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="47" name="usedBoxes">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="48" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="49">    
+    <bendpoint x="942" y="1255"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="50" name="simPanelFFD">        
+        <position height="17" width="73" x="814" y="1346"/>      
+      </attribute>      
+      <multiplicity id="51" minimum="0" maximum="1">        
+        <position height="15" width="23" x="788" y="1348"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="52">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="53" name="picklist">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="54" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="55">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="56" name="firstFitDescAlgo">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="57" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="58">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="59" name="usedBoxes">        
+        <position height="17" width="62" x="120" y="1304"/>      
+      </attribute>      
+      <multiplicity id="60" minimum="0" maximum="2147483647">        
+        <position height="15" width="21" x="196" y="1304"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="61">    
+    <bendpoint x="470" y="1121"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="62" name="boxListFF">        
+        <position height="17" width="57" x="385" y="1138"/>      
+      </attribute>      
+      <multiplicity id="63" minimum="0" maximum="2147483647">        
+        <position height="15" width="21" x="359" y="1139"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

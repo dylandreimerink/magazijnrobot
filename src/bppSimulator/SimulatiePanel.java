@@ -56,7 +56,7 @@ public class SimulatiePanel extends JPanel {
 		g.setFont(font);
 
 		for (Box b : boxlist) {
-			double boxCapacity = b.getBreedte() * b.getHoogte() * b.getLengte();
+			double boxCapacity = b.getWidth() * b.getHeight() * b.getLength();
 			g.setColor(Color.red);
 			Rectangle box = new Rectangle(rectX, rectY - 1, rectXOffset, rectYOffset);
 			g.drawRect(box.x, box.y, box.width, box.height);
