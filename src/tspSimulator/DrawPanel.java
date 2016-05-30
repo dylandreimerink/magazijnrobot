@@ -19,6 +19,7 @@ public class DrawPanel extends JPanel {
 	private Result resultaat;
 	private int x;
 	private int y;
+	
 
 	public DrawPanel(String algoname, Result resultaat, int hoogte, int breedte, boolean showRaster) {
 		this.algoname = algoname;

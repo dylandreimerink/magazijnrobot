@@ -69,7 +69,7 @@ public class gui extends JFrame implements ActionListener {
 		Console console = new Console();
 		Toolkit kit = Toolkit.getDefaultToolkit();
 	
-		image = kit.createImage("src/smallCrate.png");
+		image = kit.createImage("src/img/smallCrate.png");
 		
 
 		//scherm opbouwen
@@ -235,6 +235,7 @@ public class gui extends JFrame implements ActionListener {
 	}
 	
 	//actionlisteners
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == mntmOpenOrder) {
@@ -278,12 +279,10 @@ public class gui extends JFrame implements ActionListener {
 			}
 		}
 		if(e.getSource() == stopRobot) {
-			int value = 0;
-			value = value+5;
-			PBar.updatePBar(value);
+			controller.stopRobot();
 		}
 		if(e.getSource() == pauseRobot) {
-			PBar.updatePBar(0);
+			
 		}
 		if(e.getSource() == mntmGenRoute) {
 			if(chooser.getProductList()== null) {

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 
 import gnu.io.*;
+import shared.Product;
 
 public class Robot implements Runnable{
 
@@ -17,13 +18,16 @@ public class Robot implements Runnable{
 	SerialPort serialPort;
 	Thread t = new Thread(this);
 	private ArrayList <Location> list;
+	private ArrayList <Doos> boxlist;
 	private String x;
 	private String y;
 	OutputStream out;
 	InputStream input;
+	Controller controller;
 	
-	public void openConnection(ArrayList <Location> list){
-		
+	public void openConnection(ArrayList <Location> list, ArrayList <Doos> boxlist, Controller controller){
+		this.controller = controller;
+		this.boxlist = boxlist;
 		this.list = list;
 		Enumeration<CommPortIdentifier> ports = CommPortIdentifier.getPortIdentifiers();
 		while (ports.hasMoreElements())
@@ -67,11 +71,29 @@ public class Robot implements Runnable{
 					serialPort = (SerialPort) commPort;
 					serialPort.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
 					serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN | SerialPort.FLOWCONTROL_RTSCTS_OUT);
-					for(int i = 0; i < list.size(); i++) {
-						sendCords(i);
+					
+					OutputStream out = serialPort.getOutputStream();
+					int i = 0;
+					System.out.println("start sending arraylist");
+					for(Location l:list) {
+						int x = list.get(i).getLocationX();
+						int y = list.get(i).getLocationY();
+						for(Doos d : boxlist){
+							for(Product p : d.getProductList()){
+								System.out.println(p);
+								if(p.getLocationX() == x && p.getLocationY() == y){
+									if(d.doosId == 1){
+										sendCords(x, y, true, true);
+									}else{
+										sendCords(x, y, true, false);
+									}
+								}
+							}
+						}
+						
 						i++;
 					}
-					
+					sendCords(1, 5, false, true);
 
 				}
 				else
@@ -104,6 +126,7 @@ public class Robot implements Runnable{
 	
 	/*private void openSerialPort(){
 		if(serialPort instanceof SerialPort)
+		
 			return;
 		
 		try {
@@ -129,34 +152,40 @@ public class Robot implements Runnable{
 		}
 	}*/
 	
-	private void sendCords(int index) {
-		int x = list.get(index).getLocationX();
+	private void sendCords(int x, int y, boolean pick, boolean left) {
 		this.x = Integer.toString(x);
-		int y = list.get(index).getLocationY();
 		this.y = Integer.toString(y);
 		String line = "";
+		
+		if(x == 6 && y == 5){
+			return;
+		}
+		
+		System.out.println("X: " + this.x);
+		System.out.println("Y: " + this.y);
 		
 	    try {
 	    	
 			out = serialPort.getOutputStream();
 			input = serialPort.getInputStream();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-			
-			
+				
+					
 			boolean go = true;
 			while(go){
 				out.write('S');
 				out.flush();
-				System.out.println("sending S");
+				System.out.println("sending S XY");
 				if(hasOK(reader)){
 					go = false;
 				}
 			}
 			go = true;
-			String tX = "X"+x+";";
-			String tY = "Y"+y+";";
+			String tX = "X"+this.x + ";";
+			String tY = "Y"+this.y + ";";
 			while(go){
 					out.write(tX.getBytes());
+					out.flush();
 					System.out.println("sending X");
 					if(hasOK(reader)){
 						go = false;
@@ -167,6 +196,7 @@ public class Robot implements Runnable{
 			while(go){
 					out.write(tY.getBytes());
 					System.out.println("sending Y");
+					out.flush();
 					if(hasOK(reader)){
 						go = false;
 					}
@@ -180,69 +210,105 @@ public class Robot implements Runnable{
 					if(line.contains("C")) {
 						System.out.println("command done");
 						//out.close();
+						controller.updateRobotLocation();
+						
+						go = false;
+					}
+				}
+			}
+
+			if(pick){
+				go = true;
+				
+				while(go){
+					out.write('S');
+					out.flush();
+					System.out.println("sending S BPP");
+					if(hasOK(reader)){
+						go = false;
+					}
+				}
+				
+				go = true;
+				
+				while(go){
+					char dir;
+					if(left){
+						dir = 'L';
+					}else{
+						dir = 'R';
+					}
+					
+					out.write(dir);
+					out.flush();
+					System.out.println("sending " + dir);
+					if(hasOK(reader)){
+						go = false;
+					}
+				}
+				
+				go = true;
+				
+				while(go){
+					if ((reader.ready()) && (line = reader.readLine()) != null)
+					{
+						if(line.contains("C")) {
+							System.out.println("command done");
+							//out.close();
+							go = false;
+						}
+					}
+				}
+				
+				go = true;
+				
+				while(go){
+					out.write('S');
+					out.flush();
+					System.out.println("sending S P");
+					if(hasOK(reader)){
+						go = false;
+					}
+				}
+				
+				go = true;
+				
+				while(go){
+					out.write('P');
+					out.flush();
+					System.out.println("sending P");
+					if(hasOK(reader)){
+						go = false;
+					}
+				}
+				
+				go = true;
+				
+				while(go){
+					if ((reader.ready()) && (line = reader.readLine()) != null)
+					{
+						if(line.contains("C")) {
+							System.out.println("command done");
+							//out.close();
+							go = false;
+						}
+					}
+				}
+				
+				go = true;
+				
+				while(go){
+					out.write('B');
+					out.flush();
+					System.out.println("sending B");
+					if(hasOK(reader)){
 						go = false;
 					}
 				}
 			}
 			
-			go = true;
-			
-			while(go){
-				out.write('S');
-				out.flush();
-				System.out.println("sending S");
-				if(hasOK(reader)){
-					go = false;
-				}
-			}
-			
-			go = true;
-			
-			while(go){
-				out.write('L');
-				out.flush();
-				System.out.println("sending S");
-				if(hasOK(reader)){
-					go = false;
-				}
-			}
-			
-			go = true;
-			
-			while(go){
-				out.write('S');
-				out.flush();
-				System.out.println("sending S");
-				if(hasOK(reader)){
-					go = false;
-				}
-			}
-			
-			go = true;
-			
-			while(go){
-				out.write('P');
-				out.flush();
-				System.out.println("sending S");
-				if(hasOK(reader)){
-					go = false;
-				}
-			}
-			
-			go = true;
-			
-			while(go){
-				out.write('B');
-				out.flush();
-				System.out.println("sending S");
-				if(hasOK(reader)){
-					go = false;
-				}
-			}
-				
-			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			// TODO Auto-generat+ed catch block
 			e.printStackTrace();
 		}
 	    try {
@@ -253,10 +319,14 @@ public class Robot implements Runnable{
 		}
 	} 
 	boolean hasOK(BufferedReader reader) throws IOException{
-		String line = "";
-		if ((reader.ready()) && (line = reader.readLine()) != null)
+		String line;
+		if ((reader.ready()))
 		{
+			System.out.println("Ready");
+			line = reader.readLine();
+			System.out.println(line);
 			if(line.contains("O")){
+				System.out.println(line);
 				System.out.println("OK received");
 				return true;
 			}

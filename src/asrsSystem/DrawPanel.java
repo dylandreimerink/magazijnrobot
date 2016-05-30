@@ -21,24 +21,33 @@ public class DrawPanel extends JPanel {
 	
 	
 	private BufferedImage image;
-	
+	private BufferedImage robotImage;
 	private int magazijnSize = 5;
 	private int WIDTH = 650;
 	private int HEIGHT = 650;
 	private ArrayList<Location> route;
 	private ArrayList<Product> product;
-	JLabel JLRoute;
+	private JLabel JLRoute;
 	public boolean drawRoute = false;
 	private int afstandX;
 	private int afstandY;
+	private int counter = 0;
+	
+	
 	
 	
 	public DrawPanel() {
 	       try {                
-	           image = ImageIO.read(new File("src/crate.png"));
+	           image = ImageIO.read(new File("src/img/crate.png"));
+	           robotImage = ImageIO.read(new File("src/img/robot.png"));
 	        } catch (IOException ex) {
 	             // handle exception...
 	        }
+	       
+			this.afstandX = (WIDTH / magazijnSize);
+			this.afstandY = (HEIGHT / magazijnSize);
+			
+			
 	}
 	
 	
@@ -46,12 +55,8 @@ public class DrawPanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		
 		super.paintComponent(g);
-		//System.out.println(WIDTH);
-		//System.out.println(HEIGHT);
-		this.afstandX = (WIDTH / magazijnSize);
-		this.afstandY = (HEIGHT / magazijnSize);
-		//System.out.println(afstandX);
 
+			
 		
 			for (int j = 0; j <= HEIGHT; j += afstandX) {
 				g.drawLine(j, 0, j, HEIGHT);
@@ -61,14 +66,16 @@ public class DrawPanel extends JPanel {
 				g.drawLine(0, j, WIDTH, j);
 				//System.out.println("testwidth");
 			}
+			//drawrobot.createImage(g);
 		if(drawRoute == true) {
+
 			int index = 0;
 			int maxindex = route.size();
 			
 			for(Location loc: route) {
 				if(index < maxindex-1){
-					System.out.println(route);
-					System.out.println("maxindex: "+maxindex);
+					//System.out.println(route);
+					//System.out.println("maxindex: "+maxindex);
 				
 					int beginX = route.get(index).getLocationX();
 					int beginY = route.get(index).getLocationY();
@@ -78,7 +85,9 @@ public class DrawPanel extends JPanel {
 					drawRoute(g,beginX,beginY,eindX,eindY,afstandX,afstandY);
 				}
 			}
+			
 			drawProduct(g);
+			drawRobot(g, afstandX, afstandY, counter);
 		}
 		
 	}
@@ -121,9 +130,29 @@ public class DrawPanel extends JPanel {
 		g2.setStroke(new BasicStroke(3));
 		g.setColor(Color.DARK_GRAY);
 		g.drawLine(bX, bY, eX, eY);
-		System.out.println(beginX+","+beginY+"|"+eindX+","+eindY);
+		//System.out.println(beginX+","+beginY+"|"+eindX+","+eindY);
 		
 		
+	}
+	
+	private void drawRobot(Graphics g, int afstandX, int afstandY, int counter) {
+		if(counter == 0 || counter == route.size()-1) {
+			int x = route.get(counter).getLocationX();
+			int y = route.get(counter).getLocationY();
+			int bX = (afstandX*x) - (afstandX/2);
+			int bY = (afstandY*y) - (afstandY/2);
+			g.drawImage(robotImage, bX-32, bY-32, null);
+			repaint();
+		}else{
+			int x = route.get(counter-1).getLocationX();
+			int y = route.get(counter-1).getLocationY();
+			int bX = (afstandX*x) - (afstandX/2);
+			int bY = (afstandY*y) - (afstandY/2);
+			g.drawImage(robotImage, bX-32, bY-32, null);
+			repaint();
+		}
+			
+
 	}
 	
 	public void setResult(ArrayList<Location> route,ArrayList<Location> productLoc, ArrayList<Product> productlist) {
@@ -133,5 +162,13 @@ public class DrawPanel extends JPanel {
 		repaint();
 	}
 	
+	public void setRobotCounter() {
+		if(counter < route.size()-1) {
+			counter++;
+		}else{
+			counter = 0;
+		}
+	}
+
 
 }

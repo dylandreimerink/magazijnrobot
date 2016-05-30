@@ -2,6 +2,7 @@ package shared;
 
 import java.util.ArrayList;
 import asrsSystem.Console;
+import tspSimulator.Location;
 /*
  * Authors: Jan Willem Alejandro Casteleijn & Henri van de Munt (ICTM2a)
  */
@@ -31,7 +32,13 @@ public class Product {
 
 	@Override
 	public boolean equals(Object obj) {
-		return ((Product) obj).getProductId() == this.getProductId();
+		if(obj instanceof Product){
+			return ((Product) obj).getProductId() == this.getProductId();
+		}else if(obj instanceof Location){
+			return (((Location) obj).getLocationX() == this.locationX && ((Location) obj).getLocationY() == this.locationY);
+		}else{
+			return false;
+		}
 	}
 	
 	public String toString(){
