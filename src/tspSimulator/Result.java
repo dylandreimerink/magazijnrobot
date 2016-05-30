@@ -8,48 +8,47 @@ import java.util.ArrayList;
 
 public class Result {
 	private double time;
-	private double afstand;
+	private double distance;
 	private String name;
 	private ArrayList<Location> result;
 	
 	private boolean showPointsonly;
 
 	public Result(ArrayList<Location> result, double time) {
-		// result = new ArrayList<Location>();
 		this.result = result;
 		this.time = time;
-		this.afstand = getAfstand(result);
+		this.distance = getAfstand(result);
 		showPointsonly = false;
 	}
 
 	private double getAfstand(ArrayList<Location> p1) {
 		Location previousLocation = null;
-		double totaleAfstand = 0;
+		double totalDistance = 0;
 		for (int i = 0; i < p1.size(); i++) {
-			double afstand = 0;
+			double distance = 0;
 			if (previousLocation == null) {
 				previousLocation = p1.get(i);
 			} else {
-				afstand = calculateDistance(previousLocation, p1.get(i));
+				distance = calculateDistance(previousLocation, p1.get(i));
 			}
 			previousLocation = p1.get(i);
-			totaleAfstand += afstand;
+			totalDistance += distance;
 		}
-		return Math.round(totaleAfstand * 100.00) / 100.00;
+		return Math.round(totalDistance * 100.00) / 100.00;
 	}
 
-	private double calculateDistance(Location locatieA, Location locatieB) {
+	private double calculateDistance(Location locationA, Location locationB) {
 		double temp;
 		double temp1;
-		if (locatieA.getLocationX() > locatieB.getLocationX()) {
-			temp = locatieA.getLocationX() - locatieB.getLocationX();
+		if (locationA.getLocationX() > locationB.getLocationX()) {
+			temp = locationA.getLocationX() - locationB.getLocationX();
 		} else {
-			temp = locatieB.getLocationX() - locatieA.getLocationX();
+			temp = locationB.getLocationX() - locationA.getLocationX();
 		}
-		if (locatieA.getLocationY() > locatieB.getLocationY()) {
-			temp1 = locatieA.getLocationY() - locatieB.getLocationY();
+		if (locationA.getLocationY() > locationB.getLocationY()) {
+			temp1 = locationA.getLocationY() - locationB.getLocationY();
 		} else {
-			temp1 = locatieB.getLocationY() - locatieA.getLocationY();
+			temp1 = locationB.getLocationY() - locationA.getLocationY();
 		}
 		return Math.sqrt(Math.pow(temp, 2) + Math.pow(temp1, 2));
 	}
@@ -67,11 +66,11 @@ public class Result {
 	}
 
 	public double getAfstand() {
-		return afstand;
+		return distance;
 	}
 
 	public void setAfstand(double afstand) {
-		this.afstand = afstand;
+		this.distance = afstand;
 	}
 
 	public void setResult(ArrayList<Location> result) {
@@ -80,7 +79,7 @@ public class Result {
 	}
 
 	public double getDistance() {
-		return afstand;
+		return distance;
 	}
 
 	public String getAlgorithmName() {

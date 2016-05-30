@@ -9,7 +9,7 @@ public class TSPController {
 	private int maxproducts = 11;
 	private int minproducts = 11;
 	
-	public boolean SHOWRASTER = true;
+	public boolean showraster = true;
 
 	private Picklist picklist;
 
@@ -70,12 +70,12 @@ public class TSPController {
 		/*
 		 * Generate new DrawPanels
 		 */
-		bruteforceDrawPanel = new DrawPanel("Bruteforce", bruteforceResults, HEIGHT, WIDTH, SHOWRASTER);
-		twooptDrawPanel = new DrawPanel("TwoOpt", twooptResults, HEIGHT, WIDTH, SHOWRASTER);
+		bruteforceDrawPanel = new DrawPanel("Bruteforce", bruteforceResults, HEIGHT, WIDTH, showraster);
+		twooptDrawPanel = new DrawPanel("TwoOpt", twooptResults, HEIGHT, WIDTH, showraster);
 		nearestneighbourDrawPanel = new DrawPanel("NearestNeighbour", nearestneighbourResults, HEIGHT, WIDTH,
-				SHOWRASTER);
+				showraster);
 		nearestneighbourandtwooptDrawPanel = new DrawPanel("NearestNeighbour + TwoOpt", nearestneighbourandtwooptResult,
-				HEIGHT, WIDTH, SHOWRASTER);
+				HEIGHT, WIDTH, showraster);
 
 		/*
 		 * Create MainGUI
@@ -211,9 +211,4 @@ public class TSPController {
 	public int getWIDTH() {
 		return WIDTH;
 	}
-
-
-	
-	
-
 }

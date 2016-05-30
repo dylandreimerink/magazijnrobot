@@ -15,8 +15,6 @@ public class Bruteforce implements Algorithm, Runnable {
 	private Result result;
 
 	private TSPController onComplete;
-	
-
 
 	public Result calculateRoute() {
 		shortestPicklist = new ArrayList<Location>();
@@ -24,29 +22,28 @@ public class Bruteforce implements Algorithm, Runnable {
 			shortestPicklist.add(l);
 		}
 
-
 		permutations(picklist, new Stack<Location>(), picklist.size());
 		Result result = new Result(shortestPicklist, 0);
 		return result;
 	}
 
-	private void permutations(ArrayList<Location> items, Stack<Location> permutation, int size) {
+	private void permutations(ArrayList<Location> items,
+			Stack<Location> permutation, int size) {
 
 		if (permutation.size() == size) {
 			ArrayList<Location> tempList = new ArrayList<Location>(permutation);
 			Location check = new Location(0, 0);
-			if (getAfstand(shortestPicklist) > getAfstand(tempList) && check.equals(tempList.get(0))) {
+			if (getDistance(shortestPicklist) > getDistance(tempList)
+					&& check.equals(tempList.get(0))) {
 				this.shortestPicklist = tempList;
 			}
 			onComplete.stop_time = System.nanoTime();
 			double diffTime = (onComplete.stop_time - onComplete.start_time) / 1e6;
 			Result tempResult = new Result(tempList, Math.round(diffTime));
 			onComplete.setBruteforceResults(tempResult);
-			
+
 		}
 
-	
-		
 		/* items available for permutation */
 		Location[] availableItems = items.toArray(new Location[0]);
 		for (Location i : availableItems) {
@@ -81,7 +78,7 @@ public class Bruteforce implements Algorithm, Runnable {
 		return Math.sqrt(Math.pow(temp, 2) + Math.pow(temp1, 2));
 	}
 
-	private double getAfstand(ArrayList<Location> p1) {
+	private double getDistance(ArrayList<Location> p1) {
 		Location previousLocation = null;
 		double totaleAfstand = 0;
 		for (int i = 0; i < p1.size(); i++) {
@@ -99,7 +96,7 @@ public class Bruteforce implements Algorithm, Runnable {
 
 	@Override
 	public void run() {
-		
+
 		this.result = calculateRoute();
 
 		if (onComplete != null) {
@@ -117,7 +114,7 @@ public class Bruteforce implements Algorithm, Runnable {
 
 		t = new Thread(this);
 		t.start();
-	
+
 	}
 
 	public void setOnDoneListner(TSPController listnerClass) {
@@ -127,6 +124,5 @@ public class Bruteforce implements Algorithm, Runnable {
 	public void callBack() {
 		onComplete.BruteForceCallback();
 	}
-
 
 }

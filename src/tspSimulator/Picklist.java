@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Picklist {
 
-	private int hoogte;
-	private int breedte;
+	private int height;
+	private int width;
 
-	private int minimaalAantalproducten;
-	private int maximaalAantalproducten;
+	private int minimumOfProducts;
+	private int maximumOfProducts;
 
 	private ArrayList<Location> picklist;
 	private ArrayList<Location> list1;
@@ -17,10 +17,10 @@ public class Picklist {
 	private ArrayList<Location> list4;
 
 	public Picklist(int minimaalAantalproducten, int maximaalAantalproducten, int hoogte, int breedte) {
-		this.minimaalAantalproducten = minimaalAantalproducten;
-		this.maximaalAantalproducten = maximaalAantalproducten;
-		this.hoogte = hoogte;
-		this.breedte = breedte;
+		this.minimumOfProducts = minimaalAantalproducten;
+		this.maximumOfProducts = maximaalAantalproducten;
+		this.height = hoogte;
+		this.width = breedte;
 
 		generateNewPicklist();
 	}
@@ -31,17 +31,17 @@ public class Picklist {
 		list2 = new ArrayList<Location>();
 		list3 = new ArrayList<Location>();
 		list4 = new ArrayList<Location>();
-		int aantalProducten = (int) randomWithRange(minimaalAantalproducten, maximaalAantalproducten);
+		int numberOfProducts = (int) randomWithRange(minimumOfProducts, maximumOfProducts);
 
-		Location produc1t = new Location(0, 0);
-		picklist.add(produc1t);
-		list1.add(produc1t);
-		list2.add(produc1t);
-		list3.add(produc1t);
-		list4.add(produc1t);
-		for (int z = 0; z < aantalProducten; z++) {
-			int x = randomWithRange(0, this.breedte - 1);
-			int y = randomWithRange(0, this.hoogte - 1);
+		Location firstProduct = new Location(0, 0);
+		picklist.add(firstProduct);
+		list1.add(firstProduct);
+		list2.add(firstProduct);
+		list3.add(firstProduct);
+		list4.add(firstProduct);
+		for (int z = 0; z < numberOfProducts; z++) {
+			int x = randomWithRange(0, this.width - 1);
+			int y = randomWithRange(0, this.height - 1);
 			Location product = new Location(x, y);
 			boolean check = true;
 			for (Location item : picklist) {
@@ -88,19 +88,19 @@ public class Picklist {
 	}
 
 	public int getHoogte() {
-		return hoogte;
+		return height;
 	}
 
 	public int getBreedte() {
-		return breedte;
+		return width;
 	}
 
-	public void setMinimaalAantalproducten(int minimaalAantalproducten) {
-		this.minimaalAantalproducten = minimaalAantalproducten;
+	public void setMinimaalAantalproducten(int minimumOfProducts) {
+		this.minimumOfProducts = minimumOfProducts;
 	}
 
-	public void setMaximaalAantalproducten(int maximaalAantalproducten) {
-		this.maximaalAantalproducten = maximaalAantalproducten;
+	public void setMaximaalAantalproducten(int maximumOfProducts) {
+		this.maximumOfProducts = maximumOfProducts;
 	}
 
 	@Override

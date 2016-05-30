@@ -22,6 +22,7 @@ public class Doos {
 		return productList;
 	}
 	
+	
 	public static ArrayList<Doos> generateDoosList(ArrayList<Product> productlist) {
 		ArrayList<Doos> doosList = new ArrayList<Doos>();
 		Doos doos1 = new Doos(1);
@@ -37,11 +38,14 @@ public class Doos {
 		}
 		doosList.add(doos1);
 		doosList.add(doos2);
+		
+		System.out.println(doosList);
 		return doosList;
+		
 	}
 	
 	public String toString() {
-		return "Doos: "+productList.toString()+", ";
+		return "Doos" +doosId+": "+productList.toString()+", ";
 		
 	}
 	
