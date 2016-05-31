@@ -3,7 +3,11 @@ package tspSimulator;
 import java.util.ArrayList;
 
 public class Picklist {
-
+	
+	/*
+	 * Declaration variables
+	 */
+	
 	private int height;
 	private int width;
 
@@ -15,7 +19,11 @@ public class Picklist {
 	private ArrayList<Location> list2;
 	private ArrayList<Location> list3;
 	private ArrayList<Location> list4;
-
+	
+	/*
+	 * Constructor
+	 */
+	
 	public Picklist(int minimaalAantalproducten, int maximaalAantalproducten, int hoogte, int breedte) {
 		this.minimumOfProducts = minimaalAantalproducten;
 		this.maximumOfProducts = maximaalAantalproducten;
@@ -24,6 +32,11 @@ public class Picklist {
 
 		generateNewPicklist();
 	}
+	
+
+	/*
+	 * Functions
+	 */
 
 	public void generateNewPicklist() {
 		picklist = new ArrayList<Location>();
@@ -61,7 +74,16 @@ public class Picklist {
 			}
 		}
 	}
+	
+	private int randomWithRange(int min, int max) {
+		int range = (max - min) + 1;
+		return (int) (Math.random() * range) + min;
+	}
 
+	/*
+	 *  getters and setters
+	 */
+	
 	public ArrayList<Location> getPicklist() {
 		return picklist;
 	}
@@ -82,11 +104,6 @@ public class Picklist {
 		return list4;
 	}
 
-	private int randomWithRange(int min, int max) {
-		int range = (max - min) + 1;
-		return (int) (Math.random() * range) + min;
-	}
-
 	public int getHoogte() {
 		return height;
 	}
@@ -102,6 +119,10 @@ public class Picklist {
 	public void setMaximaalAantalproducten(int maximumOfProducts) {
 		this.maximumOfProducts = maximumOfProducts;
 	}
+	
+	/*
+	 * toString function
+	 */
 
 	@Override
 	public String toString() {

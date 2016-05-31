@@ -7,20 +7,33 @@ import java.util.ArrayList;
  */
 
 public class Result {
+	
+	/*
+	 * Declaration variables
+	 */
+	
 	private double time;
 	private double distance;
 	private String name;
 	private ArrayList<Location> result;
 	
 	private boolean showPointsonly;
-
+	
+	/*
+	 * Constructor 
+	 */
+	
 	public Result(ArrayList<Location> result, double time) {
 		this.result = result;
 		this.time = time;
 		this.distance = getAfstand(result);
 		showPointsonly = false;
 	}
-
+	
+	/*
+	 * Functions  
+	 */
+	
 	private double getAfstand(ArrayList<Location> p1) {
 		Location previousLocation = null;
 		double totalDistance = 0;
@@ -52,7 +65,11 @@ public class Result {
 		}
 		return Math.sqrt(Math.pow(temp, 2) + Math.pow(temp1, 2));
 	}
-
+	
+	/*
+	 * getters and setters 
+	 */
+	
 	public ArrayList<Location> getResult() {
 		return result;
 	}

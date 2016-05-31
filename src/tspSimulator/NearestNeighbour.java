@@ -4,12 +4,20 @@ import java.util.ArrayList;
 
 public class NearestNeighbour implements Runnable,  Algorithm {
 	
+	/*
+	 * Declaration variables
+	 */
+	
 	private ArrayList<Location> picklist;
 	protected Thread t = new Thread(this);
 	private Result result;
 	
 	private TSPController onComplete;
-
+	
+	/*
+	 * Functions, getters and setters
+	 */
+	
 	private double calculateDistance(Location locationA, Location locationB) {
 		double temp;
 		double temp1;

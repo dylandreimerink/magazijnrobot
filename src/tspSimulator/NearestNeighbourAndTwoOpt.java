@@ -7,11 +7,19 @@ import java.util.ArrayList;
  */
 public class NearestNeighbourAndTwoOpt implements Runnable, Algorithm {
 	
+	/*
+	 * Declaration variables
+	 */
+	
 	private ArrayList<Location> tour;
 	protected Thread t = new Thread(this);
 	private Result result;
 	
 	private TSPController onComplete;
+	
+	/*
+	 * Functions, getters and setters
+	 */
 	
 	@Override
 	public Result calculateRoute() {

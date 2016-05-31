@@ -5,13 +5,26 @@ package tspSimulator;
  */
 
 public class Location {
+	
+	/*
+	 * Declaration variables
+	 */
+	
 	private int locationX;
 	private int locationY;
-
+	
+	/*
+	 * Constructor 
+	 */
+	
 	public Location(int x, int y) {
 		this.locationX = x;
 		this.locationY = y;
 	}
+	
+	/*
+	 * Getters and Setters
+	 */
 
 	public int getLocationX() {
 		return locationX;
@@ -21,6 +34,10 @@ public class Location {
 		return locationY;
 	}
 
+	/*
+	 * Equals function
+	 */
+	
 	public boolean equals(Object object) {
 		if (object instanceof Location) {
 			if (((Location) object).getLocationX() == this.getLocationX()
@@ -33,6 +50,10 @@ public class Location {
 			return false;
 		}
 	}
+	
+	/*
+	 * toString function
+	 */
 
 	@Override
 	public String toString() {

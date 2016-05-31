@@ -9,13 +9,21 @@ import tspSimulator.TSPController;
  */
 public class TwoOpt implements Runnable, Algorithm {
 	
+	/*
+	 * Declaration variables
+	 */
+	
 	private ArrayList<Location> tour;
 	
 	protected Thread t = new Thread(this);
 	private Result result;
 	
 	private TSPController onComplete;
-
+	
+	/*
+	 * Functions, getters and setters
+	 */
+	
 	@Override
 	public Result calculateRoute() {
 
