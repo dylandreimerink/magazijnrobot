@@ -151,38 +151,45 @@ public class MainGUI extends JFrame implements ActionListener {
 		btnStartSimulatie.addActionListener(this);
 		leftPanel.add(btnStartSimulatie);
 
-		
+		//add restart button
 		btnAnnuleerSimulatie = new JButton("Herstart simulatie");
 		btnAnnuleerSimulatie.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		btnAnnuleerSimulatie.setMaximumSize(buttonsize);
 		btnAnnuleerSimulatie.addActionListener(this);
 		leftPanel.add(btnAnnuleerSimulatie);
-
+		
+		//add panel where the results are shown
 		JPanel dataPanel = new JPanel();
 		dataPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		leftPanel.add(dataPanel);
 		dataPanel.setLayout(new GridLayout(8, 2, 0, 0));
-
+		
+		//add first fit label
 		JLabel lblAlgoritme = new JLabel("First Fit: ");
 		lblAlgoritme.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lblAlgoritme);
 
+		//add first fit time field
 		lbltijdFF = new JLabel("*tijd*");
 		lbltijdFF.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lbltijdFF);
 
+		//add first fit Decreasing label 
 		JLabel lblAlgoritme_1 = new JLabel("First Fit Decreasing: ");
 		lblAlgoritme_1.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lblAlgoritme_1);
 
+		//add first fit Decreasing label
 		lbltijdFFD = new JLabel("*tijd*");
 		lbltijdFFD.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lbltijdFFD);
 
+		//add brute force 
 		JLabel lblAlgoritme_2 = new JLabel("Brute Force: ");
 		lblAlgoritme_2.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lblAlgoritme_2);
 
+		//add brute force time label
 		lbltijdBF = new JLabel("*tijd*");
 		lbltijdBF.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lbltijdBF);
@@ -227,12 +234,15 @@ public class MainGUI extends JFrame implements ActionListener {
 		lblDozenBF.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPanel.add(lblDozenBF);
 
+		//add panal that holds the tabed pane
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3, BorderLayout.CENTER);
 		panel_3.setLayout(new BoxLayout(panel_3, BoxLayout.Y_AXIS));
 
+		//add tabbed pane that holds the simulation panels
 		JTabbedPane tabbedPane = new JTabbedPane();
 		
+		//add the simulation panels
 		simPanelFF = new SimulatiePanel();
 		simPanelFF.setSize(new Dimension(0, 200));
 		simPanelFF.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -253,23 +263,23 @@ public class MainGUI extends JFrame implements ActionListener {
 		
 		panel_3.add(tabbedPane);
 
-		textArea = new JTextArea();
-
 		console = "Programma is succesvol opgestart";
 		
+		//add panel for the console
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1, BorderLayout.SOUTH);
-				panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.X_AXIS));
-		
-				textArea = new JTextArea(13, 7);
-				JScrollPane scrollPane = new JScrollPane(textArea);
-				panel_1.add(scrollPane);
-				textArea.setFont(new Font("Arial", Font.PLAIN, 12));
-				textArea.setEditable(false);
-				textArea.setColumns(5);
-				textArea.setLineWrap(true);
-				textArea.setWrapStyleWord(false);
-				textArea.append(console);
+		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.X_AXIS));
+
+		//add console
+		textArea = new JTextArea(13, 7);
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		panel_1.add(scrollPane);
+		textArea.setFont(new Font("Arial", Font.PLAIN, 12));
+		textArea.setEditable(false);
+		textArea.setColumns(5);
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(false);
+		textArea.append(console);
 
 	}
 
