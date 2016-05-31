@@ -85,6 +85,11 @@ void setup() {
 }
 
 void loop() {
+  
+/*
+ * hieronder het stukje die checkt of er misschien iets uit het java programma gestuurd wordt. Als er een comando verzonden wordt wordt er een o terug getstuurd dat het berichtje ontvangen is en vervolgens wordt de juiste opdracht uitgevoerd. 
+ */  
+  
 if (Serial.available() > 0){
      delay(20);
      int data;
@@ -159,6 +164,10 @@ if (Serial.available() > 0){
      
    }
 }
+
+ /*
+  * Om te annuleren
+  */
 
 void cancel(){
   x = 0;

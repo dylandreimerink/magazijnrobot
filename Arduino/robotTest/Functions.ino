@@ -1,28 +1,15 @@
-//void moveToDest(int x, int y) {
-//  while(currentX != x || currentY != y) {
-//    //Serial.print("X: "); Serial.println(currentX);
-//    
-//    //Serial.print("Y: "); Serial.println(currentY);
-//    if(currentX <= x){
-//      rechts();
-//    }else if( currentY < y) {
-//      omhoog();
-//    }else if(currentX > x) {
-//     links(); 
-//    }else if( currentY > y) {
-//      omlaag();
-//    }else{
-//        hold();
-//      }
-//   }
-//}
+ /*
+  * moveToLocation gebrukt de functies moveToDestX en moveToDestY om naar de juiste locatie te gaan.
+  */
 
 void moveToLocation(int x, int y) {
   moveToDestX(x);
   moveToDestY(y);
 }
-//go right && left
 
+ /*
+  * hieronder staat een opzet om schuine lijnen te trekken, deze werkt echter nog niet.
+  */
 
 //void moveToLocation(int x, int y){
 //  if(currentX < x || currentY > y) {
@@ -96,6 +83,10 @@ void moveToLocation(int x, int y) {
 //}
 
 
+ /*
+  * de functie om een product te pakken en deze weg te brengen naar de BPP simulator.
+  */
+
 void pak(){
    digitalWrite(MOTOR_LIFT, HIGH);
   analogWrite(MOTOR_LIFT_SPEED, 255);
@@ -144,9 +135,18 @@ void pak(){
   moveToLocation(6,3);
 }
 
+ /*
+  * Ga terug naar start
+  */
+
 void moveToStart(){
   moveToLocation(1, 5);
 }
+
+ /*
+  * Ga naar locatie x...
+  */
+  
 void moveToDestX(int x){
    while(currentX != x){
       if(currentX <= x){
@@ -157,6 +157,10 @@ void moveToDestX(int x){
    }
    hold();
 }
+
+ /*
+  * Ga naar locatie y
+  */
 
 //BIJ Y AS ALLES ANDERSOM OMDAT Y-AS VAN BOVEN NAAR BENEDEN WORDT GETELD
 void moveToDestY(int y){
@@ -170,10 +174,18 @@ void moveToDestY(int y){
    hold();
 }
 
+ /*
+  * Stop alle motoren
+  */
+
 void hold() {
     analogWrite(MOTOR_GROUND_SPEED, 0);
     analogWrite(MOTOR_LIFT_SPEED, 0);
 }
+
+ /*
+  * Ga een plek naar rechts
+  */
 
 void rechts() {
     digitalWrite(MOTOR_GROUND, LOW);
@@ -185,6 +197,10 @@ void rechts() {
     currentX++;    
 }
 
+ /*
+  * Ga een plek naar links
+  */
+
 void links() {
     digitalWrite(MOTOR_GROUND, HIGH);
     analogWrite(MOTOR_GROUND_SPEED, motorSpeed);
@@ -195,6 +211,10 @@ void links() {
     currentX--;
 }
 
+ /*
+  * Ga een plek omhoog
+  */
+
 void omhoog() {
     digitalWrite(MOTOR_LIFT, HIGH);
     analogWrite(MOTOR_LIFT_SPEED, motorSpeed);
@@ -204,6 +224,10 @@ void omhoog() {
     }
     currentY--;
 }
+
+ /*
+  * Ga een plek omlaag
+  */
 
 void omlaag() {
     digitalWrite(MOTOR_LIFT, LOW);
@@ -217,6 +241,10 @@ void omlaag() {
     currentY++;
 }
 
+ /*
+  * Lees de sensor van de x as en geef een true terug als deze zwart is.
+  */
+
 boolean readSensor_X(){
  // Serial.println(analogRead(sensorX));
   if(analogRead(sensorX) > sensorXBlack){
@@ -227,6 +255,10 @@ boolean readSensor_X(){
     return(false);
   }
 }
+
+ /*
+  * Lees de sensor van de y as en geef een true terug als deze zwart is.
+  */
 
 boolean readSensor_Y(){
  // Serial.println(analogRead(sensorY));
