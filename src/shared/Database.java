@@ -104,6 +104,7 @@ public class Database implements Runnable {
 		catch(Exception e){
 			System.out.println(e);
 		}
+		//Update functie om producten up te daten in de database
 	}
 
 	public void delete(int id){
@@ -116,6 +117,7 @@ public class Database implements Runnable {
 		catch(Exception e){
 			System.out.println(e);
 		}
+		//Delete functie om producten te verwijderen van de database.
 	}
 	
 	public void Create_Product(String naam, int hoogte, int lengte , int breedte, int x, int y){
@@ -127,6 +129,7 @@ public class Database implements Runnable {
 		catch(Exception e){
 			System.out.println(e);
 		}
+		//Create functie om producten toe te voegen aan de database.
 	}
 	public String[] Get_Productnames() throws Exception{
 			connect();
@@ -140,7 +143,8 @@ public class Database implements Runnable {
 				ProductNamen.add(rs.getString("productNaam"));
 			}
 			String[] Producten = ProductNamen.toArray(new String[ProductNamen.size()]);
-			return Producten;			
+			return Producten;
+			//Get functie om producten op te halen van de database en een ArrayList van alle producten te returnen.
 	}
 	
 	public ArrayList<String> Edit_Product(String productnaam){
@@ -166,7 +170,8 @@ public class Database implements Runnable {
 		catch(Exception e){
 			System.out.println(e);
 		}
-		return ProductInformatie;		
+		return ProductInformatie;
+		//Edit functie om informatie op te halen van een product, die vervolgens in het ASRS systeem gewijzigd kan worden.
 	}
 
 }
