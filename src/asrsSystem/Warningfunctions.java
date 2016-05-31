@@ -1,10 +1,13 @@
 package asrsSystem;
-
+/*
+ * Authors: Richard en Steven, ICTM2A
+ */
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Warningfunctions {
-
+	//algemene warningmessages die door het hele programma gebruikt kunnen worden.
+	
 	public void showNullpointerWarning(JFrame frame) {
 		JOptionPane.showMessageDialog(frame,
 			    "Selecteer eerst een order om door te gaan! (CTRL+O)",

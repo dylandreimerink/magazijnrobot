@@ -1,6 +1,4 @@
-/*
- * Authors: Richard Mastenbroek (ICTM2a)
- */
+
 package asrsSystem;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -14,7 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import shared.Database;
-
+/*
+ * Authors: Richard en Steven, ICTM2A
+ */
 public class Edit_Product extends JDialog implements ActionListener{
 
 	private JLabel lblNaam;

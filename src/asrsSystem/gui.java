@@ -1,4 +1,7 @@
 package asrsSystem;
+/*
+ * Authors: Richard en Steven, ICTM2A
+ */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -96,13 +99,7 @@ public class gui extends JFrame implements ActionListener {
 		mntmOpenOrder.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, InputEvent.CTRL_MASK));
 		mnBestand.add(mntmOpenOrder);
 		
-		
-		//open recent NOT DONE
-		JMenu mnOpenRecent = new JMenu("Open recent");
-		mnOpenRecent.addActionListener(this);
 
-		
-		
 		//exit DONE
 		mntmExit = new JMenuItem("Exit");
 		mntmExit.addActionListener(this);
@@ -216,7 +213,7 @@ public class gui extends JFrame implements ActionListener {
         setVisible(true);
 	}
 	
-	//actionlisteners
+	//actionlisteners, vanuit hier worden voornamelijk methodes uit controller, en create/edit product klasses aangeroepen
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -239,9 +236,6 @@ public class gui extends JFrame implements ActionListener {
 		}
 		if(e.getSource()== mntmVoegToe) {
 			new Create_Product();
-		}
-		if(e.getSource()== mntmDeleteArtikel) {
-			// todo code here
 		}
 		if(e.getSource()== connect) {
 			controller.Connect();

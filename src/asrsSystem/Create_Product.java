@@ -1,6 +1,4 @@
-/*
- * Authors: Richard Mastenbroek (ICTM2a)
- */
+
 
 package asrsSystem;
 import java.awt.Dimension;
@@ -13,7 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import shared.Database;
-
+/*
+ * Authors: Richard en Steven, ICTM2A
+ */
 public class Create_Product extends JDialog implements ActionListener{
 	
 	private JLabel lblNaam;

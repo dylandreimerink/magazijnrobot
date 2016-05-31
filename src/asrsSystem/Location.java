@@ -3,7 +3,9 @@ package asrsSystem;
 import java.util.ArrayList;
 
 import shared.Product;
-
+/*
+ * Authors: Richard en Steven, ICTM2A
+ */
 
 public class Location {
 	
@@ -19,7 +21,7 @@ public class Location {
 	
 	
 	public Location() {
-		// let this stay.
+		// default constructor om te gebruiken zonder int x of int y mee te geven.
 	}
 
 
@@ -39,6 +41,7 @@ public class Location {
 
 	}
 	
+	//getters voor ophalen locaties.
 	public int getLocationX() {
 		return locatieX;
 	}

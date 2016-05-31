@@ -1,11 +1,10 @@
 package asrsSystem;
-/*
- * Authors: richard en steven
- */
 import java.util.ArrayList;
 
 import shared.Product;
-
+/*
+ * Authors: Richard en Steven, ICTM2A
+ */
 public class Doos {
 	private ArrayList<Product> productList = new ArrayList<Product>();
 	public int doosId;
@@ -17,12 +16,13 @@ public class Doos {
 	public void addProduct(Product p){
 		productList.add(p);
 	}
-
+	
 	public ArrayList<Product> getProductList(){
 		return productList;
 	}
 	
-	
+	// gebruik één keer in controller om producten over dozen te verdelen. onderstaande methode verdeelt producten
+	// over in dit geval twee dozen.
 	public static ArrayList<Doos> generateDoosList(ArrayList<Product> productlist) {
 		ArrayList<Doos> doosList = new ArrayList<Doos>();
 		Doos doos1 = new Doos(1);

@@ -6,7 +6,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import shared.Product;
+/*
+ * Authors: Richard en Steven, ICTM2A
+ */
 
+//Controller regelt algemene verbinding tussen de robot klasse, en de rest van de klasses.
 public class Controller {
 	private ArrayList<Location> initialTour;
 	private ArrayList<Location> optimizedTour;
@@ -18,6 +22,10 @@ public class Controller {
 	private boolean pressedGenerateRoute;
 	private Warningfunctions warning = new Warningfunctions();
 	
+	
+	//geef productlijst en een panel mee, deze methode zal dan de nodige methodes aanroepen die nodig zijn
+	//om een route te genereren. panel word meegegeven omdat de doosinfo sectie een panel nodig heeft om images
+	//weer te geven
 	public void startRoute(ArrayList<Product> productlist, JPanel panel) {
 		this.prodlist = productlist;
 		Location location = new Location();
@@ -40,11 +48,13 @@ public class Controller {
 		return optimizedTour;
 	}
 	
+	//default constructor voor controller, geef jpanel mee omdat drawpanel een panel nodig heeft.
 	public Controller(JPanel container) {
 		drawer = new DrawPanel();
 		container.add(drawer, "cell 1 0,grow");
 	}
 	
+	//deze methode aanroepen om naar een arduino op een COM poort te zoeken, werkt alleen op windows.
 	public void Connect() {
 		if(optimizedTour == null) {
 			warning.showNullpointerWarning(null);
@@ -54,7 +64,7 @@ public class Controller {
 		}
 	}
 	
-	
+	//wanneer er een connectie is startrobot aanroepen, wanneer robot == null, warning laten zien
 	public void StartRobot() {
 		if(robot == null) {
 			warning.showNoRobotMessage(null);
@@ -63,13 +73,14 @@ public class Controller {
 		}
 	}
 	
+	//robotlocatie voor visuele weergave updaten, aanroepen in robotklasse als de arduino commando "C" terugstuurt.
 	public void updateRobotLocation() {
 		drawer.setRobotCounter();
 	}
 
 	
 
-	
+	// onderstaande code regelt weergave van aantal pakketten in de gui
 	public void updateDoosinfo(JPanel panel) {
 		
 		image = new ImageIcon("src/img/smallCrate.png");
