@@ -109,24 +109,23 @@ public class gui extends JFrame implements ActionListener {
 		mntmExit.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, InputEvent.CTRL_MASK));
 		mnBestand.add(mntmExit);
 		
+		//Knop voor het genereren van een route
 		mntmGenRoute = new JMenuItem("Genereer route");
 		mntmGenRoute.addActionListener(this);
 		mntmGenRoute.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, InputEvent.CTRL_MASK));
 		mnBestand.add(mntmGenRoute);
 		
-		// bewerk artikel NOT DONE
+		//Knop voor het bewerken van een artikel.
 		mntmBewerkArtikel = new JMenuItem("Bewerk artikel");
 		mntmBewerkArtikel.addActionListener(this);
 		mnBestand.add(mntmBewerkArtikel);
 		mntmBewerkArtikel.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, InputEvent.CTRL_MASK));
 		
-		// bewerk artikel NOT DONE
+		//Knop voor het toevoegen van een artikel
 		mntmVoegToe = new JMenuItem("Voeg artikel toe");
 		mntmVoegToe.addActionListener(this);
 		mnBestand.add(mntmVoegToe);
 		mntmVoegToe.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, InputEvent.CTRL_MASK));
-
-
         
         JPanel panel = new JPanel();
         getContentPane().add(panel);
@@ -142,15 +141,17 @@ public class gui extends JFrame implements ActionListener {
         panel_1.add(panel_3, "cell 1 0,alignx left,aligny top");
         panel_3.setLayout(new MigLayout("", "[107px]", "[][][23px]"));
         
-        
+        //Een connect button voor de verbinding met de Arduino
         connect = new JButton("connect");
         connect.addActionListener(this);
         
+        //Een knop om de robot te starten nadat een xml order is geselecteerd en een route is gegenereerd.
         startRobot = new JButton("start robot");
         panel_3.add(startRobot, "cell 0 0,growx");
         startRobot.addActionListener(this);
         panel_3.add(connect, "cell 0 1,growx,aligny top");
         
+        //Een knop voor het genereren van een route.
         genRoute = new JButton("genereer route");
         genRoute.addActionListener(this);
         panel_3.add(genRoute, "cell 0 2,alignx center,aligny top");
