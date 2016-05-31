@@ -8,14 +8,22 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class Bruteforce implements Algorithm, Runnable {
-
+	
+	/*
+	 * Declaration variables
+	 */
+	
 	private ArrayList<Location> picklist;
 	private ArrayList<Location> shortestPicklist;
 	protected Thread t = new Thread(this);
 	private Result result;
 
 	private TSPController onComplete;
-
+	
+	/*
+	 * Functions, getters and setters
+	 */
+	
 	public Result calculateRoute() {
 		shortestPicklist = new ArrayList<Location>();
 		for (Location l : picklist.toArray(new Location[0])) {

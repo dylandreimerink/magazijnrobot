@@ -84,13 +84,9 @@ public class TSPController {
 				nearestneighbourandtwooptDrawPanel, this);
 	}
 
-	public void setRaster(boolean mode) {
-		bruteforceDrawPanel.setShowRaster(mode);
-		twooptDrawPanel.setShowRaster(mode);
-		nearestneighbourDrawPanel.setShowRaster(mode);
-		nearestneighbourandtwooptDrawPanel.setShowRaster(mode);
-		mainGui.repaint();
-	}
+	/*
+	 * Functions
+	 */
 
 	public void generateNewPicklist() {
 		picklist.setMaximaalAantalproducten(maxproducts);
@@ -132,6 +128,11 @@ public class TSPController {
 
 	}
 
+	
+	/*
+	 * CallBacks
+	 */
+	
 	public void BruteForceCallback() {
 		stop_time = System.nanoTime();
 		double diffTime = (stop_time - start_time) / 1e6;
@@ -172,6 +173,18 @@ public class TSPController {
 		mainGui.repaint();
 	}
 
+	/*
+	 * Getters and Setters
+	 */
+	
+	public void setRaster(boolean mode) {
+		bruteforceDrawPanel.setShowRaster(mode);
+		twooptDrawPanel.setShowRaster(mode);
+		nearestneighbourDrawPanel.setShowRaster(mode);
+		nearestneighbourandtwooptDrawPanel.setShowRaster(mode);
+		mainGui.repaint();
+	}
+	
 	public void setBruteforceResults(Result bruteforceResults) {
 		this.bruteforceResults = bruteforceResults;
 		bruteforceDrawPanel.setResultaat(bruteforceResults);

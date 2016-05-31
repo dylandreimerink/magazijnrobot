@@ -11,6 +11,8 @@ import java.util.Enumeration;
 import gnu.io.*;
 import shared.Product;
 
+//Import de benodigde io's en utils.
+
 public class Robot implements Runnable{
 
 	CommPortIdentifier info;
@@ -36,8 +38,13 @@ public class Robot implements Runnable{
         	System.out.println("arduino poort: "+info.getName());			
 		}
 		
-		//portName = info.getName();
-		portName = "COM9";
+		if(info.getName()== null){
+			System.out.println("Geen poort aangesloten.");
+		}
+		else{
+			portName = info.getName();			
+		}
+		// Haalt de COM poort op en zet het in de variabele portName.
 		serialPort = null;
 		
 		}
@@ -49,9 +56,7 @@ public class Robot implements Runnable{
 			t = new Thread(this);
 		}
 		t.start();
-	}
-	
-	public void setpressedDisconnect(boolean value) {
+		//Start een nieuwe Thread.
 	}
 		
 	public void run() {
@@ -60,7 +65,8 @@ public class Robot implements Runnable{
 			CommPortIdentifier port = CommPortIdentifier.getPortIdentifier(portName);
 			if(port.isCurrentlyOwned())
 			{
-	        	System.out.println("Error: Port is currently in use");		
+	        	System.out.println("Error: Port is currently in use");
+	        	//Controleerd of de COM poort op dit moment in gebruik is.
 	 
 			}
 			if(port!=null)
@@ -74,11 +80,13 @@ public class Robot implements Runnable{
 					serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN | SerialPort.FLOWCONTROL_RTSCTS_OUT);
 					
 					OutputStream out = serialPort.getOutputStream();
+					//de variabele out zorgt ervoor dat gegevens naar de arduino verstuurd kunnen worden.
 					int i = 0;
 					System.out.println("start sending arraylist");
 					for(Location l:list) {
 						int x = list.get(i).getLocationX();
 						int y = list.get(i).getLocationY();
+						//Zet de coördinaten x & y in de juiste variabelen per product.
 						for(Doos d : boxlist){
 							for(Product p : d.getProductList()){
 								System.out.println(p);
@@ -121,37 +129,10 @@ public class Robot implements Runnable{
 				}
 				serialPort.close();
 				t.stop();
+				//Stopt de Thread en sluit de serialPort.
 			}
 		}
 	}
-	
-	/*private void openSerialPort(){
-		if(serialPort instanceof SerialPort)
-		
-			return;
-		
-		try {
-			CommPortIdentifier port = CommPortIdentifier.getPortIdentifier(portName);
-			if(port.isCurrentlyOwned())
-			{
-				System.out.println("Error: Port is currently in use");				
-			}
-			if(port!=null)
-			{
-				CommPort commPort = port.open(portName, 2000);
-				
-				if(commPort instanceof SerialPort)
-				{
-					serialPort = (SerialPort) commPort;
-					serialPort.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
-					serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN | SerialPort.FLOWCONTROL_RTSCTS_OUT);
-				}
-			}
-		} catch (NoSuchPortException | PortInUseException | UnsupportedCommOperationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}*/
 	
 	private void sendCords(int x, int y, boolean pick, boolean left) {
 		this.x = Integer.toString(x);
@@ -180,6 +161,7 @@ public class Robot implements Runnable{
 				if(hasOK(reader)){
 					go = false;
 				}
+				//Versturen van het S commando totdat de Arduino een reactie geeft.
 			}
 			go = true;
 			String tX = "X"+this.x + ";";
@@ -191,6 +173,7 @@ public class Robot implements Runnable{
 					if(hasOK(reader)){
 						go = false;
 					}
+					//Verstuurd de X coördinaten.
 			}
 			go = true;
 			
@@ -201,6 +184,7 @@ public class Robot implements Runnable{
 					if(hasOK(reader)){
 						go = false;
 					}
+					//Verstuurd de Y coördinaten.
 			}
 			
 			go = true;
@@ -214,6 +198,7 @@ public class Robot implements Runnable{
 						controller.updateRobotLocation();
 						
 						go = false;
+						//Als commando C wordt verstuurd rijdt de robot terug naar zijn beginpunt.
 					}
 				}
 			}

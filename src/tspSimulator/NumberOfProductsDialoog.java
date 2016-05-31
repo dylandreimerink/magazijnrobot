@@ -12,6 +12,10 @@ import javax.swing.JTextField;
 
 public class NumberOfProductsDialoog extends JDialog implements ActionListener {
 	
+	/*
+	 * Declaration variables
+	 */
+	
 	private TSPController controller;
 	
 	private boolean isOk;
@@ -20,7 +24,11 @@ public class NumberOfProductsDialoog extends JDialog implements ActionListener {
 
 	private JButton annuleren;
 	private JButton ok;
-
+	
+	/*
+	 * Constructor, functions, getters and setters
+	 */
+	
 	public NumberOfProductsDialoog(JFrame frame, TSPController controller) {
 		super(frame, true);
 		this.controller = controller;

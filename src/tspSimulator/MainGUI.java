@@ -11,7 +11,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class MainGUI extends JFrame implements ActionListener {
-
+	
+	/*
+	 * Declaration variables
+	 */
+	
 	private TSPController controller;
 
 	private JButton newPicklist;
@@ -19,6 +23,10 @@ public class MainGUI extends JFrame implements ActionListener {
 	private JButton rasterOn;
 	private JButton rasterOff;
 	private JButton numberOfProducts;
+	
+	/*
+	 ctor* Constru
+	 */
 
 	public MainGUI(DrawPanel drawpanel1, DrawPanel drawpanel2, DrawPanel drawpanel3, DrawPanel drawpanel4,
 			TSPController controller) {
@@ -31,7 +39,11 @@ public class MainGUI extends JFrame implements ActionListener {
 
 		setVisible(true);
 	}
-
+	
+	/*
+	 * Add Components to the Jframe
+	 */
+	
 	private void addComponents(DrawPanel drawpanel1, DrawPanel drawpanel2, DrawPanel drawpanel3, DrawPanel drawpanel4) {
 		setLayout(new GridLayout(2, 4, 0, 0));
 
@@ -64,14 +76,18 @@ public class MainGUI extends JFrame implements ActionListener {
 
 		add(drawpanel4);
 
-		// hieronder is bullchit om gritlayout op te vullen
+		// hieronder is om gritlayout op te vullen
 		for(int i = 0; i <= 2; i++){
 			add(new JLabel(""));
 		}
-		// hierboven is bullchit om gritlayout op te vullen
+		// hierboven is om gritlayout op te vullen
 
 	}
-
+	
+	/*
+	 * the actionPreformed function
+	 */
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == newPicklist) {
