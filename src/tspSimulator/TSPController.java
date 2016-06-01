@@ -6,8 +6,8 @@ public class TSPController {
 	 */
 	private final int HEIGHT = 10;
 	private final int WIDTH = 10;
-	private int maxproducts = 11;
-	private int minproducts = 11;
+	private int maxproducts = 9;
+	private int minproducts = 9;
 	
 	public boolean showraster = true;
 

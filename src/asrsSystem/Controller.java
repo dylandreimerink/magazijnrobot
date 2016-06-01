@@ -26,6 +26,7 @@ public class Controller {
 		Route route = new Route();
 		route.calculateRoute(initialTour);
 		optimizedTour = route.getOptimizedTour();
+		Console.printLine(route.toString());
 		Console.printLine("Route gevonden!");
 		drawer.setResult(optimizedTour, initialTour, productlist);
 		drawer.repaint();

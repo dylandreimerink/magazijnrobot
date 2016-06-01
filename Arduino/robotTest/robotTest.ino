@@ -161,7 +161,6 @@ if (Serial.available() > 0){
            }
          }
        }
-     
    }
 }
 
