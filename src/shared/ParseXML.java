@@ -15,6 +15,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import asrsSystem.Console;
+
 public class ParseXML {
 
 	private Klant klant;
@@ -75,7 +77,8 @@ public class ParseXML {
 		return this.bestelling.getProductList();
 	}
 	
-	public Bestelling getBestelling(){		
+	public Bestelling getBestelling(){	
+		bestelling.printPakbon();
 		return bestelling;		
 	}
 

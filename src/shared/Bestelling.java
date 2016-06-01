@@ -6,6 +6,8 @@ package shared;
 
 import java.util.ArrayList;
 
+import asrsSystem.Console;
+
 public class Bestelling {
 	private Klant klant;
 	private ArrayList<Product> productList;
@@ -35,12 +37,12 @@ public class Bestelling {
 	}
 
 	public void printPakbon() {
-		System.out.println("####################### PAKLIJST #######################");
-		System.out.println("Aan: " + klant.getVoorNaam() + klant.getAchterNaam() + ", " + klant.getAdres() + ", "
+		Console.printLine("####################### PAKLIJST #######################");
+		Console.printLine("Aan: " + klant.getVoorNaam() + klant.getAchterNaam() + ", " + klant.getAdres() + ", "
 				+ klant.getPostcode() + klant.getPlaats());
-		System.out.println("Inhoud doos:");
+		Console.printLine("Inhoud doos:");
 		for (Product product : productList) {
-			System.out.println(product.getProductName());
+			Console.printLine(product.getProductName());
 		}
 	}
 }
