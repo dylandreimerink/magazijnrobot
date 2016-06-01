@@ -1,6 +1,6 @@
 package asrsSystem;
 /*
- * Authors: Steven
+ * Authors: Richard en Steven, ICTM2A
  */
 import java.io.File;
 import java.util.ArrayList;
@@ -14,6 +14,8 @@ public class ChooseOrder {
 	private ArrayList<shared.Product> productlist;
 	ParseXML order;
 	
+	
+	//gebruik deze methode om JFilechooser te openen, word via klasse parseXML doorgestuurd naar database,
 	public void ChooseFile() {
 	    JFileChooser chooser = new JFileChooser();
 	    chooser.setCurrentDirectory(new java.io.File("."));
@@ -52,7 +54,7 @@ public class ChooseOrder {
 	public String getOrderNr() {
 		return ""+order.getBestelling().getOrdernr();
 	}
-	
+	//wanneer JFilechooser is aangeroepen en uitgevoerd kan je met deze getter de volledige productlijst meekrijgen
 	public ArrayList<shared.Product> getProductList() {
 		return productlist;
 	}

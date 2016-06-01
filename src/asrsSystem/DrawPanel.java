@@ -1,5 +1,4 @@
 package asrsSystem;
-
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -14,7 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import shared.Product;
-
+/*
+ * Authors: Richard en Steven, ICTM2A
+ */
 
 public class DrawPanel extends JPanel {
 	
@@ -38,6 +39,7 @@ public class DrawPanel extends JPanel {
 	
 	
 	public DrawPanel() {
+			// in constructor images declareren, afstand tussen magazijnvakken declareren.
 	       try {                
 	           image = ImageIO.read(new File("src/img/crate.png"));
 	           robotImage = ImageIO.read(new File("src/img/robot.png"));
@@ -45,8 +47,8 @@ public class DrawPanel extends JPanel {
 	             warning.showCriticalError(null, "afbeelding lezen error! controleer de img folder!");
 	        }
 	       
-			this.afstandX = (WIDTH / magazijnSize);
-			this.afstandY = (HEIGHT / magazijnSize);
+			afstandX = (WIDTH / magazijnSize);
+			afstandY = (HEIGHT / magazijnSize);
 			
 			
 	}
@@ -68,7 +70,8 @@ public class DrawPanel extends JPanel {
 				g.drawLine(0, j, WIDTH, j);
 			
 			}
-			
+		
+			//route tekenen als drawroute == true, if not, overslaan
 		if(drawRoute == true) {
 
 			int index = 0;
@@ -86,7 +89,7 @@ public class DrawPanel extends JPanel {
 					drawRoute(g,beginX,beginY,eindX,eindY,afstandX,afstandY);
 				}
 			}
-			
+			//als drawroute == true, dan word(en) ook de producten en robot getekend
 			drawProduct(g);
 			drawRobot(g, afstandX, afstandY, counter);
 		}
@@ -135,7 +138,7 @@ public class DrawPanel extends JPanel {
 		
 		
 	}
-	
+	//drawrobotimage aan de hand van een gegeven counter.
 	private void drawRobot(Graphics g, int afstandX, int afstandY, int counter) {
 		if(counter == 0) {
 			int x = route.get(counter).getLocationX();
@@ -156,6 +159,7 @@ public class DrawPanel extends JPanel {
 
 	}
 	
+	// methode om resultaat van de gegenereerde route door te geven aan deze klasse.
 	public void setResult(ArrayList<Location> route,ArrayList<Location> productLoc, ArrayList<Product> productlist) {
 		drawRoute = true;
 		this.route = route;
@@ -163,6 +167,8 @@ public class DrawPanel extends JPanel {
 		repaint();
 	}
 	
+	//word aangeroepen in controller, verhoogt de robotcounter wanneer deze word aangeroepen.
+	//aan de hand van deze counter bepaald de robotImage bij welk product hij nu moet zijn.
 	public void setRobotCounter() {
 		if(counter < route.size()) {
 			counter++;

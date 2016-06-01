@@ -1,5 +1,7 @@
 package asrsSystem;
-
+/*
+ * Authors: Richard en Steven, ICTM2A
+ */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -194,11 +196,11 @@ public class Robot implements Runnable{
 				{
 					if(line.contains("C")) {
 						System.out.println("command done");
-						//out.close();
 						controller.updateRobotLocation();
 						
 						go = false;
-						//Als commando C wordt verstuurd rijdt de robot terug naar zijn beginpunt.
+						//Als commando C wordt verstuurd rijdt de robot terug naar zijn beginpunt, en wordt
+						// de visuele robot locatie geupdatet.
 					}
 				}
 			}
@@ -294,13 +296,11 @@ public class Robot implements Runnable{
 			}
 			
 		} catch (IOException e) {
-			// TODO Auto-generat+ed catch block
 			e.printStackTrace();
 		}
 	    try {
 			t.sleep(1000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	} 

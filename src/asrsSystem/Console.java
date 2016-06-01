@@ -6,7 +6,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-
+/*
+ * Authors: Richard en Steven, ICTM2A
+ */
 public class Console  {
 	
 	static JTextArea textAreaC;
@@ -16,6 +18,7 @@ public class Console  {
 	public Console() {
  
 	}
+	//deze methode maar één keer gebruiken in Gui.
     public JPanel console() {
     	textAreaC = new JTextArea(7, 7);
     	textAreaC.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -34,6 +37,7 @@ public class Console  {
     	
 	}
     
+    //gebruik deze methode om textlijnen te printen, indexcijfers worden automatisch toegevoegd
     public static void printLine(String text) {
     	if(counter > 1){
     		textAreaC.append("\n");

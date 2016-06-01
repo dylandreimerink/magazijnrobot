@@ -1,9 +1,8 @@
 package asrsSystem;
 
 import java.util.ArrayList;
-
-/**
- * Authors: Jan Willem en Henri Class: ICTM2A
+/*
+ * Authors: Richard en Steven, ICTM2A
  */
 public class Route {
 	
@@ -11,16 +10,17 @@ public class Route {
 	private int index = 0;
 	protected Thread t;
 
+	//tussenklasse om nog bewerkingen(algoritme bv) aan de route uit te voeren, bewerkingen zijn weggehaalt na realisatie dat
+	//het niet meer uitmaakt als we maar één product per keer pakken. in deze klasse gebeurt op het moment dus niks.
 	public void calculateRoute(ArrayList<asrsSystem.Location> initialTour) {
 		optimizedTour = new ArrayList<asrsSystem.Location>();
-		//asrsSystem.Location begin_eind = new asrsSystem.Location(6,5);
 		for(asrsSystem.Location l:initialTour) {
 			
-			//optimizedTour.add(begin_eind);
+			
 			optimizedTour.add(initialTour.get(index));
 			index++;
 		}
-		//optimizedTour.add(begin_eind);
+		
 	}
 	
 	public ArrayList<asrsSystem.Location> getOptimizedTour() {
